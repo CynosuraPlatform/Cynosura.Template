@@ -2,20 +2,21 @@
 using System.Linq;
 using Cynosura.EF;
 using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Security;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Data
 {
     public class BaseEntityRepository<T> : EntityRepository<T> where T : BaseEntity
     {
-        private readonly IUserContext _userContext;
+        private readonly IUserInfoProvider _userInfoProvider;
 
-        protected int? UserId => _userContext.GetUserAsync().Result?.Id;
+        protected int? UserId => _userInfoProvider.GetUserInfoAsync().Result?.UserId;
 
-        public BaseEntityRepository(IDatabaseFactory databaseFactory, IUserContext userContext)
+        public BaseEntityRepository(IDatabaseFactory databaseFactory, IUserInfoProvider userInfoProvider)
             : base(databaseFactory)
         {
-            _userContext = userContext;
+            _userInfoProvider = userInfoProvider;
 
             ((DataContext)Context).SavingChanges += OnSavingChanges;
         }
