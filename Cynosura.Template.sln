@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Template.Web", "Cy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Template.Core", "Cynosura.Template.Core\Cynosura.Template.Core.csproj", "{66DE68DA-1FB5-4450-B17F-3E23CFDA4525}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Template.Data", "Cynosura.Template.Data\Cynosura.Template.Data.csproj", "{C972B1DA-CBA4-42B1-A58F-AF7DC08020BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{66DE68DA-1FB5-4450-B17F-3E23CFDA4525}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66DE68DA-1FB5-4450-B17F-3E23CFDA4525}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66DE68DA-1FB5-4450-B17F-3E23CFDA4525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C972B1DA-CBA4-42B1-A58F-AF7DC08020BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C972B1DA-CBA4-42B1-A58F-AF7DC08020BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C972B1DA-CBA4-42B1-A58F-AF7DC08020BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C972B1DA-CBA4-42B1-A58F-AF7DC08020BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
