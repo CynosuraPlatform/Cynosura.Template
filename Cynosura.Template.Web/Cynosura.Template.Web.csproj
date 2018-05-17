@@ -26,12 +26,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\core\core.module.ts" />
+    <None Remove="ClientApp\src\app\role\role.module.ts" />
+    <None Remove="ClientApp\src\app\user\user.module.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cynosura.Template.Core\Cynosura.Template.Core.csproj" />
     <ProjectReference Include="..\Cynosura.Template.Data\Cynosura.Template.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\core\core.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\role\role.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\user.module.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
