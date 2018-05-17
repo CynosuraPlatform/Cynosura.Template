@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Cynosura.Core.Data;
+using Cynosura.Core.Services;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Services.Models;

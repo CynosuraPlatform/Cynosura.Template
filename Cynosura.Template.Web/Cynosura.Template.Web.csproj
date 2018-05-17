@@ -13,6 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+    <PackageReference Include="Cynosura.Web" Version="0.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.0-rc1-final" />
   </ItemGroup>
@@ -25,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cynosura.Template.Core\Cynosura.Template.Core.csproj" />
+    <ProjectReference Include="..\Cynosura.Template.Data\Cynosura.Template.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
