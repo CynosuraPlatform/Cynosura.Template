@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Cynosura.Core.Data;
+using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Services.Models;
 using Microsoft.AspNetCore.Identity;
@@ -10,11 +12,14 @@ namespace Cynosura.Template.Core.Services
     public class RoleService : IRoleService
     {
         private readonly RoleManager<Role> _roleManager;
+        private readonly IEntityRepository<Role> _roleRepository;
         private readonly IMapper _mapper;
 
-        public RoleService(RoleManager<Role> roleManager, IMapper mapper)
+        public RoleService(RoleManager<Role> roleManager, IEntityRepository<Role> roleRepository, 
+            IMapper mapper)
         {
             _roleManager = roleManager;
+            _roleRepository = roleRepository;
             _mapper = mapper;
         }
 
@@ -27,7 +32,7 @@ namespace Cynosura.Template.Core.Services
         {
             return await _roleManager.Roles
                 .OrderBy(e => e.Id)
-                .ToPagedListAsync(pageIndex, pageSize);
+                .ToPagedListAsync(_roleRepository, pageIndex, pageSize);
         }
 
         public async Task<int> CreateRoleAsync(RoleCreateModel model)

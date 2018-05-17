@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Cynosura.Core.Data;
+using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Services.Models;
 using Microsoft.AspNetCore.Identity;
@@ -13,16 +15,19 @@ namespace Cynosura.Template.Core.Services
         private readonly UserManager<User> _userManager;
         private readonly IRoleService _roleService;
         private readonly RoleManager<Role> _roleManager;
+        private readonly IEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
 
         public UserService(UserManager<User> userManager,
             IRoleService roleService,
             RoleManager<Role> roleManager,
+            IEntityRepository<User> userRepository,
             IMapper mapper)
         {
             _userManager = userManager;
             _roleService = roleService;
             _roleManager = roleManager;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -36,7 +41,7 @@ namespace Cynosura.Template.Core.Services
         {
             return await _userManager.Users
                 .OrderBy(e => e.Id)
-                .ToPagedListAsync(pageIndex, pageSize);
+                .ToPagedListAsync(_userRepository, pageIndex, pageSize);
         }
 
         public async Task<int> CreateUserAsync(UserCreateModel model)
