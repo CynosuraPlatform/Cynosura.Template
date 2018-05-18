@@ -17,6 +17,11 @@
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
+                <li *ngFor="let item of menu.items" [routerLinkActive]="['link-active']">
+                    <a [routerLink]="[item.route]">
+                        <span class="glyphicon" [ngClass]="item.cssClass"></span> {{item.name}}
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -7,6 +7,8 @@ import { BoolComponent } from "./bool.component";
 import { ErrorHandlerComponent } from "./error-handler.component";
 import { ModelValidatorComponent } from "./model-validator.component";
 import { PagerComponent } from "./pager.component";
+
+import { MenuService } from "./services/menu.service";
 import { StoreService } from "./store.service";
 
 @NgModule({
@@ -22,7 +24,8 @@ import { StoreService } from "./store.service";
         FormsModule
     ],
     providers: [
-        StoreService
+        StoreService,
+        MenuService
     ],
     exports: [
         CommonModule,
