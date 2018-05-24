@@ -37,8 +37,8 @@ export class UserService {
 
     editUser(user: User): Promise<User> {
         const url = `${this.userUrl}/${user.id}`;
-        if (!user.newPassword)
-            user.newPassword = null;
+        if (!user.password)
+            user.password = null;
 
         return this.httpClient.put<User>(url, JSON.stringify(user), { headers: this.headers })
             .toPromise();

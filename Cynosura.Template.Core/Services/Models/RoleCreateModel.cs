@@ -2,6 +2,6 @@
 {
     public class RoleCreateModel : RoleUpdateModel
     {
-        public int Id { get; set; }
+        
     }
 }

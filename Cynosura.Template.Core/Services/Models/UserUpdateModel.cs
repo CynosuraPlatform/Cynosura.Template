@@ -4,7 +4,7 @@ namespace Cynosura.Template.Core.Services.Models
 {
     public class UserUpdateModel
     {
-        public string NewPassword { get; set; }
+        public string Password { get; set; }
         public IEnumerable<int> RoleIds { get; set; }
     }
 }

@@ -72,9 +72,10 @@ namespace Cynosura.Template.Core.Services
             _mapper.Map(model, user);
             await _userManager.UpdateAsync(user);
 
-            if (model.NewPassword != null)
+            if (model.Password != null)
             {
-                var result = await _userManager.ChangePasswordAsync(user, model.NewPassword, model.NewPassword);
+                var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, resetToken, model.Password);
                 CheckResultSucceed(result);
             }
 
