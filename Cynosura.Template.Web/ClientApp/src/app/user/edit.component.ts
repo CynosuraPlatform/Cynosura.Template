@@ -58,7 +58,7 @@ export class UserEditComponent implements OnInit {
             .filter(role => role.isSelected)
             .map(role => role.id);
         if (this.user.id) {
-            this.userService.editUser(this.user)
+            this.userService.updateUser(this.user)
                 .then(
                     (res) => window.history.back(),
                     (res) => this.error = res

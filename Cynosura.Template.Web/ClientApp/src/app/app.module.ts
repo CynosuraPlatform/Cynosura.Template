@@ -7,6 +7,7 @@ import { RouterModule, Route } from "@angular/router";
 import { ModalModule } from "ngx-modialog";
 import { BootstrapModalModule } from "ngx-modialog/plugins/bootstrap";
 
+import { AuthModule } from "./auth/auth.module";
 import { RoleModule } from "./role/role.module";
 import { UserModule } from "./user/user.module";
 
@@ -34,6 +35,7 @@ var routes: Route[] = [
         RouterModule.forRoot(routes),
         ModalModule.forRoot(),
         BootstrapModalModule,
+        AuthModule,
         RoleModule,
         UserModule
     ],

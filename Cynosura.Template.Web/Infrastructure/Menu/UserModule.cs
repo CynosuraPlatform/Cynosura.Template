@@ -17,7 +17,7 @@ namespace Cynosura.Template.Web.Infrastructure.Menu
                     Name = "Users",
                     Route = "./user",
                     CssClass = "glyphicon-user",
-                    //Roles = new List<string>() {"Administrator"}
+                    Roles = new List<string>() {"Administrator"}
                 }
             };
         }

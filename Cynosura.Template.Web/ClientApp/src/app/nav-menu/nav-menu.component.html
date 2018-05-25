@@ -10,7 +10,7 @@
             <a class='navbar-brand' [routerLink]='["/"]'>Cynosura.Template</a>
         </div>
         <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }' *ngIf="menu">
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a [routerLink]='["/"]' (click)='collapse()'>
@@ -20,6 +20,16 @@
                 <li *ngFor="let item of menu.items" [routerLinkActive]="['link-active']">
                     <a [routerLink]="[item.route]">
                         <span class="glyphicon" [ngClass]="item.cssClass"></span> {{item.name}}
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" *ngIf="!loggedIn">
+                    <a [routerLink]="['login']">
+                        <span class='glyphicon glyphicon-log-in'></span> Log In
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" *ngIf="loggedIn">
+                    <a href="javascript:void(0);" (click)="logout()">
+                        <span class='glyphicon glyphicon-log-out'></span> Log Out
                     </a>
                 </li>
             </ul>

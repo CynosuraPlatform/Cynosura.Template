@@ -17,6 +17,9 @@
     <PackageReference Include="Cynosura.Web" Version="0.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.0-rc1-final" />
+    <PackageReference Include="OpenIddict" Version="2.0.0-rc2-final" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-rc2-final" />
+    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0-rc2-final" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,10 +43,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\core\core.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\role\role.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\user.module.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\core\models\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

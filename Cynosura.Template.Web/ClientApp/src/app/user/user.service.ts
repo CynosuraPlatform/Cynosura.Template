@@ -35,7 +35,7 @@ export class UserService {
           .toPromise();
     }
 
-    editUser(user: User): Promise<User> {
+    updateUser(user: User): Promise<User> {
         const url = `${this.userUrl}/${user.id}`;
         if (!user.password)
             user.password = null;
