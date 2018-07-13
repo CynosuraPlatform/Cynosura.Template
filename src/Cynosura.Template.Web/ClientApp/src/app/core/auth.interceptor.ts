@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 (err: any) => {
                     if (err instanceof HttpErrorResponse) {
                         const httpError = err as HttpErrorResponse;
-                        if (httpError.status === 400) {
+                        if (httpError.status === 400 && tokens != null) {
                             return this.handle400Error(err);
                         }
                         if (httpError.status === 401) {
