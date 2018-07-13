@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Vassily Ivanov",
+    "classifications": [ "Web", "MVC", "SPA" ],
+    "identity": "Cynosura.Template",
+    "name": "Cynosura",
+    "shortName": "cynosura",
+    "sourceName": "Cynosura.Template"
+}
