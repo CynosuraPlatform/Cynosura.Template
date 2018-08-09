@@ -18,6 +18,17 @@ export class UserListComponent implements OnInit {
     content: Page<User>;
     error: Error;
     pageSize = 10;
+    private _pageIndex: number;
+    get pageIndex(): number {
+        if (!this._pageIndex) {
+            this._pageIndex = this.storeService.get("usersPageIndex") | 0;
+        }
+        return this._pageIndex;
+    }
+    set pageIndex(value: number) {
+        this._pageIndex = value;
+        this.storeService.set("usersPageIndex", value);
+    }
 
     constructor(
         private modal: Modal,
@@ -28,19 +39,12 @@ export class UserListComponent implements OnInit {
         ) {}
 
     ngOnInit(): void {
-        let pageIndex = this.storeService.get("usersPageIndex");
-        if (!pageIndex) pageIndex = 0;
-        this.getUsers(pageIndex);
+        this.getUsers();
     }
 
-    getUsers(pageIndex: number): void {
-        this.userService.getUsers(pageIndex, this.pageSize)
+    getUsers(): void {
+        this.userService.getUsers(this.pageIndex, this.pageSize)
             .then(content => {
-                if (content.pageItems.length == 0 && content.totalItems != 0) {
-                    this.content.currentPageIndex--;
-                    this.storeService.set("usersPageIndex", this.content.currentPageIndex);
-                    this.getUsers(this.content.currentPageIndex);
-                }
                 this.content = content;
             })
             .catch(error => this.error = error);
@@ -68,7 +72,7 @@ export class UserListComponent implements OnInit {
             .then(() => {
                 this.userService.deleteUser(id)
                     .then(() => {
-                        this.getUsers(this.content.currentPageIndex);
+                        this.getUsers();
                     })
                     .catch(error => this.error = error);
             })
@@ -76,7 +80,7 @@ export class UserListComponent implements OnInit {
     }
 
     onPageSelected(pageIndex: number) {
-        this.storeService.set("usersPageIndex", pageIndex);
-        this.getUsers(pageIndex);
+        this.pageIndex = pageIndex;
+        this.getUsers();
     }
 }

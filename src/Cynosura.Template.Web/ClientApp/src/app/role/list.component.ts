@@ -18,6 +18,17 @@ export class RoleListComponent implements OnInit {
     content: Page<Role>;
     error: Error;
     pageSize = 10;
+    private _pageIndex: number;
+    get pageIndex(): number {
+        if (!this._pageIndex) {
+            this._pageIndex = this.storeService.get("rolesPageIndex") | 0;
+        }
+        return this._pageIndex;
+    }
+    set pageIndex(value: number) {
+        this._pageIndex = value;
+        this.storeService.set("rolesPageIndex", value);
+    }
 
     constructor(
         private modal: Modal,
@@ -28,19 +39,12 @@ export class RoleListComponent implements OnInit {
         ) {}
 
     ngOnInit(): void {
-        let pageIndex = this.storeService.get("rolesPageIndex");
-        if (!pageIndex) pageIndex = 0;
-        this.getRoles(pageIndex);
+        this.getRoles();
     }
 
-    getRoles(pageIndex: number): void {
-        this.roleService.getRoles(pageIndex, this.pageSize)
+    getRoles(): void {
+        this.roleService.getRoles(this.pageIndex, this.pageSize)
             .then(content => {
-                if (content.pageItems.length == 0 && content.totalItems != 0) {
-                    this.content.currentPageIndex--;
-                    this.storeService.set("rolesPageIndex", this.content.currentPageIndex);
-                    this.getRoles(this.content.currentPageIndex);
-                }
                 this.content = content;
             })
             .catch(error => this.error = error);
@@ -68,7 +72,7 @@ export class RoleListComponent implements OnInit {
             .then(() => {
                 this.roleService.deleteRole(id)
                     .then(() => {
-                        this.getRoles(this.content.currentPageIndex);
+                        this.getRoles();
                     })
                     .catch(error => this.error = error);
             })
@@ -76,7 +80,7 @@ export class RoleListComponent implements OnInit {
     }
 
     onPageSelected(pageIndex: number) {
-        this.storeService.set("rolesPageIndex", pageIndex);
-        this.getRoles(pageIndex);
+        this.pageIndex = pageIndex;
+        this.getRoles();
     }
 }
