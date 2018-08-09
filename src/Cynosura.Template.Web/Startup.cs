@@ -7,6 +7,7 @@ using Autofac.Extensions.DependencyInjection;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Web.Infrastructure;
+using Cynosura.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -120,7 +121,7 @@ namespace Cynosura.Template.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddMvcOptions(o =>
                 {
-                    //o.Filters.Add(typeof(ExceptionLoggerFilter), 10);
+                    o.Filters.Add(typeof(ExceptionLoggerFilter), 10);
                     o.ModelBinderProviders.Insert(0, new UserInfoModelBinderProvider());
                 })
                 .AddJsonOptions(options =>
