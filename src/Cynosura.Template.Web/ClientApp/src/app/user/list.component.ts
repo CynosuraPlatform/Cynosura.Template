@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { Modal } from "ngx-modialog/plugins/bootstrap";
-
 import { User } from "./user.model";
 import { UserService } from "./user.service";
 
+import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
@@ -31,7 +30,7 @@ export class UserListComponent implements OnInit {
     }
 
     constructor(
-        private modal: Modal,
+        private modalHelper: ModalHelper,
         private userService: UserService,
         private router: Router,
         private route: ActivatedRoute,
@@ -59,24 +58,14 @@ export class UserListComponent implements OnInit {
     }
 
     delete(id: number): void {
-        const dialogRef = this.modal
-            .confirm()
-            .size("sm")
-            .keyboard(27)
-            .title("Delete?")
-            .body("Are you sure you want to delete?")
-            .okBtn("Delete")
-            .cancelBtn("Cancel")
-            .open();
-        dialogRef.result
+        this.modalHelper.confirmDelete()
             .then(() => {
                 this.userService.deleteUser(id)
                     .then(() => {
                         this.getUsers();
                     })
                     .catch(error => this.error = error);
-            })
-            .catch(() => {});
+            });
     }
 
     onPageSelected(pageIndex: number) {

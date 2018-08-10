@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { Modal } from "ngx-modialog/plugins/bootstrap";
-
 import { Role } from "./role.model";
 import { RoleService } from "./role.service";
 
+import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
@@ -31,7 +30,7 @@ export class RoleListComponent implements OnInit {
     }
 
     constructor(
-        private modal: Modal,
+        private modalHelper: ModalHelper,
         private roleService: RoleService,
         private router: Router,
         private route: ActivatedRoute,
@@ -59,24 +58,14 @@ export class RoleListComponent implements OnInit {
     }
 
     delete(id: number): void {
-        const dialogRef = this.modal
-            .confirm()
-            .size("sm")
-            .keyboard(27)
-            .title("Delete?")
-            .body("Are you sure you want to delete?")
-            .okBtn("Delete")
-            .cancelBtn("Cancel")
-            .open();
-        dialogRef.result
+        this.modalHelper.confirmDelete()
             .then(() => {
                 this.roleService.deleteRole(id)
                     .then(() => {
                         this.getRoles();
                     })
                     .catch(error => this.error = error);
-            })
-            .catch(() => {});
+            });
     }
 
     onPageSelected(pageIndex: number) {

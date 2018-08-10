@@ -17,6 +17,8 @@ import { AuthService } from "./services/auth.service";
 import { MenuService } from "./services/menu.service";
 import { StoreService } from "./store.service";
 
+import { ModalHelper } from "./modal.helper";
+
 @NgModule({
     declarations: [
         BoolPipe,
@@ -33,6 +35,7 @@ import { StoreService } from "./store.service";
         StoreService,
         AuthService,
         MenuService,
+        ModalHelper,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ErrorInterceptor,
