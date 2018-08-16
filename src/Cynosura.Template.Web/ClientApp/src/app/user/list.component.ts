@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { User } from "./user.model";
-import { UserService } from "./user.service";
+import { User } from "../user-core/user.model";
+import { UserService } from "../user-core/user.service";
 
 import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";

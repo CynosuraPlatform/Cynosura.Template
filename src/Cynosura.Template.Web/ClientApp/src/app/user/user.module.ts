@@ -2,11 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { CoreModule } from "../core/core.module";
+import { UserCoreModule } from "../user-core/user-core.module";
 
 import { UserListComponent } from "./list.component";
 import { UserEditComponent } from "./edit.component";
-
-import { UserService } from "./user.service";
 
 @NgModule({
     declarations: [
@@ -18,10 +17,10 @@ import { UserService } from "./user.service";
             { path: "user", component: UserListComponent },
             { path: "user/:id", component: UserEditComponent }
         ]),
-        CoreModule
+        CoreModule,
+        UserCoreModule
     ],
     providers: [
-        UserService
     ]
 })
 export class UserModule {

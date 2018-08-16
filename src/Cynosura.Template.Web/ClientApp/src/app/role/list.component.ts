@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { Role } from "./role.model";
-import { RoleService } from "./role.service";
+import { Role } from "../role-core/role.model";
+import { RoleService } from "../role-core/role.service";
 
 import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
