@@ -14,8 +14,8 @@ import { RoleEditComponent } from "./edit.component";
     ],
     imports: [
         RouterModule.forChild([
-            { path: "role", component: RoleListComponent },
-            { path: "role/:id", component: RoleEditComponent }
+            { path: "", component: RoleListComponent },
+            { path: ":id", component: RoleEditComponent }
         ]),
         CoreModule,
         RoleCoreModule
