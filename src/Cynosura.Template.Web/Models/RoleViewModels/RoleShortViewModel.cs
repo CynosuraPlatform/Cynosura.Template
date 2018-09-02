@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Cynosura.Template.Web.Models.RoleViewModels
 {
-    public class RoleViewModel : RoleCreateViewModel
+    public class RoleShortViewModel
     {
         public int Id { get;set; }
 
+        public string Name { get; set; }
     }
 }

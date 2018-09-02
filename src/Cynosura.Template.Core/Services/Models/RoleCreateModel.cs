@@ -1,7 +1,10 @@
-﻿namespace Cynosura.Template.Core.Services.Models
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Cynosura.Template.Core.Services.Models
 {
     public class RoleCreateModel : RoleUpdateModel
     {
-        
     }
 }

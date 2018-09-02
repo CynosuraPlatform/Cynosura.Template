@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using AutoMapper;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Services.Models;
@@ -14,7 +13,8 @@ namespace Cynosura.Template.Web.Infrastructure.AutoMapper
         public RoleProfile()
         {
             CreateMap<Role, RoleViewModel>();
-            CreateMap<RoleViewModel, RoleCreateModel>();
+            CreateMap<RoleUpdateViewModel, RoleUpdateModel>();
+            CreateMap<RoleCreateViewModel, RoleCreateModel>();
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using AutoMapper;
 using Cynosura.Core.Services.Models;
+using Cynosura.Web.Infrastructure;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Services;
 using Cynosura.Template.Core.Services.Models;
 using Cynosura.Template.Web.Models;
 using Cynosura.Template.Web.Models.RoleViewModels;
-using Cynosura.Web.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +28,7 @@ namespace Cynosura.Template.Web.Controllers
         }
 
         [HttpGet("")]
-        public async Task<PageModel<RoleViewModel>> GetRolesAsync(int? pageIndex, int? pageSize)
+        public async Task<PageModel<RoleViewModel> > GetRolesAsync(int? pageIndex, int? pageSize)
         {
             var roles = await _roleService.GetRolesAsync(pageIndex, pageSize);
             return roles.Map<Role, RoleViewModel>(_mapper);
@@ -42,17 +42,17 @@ namespace Cynosura.Template.Web.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<StatusViewModel> PutRoleAsync(int id, [FromBody] RoleViewModel role)
+        public async Task<StatusViewModel> PutRoleAsync(int id, [FromBody] RoleUpdateViewModel role)
         {
-            var model = _mapper.Map<RoleViewModel, RoleCreateModel>(role);
+            var model = _mapper.Map<RoleUpdateViewModel, RoleUpdateModel>(role);
             await _roleService.UpdateRoleAsync(id, model);
             return new StatusViewModel();
         }
 
         [HttpPost("")]
-        public async Task<StatusViewModel> PostRoleAsync([FromBody] RoleViewModel role)
+        public async Task<StatusViewModel> PostRoleAsync([FromBody] RoleCreateViewModel role)
         {
-            var model = _mapper.Map<RoleViewModel, RoleCreateModel>(role);
+            var model = _mapper.Map<RoleCreateViewModel, RoleCreateModel>(role);
             var id = await _roleService.CreateRoleAsync(model);
             return new CreationStatusViewModel(id);
         }

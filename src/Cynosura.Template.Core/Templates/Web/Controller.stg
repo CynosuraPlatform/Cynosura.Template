@@ -54,8 +54,8 @@ namespace $model.Solution.Namespace$.Web.Controllers
         public async Task<StatusViewModel> Post$model.Entity.Name$Async([FromBody] $model.Entity.Name$CreateViewModel $model.Entity.NameLower$)
         {
             var model = _mapper.Map<$model.Entity.Name$CreateViewModel, $model.Entity.Name$CreateModel>($model.Entity.NameLower$);
-            await _$model.Entity.NameLower$Service.Create$model.Entity.Name$Async(model);
-            return new StatusViewModel();
+            var id = await _$model.Entity.NameLower$Service.Create$model.Entity.Name$Async(model);
+            return new CreationStatusViewModel(id);
         }
 
         [HttpDelete("{id:int}")]

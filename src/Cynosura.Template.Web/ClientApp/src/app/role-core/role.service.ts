@@ -1,19 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import "rxjs/add/operator/toPromise";
 
 import { Role } from "./role.model";
 import { Page } from "../core/page.model";
 
-import "rxjs/add/operator/toPromise";
-
 @Injectable()
 export class RoleService {
-    private roleUrl = "/api/role"; 
-    private headers = new HttpHeaders({ 'Content-Type': "application/json" });
+    private roleUrl = "/api/role";
+    private headers = new HttpHeaders({ "Content-Type": "application/json" });
 
     constructor(private httpClient: HttpClient) { }
 
-    getRoles(pageIndex?: number, pageSize?: number): Promise<Page<Role>> {
+    getRoles(pageIndex?: number, pageSize?: number): Promise<Page<Role> > {
         const url = this.roleUrl;
 
         let params = new HttpParams();
@@ -24,8 +23,8 @@ export class RoleService {
         if (pageSize != undefined)
             params = params.set("pageSize", pageSize.toString());
 
-        return this.httpClient.get<Page<Role>>(url, {
-                params: params
+        return this.httpClient.get<Page<Role> >(url, {
+            params: params
         }).toPromise();
     }
 
