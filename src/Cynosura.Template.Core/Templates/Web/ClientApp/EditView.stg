@@ -12,7 +12,7 @@ $model.Entity.Fields:field(); separator="\n"$
 
 field(field) ::= <<
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">$field.DisplayName$</label>
+        <label for="$field.NameLower$" class="col-sm-2 control-label">$field.DisplayName$</label>
         <div class="col-sm-10">
 $field:(field.Template)()$
         </div>

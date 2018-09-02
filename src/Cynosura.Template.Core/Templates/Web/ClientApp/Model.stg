@@ -1,6 +1,5 @@
 ﻿main(model) ::= <<
-export class $model.Entity.Name$
-{
+export class $model.Entity.Name$ {
     id: number;
 $model.Entity.Fields:field(); separator="\n"$
 }
