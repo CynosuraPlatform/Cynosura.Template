@@ -59,17 +59,17 @@ namespace Cynosura.Template.Web.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<StatusViewModel> PutUserAsync(int id, [FromBody] UpdateUserViewModel user)
+        public async Task<StatusViewModel> PutUserAsync(int id, [FromBody] UserUpdateViewModel user)
         {
-            var model = _mapper.Map<UpdateUserViewModel, UserUpdateModel>(user);
+            var model = _mapper.Map<UserUpdateViewModel, UserUpdateModel>(user);
             await _userService.UpdateUserAsync(id, model);
             return new StatusViewModel();
         }
 
         [HttpPost("")]
-        public async Task<StatusViewModel> PostUserAsync([FromBody] CreateUserViewModel user)
+        public async Task<StatusViewModel> PostUserAsync([FromBody] UserCreateViewModel user)
         {
-            var userCreate = _mapper.Map<CreateUserViewModel, UserCreateModel>(user);
+            var userCreate = _mapper.Map<UserCreateViewModel, UserCreateModel>(user);
             var id = await _userService.CreateUserAsync(userCreate);
             return new CreationStatusViewModel(id);
         }

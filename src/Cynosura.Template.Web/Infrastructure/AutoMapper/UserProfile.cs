@@ -14,8 +14,8 @@ namespace Cynosura.Template.Web.Infrastructure.AutoMapper
         public UserProfile()
         {
             CreateMap<User, UserViewModel>();
-            CreateMap<CreateUserViewModel, UserCreateModel>();
-            CreateMap<UpdateUserViewModel, UserUpdateModel>();
+            CreateMap<UserCreateViewModel, UserCreateModel>();
+            CreateMap<UserUpdateViewModel, UserUpdateModel>();
         }
     }
 }
