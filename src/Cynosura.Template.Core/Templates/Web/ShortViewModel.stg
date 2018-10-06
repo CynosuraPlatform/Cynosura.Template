@@ -16,5 +16,13 @@ $model.Entity.DefaultField:field()$
 >>
 
 field(field) ::= <<
+$field:(field.Template)()$
+>>
+
+Type(field) ::= <<
         public $field.TypeName$ $field.Name$ { get; set; }
+>>
+
+Entity(field) ::= <<
+        public int? $field.Name$Id { get; set; }
 >>
