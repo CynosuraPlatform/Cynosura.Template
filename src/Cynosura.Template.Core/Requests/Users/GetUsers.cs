@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Cynosura.Core.Services.Models;
+﻿using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Requests.Users.Models;
 using MediatR;
 
