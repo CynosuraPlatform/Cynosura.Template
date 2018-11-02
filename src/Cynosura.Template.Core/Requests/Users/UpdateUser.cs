@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
+using MediatR;
 
-namespace Cynosura.Template.Web.Models.UserViewModels
+namespace Cynosura.Template.Core.Requests.Users
 {
-    public class UserUpdateViewModel
+    public class UpdateUser : IRequest
     {
+        public int Id { get; set; }
+
         [StringLength(100, ErrorMessage = "{0} must contain between {2} and {1} characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -14,7 +19,7 @@ namespace Cynosura.Template.Web.Models.UserViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
-
-        public IEnumerable<int> RoleIds { get; set; }
+        
+        public IList<int> RoleIds { get; } = new List<int>();
     }
 }

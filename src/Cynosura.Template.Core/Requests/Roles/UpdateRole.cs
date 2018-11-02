@@ -1,10 +1,13 @@
-﻿using MediatR;
+﻿using System.ComponentModel.DataAnnotations;
+using MediatR;
 
 namespace Cynosura.Template.Core.Requests.Roles
 {
     public class UpdateRole : IRequest
     {
         public int Id { get; set; }
+
+        [Required]
         public string Name { get; set; }
     }
 }
