@@ -12,7 +12,7 @@ export class RoleService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getRoles(pageIndex?: number, pageSize?: number): Promise<Page<Role> > {
+    getRoles(pageIndex?: number, pageSize?: number): Promise<Page<Role>> {
         const url = this.roleUrl;
 
         let params = new HttpParams();
@@ -23,7 +23,7 @@ export class RoleService {
         if (pageSize != undefined)
             params = params.set("pageSize", pageSize.toString());
 
-        return this.httpClient.get<Page<Role> >(url, {
+        return this.httpClient.get<Page<Role>>(url, {
             params: params
         }).toPromise();
     }

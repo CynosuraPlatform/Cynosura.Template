@@ -1,13 +1,11 @@
 ﻿main(model) ::= <<
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using MediatR;
 
-namespace $model.Solution.Namespace$.Web.Models.$model.Entity.Name$ViewModels
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
 {
-    public class $model.Entity.Name$UpdateViewModel
+    public class Create$model.Entity.Name$ : IRequest<int>
     {
 $model.Entity.Fields:field(); separator=""$
     }

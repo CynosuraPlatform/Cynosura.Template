@@ -1,20 +1,20 @@
 ﻿main(model) ::= <<
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace $model.Solution.Namespace$.Core.Services.Models
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Models
 {
-    public class $model.Entity.Name$UpdateModel
+    public class $model.Entity.Name$ShortModel
     {
-$model.Entity.Fields:field(); separator="\n"$
+        public int Id { get; set; }
+
+$model.Entity.DefaultField:field()$
     }
 }
 
 >>
 
 field(field) ::= <<
-$field:(field.Template)()$
+$field:(field.Template)()$        
 >>
 
 Type(field) ::= <<
