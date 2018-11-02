@@ -35,7 +35,7 @@ namespace Cynosura.Template.Data
         {
             base.OnModelCreating(builder);
 
-            builder.CreateModelFromModules();
+            builder.ApplyAllConfigurations();
         }
 
         protected virtual void OnSavingChanges()

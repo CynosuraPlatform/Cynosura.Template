@@ -56,9 +56,9 @@
     "InsertAfter": null
   },
   {
-    "FilePath": "*.Data\\DataContextModule",
-    "FileName": "{Name}Module.cs",
-    "TemplatePath": "Data\\DataContextModule.stg",
+    "FilePath": "*.Data\\Configurations",
+    "FileName": "{Name}Configuration.cs",
+    "TemplatePath": "Data\\Configuration.stg",
     "Type": 0,
     "InsertAfter": null
   },
