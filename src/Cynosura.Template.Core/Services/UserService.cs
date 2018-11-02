@@ -14,19 +14,16 @@ namespace Cynosura.Template.Core.Services
     public class UserService : IUserService
     {
         private readonly UserManager<User> _userManager;
-        private readonly IRoleService _roleService;
         private readonly RoleManager<Role> _roleManager;
         private readonly IEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
 
         public UserService(UserManager<User> userManager,
-            IRoleService roleService,
             RoleManager<Role> roleManager,
             IEntityRepository<User> userRepository,
             IMapper mapper)
         {
             _userManager = userManager;
-            _roleService = roleService;
             _roleManager = roleManager;
             _userRepository = userRepository;
             _mapper = mapper;
@@ -55,7 +52,7 @@ namespace Cynosura.Template.Core.Services
             {
                 foreach (var roleId in model.RoleIds)
                 {
-                    var getRole = await _roleService.GetRoleAsync(roleId);
+                    var getRole = await _roleManager.FindByIdAsync(roleId.ToString());
                     result = await _userManager.AddToRoleAsync(user, getRole.ToString());
                     CheckResultSucceed(result);
                 }

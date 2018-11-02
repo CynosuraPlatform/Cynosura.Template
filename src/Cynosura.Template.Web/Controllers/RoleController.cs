@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
-using AutoMapper;
 using Cynosura.Core.Services.Models;
 using Cynosura.Web.Infrastructure;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Services;
-using Cynosura.Template.Core.Services.Models;
+using Cynosura.Template.Core.Requests.Roles;
+using Cynosura.Template.Core.Requests.Roles.Models;
 using Cynosura.Template.Web.Models;
-using Cynosura.Template.Web.Models.RoleViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,49 +16,43 @@ namespace Cynosura.Template.Web.Controllers
     [Route("api/[controller]")]
     public class RoleController : Controller
     {
-        private readonly IRoleService _roleService;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public RoleController(IRoleService roleService, IMapper mapper)
+        public RoleController(IMediator mediator)
         {
-            _roleService = roleService;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet("")]
-        public async Task<PageModel<RoleViewModel> > GetRolesAsync(int? pageIndex, int? pageSize)
+        public async Task<PageModel<RoleModel> > GetRolesAsync(int? pageIndex, int? pageSize)
         {
-            var roles = await _roleService.GetRolesAsync(pageIndex, pageSize);
-            return roles.Map<Role, RoleViewModel>(_mapper);
+            return await _mediator.Send(new GetRoles() { PageIndex = pageIndex, PageSize = pageSize });
         }
 
         [HttpGet("{id:int}")]
-        public async Task<RoleViewModel> GetRoleAsync(int id)
+        public async Task<RoleModel> GetRoleAsync(int id)
         {
-            var role = await _roleService.GetRoleAsync(id);
-            return _mapper.Map<Role, RoleViewModel>(role);
+            return await _mediator.Send(new GetRole() { Id = id });
         }
 
         [HttpPut("{id:int}")]
-        public async Task<StatusViewModel> PutRoleAsync(int id, [FromBody] RoleUpdateViewModel role)
+        public async Task<StatusViewModel> PutRoleAsync(int id, [FromBody] UpdateRole updateRole)
         {
-            var model = _mapper.Map<RoleUpdateViewModel, RoleUpdateModel>(role);
-            await _roleService.UpdateRoleAsync(id, model);
+            await _mediator.Send(updateRole);
             return new StatusViewModel();
         }
 
         [HttpPost("")]
-        public async Task<StatusViewModel> PostRoleAsync([FromBody] RoleCreateViewModel role)
+        public async Task<StatusViewModel> PostRoleAsync([FromBody] CreateRole createRole)
         {
-            var model = _mapper.Map<RoleCreateViewModel, RoleCreateModel>(role);
-            var id = await _roleService.CreateRoleAsync(model);
+            var id = await _mediator.Send(createRole);
             return new CreationStatusViewModel(id);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<StatusViewModel> DeleteRoleAsync(int id)
         {
-            await _roleService.DeleteRoleAsync(id);
+            await _mediator.Send(new DeleteRole() { Id = id });
             return new StatusViewModel();
         }
     }
