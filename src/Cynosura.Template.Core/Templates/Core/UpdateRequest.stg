@@ -9,21 +9,14 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
     {
         public int Id { get; set; }
 
-$model.Entity.Fields:field(); separator=""$
+$model.Entity.Fields:field(); separator="\n"$
     }
 }
 
 >>
 
 field(field) ::= <<
-$field.Attributes:attrubute(); separator="\n"$
 $field:(field.Template)()$
-
-
->>
-
-attrubute(attrubute) ::= <<
-        [$attrubute.Name$($attrubute.Parameters; separator=", "$)]
 >>
 
 Type(field) ::= <<

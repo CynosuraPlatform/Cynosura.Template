@@ -29,6 +29,13 @@
   },
   {
     "FilePath": "*.Core\\Requests",
+    "FileName": "{PluralName}\\Create{Name}Validator.cs",
+    "TemplatePath": "Core\\CreateRequestValidator.stg",
+    "Type": 0,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Core\\Requests",
     "FileName": "{PluralName}\\Delete{Name}.cs",
     "TemplatePath": "Core\\DeleteRequest.stg",
     "Type": 0,
@@ -80,6 +87,13 @@
     "FilePath": "*.Core\\Requests",
     "FileName": "{PluralName}\\Update{Name}Handler.cs",
     "TemplatePath": "Core\\UpdateRequestHandler.stg",
+    "Type": 0,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Core\\Requests",
+    "FileName": "{PluralName}\\Update{Name}Validator.cs",
+    "TemplatePath": "Core\\UpdateRequestValidator.stg",
     "Type": 0,
     "InsertAfter": null
   },
