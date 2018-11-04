@@ -7,7 +7,6 @@ namespace Cynosura.Template.Core.Requests.Roles
     {
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; }
     }
 }

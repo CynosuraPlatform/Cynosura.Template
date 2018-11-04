@@ -12,7 +12,6 @@ namespace Cynosura.Template.Web.Controllers
 {
     [ServiceFilter(typeof(ApiExceptionFilterAttribute))]
     [Authorize(Roles = "Administrator")]
-    [ValidateModel]
     [Route("api/[controller]")]
     public class RoleController : Controller
     {

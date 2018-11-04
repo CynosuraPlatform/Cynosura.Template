@@ -23,7 +23,7 @@ namespace Cynosura.Template.Web.Infrastructure
                 .WithParameter((p, c) => p.Name == "connectionString", (p, c) => configuration.GetConnectionString("DefaultConnection"))
                 .InstancePerLifetimeScope();
 
-            //builder.RegisterType<MenuProvider>().As<IMenuProvider>().SingleInstance();
+            builder.RegisterType<ValidationExceptionHandler>().As<IExceptionHandler>();
             builder.RegisterType<UserInfoProvider>().As<IUserInfoProvider>().InstancePerLifetimeScope();
             builder.Register(c => new MapperConfiguration(cfg =>
             {

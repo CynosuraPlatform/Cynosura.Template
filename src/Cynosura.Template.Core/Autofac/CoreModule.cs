@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Autofac;
+using Cynosura.Template.Core.Infrastructure;
+using FluentValidation;
 using MediatR;
 
 namespace Cynosura.Template.Core.Autofac
@@ -16,6 +18,8 @@ namespace Cynosura.Template.Core.Autofac
                 return t => c.Resolve(t);
             });
             RegisterAllRequestHandlers(builder);
+            builder.RegisterGeneric(typeof(RequestValidationBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+            RegisterAllValidators(builder);
         }
 
         private void RegisterAllRequestHandlers(ContainerBuilder builder)
@@ -29,6 +33,20 @@ namespace Cynosura.Template.Core.Autofac
             foreach (var handler in handlers)
             {
                 builder.RegisterType(handler).AsImplementedInterfaces();
+            }
+        }
+
+        private void RegisterAllValidators(ContainerBuilder builder)
+        {
+            var validatorTypes = new[] { typeof(IValidator<>) };
+            var validators = typeof(CoreModule).Assembly
+                .GetTypes()
+                .Where(t => t.GetInterfaces().Any(i => validatorTypes.Any(ht => ht.Name == i.Name)))
+                .ToList();
+
+            foreach (var validator in validators)
+            {
+                builder.RegisterType(validator).AsImplementedInterfaces();
             }
         }
     }
