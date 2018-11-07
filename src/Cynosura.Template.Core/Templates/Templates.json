@@ -15,6 +15,13 @@
   },
   {
     "FilePath": "*.Core\\Requests",
+    "FileName": "{PluralName}\\Models\\{Name}ShortModel.cs",
+    "TemplatePath": "Core\\ShortModel.stg",
+    "Type": 0,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Core\\Requests",
     "FileName": "{PluralName}\\Create{Name}.cs",
     "TemplatePath": "Core\\CreateRequest.stg",
     "Type": 0,
