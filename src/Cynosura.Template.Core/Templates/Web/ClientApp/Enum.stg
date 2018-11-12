@@ -1,0 +1,9 @@
+﻿main(model) ::= <<
+export enum $model.Enum.Name$ {
+$model.Enum.Values:enumValue(); separator=",\n"$
+}
+>>
+
+enumValue(value) ::= <<
+    $value.Name$$if(value.Value)$ = $value.Value$$endif$
+>>
