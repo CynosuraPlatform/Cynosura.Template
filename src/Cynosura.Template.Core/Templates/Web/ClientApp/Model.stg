@@ -2,7 +2,7 @@
 $model.Entity.DependentEnums:enumImport(); separator="\n"$
 
 export class $model.Entity.Name$ {
-    id: number;
+    $model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$;
 $model.Entity.Fields:field(); separator="\n"$
 }
 >>
