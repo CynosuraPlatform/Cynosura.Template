@@ -18,5 +18,5 @@ enumValue(value) ::= <<
 >>
 
 enumDisplayName(value) ::= <<
-$if(value.DisplayName)$[DisplayName("$value.DisplayName$")]$endif$
+[DisplayName("$value.DisplayNameOrName$")]
 >>

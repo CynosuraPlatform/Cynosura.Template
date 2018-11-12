@@ -1,7 +1,7 @@
 ﻿main(model) ::= <<
 import { Component, Input } from "@angular/core";
 
-import { $model.Enum.Name$ } from "./$model.Enum.NameLower$.model";
+import { $model.Enum.Name$, $model.Enum.Name$Display } from "./$model.Enum.NameLower$.model";
 
 @Component({
     selector: "$model.Enum.NameLower$-view",
@@ -11,7 +11,7 @@ import { $model.Enum.Name$ } from "./$model.Enum.NameLower$.model";
 export class $model.Enum.Name$ViewComponent {
     constructor() { }
 
-    $model.Enum.Name$ = $model.Enum.Name$;
+    $model.Enum.Name$Display = $model.Enum.Name$Display;
 
     @Input()
     value: $model.Enum.Name$;
