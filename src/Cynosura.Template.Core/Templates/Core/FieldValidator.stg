@@ -10,6 +10,10 @@ Entity(field) ::= <<
             RuleFor(x => x.$field.Name$Id)
 >>
 
+Enum(field) ::= <<
+            RuleFor(x => x.$field.Name$)
+>>
+
 required(field) ::= <<
 $if(field.IsRequired)$.NotEmpty()$endif$
 >>

@@ -253,6 +253,20 @@
   },
   {
     "FilePath": "*.Web\\ClientApp\\src\\app",
+    "FileName": "{NameLower}\\view.component.ts",
+    "TemplatePath": "Web\\ClientApp\\EnumViewComponent.stg",
+    "Type": 3,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Web\\ClientApp\\src\\app",
+    "FileName": "{NameLower}\\view.component.html",
+    "TemplatePath": "Web\\ClientApp\\EnumViewView.stg",
+    "Type": 3,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Web\\ClientApp\\src\\app",
     "FileName": "{NameLower}\\{NameLower}.module.ts",
     "TemplatePath": "Web\\ClientApp\\EnumModule.stg",
     "Type": 3,

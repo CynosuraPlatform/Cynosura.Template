@@ -8,6 +8,7 @@ import { ErrorInterceptor } from "./error.interceptor";
 import { LoadingInterceptor } from "./loading.interceptor";
 
 import { BoolPipe } from "./pipes/bool.pipe";
+import { EnumKeysPipe } from "./pipes/enumkeys.pipe";
 
 import { ErrorHandlerComponent } from "./error-handler.component";
 import { ModelValidatorComponent } from "./model-validator.component";
@@ -35,6 +36,7 @@ import { ModalHelper } from "./modal.helper";
 @NgModule({
     declarations: [
         BoolPipe,
+        EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
         PagerComponent,
@@ -81,6 +83,7 @@ import { ModalHelper } from "./modal.helper";
         CommonModule,
         FormsModule,
         BoolPipe,
+        EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
         PagerComponent,

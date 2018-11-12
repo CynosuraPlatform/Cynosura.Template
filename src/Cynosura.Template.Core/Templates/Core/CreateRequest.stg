@@ -25,3 +25,7 @@ Type(field) ::= <<
 Entity(field) ::= <<
         public int? $field.Name$Id { get; set; }
 >>
+
+Enum(field) ::= <<
+        public Enums.$field.Enum.Name$$if(!field.IsRequired)$?$endif$ $field.Name$ { get; set; }
+>>

@@ -27,3 +27,7 @@ Entity(field) ::= <<
 
         public $field.Entity.PluralName$.Models.$field.Entity.Name$ShortModel $field.Name$ { get; set; }
 >>
+
+Enum(field) ::= <<
+        public Enums.$field.Enum.Name$$if(!field.IsRequired)$?$endif$ $field.Name$ { get; set; }
+>>

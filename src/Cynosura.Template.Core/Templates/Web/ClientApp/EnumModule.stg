@@ -4,10 +4,12 @@ import { NgModule } from "@angular/core";
 import { CoreModule } from "../core/core.module";
 
 import { $model.Enum.Name$SelectComponent } from "./select.component";
+import { $model.Enum.Name$ViewComponent } from "./view.component";
 
 @NgModule({
     declarations: [
-        $model.Enum.Name$SelectComponent
+        $model.Enum.Name$SelectComponent,
+        $model.Enum.Name$ViewComponent
     ],
     imports: [
         CoreModule
@@ -15,7 +17,8 @@ import { $model.Enum.Name$SelectComponent } from "./select.component";
     providers: [
     ],
     exports: [
-        $model.Enum.Name$SelectComponent
+        $model.Enum.Name$SelectComponent,
+        $model.Enum.Name$ViewComponent
     ]
 })
 export class $model.Enum.Name$Module {
