@@ -1,11 +1,15 @@
 $source = Resolve-Path "..\src\"
 $dest = ".\content"
 $exclude = "node_modules"
-$dest_exclude = "\.template\.config"
 
 # delete files
+Get-ChildItem $dest | Remove-Item -Recurse
 
-Get-ChildItem $dest | Where-Object {$_.FullName -notmatch $dest_exclude} | Remove-Item -Recurse
+# create path
+New-Item -ItemType Directory -Force -Path content\.template.config\
+
+# copy template.json
+cp template.json content\.template.config\template.json
 
 # Copy files
 
