@@ -4,10 +4,9 @@ dotnet Cynosura template
 ## Project structure
 
     ┐ 
-    ├── src        - template source content
-    └──┐ template  - template automation files
-       ├── base    - NuGet package base files
-       ├── content - Nuget package file, used by automation scripts and Azure DevOps pipeline
+    ├── src       - template source content
+    └─┐ template  - template automation files
+      ├── base    - NuGet package base files
 
 # Development
 
