@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ErrorInterceptor } from "./error.interceptor";
 import { LoadingInterceptor } from "./loading.interceptor";
 
-import { BoolPipe } from "./pipes/bool.pipe";
 import { EnumKeysPipe } from "./pipes/enumkeys.pipe";
 
 import { ErrorHandlerComponent } from "./error-handler.component";
@@ -33,7 +32,6 @@ import { ModalHelper } from "./modal.helper";
 
 @NgModule({
     declarations: [
-        BoolPipe,
         EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
@@ -74,7 +72,6 @@ import { ModalHelper } from "./modal.helper";
     exports: [
         CommonModule,
         FormsModule,
-        BoolPipe,
         EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
