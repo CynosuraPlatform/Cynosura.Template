@@ -1,5 +1,5 @@
 ﻿fieldValidator(field) ::= <<
-$field:(field.Template)()$$field:length()$$field:required()$;
+$field:(field.Template)()$$field:length()$$field:required()$.WithName("$field.DisplayName$");
 >>
 
 Type(field) ::= <<
