@@ -8,17 +8,11 @@ namespace Cynosura.Template.Web.Infrastructure.Menu
 {
     public class RoleModule : IMenuModule
     {
-        public IList<MenuItem> GetMenuItems()
+        public IEnumerable<MenuItem> GetMenuItems()
         {
             return new List<MenuItem>()
             {
-                new MenuItem()
-                {
-                    Name = "Roles",
-                    Route = "./role",
-                    CssClass = "glyphicon-lock",
-                    Roles = new List<string>() { "Administrator" }
-                }
+                new MenuItem("./role", "Roles", "glyphicon-lock", new List<string>() { "Administrator" })
             };
         }
     }
