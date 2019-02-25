@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-
+import { Overlay } from "ngx-modialog";
 import { Modal } from "ngx-modialog/plugins/bootstrap";
 
 @Injectable()

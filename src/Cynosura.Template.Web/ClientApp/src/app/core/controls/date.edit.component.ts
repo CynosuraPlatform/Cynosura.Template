@@ -1,25 +1,33 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { BaseEditComponent } from "./base.edit.component";
 
 @Component({
     selector: "date-edit",
     templateUrl: "./date.edit.component.html"
 })
-export class DateEditComponent {
+export class DateEditComponent implements BaseEditComponent<Date> {
+    @Output()
+    valueChange = new EventEmitter<Date>();
+
     @Input()
     value: Date;
 
-    get formattedDate(): string {
-        return this.value.toISOString();
-    }
-    set formattedDate(value: string) {
-        if (value)
-            this.value = new Date(value);
-        else
-            this.value = null;
-    }
+    modelValue: Date;
 
-    @Output()
-    valueChange = new EventEmitter<Date>();
+    get model(): Date {
+        return this.modelValue;
+    }
+    set model(setValue: Date) {
+        const old = this.modelValue;
+        if (typeof (setValue) === "string") {
+            this.formattedDate = setValue;
+        } else {
+            this.modelValue = setValue;
+        }
+        if (old !== this.modelValue) {
+            this.onValueChange();
+        }
+    }
 
     @Input()
     name: string;
@@ -27,8 +35,18 @@ export class DateEditComponent {
     @Input()
     label: string;
 
-    onFormattedDateChange(value: string) {
-        this.formattedDate = value;
-        this.valueChange.emit(this.value);
+    get formattedDate(): string {
+        return this.modelValue.toISOString();
+    }
+    set formattedDate(value: string) {
+        const test = Date.parse(value);
+        if (isNaN(test)) {
+            return;
+        }
+        this.modelValue = value ? new Date(value) : null;
+    }
+
+    onValueChange(): void {
+        this.valueChange.emit(this.modelValue);
     }
 }

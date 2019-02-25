@@ -13,8 +13,12 @@ export class RoleSelectComponent implements OnInit {
 
     roles: Role[] = [];
 
+    modelValue: number;
+
     @Input()
-    selectedRoleId: number | null = null;
+    set selectedRoleId(value: number | null) {
+        this.model = value;
+    }
 
     @Output()
     selectedRoleIdChange = new EventEmitter<number>();
@@ -22,7 +26,24 @@ export class RoleSelectComponent implements OnInit {
     @Input()
     readonly = false;
 
+    get model(): number {
+        return this.modelValue;
+    }
+
+    set model(value: number) {
+        if (this.modelValue !== value) {
+            this.modelValue = value;
+            this.onValueChange();
+            return;
+        }
+        this.modelValue = value;
+    }
+
     ngOnInit(): void {
         this.roleService.getRoles().then(roles => this.roles = roles.pageItems);
+    }
+
+    onValueChange() {
+        this.selectedRoleIdChange.emit(this.modelValue);
     }
 }

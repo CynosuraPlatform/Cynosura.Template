@@ -1,8 +1,9 @@
 import { EventEmitter, Injectable } from "@angular/core"
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { LoadingService } from "./loading.service";
+import { finalize } from 'rxjs/operators';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
@@ -16,7 +17,6 @@ export class LoadingInterceptor implements HttpInterceptor {
         return next
             .handle(req)
             // emit onFinished event after request execution
-            .finally(() => this.loadingService.onFinished(req));
+            .pipe(finalize(() => this.loadingService.onFinished(req)));
     }
-
 }

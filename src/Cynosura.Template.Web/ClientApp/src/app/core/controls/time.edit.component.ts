@@ -1,24 +1,14 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { EditComponent } from "./base.edit.component";
 
 @Component({
     selector: "time-edit",
     templateUrl: "./time.edit.component.html"
 })
-export class TimeEditComponent {
-    @Input()
-    value: string;
-
-    @Output()
-    valueChange = new EventEmitter<string>();
-
+export class TimeEditComponent extends EditComponent<Date> {
     @Input()
     name: string;
 
     @Input()
     label: string;
-
-    onValueChange(value: string) {
-        this.value = value;
-        this.valueChange.emit(value);
-    }
 }

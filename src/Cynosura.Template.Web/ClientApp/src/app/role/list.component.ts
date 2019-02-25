@@ -35,13 +35,13 @@ export class RoleListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService
-        ) {}
+    ) { }
 
     ngOnInit(): void {
         this.getRoles();
     }
 
-    getRoles(): void {        
+    getRoles(): void {
         this.roleService.getRoles(this.pageIndex, this.pageSize)
             .then(content => {
                 this.content = content;
@@ -70,9 +70,14 @@ export class RoleListComponent implements OnInit {
                     .then(() => {
                         this.getRoles();
                     })
-                    .catch(error => this.error = error);
+                    .catch(error => {
+                    this.error = error;
+                        console.log("error", error);
+                    });
             })
-            .catch(() => { });
+            .catch((error) => {
+                console.log("error", error);
+            });
     }
 
     onPageSelected(pageIndex: number) {
