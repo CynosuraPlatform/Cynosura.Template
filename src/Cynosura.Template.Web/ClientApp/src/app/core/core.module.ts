@@ -60,7 +60,7 @@ import { AppErrorHandler } from "./app-error.handler";
     ],
     providers: [
         {provide: ErrorHandler, useClass: AppErrorHandler},
-        {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
+        //{provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
         StoreService,
         MenuService,
         LoadingService,
