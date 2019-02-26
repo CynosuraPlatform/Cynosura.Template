@@ -70,14 +70,9 @@ export class RoleListComponent implements OnInit {
                     .then(() => {
                         this.getRoles();
                     })
-                    .catch(error => {
-                    this.error = error;
-                        console.log("error", error);
-                    });
+                    .catch(error => this.error = error);
             })
-            .catch((error) => {
-                console.log("error", error);
-            });
+            .catch(() => { });
     }
 
     onPageSelected(pageIndex: number) {
