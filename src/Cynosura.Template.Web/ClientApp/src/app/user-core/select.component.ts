@@ -13,12 +13,8 @@ export class UserSelectComponent implements OnInit {
 
     users: User[] = [];
 
-    modelValue: number;
-
     @Input()
-    set selectedUserId(value: number | null) {
-        this.model = value;
-    }
+    selectedUserId: number | null = null;
 
     @Output()
     selectedUserIdChange = new EventEmitter<number>();
@@ -26,24 +22,7 @@ export class UserSelectComponent implements OnInit {
     @Input()
     readonly = false;
 
-    get model(): number {
-        return this.modelValue;
-    }
-
-    set model(value: number) {
-        if (this.modelValue !== value) {
-            this.modelValue = value;
-            this.onValueChange();
-            return;
-        }
-        this.modelValue = value;
-    }
-
     ngOnInit(): void {
         this.userService.getUsers().then(users => this.users = users.pageItems);
-    }
-
-    onValueChange() {
-        this.selectedUserIdChange.emit(this.modelValue);
     }
 }
