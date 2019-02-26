@@ -1,3 +1,1 @@
-<input type="datetime-local" class="form-control" [id]="name" [name]="name" [(ngModel)]="model" [placeholder]="label"
- [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
- <owl-date-time #dt></owl-date-time>
+<input type="datetime-local" class="form-control" [id]="name" [name]="name" [ngModel]="value | date: 'yyyy-MM-ddTHH:mm'" (ngModelChange)="onFormattedDateChange($event)" [placeholder]="label">

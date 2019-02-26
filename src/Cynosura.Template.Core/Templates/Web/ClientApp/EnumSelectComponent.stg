@@ -11,15 +11,11 @@ import { $model.Enum.Name$, $model.Enum.Name$Display } from "./$model.Enum.NameL
 export class $model.Enum.Name$SelectComponent implements OnInit {
     constructor() { }
 
-    modelValue: number;
-
     $model.Enum.Name$ = $model.Enum.Name$;
     $model.Enum.Name$Display = $model.Enum.Name$Display;
 
     @Input()
-    set selected$model.Enum.Name$(value: $model.Enum.Name$) {
-        this.model = value;
-    }
+    selected$model.Enum.Name$: $model.Enum.Name$ | null = null;
 
     @Output()
     selected$model.Enum.Name$Change = new EventEmitter<$model.Enum.Name$>();
@@ -27,25 +23,8 @@ export class $model.Enum.Name$SelectComponent implements OnInit {
     @Input()
     readonly = false;
 
-    get model(): number {
-        return this.modelValue;
-    }
-
-    set model(value: number) {
-        if (this.modelValue !== value) {
-            this.modelValue = value;
-            this.onValueChange();
-            return;
-        }
-        this.modelValue = value;
-    }
-
     ngOnInit(): void {
         
-    }
-
-    onValueChange() {
-        this.selected$model.Enum.Name$Change.emit(this.modelValue);
     }
 }
 >>

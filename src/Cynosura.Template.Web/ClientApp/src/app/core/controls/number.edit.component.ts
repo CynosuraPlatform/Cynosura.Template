@@ -1,14 +1,24 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { EditComponent } from "./base.edit.component";
 
 @Component({
     selector: "number-edit",
     templateUrl: "./number.edit.component.html"
 })
-export class NumberEditComponent extends EditComponent<number> {
+export class NumberEditComponent {
+    @Input()
+    value: number;
+
+    @Output()
+    valueChange = new EventEmitter<number>();
+
     @Input()
     name: string;
 
     @Input()
     label: string;
+
+    onValueChange(value: number) {
+        this.value = value;
+        this.valueChange.emit(value);
+    }
 }

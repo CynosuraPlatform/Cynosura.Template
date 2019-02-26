@@ -1,4 +1,1 @@
-<input class="form-control" [id]="name" [name]="name" [(ngModel)]="model" [placeholder]="label"
- [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
-<owl-date-time [pickerType]="'timer'" #dt></owl-date-time>
-
+<input type="time" class="form-control" [id]="name" [name]="name" [ngModel]="value" (ngModelChange)="onValueChange($event)" [placeholder]="label">
