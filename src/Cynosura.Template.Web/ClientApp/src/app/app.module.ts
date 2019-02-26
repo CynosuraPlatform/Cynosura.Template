@@ -10,21 +10,10 @@ import { BootstrapModalModule } from "ngx-modialog/plugins/bootstrap";
 
 import { AuthModule } from "./auth/auth.module";
 import { CoreModule } from "./core/core.module";
-// ADD MODULES HERE
-import { RoleModule } from "./role/role.module";
-import { UserModule } from "./user/user.module";
 
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-
-const routes: Route[] = [
-    { path: "", component: HomeComponent, pathMatch: "full" }
-];
-
-// ADD ROUTES HERE
-routes.push({ path: "user", loadChildren: () => UserModule });
-routes.push({ path: "role", loadChildren: () => RoleModule });
 
 @NgModule({
     declarations: [
@@ -37,7 +26,12 @@ routes.push({ path: "role", loadChildren: () => RoleModule });
         BrowserAnimationsModule,
         HttpClientModule,
         FormsModule,
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot([
+            { path: "", component: HomeComponent, pathMatch: "full" },
+// ADD ROUTES HERE
+            { path: "user", loadChildren: "./user/user.module#UserModule" },
+            { path: "role", loadChildren: "./role/role.module#RoleModule" }
+        ]),
         ModalModule.forRoot(),
         BootstrapModalModule,
         AuthModule,
