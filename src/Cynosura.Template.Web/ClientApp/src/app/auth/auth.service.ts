@@ -1,7 +1,6 @@
-
-import { throwError as observableThrowError, Observable, BehaviorSubject, of } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { throwError as observableThrowError, Observable, BehaviorSubject, of } from "rxjs";
 import { filter, map, tap, first, flatMap, catchError } from "rxjs/operators";
 
 import { AuthStateModel } from "./auth-state.model";

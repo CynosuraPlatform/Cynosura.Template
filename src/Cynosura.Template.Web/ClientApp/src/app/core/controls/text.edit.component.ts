@@ -14,5 +14,8 @@ export class TextEditComponent extends EditComponent<string> {
     label: string;
 
     @Input()
+    type: string = "text";
+
+    @Input()
     multiline: boolean;
 }
