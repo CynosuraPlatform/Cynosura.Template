@@ -4,7 +4,7 @@ import { Component, Input } from "@angular/core";
 import { $model.Enum.Name$, $model.Enum.Name$Display } from "./$model.Enum.NameLower$.model";
 
 @Component({
-    selector: "$model.Enum.NameLower$-view",
+    selector: "app-$model.Enum.NameKebab$-view",
     templateUrl: "./view.component.html"
 })
 

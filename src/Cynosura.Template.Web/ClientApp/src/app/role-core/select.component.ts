@@ -4,7 +4,7 @@ import { Role } from "./role.model";
 import { RoleService } from "./role.service";
 
 @Component({
-    selector: "role-select",
+    selector: "app-role-select",
     templateUrl: "./select.component.html"
 })
 

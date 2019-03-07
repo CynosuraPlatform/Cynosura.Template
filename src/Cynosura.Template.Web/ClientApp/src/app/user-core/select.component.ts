@@ -4,7 +4,7 @@ import { User } from "./user.model";
 import { UserService } from "./user.service";
 
 @Component({
-    selector: "user-select",
+    selector: "app-user-select",
     templateUrl: "./select.component.html"
 })
 

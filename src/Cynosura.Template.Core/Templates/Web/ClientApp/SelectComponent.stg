@@ -5,7 +5,7 @@ import { $model.Entity.Name$ } from "./$model.Entity.NameLower$.model";
 import { $model.Entity.Name$Service } from "./$model.Entity.NameLower$.service";
 
 @Component({
-    selector: "$model.Entity.NameLower$-select",
+    selector: "app-$model.Entity.NameKebab$-select",
     templateUrl: "./select.component.html"
 })
 

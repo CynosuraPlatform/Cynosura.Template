@@ -11,7 +11,7 @@ import { Error } from "../core/error.model";
 
 
 @Component({
-    selector: "user-edit",
+    selector: "app-user-edit",
     templateUrl: "./edit.component.html"
 })
 export class UserEditComponent implements OnInit {
