@@ -20,8 +20,7 @@ export class TimeEditComponent {
         this.formattedDateLocal = value;
         if (value) {
             this.value = value.toTimeString().substring(0, 5);
-        }
-        else {
+        } else {
             this.value = null;
         }
     }

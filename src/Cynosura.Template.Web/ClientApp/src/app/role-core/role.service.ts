@@ -16,11 +16,11 @@ export class RoleService {
 
         let params = new HttpParams();
 
-        if (pageIndex != undefined) {
+        if (pageIndex !== undefined) {
             params = params.set("pageIndex", pageIndex.toString());
         }
 
-        if (pageSize != undefined) {
+        if (pageSize !== undefined) {
             params = params.set("pageSize", pageSize.toString());
         }
 

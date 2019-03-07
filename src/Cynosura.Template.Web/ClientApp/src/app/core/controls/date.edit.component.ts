@@ -12,8 +12,7 @@ export class DateEditComponent {
     set formattedDate(value: string) {
         if (value) {
             this.value = this.removeTimezone(new Date(value));
-        }
-        else {
+        } else {
             this.value = null;
         }
     }

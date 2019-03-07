@@ -14,8 +14,7 @@ export class DateTimeEditComponent {
     set formattedDate(value: string) {
         if (value) {
             this.value = new Date(value);
-        }
-        else {
+        } else {
             this.value = null;
         }
     }

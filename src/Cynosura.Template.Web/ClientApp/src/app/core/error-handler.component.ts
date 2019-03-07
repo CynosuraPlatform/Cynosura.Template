@@ -9,7 +9,7 @@ export class ErrorHandlerComponent implements OnInit {
     isDev = false;
 
     @Input()
-    error: Object | null = null;
+    error: object | null = null;
 
     ngOnInit(): void {
         this.isDev = isDevMode();
