@@ -26,12 +26,20 @@ namespace Cynosura.Template.Web
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        public Startup(IHostingEnvironment hostingEnvironment)
         {
-            _env = env;
-            Configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
+
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.SetBasePath(_hostingEnvironment.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+            configurationBuilder.AddEnvironmentVariables();
+
+            Configuration = configurationBuilder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -90,7 +98,7 @@ namespace Cynosura.Template.Web
 
                     options.UseJsonWebTokens();
 
-                    if (_env.IsDevelopment())
+                    if (_hostingEnvironment.IsDevelopment())
                     {
                         options.AddEphemeralSigningKey();
                     }
@@ -120,7 +128,7 @@ namespace Cynosura.Template.Web
                         NameClaimType = OpenIdConnectConstants.Claims.Name,
                         RoleClaimType = OpenIdConnectConstants.Claims.Role,
                     };
-                    if (_env.IsDevelopment())
+                    if (_hostingEnvironment.IsDevelopment())
                     {
                         options.TokenValidationParameters.ValidateIssuer = false;
                         options.TokenValidationParameters.SignatureValidator = (token, parameters) => new JwtSecurityTokenHandler().ReadToken(token);
