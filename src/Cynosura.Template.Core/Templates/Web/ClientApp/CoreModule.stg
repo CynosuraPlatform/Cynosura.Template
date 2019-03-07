@@ -23,4 +23,5 @@ import { $model.Entity.Name$SelectComponent } from "./select.component";
 export class $model.Entity.Name$CoreModule {
     
 }
+
 >>
