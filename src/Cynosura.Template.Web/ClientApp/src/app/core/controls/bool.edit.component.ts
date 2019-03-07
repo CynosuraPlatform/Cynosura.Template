@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "bool-edit",
+    selector: "app-bool-edit",
     templateUrl: "./bool.edit.component.html"
 })
 export class BoolEditComponent {

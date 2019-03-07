@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "time-edit",
+    selector: "app-time-edit",
     templateUrl: "./time.edit.component.html"
 })
 export class TimeEditComponent {

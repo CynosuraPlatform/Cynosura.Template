@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "pager",
+    selector: "app-pager",
     templateUrl: "./pager.component.html"
 })
 

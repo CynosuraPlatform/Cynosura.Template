@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "date-edit",
+    selector: "app-date-edit",
     templateUrl: "./date.edit.component.html"
 })
 export class DateEditComponent {

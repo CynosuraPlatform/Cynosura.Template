@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 
 @Component({
-    selector: "time-view",
+    selector: "app-time-view",
     templateUrl: "./time.view.component.html"
 })
 export class TimeViewComponent {

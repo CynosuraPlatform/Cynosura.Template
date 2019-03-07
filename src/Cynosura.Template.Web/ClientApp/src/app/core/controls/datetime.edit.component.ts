@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "datetime-edit",
+    selector: "app-datetime-edit",
     templateUrl: "./datetime.edit.component.html"
 })
 export class DateTimeEditComponent {

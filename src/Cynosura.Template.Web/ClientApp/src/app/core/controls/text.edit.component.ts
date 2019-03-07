@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "text-edit",
+    selector: "app-text-edit",
     templateUrl: "./text.edit.component.html",
     styleUrls: ["text.edit.component.css"]
 })

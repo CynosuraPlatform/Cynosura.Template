@@ -1,7 +1,7 @@
 import { Component, Input, isDevMode, OnInit } from "@angular/core";
 
 @Component({
-    selector: "error-handler",
+    selector: "app-error-handler",
     templateUrl: "./error-handler.component.html"
 })
 
