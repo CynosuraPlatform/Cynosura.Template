@@ -9,7 +9,7 @@ import { Error } from "../core/error.model";
 
 
 @Component({
-    selector: "$model.Entity.NameLower$-edit",
+    selector: "app-$model.Entity.NameKebab$-edit",
     templateUrl: "./edit.component.html"
 })
 export class $model.Entity.Name$EditComponent implements OnInit {

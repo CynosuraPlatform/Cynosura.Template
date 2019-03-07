@@ -10,7 +10,7 @@ import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 
 @Component({
-    selector: "user-list",
+    selector: "app-user-list",
     templateUrl: "./list.component.html"
 })
 export class UserListComponent implements OnInit {

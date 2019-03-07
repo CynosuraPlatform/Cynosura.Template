@@ -10,7 +10,7 @@ import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 
 @Component({
-    selector: "role-list",
+    selector: "app-role-list",
     templateUrl: "./list.component.html"
 })
 export class RoleListComponent implements OnInit {

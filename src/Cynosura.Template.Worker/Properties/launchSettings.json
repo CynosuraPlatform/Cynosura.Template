@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Cynosura.Template.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { $model.Enum.Name$, $model.Enum.Name$Display } from "./$model.Enum.NameLower$.model";
 
 @Component({
-    selector: "$model.Enum.NameLower$-select",
+    selector: "app-$model.Enum.NameKebab$-select",
     templateUrl: "./select.component.html"
 })
 

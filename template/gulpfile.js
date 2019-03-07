@@ -22,7 +22,7 @@ gulp.task('content-clean',
 
 gulp.task('content-copy',
     () =>
-        gulp.src(['../src/**/*', '!../src/**/node_modules/**'], { dot: true })
+        gulp.src(['../src/**/*', '!../src/**/node_modules/**', '!../src/.vs/**', '!../src/.idea/**',], { dot: true })
             .pipe(gulp.dest('./content'))
 );
 

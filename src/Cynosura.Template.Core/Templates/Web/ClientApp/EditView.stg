@@ -23,12 +23,12 @@ $field:(field.TypeTemplate)()$
 >>
 
 Entity(field) ::= <<
-            <$field.Entity.NameLower$-select [(selected$field.Entity.Name$Id)]="$model.Entity.NameLower$.$field.NameLower$Id"></$field.Entity.NameLower$-select>
+            <app-$field.Entity.NameKebab$-select [(selected$field.Entity.Name$Id)]="$model.Entity.NameLower$.$field.NameLower$Id"></app-$field.Entity.NameKebab$-select>
             <model-validator [model]="error?.modelState?.$field.NameLower$Id"></model-validator>
 >>
 
 Enum(field) ::= <<
-            <$field.Enum.NameLower$-select [(selected$field.Enum.Name$)]="$model.Entity.NameLower$.$field.NameLower$"></$field.Enum.NameLower$-select>
+            <app-$field.Enum.NameKebab$-select [(selected$field.Enum.Name$)]="$model.Entity.NameLower$.$field.NameLower$"></app-$field.Enum.NameKebab$-select>
             <model-validator [model]="error?.modelState?.$field.NameLower$"></model-validator>
 >>
 
@@ -70,4 +70,6 @@ Time(field) ::= <<
 
 Guid(field) ::= <<
             <text-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></text-edit>
+>>
+Blob(field) ::= <<
 >>

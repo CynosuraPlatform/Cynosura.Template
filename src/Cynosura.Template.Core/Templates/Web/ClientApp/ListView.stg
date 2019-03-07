@@ -51,7 +51,7 @@ Entity(field) ::= <<
 
 Enum(field) ::= <<
             <td>
-                <$field.Enum.NameLower$-view [value]="$model.Entity.NameLower$.$field.NameLower$"></$field.Enum.NameLower$-view>
+                <app-$field.Enum.NameKebab$-view [value]="$model.Entity.NameLower$.$field.NameLower$"></app-$field.Enum.NameKebab$-view>
             </td>
 >>
 
@@ -93,4 +93,6 @@ Time(field) ::= <<
 
 Guid(field) ::= <<
                 <text-view [value]="$model.Entity.NameLower$.$field.NameLower$"></text-view>
+>>
+Blob(field) ::= <<
 >>
