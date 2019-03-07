@@ -71,3 +71,5 @@ Time(field) ::= <<
 Guid(field) ::= <<
             <text-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></text-edit>
 >>
+Blob(field) ::= <<
+>>
