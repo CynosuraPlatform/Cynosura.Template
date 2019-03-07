@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
     constructor(private authService: AuthService,
-        private router: Router) { }
+                private router: Router) { }
 
     addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
         return request.clone({

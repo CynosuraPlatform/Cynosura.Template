@@ -12,10 +12,12 @@ export class DateTimeEditComponent {
         return this.value.toISOString();
     }
     set formattedDate(value: string) {
-        if (value)
+        if (value) {
             this.value = new Date(value);
-        else
+        }
+        else {
             this.value = null;
+        }
     }
 
     @Output()

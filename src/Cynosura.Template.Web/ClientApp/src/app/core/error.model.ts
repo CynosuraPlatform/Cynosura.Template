@@ -1,4 +1,4 @@
-﻿export class Error {
+export class Error {
     constructor(message?: string) {
         this.message = message;
     }

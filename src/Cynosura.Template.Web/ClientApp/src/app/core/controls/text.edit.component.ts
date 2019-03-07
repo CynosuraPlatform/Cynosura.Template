@@ -19,10 +19,10 @@ export class TextEditComponent {
     label: string;
 
     @Input()
-    type: string = "text";
+    type = "text";
 
     @Input()
-    multiline: boolean = false;
+    multiline = false;
 
     onValueChange(value: string) {
         this.value = value;

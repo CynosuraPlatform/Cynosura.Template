@@ -5,22 +5,20 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
     templateUrl: "./date.edit.component.html"
 })
 export class DateEditComponent {
-    @Input()
-    value: Date;
 
     get formattedDate(): string {
         return this.value.toISOString();
     }
     set formattedDate(value: string) {
-        if (value)
+        if (value) {
             this.value = this.removeTimezone(new Date(value));
-        else
+        }
+        else {
             this.value = null;
+        }
     }
-
-    removeTimezone(date: Date): Date {
-        return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
-    }
+    @Input()
+    value: Date;
 
     @Output()
     valueChange = new EventEmitter<Date>();
@@ -30,6 +28,10 @@ export class DateEditComponent {
 
     @Input()
     label: string;
+
+    removeTimezone(date: Date): Date {
+        return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+    }
 
     onFormattedDateChange(value: string) {
         this.formattedDate = value;

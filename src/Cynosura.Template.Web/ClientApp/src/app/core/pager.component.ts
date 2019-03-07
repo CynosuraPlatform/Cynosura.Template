@@ -60,7 +60,7 @@ export class PagerComponent {
             return;
         }
 
-        let temp: number[] = [];
+        const temp: number[] = [];
         this.pages = [];
 
         temp[0] = 0;

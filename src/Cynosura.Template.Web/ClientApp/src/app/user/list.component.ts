@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
         this.getUsers();
     }
 
-    getUsers(): void {        
+    getUsers(): void {
         this.userService.getUsers(this.pageIndex, this.pageSize)
             .then(content => {
                 this.content = content;

@@ -9,8 +9,9 @@ export class TimeViewComponent {
     value: string;
 
     get valueWithDate(): string {
-        if (this.value)
+        if (this.value) {
             return `0000-00-00T${this.value}`;
+        }
         return null;
     }
 }
