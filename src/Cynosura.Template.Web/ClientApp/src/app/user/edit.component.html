@@ -35,7 +35,7 @@
         <label class="col-sm-2 control-label">Roles</label>
         <div class="col-sm-10">
             <div *ngFor="let role of roles; let i = index ">
-                <label><input type="checkbox" [name]="'roleIds' + i" [(ngModel)]="role.isSelected"> {{role.name}}</label>
+                <label><input type="checkbox" [name]="'roleIds' + i" [(ngModel)]="role.isSelected"> {{ role.name }}</label>
             </div>
             <app-model-validator [model]="error?.modelState?.roleId"></app-model-validator>
         </div>
