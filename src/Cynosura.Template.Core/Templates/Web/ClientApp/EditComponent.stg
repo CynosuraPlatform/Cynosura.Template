@@ -17,13 +17,13 @@ export class $model.Entity.Name$EditComponent implements OnInit {
     error: Error;
 
     constructor(private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
-        private route: ActivatedRoute,
-        private router: Router) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            let id = +params["id"];
+            const id = +params.id;
             this.get$model.Entity.Name$(id);
         });
     }

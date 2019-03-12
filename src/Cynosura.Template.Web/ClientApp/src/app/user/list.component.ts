@@ -17,15 +17,15 @@ export class UserListComponent implements OnInit {
     content: Page<User>;
     error: Error;
     pageSize = 10;
-    private _pageIndex: number;
+    private innerPageIndex: number;
     get pageIndex(): number {
-        if (!this._pageIndex) {
-            this._pageIndex = this.storeService.get("usersPageIndex") | 0;
+        if (!this.innerPageIndex) {
+            this.innerPageIndex = this.storeService.get("usersPageIndex", 0);
         }
-        return this._pageIndex;
+        return this.innerPageIndex;
     }
     set pageIndex(value: number) {
-        this._pageIndex = value;
+        this.innerPageIndex = value;
         this.storeService.set("usersPageIndex", value);
     }
 
@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
         this.getUsers();
     }
 
-    getUsers(): void {        
+    getUsers(): void {
         this.userService.getUsers(this.pageIndex, this.pageSize)
             .then(content => {
                 this.content = content;

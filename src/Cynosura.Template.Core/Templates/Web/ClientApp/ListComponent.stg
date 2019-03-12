@@ -18,15 +18,15 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
     error: Error;
     pageSize = 10;
-    private _pageIndex: number;
+    private innerPageIndex: number;
     get pageIndex(): number {
-        if (!this._pageIndex) {
-            this._pageIndex = this.storeService.get("$model.Entity.PluralNameLower$PageIndex") | 0;
+        if (!this.innerPageIndex) {
+            this.innerPageIndex = this.storeService.get("$model.Entity.PluralNameLower$PageIndex", 0);
         }
-        return this._pageIndex;
+        return this.innerPageIndex;
     }
     set pageIndex(value: number) {
-        this._pageIndex = value;
+        this.innerPageIndex = value;
         this.storeService.set("$model.Entity.PluralNameLower$PageIndex", value);
     }
 
@@ -42,7 +42,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         this.get$model.Entity.PluralName$();
     }
 
-    get$model.Entity.PluralName$(): void {        
+    get$model.Entity.PluralName$(): void {
         this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$(this.pageIndex, this.pageSize)
             .then(content => {
                 this.content = content;
@@ -81,5 +81,6 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         this.get$model.Entity.PluralName$();
     }
 }
+
 >>
 

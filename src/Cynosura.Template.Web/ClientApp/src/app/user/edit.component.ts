@@ -20,14 +20,14 @@ export class UserEditComponent implements OnInit {
     error: Error;
 
     constructor(private userService: UserService,
-        private roleService: RoleService,
-        private route: ActivatedRoute,
-        private router: Router) { }
+                private roleService: RoleService,
+                private route: ActivatedRoute,
+                private router: Router) { }
 
     ngOnInit(): void {
         this.roleService.getRoles().then(roles => this.roles = roles.pageItems).then(() =>
             this.route.params.forEach((params: Params) => {
-                let id = +params["id"];
+                const id = +params.id;
                 this.getUser(id);
             }));
     }
@@ -38,9 +38,11 @@ export class UserEditComponent implements OnInit {
         } else {
             this.userService.getUser(id).then(user => {
                 this.user = user;
-                for (const role of this.roles)
-                    if (this.user.roleIds.indexOf(role.id) !== -1)
+                for (const role of this.roles) {
+                    if (this.user.roleIds.indexOf(role.id) !== -1) {
                         role.isSelected = true;
+                    }
+                }
             });
         }
     }

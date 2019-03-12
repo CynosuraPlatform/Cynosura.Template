@@ -16,4 +16,5 @@ export class $model.Enum.Name$ViewComponent {
     @Input()
     value: $model.Enum.Name$;
 }
+
 >>

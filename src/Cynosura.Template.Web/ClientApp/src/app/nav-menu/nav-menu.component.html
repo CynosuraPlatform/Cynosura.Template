@@ -20,7 +20,7 @@
                 </li>
                 <li *ngFor="let item of menu.items" [routerLinkActive]="['link-active']">
                     <a [routerLink]="[item.route]">
-                        <span class="glyphicon" [ngClass]="item.cssClass"></span> {{item.name}}
+                        <span class="glyphicon" [ngClass]="item.cssClass"></span> {{ item.name }}
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']" *ngIf="!loggedIn">

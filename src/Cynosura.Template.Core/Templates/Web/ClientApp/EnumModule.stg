@@ -24,4 +24,5 @@ import { $model.Enum.Name$ViewComponent } from "./view.component";
 export class $model.Enum.Name$Module {
     
 }
+
 >>

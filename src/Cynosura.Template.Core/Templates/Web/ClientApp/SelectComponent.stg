@@ -27,4 +27,5 @@ export class $model.Entity.Name$SelectComponent implements OnInit {
         this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$().then($model.Entity.PluralNameLower$ => this.$model.Entity.PluralNameLower$ = $model.Entity.PluralNameLower$.pageItems);
     }
 }
+
 >>
