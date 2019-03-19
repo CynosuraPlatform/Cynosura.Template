@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using Autofac;
@@ -31,7 +31,7 @@ namespace Cynosura.Template.Worker.Infrastructure
         {
             // hack
             new CoreModule();
-            var platformAndAppNames = new[] {"Cynosura"};
+            var platformAndAppNames = new[] { "Cynosura", "Cynosura.Template" };
             return AppDomain.CurrentDomain.GetAssemblies()
                 .Where(a => platformAndAppNames.Any(n => a.FullName.Contains(n)) ||
                             a.GetReferencedAssemblies()
