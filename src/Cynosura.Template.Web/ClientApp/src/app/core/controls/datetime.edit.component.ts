@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "datetime-edit",
+    selector: "app-datetime-edit",
     templateUrl: "./datetime.edit.component.html"
 })
 export class DateTimeEditComponent {
@@ -12,10 +12,11 @@ export class DateTimeEditComponent {
         return this.value.toISOString();
     }
     set formattedDate(value: string) {
-        if (value)
+        if (value) {
             this.value = new Date(value);
-        else
+        } else {
             this.value = null;
+        }
     }
 
     @Output()

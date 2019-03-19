@@ -16,13 +16,13 @@ export class RoleEditComponent implements OnInit {
     error: Error;
 
     constructor(private roleService: RoleService,
-        private route: ActivatedRoute,
-        private router: Router) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            let id = +params["id"];
+            const id = +params.id;
             this.getRole(id);
         });
     }

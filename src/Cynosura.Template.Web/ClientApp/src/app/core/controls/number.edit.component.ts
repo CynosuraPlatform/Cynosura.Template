@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "number-edit",
+    selector: "app-number-edit",
     templateUrl: "./number.edit.component.html"
 })
 export class NumberEditComponent {

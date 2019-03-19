@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "time-edit",
+    selector: "app-time-edit",
     templateUrl: "./time.edit.component.html"
 })
 export class TimeEditComponent {
@@ -18,10 +18,11 @@ export class TimeEditComponent {
     }
     set formattedDate(value: Date) {
         this.formattedDateLocal = value;
-        if (value)
+        if (value) {
             this.value = value.toTimeString().substring(0, 5);
-        else
+        } else {
             this.value = null;
+        }
     }
 
     @Output()
