@@ -6,7 +6,13 @@ const uuidv1 = require('uuid/v1');
 const clean = require('gulp-clean');
 const psmdcp = uuidv1().replace(/\-/g, '');
 
-gulp.task('clean', ['dist-clean', 'content-clean']);
+gulp.task('clean', ['dist-clean', 'content-clean', 'artifacts-clean']);
+
+gulp.task('artifacts-clean',
+    () =>
+        gulp.src('./artifacts/')
+            .pipe(clean())
+);
 
 gulp.task('dist-clean',
     () =>
