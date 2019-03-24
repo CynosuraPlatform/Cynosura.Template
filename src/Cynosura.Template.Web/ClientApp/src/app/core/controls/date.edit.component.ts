@@ -28,6 +28,9 @@ export class DateEditComponent {
     @Input()
     label: string;
 
+    @Input()
+    readonly = false;
+
     removeTimezone(date: Date): Date {
         return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
     }

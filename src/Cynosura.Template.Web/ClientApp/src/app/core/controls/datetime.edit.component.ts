@@ -28,6 +28,9 @@ export class DateTimeEditComponent {
     @Input()
     label: string;
 
+    @Input()
+    readonly = false;
+
     onFormattedDateChange(value: string) {
         this.formattedDate = value;
         this.valueChange.emit(this.value);

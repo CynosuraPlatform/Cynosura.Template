@@ -17,6 +17,9 @@ export class BoolEditComponent {
     @Input()
     label: string;
 
+    @Input()
+    readonly = false;
+
     onValueChange(value: boolean) {
         this.value = value;
         this.valueChange.emit(value);

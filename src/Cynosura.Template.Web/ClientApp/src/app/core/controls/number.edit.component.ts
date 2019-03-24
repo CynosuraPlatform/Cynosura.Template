@@ -17,6 +17,9 @@ export class NumberEditComponent {
     @Input()
     label: string;
 
+    @Input()
+    readonly = false;
+
     onValueChange(value: number) {
         this.value = value;
         this.valueChange.emit(value);

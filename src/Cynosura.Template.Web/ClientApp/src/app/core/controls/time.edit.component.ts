@@ -34,6 +34,9 @@ export class TimeEditComponent {
     @Input()
     label: string;
 
+    @Input()
+    readonly = false;
+
     onFormattedDateChange(value: Date) {
         this.formattedDate = value;
         this.valueChange.emit(this.value);

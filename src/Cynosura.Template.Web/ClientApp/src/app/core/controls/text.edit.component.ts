@@ -24,6 +24,9 @@ export class TextEditComponent {
     @Input()
     multiline = false;
 
+    @Input()
+    readonly = false;
+
     onValueChange(value: string) {
         this.value = value;
         this.valueChange.emit(value);
