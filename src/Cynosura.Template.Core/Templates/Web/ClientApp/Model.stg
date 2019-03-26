@@ -25,5 +25,5 @@ Enum(field) ::= <<
 >>
 
 enumImport(enum) ::= <<
-import { $enum.Name$ } from "../$enum.NameLower$/$enum.NameLower$.model";
+import { $enum.Name$ } from "../$enum.NameKebab$/$enum.NameKebab$.model";
 >>

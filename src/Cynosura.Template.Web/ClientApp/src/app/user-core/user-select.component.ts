@@ -5,7 +5,7 @@ import { UserService } from "./user.service";
 
 @Component({
     selector: "app-user-select",
-    templateUrl: "./select.component.html"
+    templateUrl: "./user-select.component.html"
 })
 
 export class UserSelectComponent implements OnInit {

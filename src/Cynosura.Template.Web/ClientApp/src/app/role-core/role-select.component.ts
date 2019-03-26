@@ -5,7 +5,7 @@ import { RoleService } from "./role.service";
 
 @Component({
     selector: "app-role-select",
-    templateUrl: "./select.component.html"
+    templateUrl: "./role-select.component.html"
 })
 
 export class RoleSelectComponent implements OnInit {

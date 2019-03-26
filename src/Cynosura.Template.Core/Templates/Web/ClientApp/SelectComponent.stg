@@ -1,12 +1,12 @@
 ﻿main(model) ::= <<
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 
-import { $model.Entity.Name$ } from "./$model.Entity.NameLower$.model";
-import { $model.Entity.Name$Service } from "./$model.Entity.NameLower$.service";
+import { $model.Entity.Name$ } from "./$model.Entity.NameKebab$.model";
+import { $model.Entity.Name$Service } from "./$model.Entity.NameKebab$.service";
 
 @Component({
     selector: "app-$model.Entity.NameKebab$-select",
-    templateUrl: "./select.component.html"
+    templateUrl: "./$model.Entity.NameKebab$-select.component.html"
 })
 
 export class $model.Entity.Name$SelectComponent implements OnInit {

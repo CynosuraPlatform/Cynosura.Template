@@ -9,7 +9,7 @@ import { Error } from "../core/error.model";
 
 @Component({
     selector: "app-role-edit",
-    templateUrl: "./edit.component.html"
+    templateUrl: "./role-edit.component.html"
 })
 export class RoleEditComponent implements OnInit {
     role: Role;

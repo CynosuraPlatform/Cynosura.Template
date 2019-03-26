@@ -11,7 +11,7 @@ import { Page } from "../core/page.model";
 
 @Component({
     selector: "app-role-list",
-    templateUrl: "./list.component.html"
+    templateUrl: "./role-list.component.html"
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;

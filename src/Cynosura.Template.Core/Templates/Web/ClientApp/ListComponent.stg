@@ -2,8 +2,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
-import { $model.Entity.Name$ } from "../$model.Entity.NameLower$-core/$model.Entity.NameLower$.model";
-import { $model.Entity.Name$Service } from "../$model.Entity.NameLower$-core/$model.Entity.NameLower$.service";
+import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
+import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
 
 import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
@@ -12,7 +12,7 @@ import { Page } from "../core/page.model";
 
 @Component({
     selector: "app-$model.Entity.NameKebab$-list",
-    templateUrl: "./list.component.html"
+    templateUrl: "./$model.Entity.NameKebab$-list.component.html"
 })
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;

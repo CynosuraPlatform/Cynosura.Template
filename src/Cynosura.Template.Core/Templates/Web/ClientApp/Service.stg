@@ -2,7 +2,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
-import { $model.Entity.Name$ } from "./$model.Entity.NameLower$.model";
+import { $model.Entity.Name$ } from "./$model.Entity.NameKebab$.model";
 import { Page } from "../core/page.model";
 
 @Injectable()

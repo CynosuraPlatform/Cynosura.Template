@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { CoreModule } from "../core/core.module";
 
 import { UserService } from "./user.service";
-import { UserSelectComponent } from "./select.component";
+import { UserSelectComponent } from "./user-select.component";
 
 @NgModule({
     declarations: [

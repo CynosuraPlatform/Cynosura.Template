@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 
 import { CoreModule } from "../core/core.module";
 
-import { $model.Entity.Name$Service } from "./$model.Entity.NameLower$.service";
-import { $model.Entity.Name$SelectComponent } from "./select.component";
+import { $model.Entity.Name$Service } from "./$model.Entity.NameKebab$.service";
+import { $model.Entity.Name$SelectComponent } from "./$model.Entity.NameKebab$-select.component";
 
 @NgModule({
     declarations: [

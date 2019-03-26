@@ -12,7 +12,7 @@ import { Error } from "../core/error.model";
 
 @Component({
     selector: "app-user-edit",
-    templateUrl: "./edit.component.html"
+    templateUrl: "./user-edit.component.html"
 })
 export class UserEditComponent implements OnInit {
     user: User;
