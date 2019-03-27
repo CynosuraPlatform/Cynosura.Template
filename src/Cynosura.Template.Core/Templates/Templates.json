@@ -169,6 +169,20 @@
   },
   {
     "FilePath": "*.Web\\ClientApp\\src\\app",
+    "FileName": "{NameKebab}-core\\{NameKebab}-show.component.ts",
+    "TemplatePath": "Web\\ClientApp\\ShowComponent.stg",
+    "Type": 1,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Web\\ClientApp\\src\\app",
+    "FileName": "{NameKebab}-core\\{NameKebab}-show.component.html",
+    "TemplatePath": "Web\\ClientApp\\ShowView.stg",
+    "Type": 1,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Web\\ClientApp\\src\\app",
     "FileName": "{NameKebab}-core\\{NameKebab}-core.module.ts",
     "TemplatePath": "Web\\ClientApp\\CoreModule.stg",
     "Type": 1,
