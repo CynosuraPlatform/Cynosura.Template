@@ -1,26 +1,42 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
     selector: "app-datetime-edit",
-    templateUrl: "./datetime.edit.component.html"
+    templateUrl: "./datetime.edit.component.html",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DateTimeEditComponent),
+            multi: true
+        }
+    ]
 })
-export class DateTimeEditComponent {
-    @Input()
-    value: Date;
+export class DateTimeEditComponent implements ControlValueAccessor {
 
-    get formattedDate(): string {
-        return this.value.toISOString();
-    }
-    set formattedDate(value: string) {
-        if (value) {
-            this.value = new Date(value);
+    onChange: any = () => { };
+    onTouched: any = () => { };
+
+    @Input("value")
+    val: Date;
+
+    get value(): string {
+        if (this.val) {
+            return this.val.toISOString();
         } else {
-            this.value = null;
+            return null;
         }
     }
 
-    @Output()
-    valueChange = new EventEmitter<Date>();
+    set value(val: string) {
+        if (val) {
+            this.val = new Date(val);
+        } else {
+            this.val = null;
+        }
+        this.onChange(this.val);
+        this.onTouched();
+    }
 
     @Input()
     name: string;
@@ -31,8 +47,17 @@ export class DateTimeEditComponent {
     @Input()
     readonly = false;
 
-    onFormattedDateChange(value: string) {
-        this.formattedDate = value;
-        this.valueChange.emit(this.value);
+    registerOnChange(fn) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn) {
+        this.onTouched = fn;
+    }
+
+    writeValue(value) {
+        if (value) {
+            this.value = value;
+        }
     }
 }

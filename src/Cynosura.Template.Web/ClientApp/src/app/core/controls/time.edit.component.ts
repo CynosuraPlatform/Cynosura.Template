@@ -1,32 +1,43 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
     selector: "app-time-edit",
-    templateUrl: "./time.edit.component.html"
+    templateUrl: "./time.edit.component.html",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => TimeEditComponent),
+            multi: true
+        }
+    ]
 })
-export class TimeEditComponent {
-    @Input()
-    value: string;
+export class TimeEditComponent implements ControlValueAccessor {
 
-    private formattedDateLocal: Date;
+    onChange: any = () => { };
+    onTouched: any = () => { };
 
-    get formattedDate(): Date {
-        if (this.value && !this.formattedDateLocal) {
-            this.formattedDateLocal = new Date(`2000-01-01T${this.value}`);
+    @Input("value")
+    val: string;
+
+    private valueLocal: Date;
+
+    get value(): Date {
+        if (this.val && !this.valueLocal) {
+            this.valueLocal = new Date(`2000-01-01T${this.val}`);
         }
-        return this.formattedDateLocal;
+        return this.valueLocal;
     }
-    set formattedDate(value: Date) {
-        this.formattedDateLocal = value;
-        if (value) {
-            this.value = value.toTimeString().substring(0, 5);
+    set value(val: Date) {
+        this.valueLocal = val;
+        if (val) {
+            this.val = val.toTimeString().substring(0, 5);
         } else {
-            this.value = null;
+            this.val = null;
         }
+        this.onChange(this.val);
+        this.onTouched();
     }
-
-    @Output()
-    valueChange = new EventEmitter<string>();
 
     @Input()
     name: string;
@@ -37,8 +48,19 @@ export class TimeEditComponent {
     @Input()
     readonly = false;
 
-    onFormattedDateChange(value: Date) {
-        this.formattedDate = value;
-        this.valueChange.emit(this.value);
+    registerOnChange(fn) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn) {
+        this.onTouched = fn;
+    }
+
+    writeValue(value) {
+        if (value) {
+            this.val = value;
+            this.valueLocal = null;
+            this.value = this.value;
+        }
     }
 }

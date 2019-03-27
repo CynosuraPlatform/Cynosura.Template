@@ -1,15 +1,24 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
     selector: "app-bool-edit",
-    templateUrl: "./bool.edit.component.html"
+    templateUrl: "./bool.edit.component.html",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => BoolEditComponent),
+            multi: true
+        }
+    ]
 })
-export class BoolEditComponent {
-    @Input()
-    value: boolean;
+export class BoolEditComponent implements ControlValueAccessor {
 
-    @Output()
-    valueChange = new EventEmitter<boolean>();
+    onChange: any = () => { };
+    onTouched: any = () => { };
+
+    @Input("value")
+    val: string;
 
     @Input()
     name: string;
@@ -20,8 +29,27 @@ export class BoolEditComponent {
     @Input()
     readonly = false;
 
-    onValueChange(value: boolean) {
-        this.value = value;
-        this.valueChange.emit(value);
+    get value() {
+        return this.val;
+    }
+
+    set value(val) {
+        this.val = val;
+        this.onChange(val);
+        this.onTouched();
+    }
+
+    registerOnChange(fn) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn) {
+        this.onTouched = fn;
+    }
+
+    writeValue(value) {
+        if (value) {
+            this.value = value;
+        }
     }
 }

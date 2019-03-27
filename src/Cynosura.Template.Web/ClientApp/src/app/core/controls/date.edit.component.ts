@@ -1,26 +1,42 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
     selector: "app-date-edit",
-    templateUrl: "./date.edit.component.html"
+    templateUrl: "./date.edit.component.html",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DateEditComponent),
+            multi: true
+        }
+    ]
 })
-export class DateEditComponent {
+export class DateEditComponent implements ControlValueAccessor {
 
-    get formattedDate(): string {
-        return this.value.toISOString();
-    }
-    set formattedDate(value: string) {
-        if (value) {
-            this.value = this.removeTimezone(new Date(value));
+    onChange: any = () => { };
+    onTouched: any = () => { };
+
+    @Input("value")
+    val: Date;
+
+    get value(): string {
+        if (this.val) {
+            return this.val.toISOString();
         } else {
-            this.value = null;
+            return null;
         }
     }
-    @Input()
-    value: Date;
 
-    @Output()
-    valueChange = new EventEmitter<Date>();
+    set value(val: string) {
+        if (val) {
+            this.val = this.removeTimezone(new Date(val));
+        } else {
+            this.val = null;
+        }
+        this.onChange(this.val);
+        this.onTouched();
+    }
 
     @Input()
     name: string;
@@ -35,8 +51,17 @@ export class DateEditComponent {
         return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
     }
 
-    onFormattedDateChange(value: string) {
-        this.formattedDate = value;
-        this.valueChange.emit(this.value);
+    registerOnChange(fn) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn) {
+        this.onTouched = fn;
+    }
+
+    writeValue(value) {
+        if (value) {
+            this.value = value;
+        }
     }
 }

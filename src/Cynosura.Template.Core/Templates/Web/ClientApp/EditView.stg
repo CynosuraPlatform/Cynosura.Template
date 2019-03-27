@@ -23,53 +23,54 @@ $field:(field.TypeTemplate)()$
 >>
 
 Entity(field) ::= <<
-            <app-$field.Entity.NameKebab$-select [(selected$field.Entity.Name$Id)]="$model.Entity.NameLower$.$field.NameLower$Id"></app-$field.Entity.NameKebab$-select>
+            <app-$field.Entity.NameKebab$-select [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$Id" name="$field.NameLower$Id" label="$field.DisplayName$"></app-$field.Entity.NameKebab$-select>
             <app-model-validator [model]="error?.modelState?.$field.NameLower$Id"></app-model-validator>
 >>
 
 Enum(field) ::= <<
-            <app-$field.Enum.NameKebab$-select [(selected$field.Enum.Name$)]="$model.Entity.NameLower$.$field.NameLower$"></app-$field.Enum.NameKebab$-select>
+            <app-$field.Enum.NameKebab$-select [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-$field.Enum.NameKebab$-select>
             <app-model-validator [model]="error?.modelState?.$field.NameLower$"></app-model-validator>
 >>
 
 String(field) ::= <<
-            <app-text-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-text-edit>
+            <app-text-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-text-edit>
 >>
 
 Int32(field) ::= <<
-            <app-number-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
+            <app-number-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
 >>
 
 Int64(field) ::= <<
-            <app-number-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
+            <app-number-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
 >>
 
 Decimal(field) ::= <<
-            <app-number-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
+            <app-number-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
 >>
 
 Double(field) ::= <<
-            <app-number-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
+            <app-number-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-number-edit>
 >>
 
 Boolean(field) ::= <<
-            <app-bool-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-bool-edit>
+            <app-bool-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-bool-edit>
 >>
 
 DateTime(field) ::= <<
-            <app-datetime-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-datetime-edit>
+            <app-datetime-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-datetime-edit>
 >>
 
 Date(field) ::= <<
-            <app-date-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-date-edit>
+            <app-date-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-date-edit>
 >>
 
 Time(field) ::= <<
-            <app-time-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-time-edit>
+            <app-time-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-time-edit>
 >>
 
 Guid(field) ::= <<
-            <app-text-edit [(value)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-text-edit>
+            <app-text-edit [(ngModel)]="$model.Entity.NameLower$.$field.NameLower$" name="$field.NameLower$" label="$field.DisplayName$"></app-text-edit>
 >>
+
 Blob(field) ::= <<
 >>

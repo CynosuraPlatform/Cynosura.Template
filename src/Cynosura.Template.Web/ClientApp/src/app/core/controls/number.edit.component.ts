@@ -1,15 +1,24 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
     selector: "app-number-edit",
-    templateUrl: "./number.edit.component.html"
+    templateUrl: "./number.edit.component.html",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => NumberEditComponent),
+            multi: true
+        }
+    ]
 })
-export class NumberEditComponent {
-    @Input()
-    value: number;
+export class NumberEditComponent implements ControlValueAccessor {
 
-    @Output()
-    valueChange = new EventEmitter<number>();
+    onChange: any = () => { };
+    onTouched: any = () => { };
+
+    @Input("value")
+    val: string;
 
     @Input()
     name: string;
@@ -20,8 +29,27 @@ export class NumberEditComponent {
     @Input()
     readonly = false;
 
-    onValueChange(value: number) {
-        this.value = value;
-        this.valueChange.emit(value);
+    get value() {
+        return this.val;
+    }
+
+    set value(val) {
+        this.val = val;
+        this.onChange(val);
+        this.onTouched();
+    }
+
+    registerOnChange(fn) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn) {
+        this.onTouched = fn;
+    }
+
+    writeValue(value) {
+        if (value) {
+            this.value = value;
+        }
     }
 }
