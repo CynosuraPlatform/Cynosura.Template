@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using Cynosura.Core.Services.Models;
-using Cynosura.Web.Infrastructure;
 using Cynosura.Template.Core.Requests.Roles;
 using Cynosura.Template.Core.Requests.Roles.Models;
 using Cynosura.Template.Web.Models;
+using Cynosura.Web.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

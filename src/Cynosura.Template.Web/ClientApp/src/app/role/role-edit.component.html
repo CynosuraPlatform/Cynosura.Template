@@ -6,7 +6,7 @@
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Name</label>
         <div class="col-sm-10">
-            <app-text-edit [(value)]="role.name" name="name" label="Name"></app-text-edit>
+            <app-text-edit [(ngModel)]="role.name" name="name" label="Name"></app-text-edit>
             <app-model-validator [model]="error?.modelState?.name"></app-model-validator>
         </div>
     </div>

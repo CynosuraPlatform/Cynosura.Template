@@ -29,6 +29,7 @@ $model.Entity.Fields:field(); separator="\n"$
        [totalItems]="content.totalItems"
        (currentPageChange)="onPageSelected(\$event)">
 </app-pager>
+
 >>
 
 fieldHeader(field) ::= <<
