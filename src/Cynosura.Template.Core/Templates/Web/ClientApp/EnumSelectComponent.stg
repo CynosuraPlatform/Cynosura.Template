@@ -59,9 +59,7 @@ export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAcc
     }
 
     writeValue(value) {
-        if (value) {
-            this.value = value;
-        }
+        this.value = value;
     }
 }
 

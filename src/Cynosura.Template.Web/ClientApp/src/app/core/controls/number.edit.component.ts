@@ -48,8 +48,6 @@ export class NumberEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        if (value) {
-            this.value = value;
-        }
+        this.value = value;
     }
 }

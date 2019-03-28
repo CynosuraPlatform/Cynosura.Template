@@ -60,9 +60,7 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
     }
 
     writeValue(value) {
-        if (value) {
-            this.value = value;
-        }
+        this.value = value;
     }
 }
 

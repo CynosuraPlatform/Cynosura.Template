@@ -57,10 +57,8 @@ export class TimeEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        if (value) {
-            this.val = value;
-            this.valueLocal = null;
-            this.value = this.value;
-        }
+        this.val = value;
+        this.valueLocal = null;
+        this.value = this.value;
     }
 }

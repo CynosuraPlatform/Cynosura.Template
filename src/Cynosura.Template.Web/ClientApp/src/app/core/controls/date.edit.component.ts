@@ -60,8 +60,6 @@ export class DateEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        if (value) {
-            this.value = value;
-        }
+        this.value = value;
     }
 }

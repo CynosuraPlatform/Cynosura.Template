@@ -48,8 +48,6 @@ export class BoolEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        if (value) {
-            this.value = value;
-        }
+        this.value = value;
     }
 }
