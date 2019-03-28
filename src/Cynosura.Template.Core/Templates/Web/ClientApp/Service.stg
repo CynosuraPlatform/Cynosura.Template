@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 import { $model.Entity.Name$ } from "./$model.Entity.NameKebab$.model";
+import { $model.Entity.Name$Filter } from "./$model.Entity.NameKebab$-filter.model";
 import { Page } from "../core/page.model";
 
 @Injectable()
@@ -12,7 +13,7 @@ export class $model.Entity.Name$Service {
 
     constructor(private httpClient: HttpClient) { }
 
-    get$model.Entity.PluralName$(pageIndex?: number, pageSize?: number): Promise<Page<$model.Entity.Name$>\> {
+    get$model.Entity.PluralName$(pageIndex?: number, pageSize?: number, filter?: $model.Entity.Name$Filter): Promise<Page<$model.Entity.Name$>\> {
         const url = this.$model.Entity.NameLower$Url;
 
         let params = new HttpParams();
@@ -23,6 +24,15 @@ export class $model.Entity.Name$Service {
 
         if (pageSize !== undefined && pageSize !== null) {
             params = params.set("pageSize", pageSize.toString());
+        }
+
+        if (filter) {
+            params = Object.keys(filter).reduce((prev, cur) => {
+                if (filter[cur] !== undefined && filter[cur] !== null) {
+                    prev = prev.set(`filter.\${cur}`, filter[cur]);
+                }
+                return prev;
+            }, params);
         }
 
         return this.httpClient.get<Page<$model.Entity.Name$>\>(url, {
