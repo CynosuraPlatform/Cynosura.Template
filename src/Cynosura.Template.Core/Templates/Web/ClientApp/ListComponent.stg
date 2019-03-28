@@ -51,9 +51,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     reset(): void {
-        this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$(this.content.currentPageIndex, this.pageSize)
-            .then(content => { this.content = content; },
-                error => this.error = error.json() as Error);
+        this.get$model.Entity.PluralName$();
     }
 
     edit($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$): void {
