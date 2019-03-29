@@ -23,9 +23,9 @@ namespace Cynosura.Template.Web.Controllers
         }
 
         [HttpGet("")]
-        public async Task<PageModel<RoleModel>> GetRolesAsync(int? pageIndex, int? pageSize)
+        public async Task<PageModel<RoleModel>> GetRolesAsync(int? pageIndex, int? pageSize, RoleFilter filter)
         {
-            return await _mediator.Send(new GetRoles() { PageIndex = pageIndex, PageSize = pageSize });
+            return await _mediator.Send(new GetRoles() { PageIndex = pageIndex, PageSize = pageSize, Filter = filter });
         }
 
         [HttpGet("{id:int}")]

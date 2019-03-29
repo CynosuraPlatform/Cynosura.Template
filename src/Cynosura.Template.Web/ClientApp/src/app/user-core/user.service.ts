@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 import { User } from "./user.model";
+import { UserFilter } from "./user-filter.model";
 import { Page } from "../core/page.model";
 
 @Injectable()
@@ -11,7 +12,7 @@ export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getUsers(pageIndex?: number, pageSize?: number): Promise<Page<User>> {
+    getUsers(pageIndex?: number, pageSize?: number, filter?: UserFilter): Promise<Page<User>> {
         const url = this.userUrl;
 
         let params = new HttpParams();
@@ -24,6 +25,15 @@ export class UserService {
             params = params.set("pageSize", pageSize.toString());
         }
 
+        if (filter) {
+            params = Object.keys(filter).reduce((prev, cur) => {
+                if (filter[cur] !== undefined && filter[cur] !== null) {
+                    prev = prev.set(`filter.${cur}`, filter[cur]);
+                }
+                return prev;
+            }, params);
+        }
+
         return this.httpClient.get<Page<User>>(url, {
             params: params
         }).toPromise();
@@ -32,7 +42,7 @@ export class UserService {
     getUser(id: number): Promise<User> {
         const url = `${this.userUrl}/${id}`;
         return this.httpClient.get<User>(url)
-          .toPromise();
+            .toPromise();
     }
 
     updateUser(user: User): Promise<User> {

@@ -1,4 +1,4 @@
-﻿using Cynosura.Template.Core.Requests.Roles.Models;
+using Cynosura.Template.Core.Requests.Roles.Models;
 using MediatR;
 
 namespace Cynosura.Template.Core.Requests.Roles

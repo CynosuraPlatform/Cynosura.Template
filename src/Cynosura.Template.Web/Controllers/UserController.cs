@@ -23,9 +23,9 @@ namespace Cynosura.Template.Web.Controllers
         }
 
         [HttpGet("")]
-        public async Task<PageModel<UserModel>> GetUsersAsync(int? pageIndex, int? pageSize)
+        public async Task<PageModel<UserModel>> GetUsersAsync(int? pageIndex, int? pageSize, UserFilter filter)
         {
-            return await _mediator.Send(new GetUsers() { PageIndex = pageIndex, PageSize = pageSize });
+            return await _mediator.Send(new GetUsers() { PageIndex = pageIndex, PageSize = pageSize, Filter = filter });
         }
 
         [HttpGet("{id:int}")]

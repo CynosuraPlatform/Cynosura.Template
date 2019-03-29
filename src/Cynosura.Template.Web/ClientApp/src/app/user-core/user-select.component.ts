@@ -59,8 +59,6 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor {
     }
 
     writeValue(value) {
-        if (value) {
-            this.value = value;
-        }
+        this.value = value;
     }
 }

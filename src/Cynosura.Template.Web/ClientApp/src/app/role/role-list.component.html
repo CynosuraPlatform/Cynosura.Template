@@ -1,5 +1,15 @@
 <h2>Roles</h2>
 
+<div class="form-inline">
+    <div class="form-group">
+        <label for="text">Text</label>
+        <input id="text" type="text" class="form-control" placeholder="Text" [(ngModel)]="filter.text" />
+    </div>
+
+    <button class="btn btn-default" type="button" (click)="getRoles()">Search</button>
+    <button class="btn btn-default" type="reset" (click)="reset()">Reset</button>
+</div>
+
 <button type="button" class="btn btn-default" (click)="add()">Create</button>
 
 <app-error-handler [error]="error"></app-error-handler>

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 import { Role } from "./role.model";
+import { RoleFilter } from "./role-filter.model";
 import { Page } from "../core/page.model";
 
 @Injectable()
@@ -11,7 +12,7 @@ export class RoleService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getRoles(pageIndex?: number, pageSize?: number): Promise<Page<Role>> {
+    getRoles(pageIndex?: number, pageSize?: number, filter?: RoleFilter): Promise<Page<Role>> {
         const url = this.roleUrl;
 
         let params = new HttpParams();
@@ -22,6 +23,15 @@ export class RoleService {
 
         if (pageSize !== undefined && pageSize !== null) {
             params = params.set("pageSize", pageSize.toString());
+        }
+
+        if (filter) {
+            params = Object.keys(filter).reduce((prev, cur) => {
+                if (filter[cur] !== undefined && filter[cur] !== null) {
+                    prev = prev.set(`filter.${cur}`, filter[cur]);
+                }
+                return prev;
+            }, params);
         }
 
         return this.httpClient.get<Page<Role>>(url, {

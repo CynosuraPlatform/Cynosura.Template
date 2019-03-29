@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import { User } from "../user-core/user.model";
+import { UserFilter } from "../user-core/user-filter.model";
 import { UserService } from "../user-core/user.service";
 
 import { ModalHelper } from "../core/modal.helper";
@@ -17,6 +18,7 @@ export class UserListComponent implements OnInit {
     content: Page<User>;
     error: Error;
     pageSize = 10;
+    filter = new UserFilter();
     private innerPageIndex: number;
     get pageIndex(): number {
         if (!this.innerPageIndex) {
@@ -42,7 +44,7 @@ export class UserListComponent implements OnInit {
     }
 
     getUsers(): void {
-        this.userService.getUsers(this.pageIndex, this.pageSize)
+        this.userService.getUsers(this.pageIndex, this.pageSize, this.filter)
             .then(content => {
                 this.content = content;
             })
@@ -50,9 +52,8 @@ export class UserListComponent implements OnInit {
     }
 
     reset(): void {
-        this.userService.getUsers(this.content.currentPageIndex, this.pageSize)
-            .then(content => { this.content = content; },
-                error => this.error = error.json() as Error);
+        this.filter.text = null;
+        this.getUsers();
     }
 
     edit(id: number): void {

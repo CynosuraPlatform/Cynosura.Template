@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import { Role } from "../role-core/role.model";
+import { RoleFilter } from "../role-core/role-filter.model";
 import { RoleService } from "../role-core/role.service";
 
 import { ModalHelper } from "../core/modal.helper";
@@ -17,6 +18,7 @@ export class RoleListComponent implements OnInit {
     content: Page<Role>;
     error: Error;
     pageSize = 10;
+    filter = new RoleFilter();
     private innerPageIndex: number;
     get pageIndex(): number {
         if (!this.innerPageIndex) {
@@ -35,14 +37,14 @@ export class RoleListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService
-    ) { }
+        ) {}
 
     ngOnInit(): void {
         this.getRoles();
     }
 
     getRoles(): void {
-        this.roleService.getRoles(this.pageIndex, this.pageSize)
+        this.roleService.getRoles(this.pageIndex, this.pageSize, this.filter)
             .then(content => {
                 this.content = content;
             })
@@ -50,9 +52,8 @@ export class RoleListComponent implements OnInit {
     }
 
     reset(): void {
-        this.roleService.getRoles(this.content.currentPageIndex, this.pageSize)
-            .then(content => { this.content = content; },
-                error => this.error = error.json() as Error);
+        this.filter.text = null;
+        this.getRoles();
     }
 
     edit(id: number): void {
