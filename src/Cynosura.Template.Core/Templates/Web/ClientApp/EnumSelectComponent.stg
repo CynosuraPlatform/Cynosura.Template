@@ -18,21 +18,18 @@ import { $model.Enum.Name$, $model.Enum.Name$Display } from "./$model.Enum.NameK
 
 export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAccessor {
     
-    onChange: any = () => { };
-    onTouched: any = () => { };
-
     $model.Enum.Name$ = $model.Enum.Name$;
     $model.Enum.Name$Display = $model.Enum.Name$Display;
 
-    @Input("value")
-    val: $model.Enum.Name$ | null = null;
+    @Input()
+    value: $model.Enum.Name$ | null = null;
 
-    get value() {
-        return this.val;
+    get innerValue() {
+        return this.value;
     }
 
-    set value(val) {
-        this.val = val;
+    set innerValue(val) {
+        this.value = val;
         this.onChange(val);
         this.onTouched();
     }
@@ -45,6 +42,9 @@ export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAcc
 
     @Input()
     readonly = false;
+
+    onChange: any = () => { };
+    onTouched: any = () => { };
 
     ngOnInit(): void {
         
@@ -59,7 +59,7 @@ export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAcc
     }
 
     writeValue(value) {
-        this.value = value;
+        this.innerValue = value;
     }
 }
 

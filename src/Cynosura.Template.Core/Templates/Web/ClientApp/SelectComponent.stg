@@ -22,18 +22,15 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
 
     $model.Entity.PluralNameLower$: $model.Entity.Name$[] = [];
 
-    onChange: any = () => { };
-    onTouched: any = () => { };
+    @Input()
+    value: number | null = null;
 
-    @Input("value")
-    val: number | null = null;
-
-    get value() {
-        return this.val;
+    get innerValue() {
+        return this.value;
     }
 
-    set value(val) {
-        this.val = val;
+    set innerValue(val) {
+        this.value = val;
         this.onChange(val);
         this.onTouched();
     }
@@ -46,6 +43,9 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
 
     @Input()
     readonly = false;
+
+    onChange: any = () => { };
+    onTouched: any = () => { };
 
     ngOnInit(): void {
         this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$().then($model.Entity.PluralNameLower$ => this.$model.Entity.PluralNameLower$ = $model.Entity.PluralNameLower$.pageItems);
@@ -60,7 +60,7 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
     }
 
     writeValue(value) {
-        this.value = value;
+        this.innerValue = value;
     }
 }
 

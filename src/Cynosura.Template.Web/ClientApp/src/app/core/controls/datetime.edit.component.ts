@@ -14,27 +14,24 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 })
 export class DateTimeEditComponent implements ControlValueAccessor {
 
-    onChange: any = () => { };
-    onTouched: any = () => { };
+    @Input()
+    value: Date;
 
-    @Input("value")
-    val: Date;
-
-    get value(): string {
-        if (this.val) {
-            return this.val.toISOString();
+    get innerValue(): string {
+        if (this.value) {
+            return this.value.toISOString();
         } else {
             return null;
         }
     }
 
-    set value(val: string) {
+    set innerValue(val: string) {
         if (val) {
-            this.val = new Date(val);
+            this.value = new Date(val);
         } else {
-            this.val = null;
+            this.value = null;
         }
-        this.onChange(this.val);
+        this.onChange(this.value);
         this.onTouched();
     }
 
@@ -47,6 +44,9 @@ export class DateTimeEditComponent implements ControlValueAccessor {
     @Input()
     readonly = false;
 
+    onChange: any = () => { };
+    onTouched: any = () => { };
+
     registerOnChange(fn) {
         this.onChange = fn;
     }
@@ -56,6 +56,6 @@ export class DateTimeEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        this.value = value;
+        this.innerValue = value;
     }
 }

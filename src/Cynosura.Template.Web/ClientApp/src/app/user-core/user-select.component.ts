@@ -21,18 +21,15 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor {
 
     users: User[] = [];
 
-    onChange: any = () => { };
-    onTouched: any = () => { };
+    @Input()
+    value: number | null = null;
 
-    @Input("value")
-    val: number | null = null;
-
-    get value() {
-        return this.val;
+    get innerValue() {
+        return this.value;
     }
 
-    set value(val) {
-        this.val = val;
+    set innerValue(val) {
+        this.value = val;
         this.onChange(val);
         this.onTouched();
     }
@@ -45,6 +42,9 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor {
 
     @Input()
     readonly = false;
+
+    onChange: any = () => { };
+    onTouched: any = () => { };
 
     ngOnInit(): void {
         this.userService.getUsers().then(users => this.users = users.pageItems);
@@ -59,6 +59,6 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor {
     }
 
     writeValue(value) {
-        this.value = value;
+        this.innerValue = value;
     }
 }

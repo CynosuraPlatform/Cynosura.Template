@@ -14,28 +14,25 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 })
 export class TimeEditComponent implements ControlValueAccessor {
 
-    onChange: any = () => { };
-    onTouched: any = () => { };
-
-    @Input("value")
-    val: string;
+    @Input()
+    value: string;
 
     private valueLocal: Date;
 
-    get value(): Date {
-        if (this.val && !this.valueLocal) {
-            this.valueLocal = new Date(`2000-01-01T${this.val}`);
+    get innerValue(): Date {
+        if (this.value && !this.valueLocal) {
+            this.valueLocal = new Date(`2000-01-01T${this.value}`);
         }
         return this.valueLocal;
     }
-    set value(val: Date) {
+    set innerValue(val: Date) {
         this.valueLocal = val;
         if (val) {
-            this.val = val.toTimeString().substring(0, 5);
+            this.value = val.toTimeString().substring(0, 5);
         } else {
-            this.val = null;
+            this.value = null;
         }
-        this.onChange(this.val);
+        this.onChange(this.value);
         this.onTouched();
     }
 
@@ -48,6 +45,9 @@ export class TimeEditComponent implements ControlValueAccessor {
     @Input()
     readonly = false;
 
+    onChange: any = () => { };
+    onTouched: any = () => { };
+
     registerOnChange(fn) {
         this.onChange = fn;
     }
@@ -57,8 +57,8 @@ export class TimeEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        this.val = value;
+        this.value = value;
         this.valueLocal = null;
-        this.value = this.value;
+        this.innerValue = this.innerValue;
     }
 }

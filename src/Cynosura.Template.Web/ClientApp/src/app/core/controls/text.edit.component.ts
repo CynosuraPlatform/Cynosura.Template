@@ -15,11 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 })
 export class TextEditComponent implements ControlValueAccessor {
 
-    onChange: any = () => { };
-    onTouched: any = () => { };
-
-    @Input("value")
-    val: string;
+    @Input()
+    value: string;
 
     @Input()
     name: string;
@@ -36,15 +33,18 @@ export class TextEditComponent implements ControlValueAccessor {
     @Input()
     readonly = false;
 
-    get value() {
-        return this.val;
+    get innerValue() {
+        return this.value;
     }
 
-    set value(val) {
-        this.val = val;
+    set innerValue(val) {
+        this.value = val;
         this.onChange(val);
         this.onTouched();
     }
+
+    onChange: any = () => { };
+    onTouched: any = () => { };
 
     registerOnChange(fn) {
         this.onChange = fn;
@@ -55,6 +55,6 @@ export class TextEditComponent implements ControlValueAccessor {
     }
 
     writeValue(value) {
-        this.value = value;
+        this.innerValue = value;
     }
 }
