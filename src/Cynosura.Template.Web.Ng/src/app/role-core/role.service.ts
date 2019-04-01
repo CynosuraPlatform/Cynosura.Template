@@ -1,16 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
+import { ConfigService } from "../config/config.service";
 import { Role } from "./role.model";
 import { RoleFilter } from "./role-filter.model";
 import { Page } from "../core/page.model";
 
 @Injectable()
 export class RoleService {
-    private roleUrl = "/api/role";
+    private roleUrl = this.configService.config.apiBaseUrl + "/api/role";
     private headers = new HttpHeaders({ "Content-Type": "application/json" });
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 
     getRoles(pageIndex?: number, pageSize?: number, filter?: RoleFilter): Promise<Page<Role>> {
         const url = this.roleUrl;

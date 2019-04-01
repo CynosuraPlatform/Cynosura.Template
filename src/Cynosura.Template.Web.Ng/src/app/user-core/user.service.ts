@@ -1,16 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
+import { ConfigService } from "../config/config.service";
 import { User } from "./user.model";
 import { UserFilter } from "./user-filter.model";
 import { Page } from "../core/page.model";
 
 @Injectable()
 export class UserService {
-    private userUrl = "/api/user";
+    private userUrl = this.configService.config.apiBaseUrl + "/api/user";
     private headers = new HttpHeaders({ "Content-Type": "application/json" });
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 
     getUsers(pageIndex?: number, pageSize?: number, filter?: UserFilter): Promise<Page<User>> {
         const url = this.userUrl;

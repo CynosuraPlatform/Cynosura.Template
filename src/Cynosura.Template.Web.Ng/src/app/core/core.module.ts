@@ -59,7 +59,7 @@ import { AppErrorHandler } from "./app-error.handler";
         OwlNativeDateTimeModule
     ],
     providers: [
-        {provide: ErrorHandler, useClass: AppErrorHandler},
+        { provide: ErrorHandler, useClass: AppErrorHandler },
         // {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
         StoreService,
         MenuService,

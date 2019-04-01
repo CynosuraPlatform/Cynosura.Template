@@ -1,6 +1,6 @@
 // import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule, Route } from "@angular/router";
@@ -11,6 +11,7 @@ import { BootstrapModalModule } from "ngx-modialog/plugins/bootstrap";
 import { AuthModule } from "./auth/auth.module";
 import { CoreModule } from "./core/core.module";
 
+import { ConfigService } from "./config/config.service";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
@@ -37,7 +38,17 @@ import { HomeComponent } from "./home/home.component";
         AuthModule,
         CoreModule
     ],
-    providers: [],
+    providers: [
+        ConfigService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (configService: ConfigService) => {
+                return () => configService.load();
+            },
+            multi: true,
+            deps: [ConfigService]
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

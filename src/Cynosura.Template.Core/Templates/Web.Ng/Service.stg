@@ -2,16 +2,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
+import { ConfigService } from "../config/config.service";
 import { $model.Entity.Name$ } from "./$model.Entity.NameKebab$.model";
 import { $model.Entity.Name$Filter } from "./$model.Entity.NameKebab$-filter.model";
 import { Page } from "../core/page.model";
 
 @Injectable()
 export class $model.Entity.Name$Service {
-    private $model.Entity.NameLower$Url = "/api/$model.Entity.NameLower$";
+    private $model.Entity.NameLower$Url = this.configService.config.apiBaseUrl + "/api/$model.Entity.NameLower$";
     private headers = new HttpHeaders({ "Content-Type": "application/json" });
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 
     get$model.Entity.PluralName$(pageIndex?: number, pageSize?: number, filter?: $model.Entity.Name$Filter): Promise<Page<$model.Entity.Name$>\> {
         const url = this.$model.Entity.NameLower$Url;

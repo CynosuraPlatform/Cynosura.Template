@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders, HttpResponse } from "@angular/comm
 import { throwError as observableThrowError, Observable, BehaviorSubject, of } from "rxjs";
 import { filter, map, tap, first, flatMap, catchError } from "rxjs/operators";
 
+import { ConfigService } from "../config/config.service";
 import { AuthStateModel } from "./auth-state.model";
 import { AuthTokenModel } from "./auth-tokens.model";
 import { LoginModel } from "./login.model";
@@ -17,7 +18,7 @@ export class AuthService {
     tokens$: Observable<AuthTokenModel>;
     loggedIn$: Observable<boolean>;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private configService: ConfigService) {
         this.state = new BehaviorSubject<AuthStateModel>(this.initalState);
         this.state$ = this.state.asObservable();
 
@@ -60,7 +61,7 @@ export class AuthService {
         let params = new HttpParams();
         Object.keys(data)
             .forEach(key => params = params.set(key, (<any>data)[key]));
-        return this.httpClient.post<AuthTokenModel>(`/connect/token`, params.toString(), options)
+        return this.httpClient.post<AuthTokenModel>(`${this.configService.config.apiBaseUrl}/connect/token`, params.toString(), options)
             .pipe(tap((tokens: AuthTokenModel) => {
                 this.storeToken(tokens);
                 this.updateState({ authReady: true, tokens });
