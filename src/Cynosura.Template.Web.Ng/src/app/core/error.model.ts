@@ -3,10 +3,16 @@ export class Error {
         this.message = message;
     }
     message?: string;
-    modelState: object;
+    modelState: { [key: string]: ModelStateError };
     exceptionMessage: string;
     exceptionType: string;
-    errors: object[];
+    errors: any[];
 
     httpStatus: number;
+}
+
+export class ModelStateError {
+    errorMessage: string;
+    exceptionMessage: string;
+    exceptionSource: string;
 }
