@@ -32,7 +32,7 @@ export class $model.Entity.Name$EditComponent implements OnInit {
         if (id === 0) {
             this.$model.Entity.NameLower$ = new $model.Entity.Name$();
         } else {
-            this.$model.Entity.NameLower$Service.get$model.Entity.Name$(id).then($model.Entity.NameLower$ => {
+            this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id }).then($model.Entity.NameLower$ => {
                 this.$model.Entity.NameLower$ = $model.Entity.NameLower$;
             });
         }

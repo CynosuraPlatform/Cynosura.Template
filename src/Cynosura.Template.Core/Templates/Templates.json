@@ -162,6 +162,13 @@
   },
   {
     "FilePath": "*.Web.Ng\\src\\app",
+    "FileName": "{NameKebab}-core\\{NameKebab}-request.model.ts",
+    "TemplatePath": "Web.Ng\\Request.stg",
+    "Type": 1,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Web.Ng\\src\\app",
     "FileName": "{NameKebab}-core\\{NameKebab}.service.ts",
     "TemplatePath": "Web.Ng\\Service.stg",
     "Type": 1,
