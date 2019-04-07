@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Requests.Roles;
 using Cynosura.Template.Core.Requests.Roles.Models;
@@ -12,6 +12,7 @@ namespace Cynosura.Template.Web.Controllers
 {
     [ServiceFilter(typeof(ApiExceptionFilterAttribute))]
     [Authorize(Roles = "Administrator")]
+    [ValidateModel]
     [Route("api/[controller]")]
     public class RoleController : Controller
     {
