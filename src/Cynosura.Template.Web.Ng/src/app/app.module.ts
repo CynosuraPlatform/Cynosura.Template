@@ -35,8 +35,8 @@ import { HomeComponent } from "./home/home.component";
         ]),
         ModalModule.forRoot(),
         BootstrapModalModule,
-        AuthModule,
-        CoreModule
+        CoreModule,
+        AuthModule
     ],
     providers: [
         ConfigService,
