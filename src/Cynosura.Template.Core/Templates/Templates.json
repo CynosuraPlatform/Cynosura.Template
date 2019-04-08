@@ -140,13 +140,6 @@
     "InsertAfter": null
   },
   {
-    "FilePath": "*.Web\\Infrastructure\\Menu",
-    "FileName": "{Name}Module.cs",
-    "TemplatePath": "Web\\MenuModule.stg",
-    "Type": 0,
-    "InsertAfter": null
-  },
-  {
     "FilePath": "*.Web.Ng\\src\\app",
     "FileName": "{NameKebab}-core\\{NameKebab}.model.ts",
     "TemplatePath": "Web.Ng\\Model.stg",
@@ -250,6 +243,13 @@
     "TemplatePath": "Web.Ng\\Route.stg",
     "Type": 1,
     "InsertAfter": "// ADD ROUTES HERE"
+  },
+  {
+    "FilePath": "*.Web.Ng\\src\\app",
+    "FileName": "nav-menu\\menu.service.ts",
+    "TemplatePath": "Web.Ng\\Menu.stg",
+    "Type": 1,
+    "InsertAfter": "// ADD MENU ITEMS HERE"
   },
   {
     "FilePath": "*.Core\\Enums",

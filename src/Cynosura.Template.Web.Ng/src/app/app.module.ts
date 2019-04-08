@@ -12,6 +12,7 @@ import { AuthModule } from "./auth/auth.module";
 import { CoreModule } from "./core/core.module";
 
 import { ConfigService } from "./config/config.service";
+import { MenuService } from "./nav-menu/menu.service";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
@@ -40,6 +41,7 @@ import { HomeComponent } from "./home/home.component";
     ],
     providers: [
         ConfigService,
+        MenuService,
         {
             provide: APP_INITIALIZER,
             useFactory: (configService: ConfigService) => {
