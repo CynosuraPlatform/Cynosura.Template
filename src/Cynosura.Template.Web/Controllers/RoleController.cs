@@ -13,6 +13,7 @@ namespace Cynosura.Template.Web.Controllers
 {
     [ServiceFilter(typeof(ApiExceptionFilterAttribute))]
     [Authorize(Roles = "Administrator")]
+    [ValidateModel]
     [Route("api")]
     public class RoleController : Controller
     {

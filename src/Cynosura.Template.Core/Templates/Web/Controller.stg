@@ -14,6 +14,7 @@ namespace $model.Solution.Namespace$.Web.Controllers
 {
     [ServiceFilter(typeof(ApiExceptionFilterAttribute))]
     [Authorize(Roles = "Administrator")]
+    [ValidateModel]
     [Route("api")]
     public class $model.Entity.Name$Controller : Controller
     {
