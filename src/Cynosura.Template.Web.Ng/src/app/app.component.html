@@ -1,10 +1,26 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3">
-      <app-nav-menu></app-nav-menu>
-    </div>
-    <div class="col-sm-9 body-content">
+<div style="height: 100vh;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Cynosura.Template</span>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <app-nav-menu></app-nav-menu>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
       <router-outlet></router-outlet>
-    </div>
-  </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -4,3 +4,11 @@
     padding-top: 50px;
   }
 }
+
+mat-sidenav-container {
+  height: calc(100% - 64px);
+}
+
+mat-sidenav-content {
+  min-height: 100%;
+}
