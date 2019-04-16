@@ -1,16 +1,16 @@
 <h2>Users</h2>
 
 <div class="form-inline">
-    <div class="form-group">
-        <label for="text">Text</label>
-        <input id="text" type="text" class="form-control" placeholder="Text" [(ngModel)]="filter.text" />
-    </div>
+    <mat-form-field class="row">
+        <mat-label>Text</mat-label>
+        <input matInput id="text" type="text" class="form-control" placeholder="Text" [(ngModel)]="filter.text" />
+    </mat-form-field>
 
-    <button class="btn btn-default" type="button" (click)="getUsers()">Search</button>
-    <button class="btn btn-default" type="reset" (click)="reset()">Reset</button>
+    <button mat-button class="btn btn-default" type="button" (click)="getUsers()">Search</button>
+    <button mat-button class="btn btn-default" type="reset" (click)="reset()">Reset</button>
 </div>
 
-<button type="button" class="btn btn-default" (click)="add()">Create</button>
+<button mat-button type="button" class="btn btn-default" (click)="add()">Create</button>
 
 <app-error-handler [error]="error"></app-error-handler>
 
@@ -31,8 +31,8 @@
                 <app-text-view [value]="user.email"></app-text-view>
             </td>
             <td>
-                <button class="btn btn-default" (click)="edit(user.id)">Edit</button>
-                <button class="btn btn-default" (click)="delete(user.id)">Delete</button>
+                <button mat-button class="btn btn-default" (click)="edit(user.id)">Edit</button>
+                <button mat-button class="btn btn-default" (click)="delete(user.id)">Delete</button>
             </td>
         </tr>
     </tbody>
