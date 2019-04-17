@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from "ng-pick-datetime";
+import { MaterialModule } from "../material.module";
 
 import { ErrorInterceptor } from "./error.interceptor";
 import { LoadingInterceptor } from "./loading.interceptor";
@@ -55,7 +56,8 @@ import { AppErrorHandler } from "./app-error.handler";
         CommonModule,
         FormsModule,
         OwlDateTimeModule,
-        OwlNativeDateTimeModule
+        OwlNativeDateTimeModule,
+        MaterialModule
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
@@ -77,6 +79,7 @@ import { AppErrorHandler } from "./app-error.handler";
     exports: [
         CommonModule,
         FormsModule,
+        MaterialModule,
         EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
