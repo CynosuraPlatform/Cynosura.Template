@@ -13,7 +13,8 @@ import { Error } from "../core/error.model";
 
 @Component({
     selector: "app-user-edit",
-    templateUrl: "./user-edit.component.html"
+    templateUrl: "./user-edit.component.html",
+    styleUrls: ["./user-edit.component.scss"]
 })
 export class UserEditComponent implements OnInit {
     user: User;
