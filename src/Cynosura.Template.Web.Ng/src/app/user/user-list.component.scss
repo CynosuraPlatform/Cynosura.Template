@@ -1,0 +1,14 @@
+mat-card {
+    max-width: 800px;
+    margin: 0 auto;
+    
+    table {
+        width: 100%;
+    }
+
+    mat-card-actions {
+        > .action-item {
+            margin: 7px 0 7px 0;
+        }
+    }
+}
