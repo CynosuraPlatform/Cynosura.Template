@@ -43,7 +43,7 @@ namespace Cynosura.Template.Web.Controllers
         }
 
         [HttpPost("CreateRole")]
-        public async Task<CreatedEntity<int>> PostRoleAsync([FromBody] CreateRole createRole)
+        public async Task<CreatedEntity<int>> CreateRoleAsync([FromBody] CreateRole createRole)
         {
             return await _mediator.Send(createRole);
         }
