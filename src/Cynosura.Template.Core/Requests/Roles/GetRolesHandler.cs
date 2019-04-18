@@ -31,9 +31,10 @@ namespace Cynosura.Template.Core.Requests.Roles
             {
                 query = query.Where(e => e.Name.Contains(request.Filter.Text));
             }
-            var roles = await query.OrderBy(e => e.Id)
-                .ToPagedListAsync(_roleRepository, request.PageIndex, request.PageSize);
+            query = query.OrderBy(request.OrderBy, request.OrderDirection);
+            var roles = await query.ToPagedListAsync(request.PageIndex, request.PageSize);
             return roles.Map<Role, RoleModel>(_mapper);
         }
+
     }
 }

@@ -36,6 +36,13 @@
   },
   {
     "FilePath": "*.Core\\Requests",
+    "FileName": "{PluralName}\\{Name}Extensions.cs",
+    "TemplatePath": "Core\\Extensions.stg",
+    "Type": 0,
+    "InsertAfter": null
+  },
+  {
+    "FilePath": "*.Core\\Requests",
     "FileName": "{PluralName}\\Create{Name}Handler.cs",
     "TemplatePath": "Core\\CreateRequestHandler.stg",
     "Type": 0,

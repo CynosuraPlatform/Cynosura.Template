@@ -1,11 +1,14 @@
 ﻿main(model) ::= <<
 import { $model.Entity.Name$Filter } from "./$model.Entity.NameKebab$-filter.model";
+import { OrderDirection } from "../core/models/order-direction.model";
 $model.Entity.DependentEnums:enumImport(); separator="\n"$
 
 export class Get$model.Entity.PluralName$ {
     pageIndex?: number;
     pageSize?: number;
     filter?: $model.Entity.Name$Filter;
+    orderBy?: string;
+    orderDirection?: OrderDirection;
 }
 
 export class Get$model.Entity.Name$ {

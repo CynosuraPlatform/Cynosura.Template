@@ -31,7 +31,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
             {
                 $if(model.Entity.FieldsByType.String)$query = query.Where(e => $model.Entity.FieldsByType.String:textFilter(); separator=" || "$);$endif$
             }
-            query = query.OrderBy(e => e.Id);
+            query = query.OrderBy(request.OrderBy, request.OrderDirection);
             var $model.Entity.PluralNameLower$ = await query.ToPagedListAsync(request.PageIndex, request.PageSize);
             return $model.Entity.PluralNameLower$.Map<$model.Entity.Name$, $model.Entity.Name$Model>(_mapper);
         }

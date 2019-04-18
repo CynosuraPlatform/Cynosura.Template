@@ -31,7 +31,7 @@ namespace Cynosura.Template.Core.Requests.Users
             {
                 query = query.Where(e => e.UserName.Contains(request.Filter.Text) || e.Email.Contains(request.Filter.Text));
             }
-            query = query.OrderBy(e => e.Id);
+            query = query.OrderBy(request.OrderBy, request.OrderDirection);
             var users = await query.ToPagedListAsync(request.PageIndex, request.PageSize);
             return users.Map<User, UserModel>(_mapper);
         }

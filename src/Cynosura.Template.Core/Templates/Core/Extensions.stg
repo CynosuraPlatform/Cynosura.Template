@@ -1,0 +1,33 @@
+﻿main(model) ::= <<
+using System;
+using System.Linq;
+using $model.Solution.Namespace$.Core.Entities;
+using $model.Solution.Namespace$.Core.Infrastructure;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
+{
+    public static class $model.Entity.Name$Extensions
+    {
+        public static IOrderedQueryable<$model.Entity.Name$> OrderBy(this IQueryable<$model.Entity.Name$> queryable, string propertyName, OrderDirection? direction)
+        {
+            switch (propertyName)
+            {                
+$model.Entity.Fields:field(); separator="\n"$
+                case "":
+                case null:
+                    return queryable.OrderBy(e => e.Id);
+                default:
+                    throw new ArgumentException("Property not found", nameof(propertyName));
+            }
+        }
+    }
+}
+
+>>
+
+field(field) ::= <<
+                case "$field.Name$":
+                    return direction == OrderDirection.Descending
+                        ? queryable.OrderByDescending(e => e.$field.Name$)
+                        : queryable.OrderBy(e => e.$field.Name$);
+>>
