@@ -12,7 +12,8 @@ import { Page } from "../core/page.model";
 
 @Component({
     selector: "app-role-list",
-    templateUrl: "./role-list.component.html"
+    templateUrl: "./role-list.component.html",
+    styleUrls: ["./role-list.component.scss"]
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
