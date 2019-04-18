@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Infrastructure;
+using Cynosura.Template.Core.Requests.Users.Models;
 
 namespace Cynosura.Template.Core.Requests.Users
 {
@@ -25,6 +26,23 @@ namespace Cynosura.Template.Core.Requests.Users
                 default:
                     throw new ArgumentException("Property not found", nameof(propertyName));
             }
+        }
+
+        public static IQueryable<User> Filter(this IQueryable<User> queryable, UserFilter filter)
+        {
+            if (!string.IsNullOrEmpty(filter?.Text))
+            {
+                queryable = queryable.Where(e => e.UserName.Contains(filter.Text) || e.Email.Contains(filter.Text));
+            }
+            if (!string.IsNullOrEmpty(filter?.UserName))
+            {
+                queryable = queryable.Where(e => e.UserName.Contains(filter.UserName));
+            }
+            if (!string.IsNullOrEmpty(filter?.Email))
+            {
+                queryable = queryable.Where(e => e.Email.Contains(filter.Email));
+            }
+            return queryable;
         }
     }
 }

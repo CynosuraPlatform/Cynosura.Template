@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Infrastructure;
+using Cynosura.Template.Core.Requests.Roles.Models;
 
 namespace Cynosura.Template.Core.Requests.Roles
 {
@@ -21,6 +22,19 @@ namespace Cynosura.Template.Core.Requests.Roles
                 default:
                     throw new ArgumentException("Property not found", nameof(propertyName));
             }
+        }
+
+        public static IQueryable<Role> Filter(this IQueryable<Role> queryable, RoleFilter filter)
+        {
+            if (!string.IsNullOrEmpty(filter?.Text))
+            {
+                queryable = queryable.Where(e => e.Name.Contains(filter.Text));
+            }
+            if (!string.IsNullOrEmpty(filter?.Name))
+            {
+                queryable = queryable.Where(e => e.Name.Contains(filter.Name));
+            }
+            return queryable;
         }
     }
 }
