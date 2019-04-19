@@ -9,8 +9,6 @@ namespace $model.Solution.Namespace$.Core.Entities
 {
     public class $model.Entity.Name$ : BaseEntity
     {
-        public $model.Entity.IdField.TypeName$ $model.Entity.IdField.Name$ { get; set; }
-
 $model.Entity.Fields:field(); separator="\n"$
     }
 }

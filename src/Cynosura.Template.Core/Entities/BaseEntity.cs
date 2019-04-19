@@ -4,6 +4,7 @@ namespace Cynosura.Template.Core.Entities
 {
     public abstract class BaseEntity
     {
+        public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
         public int? CreationUserId { get; set; }
