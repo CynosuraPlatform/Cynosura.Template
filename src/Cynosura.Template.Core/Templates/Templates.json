@@ -4,7 +4,8 @@
     "fileName": "{Name}.cs",
     "templatePath": "Core\\Entity.stg",
     "types": [
-      "Entity"
+      "Entity",
+      "AbstractEntity"
     ],
     "insertAfter": null,
     "targets": []
