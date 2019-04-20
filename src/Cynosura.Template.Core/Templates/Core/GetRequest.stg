@@ -1,4 +1,5 @@
 ﻿main(model) ::= <<
+using System;
 using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Models;
 using MediatR;
 

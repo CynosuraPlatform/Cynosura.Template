@@ -6,7 +6,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Mod
 {
     public class $model.Entity.Name$Filter : EntityFilter
     {
-$model.Entity.Fields:field(); separator="\n"$
+$model.Entity.AllFields:field(); separator="\n"$
     }
 }
 

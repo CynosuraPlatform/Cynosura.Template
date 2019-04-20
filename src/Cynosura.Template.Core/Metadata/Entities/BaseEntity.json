@@ -5,6 +5,7 @@
   "displayName": "Base Entity",
   "pluralDisplayName": "Base Entities",
   "isAbstract": true,
+  "baseEntityId": null,
   "fields": [
     {
       "id": "62df3734-488e-40bb-ac86-b45c247a4c87",
@@ -15,6 +16,7 @@
       "entityId": null,
       "isRequired": true,
       "enumId": null,
+      "isSystem": true,
       "properties": {}
     },
     {
@@ -26,6 +28,7 @@
       "entityId": null,
       "isRequired": true,
       "enumId": null,
+      "isSystem": true,
       "properties": {}
     },
     {
@@ -37,6 +40,7 @@
       "entityId": null,
       "isRequired": true,
       "enumId": null,
+      "isSystem": true,
       "properties": {}
     },
     {
@@ -48,6 +52,7 @@
       "entityId": "51c285a8-11d0-4f3c-8b9d-534269015981",
       "isRequired": false,
       "enumId": null,
+      "isSystem": true,
       "properties": {}
     },
     {
@@ -59,6 +64,7 @@
       "entityId": "51c285a8-11d0-4f3c-8b9d-534269015981",
       "isRequired": false,
       "enumId": null,
+      "isSystem": true,
       "properties": {}
     }
   ],

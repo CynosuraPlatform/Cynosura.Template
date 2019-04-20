@@ -13,7 +13,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
         {
             switch (propertyName)
             {                
-$model.Entity.Fields:orderByField(); separator="\n"$
+$model.Entity.AllFields:orderByField(); separator="\n"$
                 case "":
                 case null:
                     return queryable.OrderBy(e => e.Id);
@@ -28,7 +28,7 @@ $model.Entity.Fields:orderByField(); separator="\n"$
             {
                 $if(model.Entity.FieldsByType.String)$queryable = queryable.Where(e => $model.Entity.FieldsByType.String:filterFieldByText(); separator=" || "$);$endif$
             }
-$model.Entity.Fields:filterByField(); separator="\n"$
+$model.Entity.AllFields:filterByField(); separator="\n"$
             return queryable;
         }
     }
