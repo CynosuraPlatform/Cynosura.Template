@@ -1,4 +1,5 @@
 ﻿main(model) ::= <<
+using System;
 using MediatR;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$

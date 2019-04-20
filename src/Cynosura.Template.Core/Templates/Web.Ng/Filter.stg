@@ -3,7 +3,7 @@ import { EntityFilter } from "../core/models/entity-filter.model";
 $model.Entity.DependentEnums:enumImport(); separator="\n"$
 
 export class $model.Entity.Name$Filter extends EntityFilter {
-$model.Entity.Fields:field(); separator="\n"$
+$model.Entity.AllFields:field(); separator="\n"$
 }
 
 >>
@@ -17,7 +17,7 @@ $field:(field.TypeTemplate)()$
 >>
 
 Entity(field) ::= <<
-    $field.NameLower$$field.Entity.IdField.Name$?: number;
+    $field.NameLower$$field.Entity.IdField.Name$?: $field.Entity.IdField.JsTypeName$;
 >>
 
 Enum(field) ::= <<
