@@ -5,10 +5,11 @@ import { User } from "../user-core/user.model";
 import { UserFilter } from "../user-core/user-filter.model";
 import { UserService } from "../user-core/user.service";
 
-import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
+import { MatDialog } from "@angular/material";
+import { ModalComponent } from "../core/modal.component";
 
 @Component({
     selector: "app-user-list",
@@ -33,11 +34,11 @@ export class UserListComponent implements OnInit {
     }
 
     constructor(
-        private modalHelper: ModalHelper,
         private userService: UserService,
         private router: Router,
         private route: ActivatedRoute,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private dialog: MatDialog
         ) {}
 
     ngOnInit(): void {
@@ -66,15 +67,21 @@ export class UserListComponent implements OnInit {
     }
 
     delete(id: number): void {
-        this.modalHelper.confirmDelete()
-            .then(() => {
+        const dialogRef = this.dialog.open(ModalComponent, {
+            width: "250px",
+            data: { id: id }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
                 this.userService.deleteUser({ id })
                     .then(() => {
                         this.getUsers();
                     })
                     .catch(error => this.error = error);
-            })
-            .catch(() => { });
+            }
+        },
+        error => this.error = error);
     }
 
     onPageSelected(pageIndex: number) {
