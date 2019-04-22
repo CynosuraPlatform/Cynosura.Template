@@ -12,7 +12,7 @@
             <mat-form-field class="row">
                 <mat-label>Username</mat-label>
                 <div>
-                    <input matInput id="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username"
+                    <input matInput type="email" id="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username"
                         [readonly]="true" />
                     <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
                 </div>
