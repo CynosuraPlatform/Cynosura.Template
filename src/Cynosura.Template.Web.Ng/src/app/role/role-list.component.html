@@ -41,7 +41,7 @@
             <ng-container matColumnDef="buttons">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let role">
-                    <button mat-stroked-button color="accent" (click)="edit(role.id)">Edit</button>
+                    <button mat-stroked-button color="primary" (click)="edit(role.id)">Edit</button>
                     <button mat-stroked-button color="warn" (click)="delete(role.id)">Delete</button>
                 </td>
             </ng-container>
