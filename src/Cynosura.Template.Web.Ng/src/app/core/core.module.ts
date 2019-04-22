@@ -30,7 +30,7 @@ import { TimeViewComponent } from "./controls/time.view.component";
 import { LoadingService } from "./loading.service";
 import { StoreService } from "./store.service";
 
-import { ModalHelper } from "./modal.helper";
+import { ModalComponent } from "./modal.component";
 import { AppErrorHandler } from "./app-error.handler";
 
 @NgModule({
@@ -39,6 +39,7 @@ import { AppErrorHandler } from "./app-error.handler";
         ErrorHandlerComponent,
         ModelValidatorComponent,
         PagerComponent,
+        ModalComponent,
         TextEditComponent,
         TextViewComponent,
         NumberEditComponent,
@@ -64,7 +65,6 @@ import { AppErrorHandler } from "./app-error.handler";
         // {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
         StoreService,
         LoadingService,
-        ModalHelper,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
@@ -75,6 +75,9 @@ import { AppErrorHandler } from "./app-error.handler";
             useClass: ErrorInterceptor,
             multi: true
         }
+    ],
+    entryComponents: [
+        ModalComponent
     ],
     exports: [
         CommonModule,

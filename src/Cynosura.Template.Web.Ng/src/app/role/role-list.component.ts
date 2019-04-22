@@ -5,10 +5,11 @@ import { Role } from "../role-core/role.model";
 import { RoleFilter } from "../role-core/role-filter.model";
 import { RoleService } from "../role-core/role.service";
 
-import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
+import { MatDialog } from "@angular/material";
+import { ModalComponent } from "../core/modal.component";
 
 @Component({
     selector: "app-role-list",
@@ -33,11 +34,11 @@ export class RoleListComponent implements OnInit {
     }
 
     constructor(
-        private modalHelper: ModalHelper,
         private roleService: RoleService,
         private router: Router,
         private route: ActivatedRoute,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private dialog: MatDialog
         ) {}
 
     ngOnInit(): void {
@@ -66,15 +67,21 @@ export class RoleListComponent implements OnInit {
     }
 
     delete(id: number): void {
-        this.modalHelper.confirmDelete()
-            .then(() => {
+        const dialogRef = this.dialog.open(ModalComponent, {
+            width: "250px",
+            data: { id: id }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
                 this.roleService.deleteRole({ id })
                     .then(() => {
                         this.getRoles();
                     })
                     .catch(error => this.error = error);
-            })
-            .catch(() => { });
+            }
+        },
+        error => this.error = error);
     }
 
     onPageSelected(pageIndex: number) {
