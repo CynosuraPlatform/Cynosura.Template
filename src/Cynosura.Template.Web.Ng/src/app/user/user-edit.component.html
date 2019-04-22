@@ -1,7 +1,7 @@
 <mat-card>
 
     <mat-card-header>
-        <h2>User</h2>
+        <mat-card-title>User</mat-card-title>
     </mat-card-header>
 
     <form class="form-horizontal" *ngIf="user" (ngSubmit)="onSubmit()">
@@ -24,7 +24,7 @@
                 <div>
                     <input matInput type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email"
                         placeholder="Email" [readonly]="user.id" />
-                    <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
+                    <app-model-validator [model]="error?.modelState?.email"></app-model-validator>
                 </div>
             </mat-form-field>
         </div>
@@ -34,7 +34,7 @@
                 <div>
                     <input matInput type="password" class="form-control" id="password" name="password"
                         [(ngModel)]="password" placeholder="Password" />
-                    <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
+                    <app-model-validator [model]="error?.modelState?.password"></app-model-validator>
                 </div>
             </mat-form-field>
         </div>
@@ -44,16 +44,16 @@
                 <div>
                     <input matInput type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                         [(ngModel)]="confirmPassword" placeholder="Confirm password" />
-                    <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
+                    <app-model-validator [model]="error?.modelState?.confirmPassword"></app-model-validator>
                 </div>
             </mat-form-field>
         </div>
         <div class="actions">
-            <mat-label>Role</mat-label>
+            <mat-label>Roles</mat-label>
             <div *ngFor="let role of roles; let i = index ">
                 <div>
                     <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected">{{ role.name }}</mat-checkbox>
-                    <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
+                    <app-model-validator [model]="error?.modelState?.roleId"></app-model-validator>
                 </div>
             </div>
         </div>
