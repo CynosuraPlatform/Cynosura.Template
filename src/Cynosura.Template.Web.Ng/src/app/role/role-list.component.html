@@ -23,8 +23,7 @@
     <mat-card-content class="mat-elevation-z8">
         <app-error-handler [error]="error"></app-error-handler>
 
-        <table mat-table [dataSource]="content?.pageItems" *ngIf="content" class="mat-elevation-z4"
-            style="min-width: 400px">
+        <table mat-table [dataSource]="content?.pageItems" *ngIf="content">
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -46,15 +45,9 @@
 
         </table>
         <div>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [length]="content?.totalItems" 
+                (page)="onPage($event)" showFirstLastButtons></mat-paginator>
         </div>
     </mat-card-content>
 
 </mat-card>
-
-<!-- <app-pager *ngIf="content"
-       [currentPage]="content.currentPageIndex"
-       [pageSize]="pageSize"
-       [totalItems]="content.totalItems"
-       (currentPageChange)="onPageSelected($event)">
-    </app-pager> -->

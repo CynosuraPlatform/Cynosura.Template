@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { PageEvent } from "@angular/material/paginator";
 
 import { Role } from "../role-core/role.model";
 import { RoleFilter } from "../role-core/role-filter.model";
@@ -20,6 +21,7 @@ export class RoleListComponent implements OnInit {
     content: Page<Role>;
     error: Error;
     pageSize = 10;
+    pageSizeOptions = [10, 20];
     filter = new RoleFilter();
     private innerPageIndex: number;
     get pageIndex(): number {
@@ -84,8 +86,9 @@ export class RoleListComponent implements OnInit {
         error => this.error = error);
     }
 
-    onPageSelected(pageIndex: number) {
-        this.pageIndex = pageIndex;
+    onPage(page: PageEvent) {
+        this.pageIndex = page.pageIndex;
+        this.pageSize = page.pageSize;
         this.getRoles();
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { PageEvent } from "@angular/material/paginator";
 
 import { User } from "../user-core/user.model";
 import { UserFilter } from "../user-core/user-filter.model";
@@ -20,6 +21,7 @@ export class UserListComponent implements OnInit {
     content: Page<User>;
     error: Error;
     pageSize = 10;
+    pageSizeOptions = [10, 20];
     filter = new UserFilter();
     private innerPageIndex: number;
     get pageIndex(): number {
@@ -84,8 +86,9 @@ export class UserListComponent implements OnInit {
         error => this.error = error);
     }
 
-    onPageSelected(pageIndex: number) {
-        this.pageIndex = pageIndex;
+    onPage(page: PageEvent) {
+        this.pageIndex = page.pageIndex;
+        this.pageSize = page.pageSize;
         this.getUsers();
     }
 }
