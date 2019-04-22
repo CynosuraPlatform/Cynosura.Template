@@ -14,7 +14,7 @@
 
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
-      <app-nav-menu></app-nav-menu>
+      <app-nav-menu (click)="sidenav.toggle()"></app-nav-menu>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
       <router-outlet></router-outlet>
