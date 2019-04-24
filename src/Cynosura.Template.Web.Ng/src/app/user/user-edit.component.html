@@ -7,7 +7,6 @@
     <form *ngIf="user" (ngSubmit)="onSubmit()">
         <button mat-button color="primary" type="submit">Save</button>
         <button mat-button type="button" (click)="cancel()">Back</button>
-        <app-error-handler [error]="error"></app-error-handler>
         <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput type="email" id="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username"

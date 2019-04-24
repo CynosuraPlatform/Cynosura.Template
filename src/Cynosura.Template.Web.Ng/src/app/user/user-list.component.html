@@ -21,8 +21,6 @@
     </mat-card-actions>
 
     <mat-card-content class="mat-elevation-z8">
-        <app-error-handler [error]="error"></app-error-handler>
-
         <table mat-table [dataSource]="content?.pageItems" *ngIf="content">
 
             <ng-container matColumnDef="name">

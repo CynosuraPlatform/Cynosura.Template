@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { PageEvent } from "@angular/material/paginator";
+import { MatDialog, MatSnackBar } from "@angular/material";
 
 import { Role } from "../role-core/role.model";
 import { RoleFilter } from "../role-core/role-filter.model";
@@ -9,7 +10,6 @@ import { RoleService } from "../role-core/role.service";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
-import { MatDialog } from "@angular/material";
 import { ModalComponent } from "../core/modal.component";
 
 @Component({
@@ -19,10 +19,19 @@ import { ModalComponent } from "../core/modal.component";
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
-    error: Error;
     pageSize = 10;
     pageSizeOptions = [10, 20];
     filter = new RoleFilter();
+    private innerError: Error;
+    get error(): Error {
+        return this.innerError;
+    }
+    set error(value: Error) {
+        this.innerError = value;
+        if (this.innerError) {
+            this.snackBar.open(this.innerError.message, "Ok");
+        }
+    }
     private innerPageIndex: number;
     get pageIndex(): number {
         if (!this.innerPageIndex) {
@@ -40,7 +49,8 @@ export class RoleListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private snackBar: MatSnackBar
         ) {}
 
     ngOnInit(): void {
