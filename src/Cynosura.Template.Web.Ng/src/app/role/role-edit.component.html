@@ -4,16 +4,15 @@
         <mat-card-title>Role</mat-card-title>
     </mat-card-header>
 
-    <form class="form-horizontal" *ngIf="role" (ngSubmit)="onSubmit()">
+    <form *ngIf="role" (ngSubmit)="onSubmit()">
         <button mat-button color="primary" type="submit">Save</button>
         <button mat-button type="button" (click)="cancel()">Back</button>
         <app-error-handler [error]="error"></app-error-handler>
-        <div class="item">
-            <div>
-                <app-text-edit [(ngModel)]="role.name" name="name" label="Name"></app-text-edit>
-                <app-model-validator [model]="error?.modelState?.name"></app-model-validator>
-            </div>
-        </div>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <app-text-edit [(ngModel)]="role.name" name="name" placeholder="Name"></app-text-edit>            
+        </mat-form-field>
+        <app-model-validator [model]="error?.modelState?.name"></app-model-validator>
     </form>
 
 </mat-card>

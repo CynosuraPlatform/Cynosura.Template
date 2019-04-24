@@ -4,58 +4,40 @@
         <mat-card-title>User</mat-card-title>
     </mat-card-header>
 
-    <form class="form-horizontal" *ngIf="user" (ngSubmit)="onSubmit()">
+    <form *ngIf="user" (ngSubmit)="onSubmit()">
         <button mat-button color="primary" type="submit">Save</button>
         <button mat-button type="button" (click)="cancel()">Back</button>
         <app-error-handler [error]="error"></app-error-handler>
-        <div class="item">
-            <mat-form-field class="row">
-                <mat-label>Username</mat-label>
-                <div>
-                    <input matInput type="email" id="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username"
-                        [readonly]="true" />
-                    <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
-                </div>
-            </mat-form-field>
-        </div>
-        <div class="item">
-            <mat-form-field class="row">
-                <mat-label>Email</mat-label>
-                <div>
-                    <input matInput type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email"
-                        placeholder="Email" [readonly]="user.id" />
-                    <app-model-validator [model]="error?.modelState?.email"></app-model-validator>
-                </div>
-            </mat-form-field>
-        </div>
-        <div class="item">
-            <mat-form-field class="row">
-                <mat-label>Password</mat-label>
-                <div>
-                    <input matInput type="password" class="form-control" id="password" name="password"
-                        [(ngModel)]="password" placeholder="Password" />
-                    <app-model-validator [model]="error?.modelState?.password"></app-model-validator>
-                </div>
-            </mat-form-field>
-        </div>
-        <div class="item">
-            <mat-form-field class="row">
-                <mat-label>Confirm password</mat-label>
-                <div>
-                    <input matInput type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                        [(ngModel)]="confirmPassword" placeholder="Confirm password" />
-                    <app-model-validator [model]="error?.modelState?.confirmPassword"></app-model-validator>
-                </div>
-            </mat-form-field>
-        </div>
-        <div class="actions">
-            <mat-label>Roles</mat-label>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput type="email" id="userName" name="userName" [(ngModel)]="user.userName" placeholder="Username"
+                [readonly]="true" />            
+        </mat-form-field>
+        <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" id="email" name="email" [(ngModel)]="user.email"
+                placeholder="Email" [readonly]="user.id" />            
+        </mat-form-field>
+        <app-model-validator [model]="error?.modelState?.email"></app-model-validator>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" id="password" name="password"
+                [(ngModel)]="password" placeholder="Password" />            
+        </mat-form-field>
+        <app-model-validator [model]="error?.modelState?.password"></app-model-validator>
+        <mat-form-field>
+            <mat-label>Confirm password</mat-label>
+            <input matInput type="password" id="confirmPassword" name="confirmPassword"
+                [(ngModel)]="confirmPassword" placeholder="Confirm password" />            
+        </mat-form-field>
+        <app-model-validator [model]="error?.modelState?.confirmPassword"></app-model-validator>
+        <div>
+            <label>Roles</label>
             <div *ngFor="let role of roles; let i = index ">
-                <div>
-                    <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected">{{ role.name }}</mat-checkbox>
-                    <app-model-validator [model]="error?.modelState?.roleId"></app-model-validator>
-                </div>
+                <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected">{{ role.name }}</mat-checkbox>                    
             </div>
+            <app-model-validator [model]="error?.modelState?.roleId"></app-model-validator>
         </div>
     </form>
 
