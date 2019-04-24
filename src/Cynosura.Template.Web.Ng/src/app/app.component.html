@@ -12,6 +12,10 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
+  <div class="loading">
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+  </div>  
+
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
       <app-nav-menu (click)="sidenav.toggle()"></app-nav-menu>
