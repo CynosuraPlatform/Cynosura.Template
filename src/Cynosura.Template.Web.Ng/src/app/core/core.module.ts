@@ -11,7 +11,6 @@ import { LoadingInterceptor } from "./loading.interceptor";
 
 import { EnumKeysPipe } from "./pipes/enumkeys.pipe";
 
-import { ErrorHandlerComponent } from "./error-handler.component";
 import { ModelValidatorComponent } from "./model-validator.component";
 import { TextEditComponent } from "./controls/text.edit.component";
 import { TextViewComponent } from "./controls/text.view.component";
@@ -35,7 +34,6 @@ import { AppErrorHandler } from "./app-error.handler";
 @NgModule({
     declarations: [
         EnumKeysPipe,
-        ErrorHandlerComponent,
         ModelValidatorComponent,
         ModalComponent,
         TextEditComponent,
@@ -82,7 +80,6 @@ import { AppErrorHandler } from "./app-error.handler";
         FormsModule,
         MaterialModule,
         EnumKeysPipe,
-        ErrorHandlerComponent,
         ModelValidatorComponent,
         TextEditComponent,
         TextViewComponent,
