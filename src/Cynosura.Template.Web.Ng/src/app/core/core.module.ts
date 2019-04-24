@@ -13,7 +13,6 @@ import { EnumKeysPipe } from "./pipes/enumkeys.pipe";
 
 import { ErrorHandlerComponent } from "./error-handler.component";
 import { ModelValidatorComponent } from "./model-validator.component";
-import { PagerComponent } from "./pager.component";
 import { TextEditComponent } from "./controls/text.edit.component";
 import { TextViewComponent } from "./controls/text.view.component";
 import { NumberEditComponent } from "./controls/number.edit.component";
@@ -38,7 +37,6 @@ import { AppErrorHandler } from "./app-error.handler";
         EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
-        PagerComponent,
         ModalComponent,
         TextEditComponent,
         TextViewComponent,
@@ -86,7 +84,6 @@ import { AppErrorHandler } from "./app-error.handler";
         EnumKeysPipe,
         ErrorHandlerComponent,
         ModelValidatorComponent,
-        PagerComponent,
         TextEditComponent,
         TextViewComponent,
         NumberEditComponent,
