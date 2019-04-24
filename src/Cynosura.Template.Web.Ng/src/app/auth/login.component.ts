@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
             },
             error => {
                 if (error) {
-                    this.snackBar.open(error.error_description);
+                    this.snackBar.open(error.error_description, "Ok");
                 }
             });
     }
