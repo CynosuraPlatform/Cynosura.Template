@@ -45,7 +45,7 @@
 
         </table>
         <div>
-                <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [length]="content?.totalItems" 
+            <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions" [length]="content?.totalItems" 
                 (page)="onPage($event)" showFirstLastButtons></mat-paginator>
         </div>
     </mat-card-content>
