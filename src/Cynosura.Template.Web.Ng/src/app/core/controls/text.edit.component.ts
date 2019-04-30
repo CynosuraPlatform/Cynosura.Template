@@ -22,7 +22,7 @@ export class TextEditComponent implements ControlValueAccessor, MatFormFieldCont
     focused = false;
     errorState = false;
     controlType = "app-text-edit";
-    id = `example-tel-input-${TextEditComponent.nextId++}`;
+    id = `text-edit-${TextEditComponent.nextId++}`;
     describedBy = "";
 
     get empty() {
