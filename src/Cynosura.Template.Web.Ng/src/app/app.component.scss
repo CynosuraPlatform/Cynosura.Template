@@ -12,3 +12,15 @@ mat-sidenav-container {
 mat-sidenav-content {
   min-height: 100%;
 }
+
+.loading {
+  position: relative;
+  height: 0;
+
+  mat-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+  }
+}

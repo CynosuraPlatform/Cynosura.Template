@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
 
 import { Role } from "../role-core/role.model";
 import { RoleService } from "../role-core/role.service";
@@ -14,11 +15,21 @@ import { Error } from "../core/error.model";
 })
 export class RoleEditComponent implements OnInit {
     role: Role;
-    error: Error;
+    private innerError: Error;
+    get error(): Error {
+        return this.innerError;
+    }
+    set error(value: Error) {
+        this.innerError = value;
+        if (this.innerError) {
+            this.snackBar.open(this.innerError.message, "Ok");
+        }
+    }
 
     constructor(private roleService: RoleService,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
