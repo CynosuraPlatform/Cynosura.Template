@@ -8,7 +8,7 @@ import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Ent
 import { $model.Entity.Name$Filter } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model";
 import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
 
-import { MatDialog } from "@angular/material";
+import { MatDialog, MatSnackBar } from "@angular/material";
 import { ModalComponent } from "../core/modal.component";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
@@ -39,16 +39,20 @@ import { Page } from "../core/page.model";
 })
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
-    error: Error;
     pageSize = 10;
     pageSizeOptions = [10, 20];
     filter = new $model.Entity.Name$Filter();
+    private innerError: Error;
+    get error(): Error {
+        return this.innerError;
+    }
+    set error(value: Error) {
+        this.innerError = value;
+        if (this.innerError) {
+            this.snackBar.open(this.innerError.message, "Ok");
+        }
+    }
     private innerPageIndex: number;
-    loading: boolean;
-    columns = [
-        $model.Entity.Fields:field(); separator="\r\n"$
-    ];
-
     get pageIndex(): number {
         if (!this.innerPageIndex) {
             this.innerPageIndex = this.storeService.get("$model.Entity.PluralNameLower$PageIndex", 0);
@@ -59,13 +63,18 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         this.innerPageIndex = value;
         this.storeService.set("$model.Entity.PluralNameLower$PageIndex", value);
     }
+    loading: boolean;
+    columns = [
+        $model.Entity.Fields:field(); separator="\r\n"$
+    ];
 
     constructor(
         private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private snackBar: MatSnackBar
         ) {}
 
     ngOnInit(): void {

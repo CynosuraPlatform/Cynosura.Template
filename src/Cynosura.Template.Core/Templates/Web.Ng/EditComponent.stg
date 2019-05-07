@@ -1,6 +1,7 @@
 ﻿main(model) ::= <<
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
 
 import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
 import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
@@ -14,11 +15,21 @@ import { Error } from "../core/error.model";
 })
 export class $model.Entity.Name$EditComponent implements OnInit {
     $model.Entity.NameLower$: $model.Entity.Name$;
-    error: Error;
+    private innerError: Error;
+    get error(): Error {
+        return this.innerError;
+    }
+    set error(value: Error) {
+        this.innerError = value;
+        if (this.innerError) {
+            this.snackBar.open(this.innerError.message, "Ok");
+        }
+    }
 
     constructor(private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
