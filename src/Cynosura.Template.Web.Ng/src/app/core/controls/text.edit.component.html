@@ -1,4 +1,7 @@
-<input matInput *ngIf="!multiline" [id]="name" [name]="name" [type]="type"
-    [(ngModel)]="innerValue" [placeholder]="placeholder" [disabled]="disabled" />
-<textarea matInput *ngIf="multiline" [id]="name" [name]="name" [(ngModel)]="innerValue" [placeholder]="placeholder"
-    [disabled]="disabled"></textarea>
+<mat-form-field>
+    <mat-label>{{placeholder ? placeholder : label}}</mat-label>
+    <input matInput *ngIf="!multiline" [id]="name" [name]="name" [type]="type" [(ngModel)]="innerValue"
+        [placeholder]="placeholder ? placeholder : label" [disabled]="disabled" />
+    <textarea matInput *ngIf="multiline" [id]="name" [name]="name" [(ngModel)]="innerValue" [placeholder]="placeholder ? placeholder : label"
+        [disabled]="disabled"></textarea>
+</mat-form-field>

@@ -1,1 +1,5 @@
-<input type="number" class="form-control" [id]="name" [name]="name" [(ngModel)]="innerValue" [placeholder]="label" [disabled]="readonly">
+<mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <input matInput type="number" class="form-control" [id]="name" [name]="name" [(ngModel)]="innerValue"
+        [placeholder]="label" [disabled]="readonly">
+</mat-form-field>

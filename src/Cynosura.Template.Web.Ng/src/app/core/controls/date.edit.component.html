@@ -1,3 +1,5 @@
-<input type="text" class="form-control" [id]="name" [name]="name" [(ngModel)]="innerValue" [placeholder]="label" [disabled]="readonly"
-       [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
-<owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+<mat-form-field>
+    <input matInput class="form-control" [id]="name" [name]="name" [(ngModel)]="innerValue" [placeholder]="label" [disabled]="readonly"
+        [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+     <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+</mat-form-field>
