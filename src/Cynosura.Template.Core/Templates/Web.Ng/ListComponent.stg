@@ -1,26 +1,54 @@
 ﻿main(model) ::= <<
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { trigger, state, style, transition, animate } from "@angular/animations";
+import { PageEvent } from "@angular/material/paginator";
 
 import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
 import { $model.Entity.Name$Filter } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model";
 import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
 
-import { ModalHelper } from "../core/modal.helper";
+import { MatDialog } from "@angular/material";
+import { ModalComponent } from "../core/modal.component";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 
 @Component({
     selector: "app-$model.Entity.NameKebab$-list",
-    templateUrl: "./$model.Entity.NameKebab$-list.component.html"
+    templateUrl: "./$model.Entity.NameKebab$-list.component.html",
+    styleUrls: ["./$model.Entity.NameKebab$-list.component.scss"],
+    animations: [
+    trigger("detailExpand", [
+        state("collapsed", style({ height: "0px", minHeight: "0", display: "none" })),
+        state("expanded", style({ height: "*" })),
+        transition("expanded <=> collapsed", animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")),
+    ]),
+    trigger("loadingTrigger", [
+        state("loading", style({ opacity: 1 })),
+        state("loading-done", style({ opacity: 0 })),
+        transition("loading <=> loading-done", animate("500ms linear"))
+    ]),
+    trigger("tableTrigger", [
+        state("loading", style({ opacity: .7 })),
+        state("loading-done", style({ opacity: 1 })),
+        state("error", style({ opacity: 1 })),
+        transition("* <=> *", animate("500ms linear"))
+    ])
+    ],
 })
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
     error: Error;
     pageSize = 10;
+    pageSizeOptions = [10, 20];
     filter = new $model.Entity.Name$Filter();
     private innerPageIndex: number;
+    loading: boolean;
+    columns = [
+        $model.Entity.Fields:field(); separator="\r\n"$
+    ];
+
     get pageIndex(): number {
         if (!this.innerPageIndex) {
             this.innerPageIndex = this.storeService.get("$model.Entity.PluralNameLower$PageIndex", 0);
@@ -33,11 +61,11 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     constructor(
-        private modalHelper: ModalHelper,
         private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
         private router: Router,
         private route: ActivatedRoute,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private dialog: MatDialog
         ) {}
 
     ngOnInit(): void {
@@ -66,22 +94,41 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     delete($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$): void {
-        this.modalHelper.confirmDelete()
-            .then(() => {
-                this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ id })
+        const dialogRef = this.dialog.open(ModalComponent, {
+            width: "250px",
+            data: { $model.Entity.IdField.NameLower$: $model.Entity.IdField.NameLower$ }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ $model.Entity.IdField.NameLower$ })
                     .then(() => {
                         this.get$model.Entity.PluralName$();
                     })
                     .catch(error => this.error = error);
-            })
-            .catch(() => { });
+            }
+        },
+        error => this.error = error);
     }
 
-    onPageSelected(pageIndex: number) {
-        this.pageIndex = pageIndex;
+    onPage(page: PageEvent) {
+        this.pageIndex = page.pageIndex;
+        this.pageSize = page.pageSize;
         this.get$model.Entity.PluralName$();
+    }
+
+    get tableTriggerState() {
+        return this.error ? "error" : (this.loading ? "loading" : "loading-done");
+    }
+
+    private handleError(error: Error) {
+        this.loading = false;
+        this.error = error;
     }
 }
 
 >>
 
+field(field) ::= <<
+"$field.NameLower$",
+>>

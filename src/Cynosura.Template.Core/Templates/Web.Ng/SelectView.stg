@@ -1,7 +1,9 @@
 ﻿main(model) ::= <<
-<select class="form-control" [(ngModel)]="innerValue" [disabled]="readonly">
-    <option [ngValue]="null" selected="selected">Select $model.Entity.DisplayName$</option>
-    <option [ngValue]="$model.Entity.NameLower$.$model.Entity.IdField.NameLower$" *ngFor="let $model.Entity.NameLower$ of $model.Entity.PluralNameLower$">{{ $model.Entity.NameLower$.$model.Entity.DefaultField.NameLower$ }}</option>
-</select>
-
+<mat-form-field>
+    <mat-label>$model.Entity.DisplayName$</mat-label>
+    <mat-select [(ngModel)]="innerValue" [ngModelOptions]="{standalone: true}" [disabled]="readonly">
+        <mat-option [value]="null" selected="selected">Select $model.Entity.DisplayName$</mat-option>
+        <mat-option [value]="$model.Entity.NameLower$.$model.Entity.IdField.NameLower$" *ngFor="let $model.Entity.NameLower$ of $model.Entity.PluralNameLower$">{{ $model.Entity.NameLower$.$model.Entity.DefaultField.NameLower$ }}</mat-option>
+    </mat-select>
+</mat-form-field>
 >>
