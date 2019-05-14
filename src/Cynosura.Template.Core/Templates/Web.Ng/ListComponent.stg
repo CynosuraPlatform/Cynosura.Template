@@ -11,6 +11,12 @@ import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 
+class $model.Entity.Name$ListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new $model.Entity.Name$Filter();
+}
+
 @Component({
     selector: "app-$model.Entity.NameKebab$-list",
     templateUrl: "./$model.Entity.NameKebab$-list.component.html"
@@ -18,19 +24,7 @@ import { Page } from "../core/page.model";
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
     error: Error;
-    pageSize = 10;
-    filter = new $model.Entity.Name$Filter();
-    private innerPageIndex: number;
-    get pageIndex(): number {
-        if (!this.innerPageIndex) {
-            this.innerPageIndex = this.storeService.get("$model.Entity.PluralNameLower$PageIndex", 0);
-        }
-        return this.innerPageIndex;
-    }
-    set pageIndex(value: number) {
-        this.innerPageIndex = value;
-        this.storeService.set("$model.Entity.PluralNameLower$PageIndex", value);
-    }
+    state: $model.Entity.Name$ListState;
 
     constructor(
         private modalHelper: ModalHelper,
@@ -38,14 +32,16 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService
-        ) {}
+        ) {
+        this.state = this.storeService.get("$model.Entity.NameLower$ListState", new $model.Entity.Name$ListState());
+    }
 
     ngOnInit(): void {
         this.get$model.Entity.PluralName$();
     }
 
     get$model.Entity.PluralName$(): void {
-        this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({ pageIndex: this.pageIndex, pageSize: this.pageSize, filter: this.filter })
+        this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
             .then(content => {
                 this.content = content;
             })
@@ -53,7 +49,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     reset(): void {
-        this.filter.text = null;
+        this.state.filter.text = null;
         this.get$model.Entity.PluralName$();
     }
 
@@ -78,7 +74,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     onPageSelected(pageIndex: number) {
-        this.pageIndex = pageIndex;
+        this.state.pageIndex = pageIndex;
         this.get$model.Entity.PluralName$();
     }
 }

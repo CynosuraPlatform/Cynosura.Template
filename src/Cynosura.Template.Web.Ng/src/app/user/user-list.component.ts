@@ -10,6 +10,12 @@ import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 
+class UserListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new UserFilter();
+}
+
 @Component({
     selector: "app-user-list",
     templateUrl: "./user-list.component.html"
@@ -17,19 +23,7 @@ import { Page } from "../core/page.model";
 export class UserListComponent implements OnInit {
     content: Page<User>;
     error: Error;
-    pageSize = 10;
-    filter = new UserFilter();
-    private innerPageIndex: number;
-    get pageIndex(): number {
-        if (!this.innerPageIndex) {
-            this.innerPageIndex = this.storeService.get("usersPageIndex", 0);
-        }
-        return this.innerPageIndex;
-    }
-    set pageIndex(value: number) {
-        this.innerPageIndex = value;
-        this.storeService.set("usersPageIndex", value);
-    }
+    state: UserListState;
 
     constructor(
         private modalHelper: ModalHelper,
@@ -37,14 +31,16 @@ export class UserListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService
-        ) {}
+        ) {
+        this.state = this.storeService.get("userListState", new UserListState());
+    }
 
     ngOnInit(): void {
         this.getUsers();
     }
 
     getUsers(): void {
-        this.userService.getUsers({ pageIndex: this.pageIndex, pageSize: this.pageSize, filter: this.filter })
+        this.userService.getUsers({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
             .then(content => {
                 this.content = content;
             })
@@ -52,7 +48,7 @@ export class UserListComponent implements OnInit {
     }
 
     reset(): void {
-        this.filter.text = null;
+        this.state.filter.text = null;
         this.getUsers();
     }
 
@@ -77,7 +73,7 @@ export class UserListComponent implements OnInit {
     }
 
     onPageSelected(pageIndex: number) {
-        this.pageIndex = pageIndex;
+        this.state.pageIndex = pageIndex;
         this.getUsers();
     }
 }

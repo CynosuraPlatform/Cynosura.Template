@@ -4,7 +4,7 @@
 <div class="form-inline">
     <div class="form-group">
         <label for="text">Text</label>
-        <input id="text" type="text" class="form-control" placeholder="Text" [(ngModel)]="filter.text" />
+        <input id="text" type="text" class="form-control" placeholder="Text" [(ngModel)]="state.filter.text" />
     </div>
 
     <button class="btn btn-default" type="button" (click)="get$model.Entity.PluralName$()">Search</button>
@@ -35,7 +35,7 @@ $model.Entity.AllFields:field(); separator="\n"$
 
 <app-pager *ngIf="content"
        [currentPage]="content.currentPageIndex"
-       [pageSize]="pageSize"
+       [pageSize]="state.pageSize"
        [totalItems]="content.totalItems"
        (currentPageChange)="onPageSelected(\$event)">
 </app-pager>

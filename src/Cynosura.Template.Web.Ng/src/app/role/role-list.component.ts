@@ -10,6 +10,12 @@ import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 
+class RoleListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new RoleFilter();
+}
+
 @Component({
     selector: "app-role-list",
     templateUrl: "./role-list.component.html"
@@ -17,19 +23,7 @@ import { Page } from "../core/page.model";
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
     error: Error;
-    pageSize = 10;
-    filter = new RoleFilter();
-    private innerPageIndex: number;
-    get pageIndex(): number {
-        if (!this.innerPageIndex) {
-            this.innerPageIndex = this.storeService.get("rolesPageIndex", 0);
-        }
-        return this.innerPageIndex;
-    }
-    set pageIndex(value: number) {
-        this.innerPageIndex = value;
-        this.storeService.set("rolesPageIndex", value);
-    }
+    state: RoleListState;
 
     constructor(
         private modalHelper: ModalHelper,
@@ -37,14 +31,16 @@ export class RoleListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService
-        ) {}
+        ) {
+        this.state = this.storeService.get("roleListState", new RoleListState());
+    }
 
     ngOnInit(): void {
         this.getRoles();
     }
 
     getRoles(): void {
-        this.roleService.getRoles({ pageIndex: this.pageIndex, pageSize: this.pageSize, filter: this.filter })
+        this.roleService.getRoles({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
             .then(content => {
                 this.content = content;
             })
@@ -52,7 +48,7 @@ export class RoleListComponent implements OnInit {
     }
 
     reset(): void {
-        this.filter.text = null;
+        this.state.filter.text = null;
         this.getRoles();
     }
 
@@ -77,7 +73,7 @@ export class RoleListComponent implements OnInit {
     }
 
     onPageSelected(pageIndex: number) {
-        this.pageIndex = pageIndex;
+        this.state.pageIndex = pageIndex;
         this.getRoles();
     }
 }
