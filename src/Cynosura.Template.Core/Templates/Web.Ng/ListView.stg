@@ -23,12 +23,7 @@
 
     <mat-card-content class="mat-elevation-z8">
         
-        <div class="list mat-elevation-z2" [@loadingTrigger]="loading ? 'loading': 'loading-done'">
-            <mat-progress-bar color="primary" mode="indeterminate">
-            </mat-progress-bar>
-        </div>
-
-        <table *ngIf="content" [@tableTrigger]="tableTriggerState" mat-table [dataSource]="content.pageItems" multiTemplateDataRows class="">
+        <table *ngIf="content" mat-table [dataSource]="content.pageItems" multiTemplateDataRows>
 
             $model.Entity.Fields:fieldContainer(); separator="\n"$
 

@@ -28,17 +28,6 @@ class RoleListState {
         state("collapsed", style({ height: "0px", minHeight: "0", display: "none" })),
         state("expanded", style({ height: "*" })),
         transition("expanded <=> collapsed", animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")),
-    ]),
-    trigger("loadingTrigger", [
-        state("loading", style({ opacity: 1 })),
-        state("loading-done", style({ opacity: 0 })),
-        transition("loading <=> loading-done", animate("500ms linear"))
-    ]),
-    trigger("tableTrigger", [
-        state("loading", style({ opacity: .7 })),
-        state("loading-done", style({ opacity: 1 })),
-        state("error", style({ opacity: 1 })),
-        transition("* <=> *", animate("500ms linear"))
     ])
     ]
 })
