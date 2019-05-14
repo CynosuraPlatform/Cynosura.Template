@@ -10,7 +10,7 @@
             <mat-form-field>
                 <mat-label>Text</mat-label>
                 <input matInput id="text" type="text" class="form-control" placeholder="Text"
-                    [(ngModel)]="filter.text" />
+                    [(ngModel)]="state.filter.text" />
             </mat-form-field>
             <button mat-button type="button" color="primary" (click)="get$model.Entity.PluralName$()">Search</button>
             <button mat-button type="reset" (click)="reset()">Reset</button>
@@ -52,8 +52,8 @@
 
         <div>
             <mat-paginator
-            [pageSize]="pageSize"
-            [pageIndex]="pageIndex"
+            [pageSize]="state.pageSize"
+            [pageIndex]="state.pageIndex"
             [pageSizeOptions]="pageSizeOptions"
             [length]="content?.totalItems" 
             (page)="onPage(\$event)"

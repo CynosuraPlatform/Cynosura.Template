@@ -13,6 +13,12 @@ import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 import { ModalComponent } from "../core/modal.component";
 
+class RoleListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new RoleFilter();
+}
+
 @Component({
     selector: "app-role-list",
     templateUrl: "./role-list.component.html",
@@ -38,9 +44,8 @@ import { ModalComponent } from "../core/modal.component";
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
-    pageSize = 10;
+    state: RoleListState;
     pageSizeOptions = [10, 20];
-    filter = new RoleFilter();
     private innerError: Error;
     get error(): Error {
         return this.innerError;
@@ -50,17 +55,6 @@ export class RoleListComponent implements OnInit {
         if (this.innerError) {
             this.snackBar.open(this.innerError.message, "Ok");
         }
-    }
-    private innerPageIndex: number;
-    get pageIndex(): number {
-        if (!this.innerPageIndex) {
-            this.innerPageIndex = this.storeService.get("rolesPageIndex", 0);
-        }
-        return this.innerPageIndex;
-    }
-    set pageIndex(value: number) {
-        this.innerPageIndex = value;
-        this.storeService.set("rolesPageIndex", value);
     }
     columns = [
         "name",
@@ -73,14 +67,16 @@ export class RoleListComponent implements OnInit {
         private storeService: StoreService,
         private dialog: MatDialog,
         private snackBar: MatSnackBar
-        ) {}
+        ) {
+        this.state = this.storeService.get("roleListState", new RoleListState());
+    }
 
     ngOnInit(): void {
         this.getRoles();
     }
 
     getRoles(): void {
-        this.roleService.getRoles({ pageIndex: this.pageIndex, pageSize: this.pageSize, filter: this.filter })
+        this.roleService.getRoles({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
             .then(content => {
                 this.content = content;
             })
@@ -88,7 +84,7 @@ export class RoleListComponent implements OnInit {
     }
 
     reset(): void {
-        this.filter.text = null;
+        this.state.filter.text = null;
         this.getRoles();
     }
 
@@ -119,8 +115,8 @@ export class RoleListComponent implements OnInit {
     }
 
     onPage(page: PageEvent) {
-        this.pageIndex = page.pageIndex;
-        this.pageSize = page.pageSize;
+        this.state.pageIndex = page.pageIndex;
+        this.state.pageSize = page.pageSize;
         this.getRoles();
     }
 }

@@ -13,6 +13,12 @@ import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
 import { ModalComponent } from "../core/modal.component";
 
+class UserListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new UserFilter();
+}
+
 @Component({
     selector: "app-user-list",
     templateUrl: "./user-list.component.html",
@@ -38,9 +44,8 @@ import { ModalComponent } from "../core/modal.component";
 })
 export class UserListComponent implements OnInit {
     content: Page<User>;
-    pageSize = 10;
+    state: UserListState;
     pageSizeOptions = [10, 20];
-    filter = new UserFilter();
     private innerError: Error;
     get error(): Error {
         return this.innerError;
@@ -50,17 +55,6 @@ export class UserListComponent implements OnInit {
         if (this.innerError) {
             this.snackBar.open(this.innerError.message, "Ok");
         }
-    }
-    private innerPageIndex: number;
-    get pageIndex(): number {
-        if (!this.innerPageIndex) {
-            this.innerPageIndex = this.storeService.get("usersPageIndex", 0);
-        }
-        return this.innerPageIndex;
-    }
-    set pageIndex(value: number) {
-        this.innerPageIndex = value;
-        this.storeService.set("usersPageIndex", value);
     }
     columns = [
         "name",
@@ -73,14 +67,16 @@ export class UserListComponent implements OnInit {
         private storeService: StoreService,
         private dialog: MatDialog,
         private snackBar: MatSnackBar
-        ) {}
+        ) {
+        this.state = this.storeService.get("userListState", new UserListState());
+    }
 
     ngOnInit(): void {
         this.getUsers();
     }
 
     getUsers(): void {
-        this.userService.getUsers({ pageIndex: this.pageIndex, pageSize: this.pageSize, filter: this.filter })
+        this.userService.getUsers({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
             .then(content => {
                 this.content = content;
             })
@@ -88,7 +84,7 @@ export class UserListComponent implements OnInit {
     }
 
     reset(): void {
-        this.filter.text = null;
+        this.state.filter.text = null;
         this.getUsers();
     }
 
@@ -119,8 +115,8 @@ export class UserListComponent implements OnInit {
     }
 
     onPage(page: PageEvent) {
-        this.pageIndex = page.pageIndex;
-        this.pageSize = page.pageSize;
+        this.state.pageIndex = page.pageIndex;
+        this.state.pageSize = page.pageSize;
         this.getUsers();
     }
 }
