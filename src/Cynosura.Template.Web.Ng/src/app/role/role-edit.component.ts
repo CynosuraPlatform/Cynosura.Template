@@ -15,6 +15,7 @@ import { Error } from "../core/error.model";
 })
 export class RoleEditComponent implements OnInit {
     role: Role;
+    error: Error;
 
     constructor(private roleService: RoleService,
                 private route: ActivatedRoute,
@@ -64,6 +65,7 @@ export class RoleEditComponent implements OnInit {
     }
 
     onError(error: Error) {
+        this.error = error;
         if (error) {
             this.snackBar.open(error.message, "Ok");
         }

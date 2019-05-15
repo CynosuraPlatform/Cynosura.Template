@@ -16,6 +16,7 @@ import { Error } from "../core/error.model";
 })
 export class $model.Entity.Name$EditComponent implements OnInit {
     $model.Entity.NameLower$: $model.Entity.Name$;
+    error: Error;
 
     constructor(private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
                 private route: ActivatedRoute,
@@ -65,6 +66,7 @@ export class $model.Entity.Name$EditComponent implements OnInit {
     }
 
     onError(error: Error) {
+        this.error = error;
         if (error) {
             this.snackBar.open(error.message, "Ok");
         }

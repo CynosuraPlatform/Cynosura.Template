@@ -22,6 +22,7 @@ export class UserEditComponent implements OnInit {
     password: string;
     confirmPassword: string;
     roles: Role[] = [];
+    error: Error;
 
     constructor(private userService: UserService,
                 private roleService: RoleService,
@@ -86,6 +87,7 @@ export class UserEditComponent implements OnInit {
     }
 
     onError(error: Error) {
+        this.error = error;
         if (error) {
             this.snackBar.open(error.message, "Ok");
         }
