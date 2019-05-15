@@ -46,7 +46,8 @@ export class UserListComponent implements OnInit {
         }
     }
     columns = [
-        "name",
+        "userName",
+        "email",
     ];
 
     constructor(

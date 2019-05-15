@@ -46,13 +46,8 @@
         </table>
 
         <div>
-            <mat-paginator
-            [pageSize]="state.pageSize"
-            [pageIndex]="state.pageIndex"
-            [pageSizeOptions]="pageSizeOptions"
-            [length]="content?.totalItems" 
-            (page)="onPage(\$event)"
-            showFirstLastButtons></mat-paginator>
+            <mat-paginator [pageSize]="state.pageSize" [pageIndex]="state.pageIndex" [pageSizeOptions]="pageSizeOptions" [length]="content?.totalItems" 
+                (page)="onPage(\$event)" showFirstLastButtons></mat-paginator>
         </div>
 
     </mat-card-content>
@@ -67,10 +62,6 @@ fieldContainer(field) ::= <<
         $field:(field.TypeTemplate)(); separator="\n"$
     </td>
 </ng-container>
->>
-
-fieldNames(field) ::= <<
-'$field.NameLower$',
 >>
 
 field(field) ::= <<
@@ -130,5 +121,6 @@ Time(field) ::= <<
 Guid(field) ::= <<
 <app-text-view [value]="item.$field.NameLower$"></app-text-view>
 >>
+
 Blob(field) ::= <<
 >>
