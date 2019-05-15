@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { trigger, state, style, transition, animate } from "@angular/animations";
 import { PageEvent } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material";
 
@@ -22,14 +21,7 @@ class RoleListState {
 @Component({
     selector: "app-role-list",
     templateUrl: "./role-list.component.html",
-    styleUrls: ["./role-list.component.scss"],
-    animations: [
-    trigger("detailExpand", [
-        state("collapsed", style({ height: "0px", minHeight: "0", display: "none" })),
-        state("expanded", style({ height: "*" })),
-        transition("expanded <=> collapsed", animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")),
-    ])
-    ]
+    styleUrls: ["./role-list.component.scss"]
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;

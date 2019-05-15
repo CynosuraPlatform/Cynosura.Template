@@ -15,27 +15,6 @@ mat-card {
 }
 
 mat-card-content {
-    .tool {
-        padding: 0;
-        padding-bottom: 1em;
-    }
-    .item.tool.controls button {
-        margin-right: 8px;
-    }
-}
-
-mat-card-content {
-    table {
-        width: 100%;
-        color: #333;
-    }
-    table th, table th button {
-        color: #333;
-    }
-
-    table td {
-        color: #333;
-    }
     tr.table-expand-item {
         height: 0 !important;
     }
@@ -52,9 +31,8 @@ mat-card-content {
         border-bottom-width: 0;
     }
 
-    .item-detail {
-        overflow: hidden;
-        display: flex;
+    app-table-detail button {
+        margin-right: 8px;
     }
 }
 >>

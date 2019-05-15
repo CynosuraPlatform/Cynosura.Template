@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { trigger, state, style, transition, animate } from "@angular/animations";
 import { PageEvent } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material";
 
@@ -22,14 +21,7 @@ class UserListState {
 @Component({
     selector: "app-user-list",
     templateUrl: "./user-list.component.html",
-    styleUrls: ["./user-list.component.scss"],
-    animations: [
-    trigger("detailExpand", [
-        state("collapsed", style({ height: "0px", minHeight: "0", display: "none" })),
-        state("expanded", style({ height: "*" })),
-        transition("expanded <=> collapsed", animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")),
-    ])
-    ]
+    styleUrls: ["./user-list.component.scss"]
 })
 export class UserListComponent implements OnInit {
     content: Page<User>;
