@@ -1,3 +1,4 @@
+main(model) ::= <<
 mat-card {
     max-width: 1200px;
     margin: 0 auto;
@@ -6,3 +7,4 @@ mat-card {
 mat-form-field {
     width: 100%;
 }
+>>

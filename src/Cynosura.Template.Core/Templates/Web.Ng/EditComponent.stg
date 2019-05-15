@@ -11,7 +11,8 @@ import { Error } from "../core/error.model";
 
 @Component({
     selector: "app-$model.Entity.NameKebab$-edit",
-    templateUrl: "./$model.Entity.NameKebab$-edit.component.html"
+    templateUrl: "./$model.Entity.NameKebab$-edit.component.html",
+    styleUrls: ["./$model.Entity.NameKebab$-edit.component.scss"]
 })
 export class $model.Entity.Name$EditComponent implements OnInit {
     $model.Entity.NameLower$: $model.Entity.Name$;

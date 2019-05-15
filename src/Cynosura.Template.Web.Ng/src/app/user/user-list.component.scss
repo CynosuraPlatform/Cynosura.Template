@@ -1,5 +1,5 @@
 mat-card {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     
     table {
@@ -55,39 +55,4 @@ mat-card-content {
         overflow: hidden;
         display: flex;
     }
-
-    .center-block {
-        width: 40px;
-        margin: 0 auto;
-    }
-}
-
-mat-card-content .edit-card .buttons > * {
-    margin-right: 8px;
-}
-
-mat-card-content .edit-card .form > .container {
-    width: 50%;
-    max-width: 350px;
-    box-sizing: border-box;
-    float: left;
-}
-
-mat-card-content .edit-card .form > .container > label {
-    padding-bottom: 1.25em;
-    display: block;
-}
-
-mat-card-content .edit-card .form > .container:first-of-type {
-    padding-right: 10px;
-}
-mat-card-content .edit-card .form > .container:nth-of-type(2) {
-    padding-left: 10px;
-}
-mat-card-content .edit-card .form > .clear {
-    clear: both;
-}
-
-.list {
-  overflow: auto;
 }

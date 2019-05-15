@@ -352,6 +352,16 @@
   },
   {
     "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{NameKebab}-edit.component.scss",
+    "templatePath": "Web.Ng\\EditStyle.stg",
+    "types": [
+      "View"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
     "fileName": "{NameKebab}\\{NameKebab}.module.ts",
     "templatePath": "Web.Ng\\Module.stg",
     "types": [

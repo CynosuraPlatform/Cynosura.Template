@@ -59,8 +59,8 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         private dialog: MatDialog,
         private snackBar: MatSnackBar
         ) {
-		this.state = this.storeService.get("$model.Entity.NameLower$ListState", new $model.Entity.Name$ListState());
-	}
+        this.state = this.storeService.get("$model.Entity.NameLower$ListState", new $model.Entity.Name$ListState());
+    }
 
     ngOnInit(): void {
         this.get$model.Entity.PluralName$();
