@@ -2,16 +2,16 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { trigger, state, style, transition, animate } from "@angular/animations";
 import { PageEvent } from "@angular/material/paginator";
-import { MatDialog, MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 
 import { Role } from "../role-core/role.model";
 import { RoleFilter } from "../role-core/role-filter.model";
 import { RoleService } from "../role-core/role.service";
 
+import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
-import { ModalComponent } from "../core/modal.component";
 
 class RoleListState {
     pageSize = 10;
@@ -40,11 +40,11 @@ export class RoleListComponent implements OnInit {
     ];
 
     constructor(
+        private modalHelper: ModalHelper,
         private roleService: RoleService,
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService,
-        private dialog: MatDialog,
         private snackBar: MatSnackBar
         ) {
         this.state = this.storeService.get("roleListState", new RoleListState());
@@ -76,21 +76,14 @@ export class RoleListComponent implements OnInit {
     }
 
     delete(id: number): void {
-        const dialogRef = this.dialog.open(ModalComponent, {
-            width: "250px",
-            data: { id: id }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result === true) {
+        this.modalHelper.confirmDelete()
+            .subscribe(() => {
                 this.roleService.deleteRole({ id })
                     .then(() => {
                         this.getRoles();
                     })
                     .catch(error => this.onError(error));
-            }
-        },
-        error => this.onError(error));
+            });
     }
 
     onPage(page: PageEvent) {

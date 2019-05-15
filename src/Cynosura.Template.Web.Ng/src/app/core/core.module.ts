@@ -29,6 +29,7 @@ import { LoadingService } from "./loading.service";
 import { StoreService } from "./store.service";
 
 import { ModalComponent } from "./modal.component";
+import { ModalHelper } from "./modal.helper";
 import { AppErrorHandler } from "./app-error.handler";
 
 @NgModule({
@@ -61,6 +62,7 @@ import { AppErrorHandler } from "./app-error.handler";
         // {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
         StoreService,
         LoadingService,
+        ModalHelper,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
