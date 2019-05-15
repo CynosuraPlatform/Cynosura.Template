@@ -35,16 +35,6 @@ export class UserListComponent implements OnInit {
     content: Page<User>;
     state: UserListState;
     pageSizeOptions = [10, 20];
-    private innerError: Error;
-    get error(): Error {
-        return this.innerError;
-    }
-    set error(value: Error) {
-        this.innerError = value;
-        if (this.innerError) {
-            this.snackBar.open(this.innerError.message, "Ok");
-        }
-    }
     columns = [
         "userName",
         "email",
@@ -70,7 +60,7 @@ export class UserListComponent implements OnInit {
             .then(content => {
                 this.content = content;
             })
-            .catch(error => this.error = error);
+            .catch(error => this.onError(error));
     }
 
     reset(): void {
@@ -98,15 +88,21 @@ export class UserListComponent implements OnInit {
                     .then(() => {
                         this.getUsers();
                     })
-                    .catch(error => this.error = error);
+                    .catch(error => this.onError(error));
             }
         },
-        error => this.error = error);
+        error => this.onError(error));
     }
 
     onPage(page: PageEvent) {
         this.state.pageIndex = page.pageIndex;
         this.state.pageSize = page.pageSize;
         this.getUsers();
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
     }
 }

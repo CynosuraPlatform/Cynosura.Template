@@ -36,17 +36,6 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
     state: $model.Entity.Name$ListState;
     pageSizeOptions = [10, 20];
-    private innerError: Error;
-    get error(): Error {
-        return this.innerError;
-    }
-    set error(value: Error) {
-        this.innerError = value;
-        if (this.innerError) {
-            this.snackBar.open(this.innerError.message, "Ok");
-        }
-    }
-    private innerPageIndex: number;
     columns = [
         $model.Entity.Fields:field(); separator="\r\n"$
     ];
@@ -71,7 +60,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
             .then(content => {
                 this.content = content;
             })
-            .catch(error => this.error = error);
+            .catch(error => this.onError(error));
     }
 
     reset(): void {
@@ -99,16 +88,22 @@ export class $model.Entity.Name$ListComponent implements OnInit {
                     .then(() => {
                         this.get$model.Entity.PluralName$();
                     })
-                    .catch(error => this.error = error);
+                    .catch(error => this.onError(error));
             }
         },
-        error => this.error = error);
+        error => this.onError(error));
     }
 
     onPage(page: PageEvent) {
         this.state.pageIndex = page.pageIndex;
         this.state.pageSize = page.pageSize;
         this.get$model.Entity.PluralName$();
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
     }
 }
 

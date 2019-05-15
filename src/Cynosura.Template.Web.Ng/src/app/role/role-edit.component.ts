@@ -15,16 +15,6 @@ import { Error } from "../core/error.model";
 })
 export class RoleEditComponent implements OnInit {
     role: Role;
-    private innerError: Error;
-    get error(): Error {
-        return this.innerError;
-    }
-    set error(value: Error) {
-        this.innerError = value;
-        if (this.innerError) {
-            this.snackBar.open(this.innerError.message, "Ok");
-        }
-    }
 
     constructor(private roleService: RoleService,
                 private route: ActivatedRoute,
@@ -62,15 +52,20 @@ export class RoleEditComponent implements OnInit {
             this.roleService.updateRole(this.role)
                 .then(
                     () => window.history.back(),
-                    error => this.error = error
+                    error => this.onError(error)
                 );
         } else {
             this.roleService.createRole(this.role)
                 .then(
                     () => window.history.back(),
-                    error => this.error = error
+                    error => this.onError(error)
                 );
         }
     }
 
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
+    }
 }

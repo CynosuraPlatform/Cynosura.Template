@@ -16,16 +16,6 @@ import { Error } from "../core/error.model";
 })
 export class $model.Entity.Name$EditComponent implements OnInit {
     $model.Entity.NameLower$: $model.Entity.Name$;
-    private innerError: Error;
-    get error(): Error {
-        return this.innerError;
-    }
-    set error(value: Error) {
-        this.innerError = value;
-        if (this.innerError) {
-            this.snackBar.open(this.innerError.message, "Ok");
-        }
-    }
 
     constructor(private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
                 private route: ActivatedRoute,
@@ -63,17 +53,22 @@ export class $model.Entity.Name$EditComponent implements OnInit {
             this.$model.Entity.NameLower$Service.update$model.Entity.Name$(this.$model.Entity.NameLower$)
                 .then(
                     () => window.history.back(),
-                    error => this.error = error
+                    error => this.onError(error)
                 );
         } else {
             this.$model.Entity.NameLower$Service.create$model.Entity.Name$(this.$model.Entity.NameLower$)
                 .then(
                     () => window.history.back(),
-                    error => this.error = error
+                    error => this.onError(error)
                 );
         }
     }
 
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
+    }
 }
 
 >>

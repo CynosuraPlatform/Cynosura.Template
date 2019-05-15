@@ -35,16 +35,6 @@ export class RoleListComponent implements OnInit {
     content: Page<Role>;
     state: RoleListState;
     pageSizeOptions = [10, 20];
-    private innerError: Error;
-    get error(): Error {
-        return this.innerError;
-    }
-    set error(value: Error) {
-        this.innerError = value;
-        if (this.innerError) {
-            this.snackBar.open(this.innerError.message, "Ok");
-        }
-    }
     columns = [
         "name",
     ];
@@ -69,7 +59,7 @@ export class RoleListComponent implements OnInit {
             .then(content => {
                 this.content = content;
             })
-            .catch(error => this.error = error);
+            .catch(error => this.onError(error));
     }
 
     reset(): void {
@@ -97,15 +87,21 @@ export class RoleListComponent implements OnInit {
                     .then(() => {
                         this.getRoles();
                     })
-                    .catch(error => this.error = error);
+                    .catch(error => this.onError(error));
             }
         },
-        error => this.error = error);
+        error => this.onError(error));
     }
 
     onPage(page: PageEvent) {
         this.state.pageIndex = page.pageIndex;
         this.state.pageSize = page.pageSize;
         this.getRoles();
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
     }
 }

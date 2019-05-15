@@ -22,16 +22,6 @@ export class UserEditComponent implements OnInit {
     password: string;
     confirmPassword: string;
     roles: Role[] = [];
-    private innerError: Error;
-    get error(): Error {
-        return this.innerError;
-    }
-    set error(value: Error) {
-        this.innerError = value;
-        if (this.innerError) {
-            this.snackBar.open(this.innerError.message, "Ok");
-        }
-    }
 
     constructor(private userService: UserService,
                 private roleService: RoleService,
@@ -80,8 +70,8 @@ export class UserEditComponent implements OnInit {
             updateUser.confirmPassword = this.confirmPassword;
             this.userService.updateUser(updateUser)
                 .then(
-                    (res) => window.history.back(),
-                    (res) => this.error = res
+                    () => window.history.back(),
+                    error => this.onError(error)
                 );
         } else {
             const createUser: CreateUser = this.user;
@@ -89,9 +79,15 @@ export class UserEditComponent implements OnInit {
             createUser.confirmPassword = this.confirmPassword;
             this.userService.createUser(createUser)
                 .then(
-                    (res) => window.history.back(),
-                    (res) => this.error = res
+                    () => window.history.back(),
+                    error => this.onError(error)
                 );
+        }
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
         }
     }
 }
