@@ -13,8 +13,8 @@ export class MenuService {
     constructor(private authService: AuthService) {
         this.menu = new Menu();
 // ADD MENU ITEMS HERE
-        this.menu.items.push({ route: "./user", name: "Users", cssClass: "glyphicon-user", roles: ["Administrator"] });
-        this.menu.items.push({ route: "./role", name: "Roles", cssClass: "glyphicon-lock", roles: ["Administrator"] });
+        this.menu.items.push({ route: "/user", name: "Users", cssClass: "glyphicon-user", roles: ["Administrator"] });
+        this.menu.items.push({ route: "/role", name: "Roles", cssClass: "glyphicon-lock", roles: ["Administrator"] });
 
         this.authService.currentUser$.subscribe(currentUser => {
             this.currentUser = currentUser;
