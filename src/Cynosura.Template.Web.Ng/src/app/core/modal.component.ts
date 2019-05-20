@@ -9,7 +9,8 @@ export interface DialogData {
 }
 
 @Component({
-    templateUrl: "modal.component.html"
+    templateUrl: "modal.component.html",
+    styleUrls: ["modal.component.scss"]
 })
 export class ModalComponent {
     constructor(

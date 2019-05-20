@@ -2,7 +2,7 @@
 <mat-dialog-content>
     <div>{{ data.body }}</div>
 </mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{ data.okButton }}</button>
+<mat-dialog-actions>    
     <button mat-button mat-dialog-close>{{ data.cancelButton }}</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{ data.okButton }}</button>
 </mat-dialog-actions>
