@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Template.Web", "Cynosura.Template.Web\Cynosura.Template.Web.csproj", "{6B39A0B6-C341-4F16-BA87-EB8612B29AD0}"
 EndProject
@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Template.Worker", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{86D3C0EE-BB81-46CB-BE79-2EA9BBD9DD3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Template.Core.UnitTests", "tests\Cynosura.Template.Core.UnitTests\Cynosura.Template.Core.UnitTests.csproj", "{092939FA-9B25-4484-B96E-E0D613FD449F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Template.Core.UnitTests", "tests\Cynosura.Template.Core.UnitTests\Cynosura.Template.Core.UnitTests.csproj", "{092939FA-9B25-4484-B96E-E0D613FD449F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48F41545-21BC-4CA3-A882-690B13AD506D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.Development.yaml = docker-compose.Development.yaml
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
