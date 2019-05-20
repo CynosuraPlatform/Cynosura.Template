@@ -7,9 +7,10 @@
     <form *ngIf="role" (ngSubmit)="onSubmit()">
         <button mat-button color="primary" type="submit">Save</button>
         <button mat-button type="button" (click)="cancel()">Back</button>
-        <div>
+        <mat-form-field>
+            <mat-label>Role name</mat-label>
             <app-text-edit [(ngModel)]="role.name" name="name" placeholder="Name" layout="row"></app-text-edit>
-        </div>
+        </mat-form-field>
         <app-model-validator [model]="error?.modelState?.name"></app-model-validator>
     </form>
 
