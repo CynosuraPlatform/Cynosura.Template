@@ -5,7 +5,7 @@
     <version>0.1.8</version>
     <authors>Vassily Ivanov</authors>
     <description>Cynosura Template</description>
-	<license type="file">LICENSE.md</license>
+    <license type="file">LICENSE.md</license>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
@@ -15,6 +15,6 @@
       src="content/**"
       exclude="**/node_modules/**;**/bin/**;**/obj/**;**/.vs/**;**/.vscode/**;**/ClientApp/dist/**;**/wwwroot/dist/**;content/Directory.Build.*;**/Properties/launchSettings.json"
       target="" />
-	<file src="LICENSE.md" target="" />
+    <file src="LICENSE.md" target="" />
   </files>
 </package>
