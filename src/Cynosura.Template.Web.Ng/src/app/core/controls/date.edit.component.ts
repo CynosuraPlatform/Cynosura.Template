@@ -29,7 +29,7 @@ export class DateEditComponent implements ControlValueAccessor, MatFormFieldCont
     }
 
     get shouldLabelFloat() { return this.focused || !this.empty; }
-    
+
     @Input()
     value: Date;
 

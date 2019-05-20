@@ -79,7 +79,7 @@ export class DateTimeEditComponent implements ControlValueAccessor, MatFormField
         this.onTouched();
     }
     constructor(private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
-        @Optional() @Self() public ngControl: NgControl) {
+                @Optional() @Self() public ngControl: NgControl) {
         fm.monitor(elRef, true).subscribe(origin => {
             this.focused = !!origin;
             this.stateChanges.next();
@@ -108,9 +108,11 @@ export class DateTimeEditComponent implements ControlValueAccessor, MatFormField
         this.stateChanges.complete();
         this.fm.stopMonitoring(this.elRef);
     }
+
     setDescribedByIds(ids: string[]) {
         this.describedBy = ids.join(" ");
     }
+
     onContainerClick(event: MouseEvent) {
     }
 }

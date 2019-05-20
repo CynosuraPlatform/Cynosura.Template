@@ -20,8 +20,8 @@ export class TimeEditComponent implements ControlValueAccessor, MatFormFieldCont
     stateChanges = new Subject<void>();
     focused = false;
     errorState = false;
-    controlType = "app-text-edit";
-    id = `text-edit-${TimeEditComponent.nextId++}`;
+    controlType = "app-time-edit";
+    id = `time-edit-${TimeEditComponent.nextId++}`;
     describedBy = "";
 
     get empty() {
