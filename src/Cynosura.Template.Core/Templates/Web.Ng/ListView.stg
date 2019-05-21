@@ -57,7 +57,7 @@ fieldContainer(field) ::= <<
 <ng-container matColumnDef="$field.NameLower$">
     <th mat-header-cell *matHeaderCellDef>$field.DisplayName$</th>
     <td mat-cell *matCellDef="let item">
-        $field:(field.TypeTemplate)(); separator="\n"$
+        $field:(field.Template)(); separator="\n"$
     </td>
 </ng-container>
 >>
@@ -67,9 +67,7 @@ $field:(field.Template)()$
 >>
 
 Type(field) ::= <<
-<td>
-    $field:(field.TypeTemplate)()$
-</td>
+$field:(field.TypeTemplate)()$
 >>
 
 Entity(field) ::= <<
