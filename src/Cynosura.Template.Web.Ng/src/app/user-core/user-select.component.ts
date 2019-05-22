@@ -25,7 +25,7 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
     focused = false;
     errorState = false;
     controlType = "app-user-select";
-    id = `user-${UserSelectComponent.nextId++}`;
+    id = `user-select-${UserSelectComponent.nextId++}`;
     describedBy = "";
 
     get empty() {

@@ -25,7 +25,7 @@ export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAcc
     focused = false;
     errorState = false;
     controlType = "app-$model.Enum.NameKebab$-select";
-    id = `$model.Enum.NameKebab$-\${$model.Enum.Name$SelectComponent.nextId++}`;
+    id = `$model.Enum.NameKebab$-select-\${$model.Enum.Name$SelectComponent.nextId++}`;
     describedBy = "";
 
     get empty() {

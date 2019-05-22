@@ -25,7 +25,7 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
     focused = false;
     errorState = false;
     controlType = "app-role-select";
-    id = `role-${RoleSelectComponent.nextId++}`;
+    id = `role-select-${RoleSelectComponent.nextId++}`;
     describedBy = "";
 
     get empty() {

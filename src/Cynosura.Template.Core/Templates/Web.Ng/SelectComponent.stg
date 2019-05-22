@@ -26,7 +26,7 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
     focused = false;
     errorState = false;
     controlType = "app-$model.Entity.NameKebab$-select";
-    id = `$model.Entity.NameKebab$-\${$model.Entity.Name$SelectComponent.nextId++}`;
+    id = `$model.Entity.NameKebab$-select-\${$model.Entity.Name$SelectComponent.nextId++}`;
     describedBy = "";
 
     get empty() {
