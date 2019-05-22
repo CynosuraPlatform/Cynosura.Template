@@ -1,6 +1,7 @@
 /*.nupkg
 /content
 /artifacts/
+/LICENSE.md
 
 
 /node_modules/

@@ -17,3 +17,6 @@ Copy-Item template.json $dest\.template.config\template.json
 # copy files
 Get-ChildItem $source -Recurse  | Where-Object {$_.FullName -notmatch $exclude} |
     Copy-Item -Destination {Join-Path $dest $_.FullName.Substring($source.path.length)}
+
+# copy license file
+Copy-Item ..\LICENSE.md .\LICENSE.md
