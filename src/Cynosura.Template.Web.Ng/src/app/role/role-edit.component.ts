@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
 
 import { Role } from "../role-core/role.model";
 import { RoleService } from "../role-core/role.service";
@@ -9,7 +10,8 @@ import { Error } from "../core/error.model";
 
 @Component({
     selector: "app-role-edit",
-    templateUrl: "./role-edit.component.html"
+    templateUrl: "./role-edit.component.html",
+    styleUrls: ["./role-edit.component.scss"]
 })
 export class RoleEditComponent implements OnInit {
     role: Role;
@@ -17,7 +19,8 @@ export class RoleEditComponent implements OnInit {
 
     constructor(private roleService: RoleService,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -50,15 +53,21 @@ export class RoleEditComponent implements OnInit {
             this.roleService.updateRole(this.role)
                 .then(
                     () => window.history.back(),
-                    error => this.error = error
+                    error => this.onError(error)
                 );
         } else {
             this.roleService.createRole(this.role)
                 .then(
                     () => window.history.back(),
-                    error => this.error = error
+                    error => this.onError(error)
                 );
         }
     }
 
+    onError(error: Error) {
+        this.error = error;
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
+    }
 }

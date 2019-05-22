@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
 
 import { User } from "../user-core/user.model";
 import { CreateUser, UpdateUser } from "../user-core/user-request.model";
@@ -13,7 +14,8 @@ import { Error } from "../core/error.model";
 
 @Component({
     selector: "app-user-edit",
-    templateUrl: "./user-edit.component.html"
+    templateUrl: "./user-edit.component.html",
+    styleUrls: ["./user-edit.component.scss"]
 })
 export class UserEditComponent implements OnInit {
     user: User;
@@ -25,7 +27,8 @@ export class UserEditComponent implements OnInit {
     constructor(private userService: UserService,
                 private roleService: RoleService,
                 private route: ActivatedRoute,
-                private router: Router) { }
+                private router: Router,
+                private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         this.roleService.getRoles({}).then(roles => this.roles = roles.pageItems).then(() =>
@@ -68,8 +71,8 @@ export class UserEditComponent implements OnInit {
             updateUser.confirmPassword = this.confirmPassword;
             this.userService.updateUser(updateUser)
                 .then(
-                    (res) => window.history.back(),
-                    (res) => this.error = res
+                    () => window.history.back(),
+                    error => this.onError(error)
                 );
         } else {
             const createUser: CreateUser = this.user;
@@ -77,9 +80,16 @@ export class UserEditComponent implements OnInit {
             createUser.confirmPassword = this.confirmPassword;
             this.userService.createUser(createUser)
                 .then(
-                    (res) => window.history.back(),
-                    (res) => this.error = res
+                    () => window.history.back(),
+                    error => this.onError(error)
                 );
+        }
+    }
+
+    onError(error: Error) {
+        this.error = error;
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
         }
     }
 }

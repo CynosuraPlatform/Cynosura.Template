@@ -1,6 +1,8 @@
 ﻿main(model) ::= <<
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { PageEvent } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material";
 
 import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
 import { $model.Entity.Name$Filter } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model";
@@ -19,19 +21,24 @@ class $model.Entity.Name$ListState {
 
 @Component({
     selector: "app-$model.Entity.NameKebab$-list",
-    templateUrl: "./$model.Entity.NameKebab$-list.component.html"
+    templateUrl: "./$model.Entity.NameKebab$-list.component.html",
+    styleUrls: ["./$model.Entity.NameKebab$-list.component.scss"]
 })
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
-    error: Error;
     state: $model.Entity.Name$ListState;
+    pageSizeOptions = [10, 20];
+    columns = [
+        $model.Entity.Fields:field(); separator="\r\n"$
+    ];
 
     constructor(
         private modalHelper: ModalHelper,
         private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
         private router: Router,
         private route: ActivatedRoute,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private snackBar: MatSnackBar
         ) {
         this.state = this.storeService.get("$model.Entity.NameLower$ListState", new $model.Entity.Name$ListState());
     }
@@ -45,7 +52,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
             .then(content => {
                 this.content = content;
             })
-            .catch(error => this.error = error);
+            .catch(error => this.onError(error));
     }
 
     reset(): void {
@@ -63,21 +70,30 @@ export class $model.Entity.Name$ListComponent implements OnInit {
 
     delete($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$): void {
         this.modalHelper.confirmDelete()
-            .then(() => {
-                this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ id })
+            .subscribe(() => {
+                this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ $model.Entity.IdField.NameLower$ })
                     .then(() => {
                         this.get$model.Entity.PluralName$();
                     })
-                    .catch(error => this.error = error);
-            })
-            .catch(() => { });
+                    .catch(error => this.onError(error));
+            });
     }
 
-    onPageSelected(pageIndex: number) {
-        this.state.pageIndex = pageIndex;
+    onPage(page: PageEvent) {
+        this.state.pageIndex = page.pageIndex;
+        this.state.pageSize = page.pageSize;
         this.get$model.Entity.PluralName$();
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
     }
 }
 
 >>
 
+field(field) ::= <<
+"$field.NameLower$",
+>>

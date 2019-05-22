@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { PageEvent } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material";
 
 import { Role } from "../role-core/role.model";
 import { RoleFilter } from "../role-core/role-filter.model";
@@ -18,19 +20,24 @@ class RoleListState {
 
 @Component({
     selector: "app-role-list",
-    templateUrl: "./role-list.component.html"
+    templateUrl: "./role-list.component.html",
+    styleUrls: ["./role-list.component.scss"]
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
-    error: Error;
     state: RoleListState;
+    pageSizeOptions = [10, 20];
+    columns = [
+        "name",
+    ];
 
     constructor(
         private modalHelper: ModalHelper,
         private roleService: RoleService,
         private router: Router,
         private route: ActivatedRoute,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private snackBar: MatSnackBar
         ) {
         this.state = this.storeService.get("roleListState", new RoleListState());
     }
@@ -44,7 +51,7 @@ export class RoleListComponent implements OnInit {
             .then(content => {
                 this.content = content;
             })
-            .catch(error => this.error = error);
+            .catch(error => this.onError(error));
     }
 
     reset(): void {
@@ -62,18 +69,24 @@ export class RoleListComponent implements OnInit {
 
     delete(id: number): void {
         this.modalHelper.confirmDelete()
-            .then(() => {
+            .subscribe(() => {
                 this.roleService.deleteRole({ id })
                     .then(() => {
                         this.getRoles();
                     })
-                    .catch(error => this.error = error);
-            })
-            .catch(() => { });
+                    .catch(error => this.onError(error));
+            });
     }
 
-    onPageSelected(pageIndex: number) {
-        this.state.pageIndex = pageIndex;
+    onPage(page: PageEvent) {
+        this.state.pageIndex = page.pageIndex;
+        this.state.pageSize = page.pageSize;
         this.getRoles();
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, "Ok");
+        }
     }
 }

@@ -22,8 +22,7 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "extractCss": true
@@ -74,8 +73,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.scss"
             ],
             "assets": [
               "src/assets"
