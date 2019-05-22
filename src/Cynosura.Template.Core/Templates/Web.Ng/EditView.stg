@@ -2,7 +2,7 @@
 <mat-card>
 
     <mat-card-header>
-        <mat-card-title>$model.Entity.DisplayName$</mat-card-title>
+        <mat-card-title>$model.Entity.DisplayName$ <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></mat-card-title>
     </mat-card-header>
 
     <form *ngIf="$model.Entity.NameLower$" (ngSubmit)="onSubmit()">

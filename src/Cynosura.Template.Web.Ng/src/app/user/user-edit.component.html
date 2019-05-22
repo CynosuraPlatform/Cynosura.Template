@@ -1,7 +1,7 @@
 <mat-card>
 
     <mat-card-header>
-        <mat-card-title>User</mat-card-title>
+        <mat-card-title>User <app-user-show [value]="user"></app-user-show></mat-card-title>
     </mat-card-header>
 
     <form *ngIf="user" (ngSubmit)="onSubmit()">
