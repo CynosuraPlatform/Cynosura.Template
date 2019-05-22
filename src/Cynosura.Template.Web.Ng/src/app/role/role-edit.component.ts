@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router, Params } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
 
@@ -14,12 +15,17 @@ import { Error } from "../core/error.model";
     styleUrls: ["./role-edit.component.scss"]
 })
 export class RoleEditComponent implements OnInit {
-    role: Role;
+    id: number;
+    roleForm = this.fb.group({
+        id: [],
+        name: []
+    });
     error: Error;
 
     constructor(private roleService: RoleService,
                 private route: ActivatedRoute,
                 private router: Router,
+                private fb: FormBuilder,
                 private snackBar: MatSnackBar) {
     }
 
@@ -31,11 +37,12 @@ export class RoleEditComponent implements OnInit {
     }
 
     private getRole(id: number): void {
+        this.id = id;
         if (id === 0) {
-            this.role = new Role();
+            this.roleForm.patchValue(new Role());
         } else {
             this.roleService.getRole({ id }).then(role => {
-                this.role = role;
+                this.roleForm.patchValue(role);
             });
         }
     }
@@ -49,14 +56,14 @@ export class RoleEditComponent implements OnInit {
     }
 
     private saveRole(): void {
-        if (this.role.id) {
-            this.roleService.updateRole(this.role)
+        if (this.id) {
+            this.roleService.updateRole(this.roleForm.value)
                 .then(
                     () => window.history.back(),
                     error => this.onError(error)
                 );
         } else {
-            this.roleService.createRole(this.role)
+            this.roleService.createRole(this.roleForm.value)
                 .then(
                     () => window.history.back(),
                     error => this.onError(error)
