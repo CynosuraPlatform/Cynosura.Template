@@ -37,8 +37,8 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
     User = User;
 
     constructor(private userService: UserService,
-        private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
-            @Optional() @Self() public ngControl: NgControl) {
+                private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
+                @Optional() @Self() public ngControl: NgControl) {
         fm.monitor(elRef, true).subscribe(origin => {
             this.focused = !!origin;
             this.stateChanges.next();

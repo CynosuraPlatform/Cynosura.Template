@@ -37,8 +37,8 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
     Role = Role;
 
     constructor(private roleService: RoleService,
-        private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
-            @Optional() @Self() public ngControl: NgControl) {
+                private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
+                @Optional() @Self() public ngControl: NgControl) {
         fm.monitor(elRef, true).subscribe(origin => {
             this.focused = !!origin;
             this.stateChanges.next();
