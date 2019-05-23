@@ -10,8 +10,8 @@ import { ErrorInterceptor } from "./error.interceptor";
 import { LoadingInterceptor } from "./loading.interceptor";
 
 import { EnumKeysPipe } from "./pipes/enumkeys.pipe";
+import { ModelErrorPipe } from "./pipes/modelError.pipe";
 
-import { ModelValidatorComponent } from "./model-validator.component";
 import { TextEditComponent } from "./controls/text.edit.component";
 import { TextViewComponent } from "./controls/text.view.component";
 import { NumberEditComponent } from "./controls/number.edit.component";
@@ -36,7 +36,7 @@ import { AppErrorHandler } from "./app-error.handler";
 @NgModule({
     declarations: [
         EnumKeysPipe,
-        ModelValidatorComponent,
+        ModelErrorPipe,
         ModalComponent,
         TableDetailComponent,
         TextEditComponent,
@@ -86,7 +86,7 @@ import { AppErrorHandler } from "./app-error.handler";
         ReactiveFormsModule,
         MaterialModule,
         EnumKeysPipe,
-        ModelValidatorComponent,
+        ModelErrorPipe,
         TableDetailComponent,
         TextEditComponent,
         TextViewComponent,

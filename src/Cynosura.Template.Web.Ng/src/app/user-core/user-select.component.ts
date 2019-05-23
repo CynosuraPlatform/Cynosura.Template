@@ -23,10 +23,13 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-user-select";
     id = `user-select-${UserSelectComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;

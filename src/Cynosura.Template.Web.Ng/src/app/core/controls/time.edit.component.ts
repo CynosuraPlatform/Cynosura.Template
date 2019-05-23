@@ -19,10 +19,13 @@ export class TimeEditComponent implements ControlValueAccessor, MatFormFieldCont
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-time-edit";
     id = `time-edit-${TimeEditComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;

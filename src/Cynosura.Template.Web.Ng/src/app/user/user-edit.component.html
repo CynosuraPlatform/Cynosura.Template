@@ -12,33 +12,32 @@
         <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput type="email" id="userName" name="userName" formControlName="userName" placeholder="Username"
-                [readonly]="true" />            
+                [readonly]="true" />
+            <mat-error>{{ error?.modelState?.userName | modelError }}</mat-error>
         </mat-form-field>
-        <app-model-validator [model]="error?.modelState?.userName"></app-model-validator>
         <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput type="email" id="email" name="email" formControlName="email"
                 placeholder="Email" [readonly]="user?.id" />            
+            <mat-error>{{ error?.modelState?.email | modelError }}</mat-error>
         </mat-form-field>
-        <app-model-validator [model]="error?.modelState?.email"></app-model-validator>
         <mat-form-field>
             <mat-label>Password</mat-label>
             <input matInput type="password" id="password" name="password" 
                 formControlName="password" placeholder="Password" />
+            <mat-error>{{ error?.modelState?.password | modelError }}</mat-error>
         </mat-form-field>
-        <app-model-validator [model]="error?.modelState?.password"></app-model-validator>
         <mat-form-field>
             <mat-label>Confirm password</mat-label>
             <input matInput type="password" id="confirmPassword" name="confirmPassword"
                 formControlName="confirmPassword" placeholder="Confirm password" />            
+            <mat-error>{{ error?.modelState?.confirmPassword | modelError }}</mat-error>
         </mat-form-field>
-        <app-model-validator [model]="error?.modelState?.confirmPassword"></app-model-validator>
         <div>
             <label>Roles</label>
             <div *ngFor="let role of roles; let i = index ">
                 <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected" [ngModelOptions]="{standalone: true}">{{ role.name }}</mat-checkbox>                    
             </div>
-            <app-model-validator [model]="error?.modelState?.roleId"></app-model-validator>
         </div>
     </form>
 

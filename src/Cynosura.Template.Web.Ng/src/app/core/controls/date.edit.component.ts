@@ -19,10 +19,13 @@ export class DateEditComponent implements ControlValueAccessor, MatFormFieldCont
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-date-edit";
     id = `date-edit-${DateEditComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;

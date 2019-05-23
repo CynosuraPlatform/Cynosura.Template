@@ -93,6 +93,7 @@ export class UserEditComponent implements OnInit {
         this.error = error;
         if (error) {
             this.snackBar.open(error.message, "Ok");
+            Error.setFormErrors(this.userForm, error);
         }
     }
 }

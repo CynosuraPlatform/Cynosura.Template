@@ -23,10 +23,13 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-role-select";
     id = `role-select-${RoleSelectComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;

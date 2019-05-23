@@ -19,10 +19,13 @@ export class NumberEditComponent implements ControlValueAccessor, MatFormFieldCo
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-number-edit";
     id = `number-edit-${NumberEditComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;

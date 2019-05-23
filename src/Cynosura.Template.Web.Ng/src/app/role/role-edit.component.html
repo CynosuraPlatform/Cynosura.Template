@@ -12,8 +12,9 @@
         <mat-form-field>
             <mat-label>Name</mat-label>
             <app-text-edit formControlName="name" name="name" placeholder="Name"></app-text-edit>
+            <mat-error>{{ error?.modelState?.name | modelError }}</mat-error>
         </mat-form-field>
-        <app-model-validator [model]="error?.modelState?.name"></app-model-validator>
+        
     </form>
 
 </mat-card>

@@ -24,10 +24,13 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-$model.Entity.NameKebab$-select";
     id = `$model.Entity.NameKebab$-select-\${$model.Entity.Name$SelectComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;
@@ -47,13 +50,13 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
 
     @Input()
     label: string;
-    
+
     @Input()
     placeholder: string;
 
     @Input()
     readonly = false;
-    
+
     @Input()
     get required(): boolean { return this.innerRequired; }
     set required(value: boolean) {
@@ -82,7 +85,7 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
 
     onChange: any = () => { };
     onTouched: any = () => { };
-    
+
     constructor(private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
                 private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
                 @Optional() @Self() public ngControl: NgControl) {

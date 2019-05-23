@@ -20,10 +20,13 @@ export class TextEditComponent implements ControlValueAccessor, MatFormFieldCont
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-text-edit";
     id = `text-edit-${TextEditComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;

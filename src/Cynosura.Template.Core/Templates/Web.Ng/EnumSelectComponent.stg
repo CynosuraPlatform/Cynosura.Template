@@ -23,10 +23,13 @@ export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAcc
 
     stateChanges = new Subject<void>();
     focused = false;
-    errorState = false;
     controlType = "app-$model.Enum.NameKebab$-select";
     id = `$model.Enum.NameKebab$-select-\${$model.Enum.Name$SelectComponent.nextId++}`;
     describedBy = "";
+
+    get errorState(): boolean {
+        return coerceBooleanProperty(this.ngControl.errors);
+    }
 
     get empty() {
         return !this.value;
