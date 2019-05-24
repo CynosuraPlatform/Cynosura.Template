@@ -46,9 +46,11 @@ export class AppComponent implements OnInit {
                 () => { console.info("Auth init success"); },
                 error => console.warn(error)
             );
+        this.emitEventResize();
     }
 
     toggle(sidenav: MatSidenav): void {
+        this.emitEventResize();
         this.isHandset$.pipe(
             first()
         ).subscribe(isHandset => {
@@ -56,5 +58,10 @@ export class AppComponent implements OnInit {
                 sidenav.toggle();
             }
         });
+    }
+
+    emitEventResize() {
+        // fix for mat-sidenav-content not resizing
+        window.dispatchEvent(new Event("resize"));
     }
 }
