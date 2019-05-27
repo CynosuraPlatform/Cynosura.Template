@@ -9,7 +9,7 @@ namespace $model.Solution.Namespace$.Core.Entities
 {
     public $if(model.Entity.IsAbstract)$abstract $endif$class $model.Entity.Name$$if(model.Entity.BaseEntity)$ : $model.Entity.BaseEntity.Name$$endif$
     {
-  $model.Entity.Fields:field(); separator="\n"$
+$model.Entity.Fields:field(); separator="\n"$
     }
 }
 
