@@ -13,7 +13,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container fxFlexFill style="height: 100vh;">
+<mat-sidenav-container fxFlexFill>
   <mat-sidenav #sidenav fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
     <app-nav-menu (click)="toggle(sidenav)"></app-nav-menu>
