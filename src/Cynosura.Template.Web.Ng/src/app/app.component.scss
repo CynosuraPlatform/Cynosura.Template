@@ -7,10 +7,12 @@
 
 mat-sidenav-container {
   height: calc(100% - 64px);
-}
-
-mat-sidenav-content {
-  min-height: 100%;
+  mat-sidenav {
+    min-width: 250px;
+  }
+  mat-sidenav-content {
+    min-height: 100%;
+  }
 }
 
 .loading {
@@ -22,5 +24,21 @@ mat-sidenav-content {
     left: 0;
     top: 0;
     z-index: 1000;
+  }
+}
+
+@media (min-width: 600px) {
+  mat-sidenav-container {
+    mat-sidenav {
+      margin-top: 64px;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  mat-sidenav-container {
+    mat-sidenav {
+      margin-top: 56px;
+    }
   }
 }
