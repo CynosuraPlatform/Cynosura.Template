@@ -30,7 +30,7 @@ export class $model.Enum.Name$SelectComponent implements OnInit, ControlValueAcc
     errorState = false;
 
     get empty() {
-        return !this.value;
+        return this.value === null || this.value === undefined;
     }
 
     get shouldLabelFloat() { return this.focused || !this.empty; }

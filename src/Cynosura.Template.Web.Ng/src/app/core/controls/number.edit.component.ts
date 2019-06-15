@@ -13,7 +13,7 @@ import { Subject } from "rxjs";
         { provide: MatFormFieldControl, useExisting: NumberEditComponent }
     ]
 })
-export class NumberEditComponent implements ControlValueAccessor, MatFormFieldControl<string>, OnDestroy, DoCheck {
+export class NumberEditComponent implements ControlValueAccessor, MatFormFieldControl<number>, OnDestroy, DoCheck {
 
     static nextId = 0;
 
@@ -26,13 +26,13 @@ export class NumberEditComponent implements ControlValueAccessor, MatFormFieldCo
     errorState = false;
 
     get empty() {
-        return !this.value;
+        return this.value === null || this.value === undefined;
     }
 
     get shouldLabelFloat() { return this.focused || !this.empty; }
 
     @Input()
-    value: string;
+    value: number;
 
     @Input()
     name: string;
