@@ -146,6 +146,7 @@ namespace Cynosura.Template.Web
                         options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                         options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                     }
                 );
 
