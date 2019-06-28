@@ -9,15 +9,13 @@
         <div class="action-item">
             <mat-form-field>
                 <mat-label>Text</mat-label>
-                <input matInput id="text" type="text" class="form-control" placeholder="Text"
-                    [(ngModel)]="state.filter.text" />
+                <input matInput id="text" type="text" placeholder="Text" [(ngModel)]="state.filter.text" />
             </mat-form-field>
             <button mat-raised-button type="button" color="primary" (click)="get$model.Entity.PluralName$()">Search</button>
             <button mat-raised-button type="reset" (click)="reset()">Reset</button>
         </div>
         <div class="action-item">
-            <button mat-raised-button type="button" color="primary" aria-label="Create"
-                (click)="add()">Create</button>
+            <button mat-raised-button type="button" color="primary" (click)="add()">Create</button>
         </div>
     </mat-card-actions>
 
