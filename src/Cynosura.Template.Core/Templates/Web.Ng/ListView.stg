@@ -15,7 +15,7 @@
             <button mat-raised-button type="reset" (click)="reset()">Reset</button>
         </div>
         <div class="action-item">
-            <button mat-raised-button type="button" color="primary" (click)="add()">Create</button>
+            <a mat-raised-button color="primary" [routerLink]="[0]">Create</a>
         </div>
     </mat-card-actions>
 
@@ -28,7 +28,7 @@
             <ng-container matColumnDef="expandedDetail">
                 <td mat-cell *matCellDef="let item" [attr.colspan]="columns.length">
                     <app-table-detail [expanded]="item == expandedElement">
-                        <button mat-raised-button (click)="edit(item.id)" color="primary">Edit</button>
+                        <a mat-raised-button [routerLink]="[item.id]" color="primary">Edit</a>
                         <button mat-raised-button (click)="delete(item.id)" color="warn">Delete</button>
                     </app-table-detail>
                 </td>
