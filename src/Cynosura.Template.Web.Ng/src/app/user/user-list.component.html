@@ -6,12 +6,14 @@
 
     <mat-card-actions>
         <div class="action-item">
-            <mat-form-field>
-                <mat-label>Text</mat-label>
-                <input matInput id="text" type="text" placeholder="Text" [(ngModel)]="state.filter.text" />
-            </mat-form-field>
-            <button mat-raised-button type="button" color="primary" (click)="getUsers()">Search</button>
-            <button mat-raised-button type="reset" (click)="reset()">Reset</button>
+            <form (ngSubmit)="getUsers()">
+                <mat-form-field>
+                    <mat-label>Text</mat-label>
+                    <input matInput id="text" type="text" name="text" placeholder="Text" [(ngModel)]="state.filter.text" />
+                </mat-form-field>
+                <button mat-raised-button type="submit" color="primary">Search</button>
+                <button mat-raised-button type="reset" (click)="reset()">Reset</button>
+            </form>
         </div>
         <div class="action-item">
             <a mat-raised-button color="primary" [routerLink]="[0]">Create</a>
