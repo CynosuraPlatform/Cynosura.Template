@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autofac;
 using AutoMapper;
 using Cynosura.EF;
+using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Security;
 using Cynosura.Template.Data;
 using Cynosura.Web.Infrastructure;
@@ -17,7 +18,7 @@ namespace Cynosura.Template.Web.Infrastructure
     {
         public static void ConfigureAutofac(ContainerBuilder builder, IConfiguration configuration)
         {
-            var assemblies = GetPlatformAndAppAssemblies();
+            var assemblies = CoreHelper.GetPlatformAndAppAssemblies();
             builder.RegisterAssemblyModules(assemblies);
             builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>()
                 .WithParameter((p, c) => p.Name == "connectionString", (p, c) => configuration.GetConnectionString("DefaultConnection"))
@@ -31,14 +32,5 @@ namespace Cynosura.Template.Web.Infrastructure
             }).CreateMapper()).As<IMapper>().SingleInstance();
         }
 
-        private static Assembly[] GetPlatformAndAppAssemblies()
-        {
-            var platformAndAppNames = new[] { "Cynosura", "Cynosura.Template" };
-            return AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => platformAndAppNames.Any(n => a.FullName.Contains(n)) ||
-                            a.GetReferencedAssemblies()
-                                .Any(ra => platformAndAppNames.Any(n => ra.FullName.Contains(n))))
-                .ToArray();
-        }
     }
 }
