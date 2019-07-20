@@ -21,7 +21,7 @@
     </mat-card-actions>
 
     <mat-card-content class="mat-elevation-z8">
-        <table mat-table multiTemplateDataRows [dataSource]="content?.pageItems" *ngIf="content">
+        <table *ngIf="content" mat-table [dataSource]="content?.pageItems" multiTemplateDataRows appClickOutside (clickOutside)="expandedElement = null">
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Name </th>
