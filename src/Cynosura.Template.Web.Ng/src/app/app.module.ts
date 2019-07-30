@@ -30,8 +30,9 @@ import { HomeComponent } from "./home/home.component";
         RouterModule.forRoot([
             { path: "", component: HomeComponent, pathMatch: "full" },
 // ADD ROUTES HERE
+            { path: "profile", loadChildren: "./profile/profile.module#ProfileModule" },
+            { path: "role", loadChildren: "./role/role.module#RoleModule" },
             { path: "user", loadChildren: "./user/user.module#UserModule" },
-            { path: "role", loadChildren: "./role/role.module#RoleModule" }
         ]),
         ModalModule.forRoot(),
         BootstrapModalModule,
