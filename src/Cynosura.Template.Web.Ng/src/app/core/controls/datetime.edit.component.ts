@@ -38,9 +38,6 @@ export class DateTimeEditComponent implements ControlValueAccessor, MatFormField
     name: string;
 
     @Input()
-    label: string;
-
-    @Input()
     placeholder: string;
 
     @Input()

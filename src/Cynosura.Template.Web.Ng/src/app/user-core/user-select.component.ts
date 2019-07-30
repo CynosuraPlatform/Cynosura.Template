@@ -58,9 +58,6 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
     name: string;
 
     @Input()
-    label: string;
-
-    @Input()
     placeholder: string;
 
     @Input()

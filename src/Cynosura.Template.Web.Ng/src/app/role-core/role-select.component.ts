@@ -58,9 +58,6 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
     name: string;
 
     @Input()
-    label: string;
-
-    @Input()
     placeholder: string;
 
     @Input()

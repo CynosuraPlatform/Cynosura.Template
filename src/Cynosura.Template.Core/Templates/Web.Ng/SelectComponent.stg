@@ -47,9 +47,6 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
     name: string;
 
     @Input()
-    label: string;
-
-    @Input()
     placeholder: string;
 
     @Input()

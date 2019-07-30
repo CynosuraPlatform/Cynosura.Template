@@ -38,9 +38,6 @@ export class NumberEditComponent implements ControlValueAccessor, MatFormFieldCo
     name: string;
 
     @Input()
-    label: string;
-
-    @Input()
     placeholder: string;
 
     @Input()

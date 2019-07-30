@@ -58,9 +58,6 @@ export class TimeEditComponent implements ControlValueAccessor, MatFormFieldCont
     name: string;
 
     @Input()
-    label: string;
-
-    @Input()
     placeholder: string;
 
     @Input()

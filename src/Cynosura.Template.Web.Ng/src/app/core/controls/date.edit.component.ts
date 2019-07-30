@@ -41,9 +41,6 @@ export class DateEditComponent implements ControlValueAccessor, MatFormFieldCont
     placeholder: string;
 
     @Input()
-    label: string;
-
-    @Input()
     type = "text";
 
     @Input()
