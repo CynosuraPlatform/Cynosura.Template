@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Router } from "@angular/router";
+import { MatSidenav } from "@angular/material";
+import { MediaObserver } from "@angular/flex-layout";
 import { Observable } from "rxjs";
 import { debounceTime, map, tap, first } from "rxjs/operators";
-import { MediaObserver } from "@angular/flex-layout";
 
 import { AuthService } from "./auth/auth.service";
 import { LoadingService } from "./core/loading.service";
-import { MatSidenav } from "@angular/material";
 
 @Component({
   selector: "app-root",
@@ -15,6 +16,8 @@ import { MatSidenav } from "@angular/material";
 export class AppComponent implements OnInit {
     title = "app";
     isLoading = false;
+    loggedIn = false;
+    userName: string;
 
     // FlexLayout
     isHandset$: Observable<boolean> = this.media.asObservable().pipe(
@@ -30,7 +33,8 @@ export class AppComponent implements OnInit {
                 private loadingService: LoadingService,
                 private cdRef: ChangeDetectorRef,
                 private media: MediaObserver,
-                private changeDetectorRef: ChangeDetectorRef) {
+                private changeDetectorRef: ChangeDetectorRef,
+                private router: Router) {
         loadingService
             .onLoadingChanged
             .pipe(debounceTime(500))
@@ -47,6 +51,8 @@ export class AppComponent implements OnInit {
                 error => console.warn(error)
             );
         this.emitEventResize();
+        this.authService.loggedIn$.subscribe(loggedIn => this.loggedIn = loggedIn);
+        this.authService.currentUser$.subscribe((user) => this.userName = user ? user.userName : null);
     }
 
     toggle(sidenav: MatSidenav): void {
@@ -63,5 +69,10 @@ export class AppComponent implements OnInit {
     emitEventResize() {
         // fix for mat-sidenav-content not resizing
         window.dispatchEvent(new Event("resize"));
+    }
+
+    logout() {
+        this.authService.logout();
+        this.router.navigate(["/"]);
     }
 }

@@ -8,12 +8,4 @@
         <mat-icon matListIcon>{{ item.icon }}</mat-icon>
         <span>{{ item.name }}</span>
     </a>
-    <a mat-list-item [routerLink]="['login']" [routerLinkActive]="['link-active']" *ngIf="!loggedIn">
-        <mat-icon matListIcon>account_circle</mat-icon>
-        <span>Log In</span>
-    </a>
-    <a mat-list-item href="javascript:void(0);" (click)="logout()" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
-        <mat-icon matListIcon>exit_to_app</mat-icon>
-        <span>Log Out</span>
-    </a>
 </mat-nav-list>

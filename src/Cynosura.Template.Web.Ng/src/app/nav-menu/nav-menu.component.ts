@@ -13,7 +13,6 @@ import { Menu } from "./menu.model";
 export class NavMenuComponent implements OnInit {
     menu: Menu;
     isExpanded = false;
-    loggedIn = false;
 
     constructor(private menuService: MenuService,
                 private authService: AuthService,
@@ -21,17 +20,11 @@ export class NavMenuComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.loggedIn$.subscribe(loggedIn => this.loggedIn = loggedIn);
         this.authService.state$.subscribe(state => {
             this.menuService.getMenu().then(menu => {
                 this.menu = menu;
             });
         });
-    }
-
-    logout() {
-        this.authService.logout();
-        this.router.navigate(["/"]);
     }
 
     collapse() {
