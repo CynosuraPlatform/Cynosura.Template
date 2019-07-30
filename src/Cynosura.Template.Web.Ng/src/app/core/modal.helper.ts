@@ -25,4 +25,33 @@ export class ModalHelper {
         return dialogRef.afterClosed()
             .pipe(filter(res => res === true));
     }
+
+    confirm(message: string, title: string, okButton: string): Observable<any> {
+        const dialogRef = this.dialog.open(ModalComponent, {
+            width: "300px",
+            data: {
+                title: title,
+                body: message,
+                okButton: okButton,
+                cancelButton: "Нет"
+            }
+        });
+
+        return dialogRef.afterClosed()
+            .pipe(filter(res => res === true));
+    }
+
+    alert(message: string, title: string, okButton: string): Observable<any> {
+        const dialogRef = this.dialog.open(ModalComponent, {
+            width: "300px",
+            data: {
+                title: title,
+                body: message,
+                okButton: okButton,
+            }
+        });
+
+        return dialogRef.afterClosed()
+            .pipe(filter(res => res === true));
+    }
 }
