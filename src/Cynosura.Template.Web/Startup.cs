@@ -97,6 +97,8 @@ namespace Cynosura.Template.Web
 
                     options.UseJsonWebTokens();
 
+                    options.SetIssuer(new Uri(Configuration["Jwt:Authority"]));
+
                     if (_hostingEnvironment.IsDevelopment())
                     {
                         options.AddEphemeralSigningKey();
