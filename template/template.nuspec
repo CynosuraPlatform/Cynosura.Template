@@ -6,6 +6,7 @@
     <authors>Vassily Ivanov</authors>
     <description>Cynosura Template</description>
     <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/CynosuraPlatform/Cynosura.Template</projectUrl>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
