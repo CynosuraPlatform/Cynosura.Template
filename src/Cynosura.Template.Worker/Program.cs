@@ -46,9 +46,6 @@ namespace Cynosura.Template.Worker
                     {
                         options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefaultConnection"));
                     });
-                    services.AddIdentity<User, Role>()
-                        .AddEntityFrameworkStores<DataContext>()
-                        .AddDefaultTokenProviders();
 
                     services.AddOptions();
                 })
