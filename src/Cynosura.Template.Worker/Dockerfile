@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build-env
 WORKDIR /app
 
 COPY *.sln .
@@ -17,7 +17,7 @@ RUN sed -i "s|c:\\\temp\\\|/my/logs/|g" Cynosura.Template.Worker/nlog.config
 
 RUN dotnet publish Cynosura.Template.Worker/Cynosura.Template.Worker.csproj -c Release -o ../out
 
-FROM mcr.microsoft.com/dotnet/core/runtime:2.1
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "Cynosura.Template.Worker.dll"]
