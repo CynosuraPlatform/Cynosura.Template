@@ -10,7 +10,7 @@
         </mat-card-actions>
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <app-text-edit formControlName="email" name="email" label="Email" type="email"></app-text-edit>
+            <app-text-edit formControlName="email" name="email" placeholder="Email" type="email"></app-text-edit>
             <mat-error>{{ error?.modelState?.email | modelError }}</mat-error>
         </mat-form-field>
         <mat-form-field>
