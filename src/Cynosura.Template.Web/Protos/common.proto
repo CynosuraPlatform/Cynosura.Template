@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "Cynosura.Template.Web.Protos";
+
+message CreatedEntity {
+    int32 id = 1;
+}
+
+message Empty {
+
+}
+
+enum OrderDirection {
+    Ascending = 0;
+    Descending = 1;
+}

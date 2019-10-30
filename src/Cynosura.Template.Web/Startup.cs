@@ -146,6 +146,8 @@ namespace Cynosura.Template.Web
 
             services.AddCors();
 
+            services.AddGrpc();
+
             var builder = new ContainerBuilder();
             AutofacConfig.ConfigureAutofac(builder, Configuration);
             builder.Populate(services);
@@ -183,6 +185,7 @@ namespace Cynosura.Template.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapGrpcService<Services.RoleService>();
             });
         }
     }

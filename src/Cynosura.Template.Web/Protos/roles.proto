@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+import "Protos/common.proto";
+
+option csharp_namespace = "Cynosura.Template.Web.Protos";
+
+service Roles {
+    rpc CreateRole(CreateRoleRequest) returns (CreatedEntity);
+    rpc DeleteRole(DeleteRoleRequest) returns (Empty);
+    rpc GetRole(GetRoleRequest) returns (Role);
+    rpc GetRoles(GetRolesRequest) returns (RolePageModel);
+    rpc UpdateRole(UpdateRoleRequest) returns (Empty);
+}
+
+message CreateRoleRequest {
+    string name = 1;
+}
+
+message DeleteRoleRequest {
+    int32 id = 1;
+}
+
+message GetRoleRequest {
+    int32 id = 1;
+}
+
+message GetRolesRequest {
+    int32 pageIndex = 1;
+    int32 pageSize = 2;
+    RoleFilter filter = 3;
+    string orderBy = 4;
+    OrderDirection OrderDirection = 5;
+}
+
+message UpdateRoleRequest {
+    int32 id = 1;
+    string name = 2;
+}
+
+message RoleFilter {
+    string name = 1;
+}
+
+message Role {
+    int32 id = 1;
+    string name = 2;
+}
+
+message RolePageModel {
+    repeated Role pageItems = 1;
+    int32 totalItems = 2;
+    int32 currentPageIndex = 3;
+}

@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Cynosura.Web" Version="0.2.0-b71" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.24.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.5" />
@@ -21,6 +22,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Cynosura.Template.Core\Cynosura.Template.Core.csproj" />
     <ProjectReference Include="..\Cynosura.Template.Data\Cynosura.Template.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\common.proto" />
+    <Protobuf Include="Protos\roles.proto" />
   </ItemGroup>
 
   <ItemGroup>
