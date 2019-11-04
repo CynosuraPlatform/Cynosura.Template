@@ -50,20 +50,13 @@ namespace Cynosura.Template.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddAuthentication(o =>
-            {
-                o.DefaultScheme = IdentityConstants.ApplicationScheme;
-                o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-            }).AddIdentityCookies();
-
-            services.AddIdentityCore<User>()
+            services.AddDefaultIdentity<User>()
                 .AddRoles<Role>()
-                .AddEntityFrameworkStores<DataContext>()
-                .AddDefaultUI()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<DataContext>();
 
             services.AddIdentityServer()
-                .AddApiAuthorization<User, DataContext>();
+                .AddApiAuthorization<User, DataContext>()
+                .AddProfileService<MyProfileService>();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
