@@ -54,38 +54,8 @@ namespace Cynosura.Template.Web
                 .AddEntityFrameworkStores<DataContext>()
                 .AddDefaultTokenProviders();
 
-            var client = ClientBuilder.SPA("Cynosura.Template")
-                .WithScopes(IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "api")
-                .WithRedirectUri("http://localhost:4200")
-                .WithLogoutRedirectUri("http://localhost:4200")
-                .Build();
-            client.AllowedGrantTypes.Add(GrantType.ResourceOwnerPassword);
-            client.AllowedCorsOrigins.Add("http://localhost:4200");
-            client.AllowOfflineAccess = true;
-    //        client.Claims = new List<Claim>
-    //{
-    //    new Claim(Constants.ClaimTypes.Name),
-    //    new ScopeClaim(Constants.ClaimTypes.Role)
-    //};
-
             services.AddIdentityServer()
-                .AddApiAuthorization<User, DataContext>()
-                .AddInMemoryApiResources(new []
-                {
-                    new ApiResource("api", "API", new List<string> 
-                    { 
-                        JwtClaimTypes.Name,
-                        JwtClaimTypes.Role
-                    })
-                })
-                //.AddInMemoryIdentityResources(new IdentityResource[] 
-                //{ 
-                //    new IdentityResources.OpenId(),
-                //    new IdentityResources.Profile(),
-                //})
-                .AddInMemoryClients(new[] { client });
+                .AddApiAuthorization<User, DataContext>();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
