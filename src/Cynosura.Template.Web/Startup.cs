@@ -50,8 +50,16 @@ namespace Cynosura.Template.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddIdentity<User, Role>()
+            services.AddAuthentication(o =>
+            {
+                o.DefaultScheme = IdentityConstants.ApplicationScheme;
+                o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+            }).AddIdentityCookies();
+
+            services.AddIdentityCore<User>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
@@ -108,6 +116,7 @@ namespace Cynosura.Template.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

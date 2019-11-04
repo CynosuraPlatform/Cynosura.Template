@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { AuthService } from "../auth/auth.service";
 import { MenuService } from "./menu.service";
 import { Menu } from "./menu.model";
 
@@ -15,16 +14,15 @@ export class NavMenuComponent implements OnInit {
     isExpanded = false;
 
     constructor(private menuService: MenuService,
-                private authService: AuthService,
                 private router: Router) {
     }
 
     ngOnInit(): void {
-        this.authService.state$.subscribe(state => {
+        // this.authService.state$.subscribe(state => {
             this.menuService.getMenu().then(menu => {
                 this.menu = menu;
             });
-        });
+        // });
     }
 
     collapse() {

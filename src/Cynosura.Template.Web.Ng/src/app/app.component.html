@@ -9,21 +9,21 @@
         </button>
         <span>Cynosura.Template</span>
         <span class="menu-spacer"></span>
-        <a mat-button *ngIf="loggedIn" [matMenuTriggerFor]="accountMenu">
+        <a mat-button *ngIf="isAuthenticated | async" [matMenuTriggerFor]="accountMenu">
             <mat-icon matListIcon>account_circle</mat-icon>
-            <span *ngIf="userName"> {{ userName }}</span>
+            <span *ngIf="userName | async"> {{ userName | async }}</span>
         </a>
         <mat-menu #accountMenu="matMenu">
             <a mat-menu-item [routerLink]="['profile']">
                 <mat-icon matListIcon>account_circle</mat-icon>
                 <span>Profile</span>
             </a>
-            <a mat-menu-item href="javascript:void(0);" (click)="logout()">
+            <a mat-menu-item [routerLink]="['/authentication/logout']" [state]="{ local: true }">
                 <mat-icon matListIcon>exit_to_app</mat-icon>
                 <span>Log Out</span>
             </a>
         </mat-menu>
-        <a mat-button [routerLink]="['login']" *ngIf="!loggedIn">
+        <a mat-button [routerLink]="['/authentication/login']" *ngIf="!(isAuthenticated | async)">
             <mat-icon matListIcon>account_circle</mat-icon>
             <span> Log In</span>
         </a>

@@ -1,17 +1,18 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule, Route } from "@angular/router";
 
 import { ModalModule } from "ngx-modialog";
 import { BootstrapModalModule } from "ngx-modialog/plugins/bootstrap";
 
 import { MaterialModule } from "./material.module";
-import { AuthModule } from "./auth/auth.module";
+import { ApiAuthorizationModule } from "../api-authorization/api-authorization.module";
 import { CoreModule } from "./core/core.module";
 import { AccountModule } from "./account/account.module";
 
+import { AuthorizeInterceptor } from "../api-authorization/authorize.interceptor";
 import { ConfigService } from "./config/config.service";
 import { MenuService } from "./nav-menu/menu.service";
 import { AppComponent } from "./app.component";
@@ -39,7 +40,7 @@ import { HomeComponent } from "./home/home.component";
         BootstrapModalModule,
         MaterialModule,
         CoreModule,
-        AuthModule,
+        ApiAuthorizationModule,
         AccountModule,
     ],
     exports: [
@@ -55,7 +56,8 @@ import { HomeComponent } from "./home/home.component";
             },
             multi: true,
             deps: [ConfigService]
-        }
+        },
+        { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
     ],
     bootstrap: [AppComponent]
 })
