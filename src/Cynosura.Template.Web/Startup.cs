@@ -69,6 +69,18 @@ namespace Cynosura.Template.Web
                     o.ModelBinderProviders.Insert(0, new UserInfoModelBinderProvider());
                 });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ReadRole",
+                    policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
+                options.AddPolicy("WriteRole",
+                    policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
+                options.AddPolicy("ReadUser",
+                   policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
+                options.AddPolicy("WriteUser",
+                    policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
+            });
+
             services.AddCors();
 
             var builder = new ContainerBuilder();
