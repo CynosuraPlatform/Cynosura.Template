@@ -7,6 +7,7 @@ using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Web.Infrastructure;
 using Cynosura.Web;
+using Cynosura.Web.Infrastructure.Authorization;
 using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -71,14 +72,7 @@ namespace Cynosura.Template.Web
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ReadRole",
-                    policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
-                options.AddPolicy("WriteRole",
-                    policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
-                options.AddPolicy("ReadUser",
-                   policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
-                options.AddPolicy("WriteUser",
-                    policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
+                new PolicyProvider().RegisterPolicies(options);
             });
 
             services.AddCors();
