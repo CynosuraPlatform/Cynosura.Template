@@ -8,6 +8,7 @@ import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Ent
 import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
 
 import { Error } from "../core/error.model";
+import { ConvertStringTo } from "../core/converter.helper";
 
 
 @Component({
@@ -33,7 +34,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            const id: $model.Entity.IdField.JsTypeName$ = params.id === "0" ? null : params.id;
+            const id: $model.Entity.IdField.JsTypeName$ = params.id === "0" ? null : ConvertStringTo.$model.Entity.IdField.JsTypeName$(params.id);
             this.get$model.Entity.Name$(id);
         });
     }
