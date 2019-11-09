@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthorizeService, AuthenticationResultStatus } from '../authorize.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { LoginActions, QueryParameterNames, ApplicationPaths, ReturnUrlType } from '../api-authorization.constants';
+import { Component, OnInit } from "@angular/core";
+import { AuthorizeService, AuthenticationResultStatus } from "../authorize.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { LoginActions, QueryParameterNames, ApplicationPaths, ReturnUrlType } from "../api-authorization.constants";
 
 // The main responsibility of this component is to handle the user's login process.
 // This is the starting point for the login process. Any component that needs to authenticate
 // a user can simply perform a redirect to this component with a returnUrl query parameter and
 // let the component perform the login and return back to the return url.
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   public message = new BehaviorSubject<string>(null);
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
     switch (result.status) {
       case AuthenticationResultStatus.Redirect:
         // There should not be any redirects as completeSignIn never redirects.
-        throw new Error('Should not redirect.');
+        throw new Error("Should not redirect.");
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(this.getReturnUrl(result.state));
         break;
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
 
   private redirectToRegister(): any {
     this.redirectToApiAuthorizationPath(
-      `${ApplicationPaths.IdentityRegisterPath}?returnUrl=${encodeURI('/' + ApplicationPaths.Login)}`);
+      `${ApplicationPaths.IdentityRegisterPath}?returnUrl=${encodeURI("/" + ApplicationPaths.Login)}`);
   }
 
   private redirectToProfile(): void {
@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
       !(fromQuery.startsWith(`${window.location.origin}/`) ||
         /\/[^\/].*/.test(fromQuery))) {
       // This is an extra check to prevent open redirects.
-      throw new Error('Invalid return url. The return url needs to have the same origin as the current page.');
+      throw new Error("Invalid return url. The return url needs to have the same origin as the current page.");
     }
     return (state && state.returnUrl) ||
       fromQuery ||

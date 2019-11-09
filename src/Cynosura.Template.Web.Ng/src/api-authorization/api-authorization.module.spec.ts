@@ -1,13 +1,13 @@
-import { ApiAuthorizationModule } from './api-authorization.module';
+import { ApiAuthorizationModule } from "./api-authorization.module";
 
-describe('ApiAuthorizationModule', () => {
+describe("ApiAuthorizationModule", () => {
   let apiAuthorizationModule: ApiAuthorizationModule;
 
   beforeEach(() => {
     apiAuthorizationModule = new ApiAuthorizationModule();
   });
 
-  it('should create an instance', () => {
+  it("should create an instance", () => {
     expect(apiAuthorizationModule).toBeTruthy();
   });
 });
