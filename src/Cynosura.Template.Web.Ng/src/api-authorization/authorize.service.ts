@@ -32,6 +32,7 @@ export enum AuthenticationResultStatus {
 
 export interface IUser {
   name: string;
+  role: string | string[];
 }
 
 @Injectable({
@@ -58,6 +59,20 @@ export class AuthorizeService {
       this.userSubject.pipe(take(1), filter(u => !!u)),
       this.getUserFromStorage().pipe(filter(u => !!u), tap(u => this.userSubject.next(u))),
       this.userSubject.asObservable());
+  }
+
+  public getRoles(): Observable<string[]> {
+    return this.getUser().pipe(map(u => {
+      if (!u) {
+        return [];
+      } else if (u.role instanceof Array) {
+        return u.role;
+      } else if (typeof u.role === "string") {
+        return [u.role];
+      } else {
+        return [];
+      }
+    }));
   }
 
   public getAccessToken(): Observable<string> {
