@@ -18,6 +18,7 @@ import { MenuService } from "./nav-menu/menu.service";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
+import { AuthorizeGuard } from "../api-authorization/authorize.guard";
 
 @NgModule({
     declarations: [
@@ -30,11 +31,11 @@ import { HomeComponent } from "./home/home.component";
         HttpClientModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: "", component: HomeComponent, pathMatch: "full" },
+            { path: "", component: HomeComponent, pathMatch: "full", canActivate: [AuthorizeGuard] },
 // ADD ROUTES HERE
-            { path: "profile", loadChildren: "./profile/profile.module#ProfileModule" },
-            { path: "role", loadChildren: "./role/role.module#RoleModule" },
-            { path: "user", loadChildren: "./user/user.module#UserModule" },
+            { path: "profile", canActivate: [AuthorizeGuard], loadChildren: "./profile/profile.module#ProfileModule" },
+            { path: "role", canActivate: [AuthorizeGuard], loadChildren: "./role/role.module#RoleModule" },
+            { path: "user", canActivate: [AuthorizeGuard], loadChildren: "./user/user.module#UserModule" },
         ]),
         ModalModule.forRoot(),
         BootstrapModalModule,
