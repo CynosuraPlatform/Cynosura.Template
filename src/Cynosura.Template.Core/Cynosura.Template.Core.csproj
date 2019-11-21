@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="Cynosura.Core" Version="0.2.0-b63" />
+    <PackageReference Include="Cynosura.Core" Version="0.2.0-b75" />
     <PackageReference Include="FluentValidation" Version="8.5.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.0.0" />

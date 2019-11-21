@@ -3,7 +3,6 @@ import { ActivatedRoute, Router, Params } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 
-import { AuthService } from "../auth/auth.service";
 import { Error } from "../core/error.model";
 import { ProfileService } from "./profile.service";
 import { Profile } from "./profile.model";
@@ -27,7 +26,6 @@ export class ProfileEditComponent implements OnInit {
 
     constructor(
         private profileService: ProfileService,
-        private authService: AuthService,
         private fb: FormBuilder,
         private snackBar: MatSnackBar) {
     }
@@ -55,11 +53,11 @@ export class ProfileEditComponent implements OnInit {
         this.profileService.updateProfile(profile)
             .then(
                 () => {
-                    this.authService.refreshTokens()
-                        .subscribe((token) => {
+                   // this.authService.refreshTokens()
+                        // .subscribe((token) => {
                             this.snackBar.open("Profile saved!", "Ok");
                             this.getProfile();
-                        });
+                        // });
                 },
                 (error) => {
                     this.onError(error);

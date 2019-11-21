@@ -1,32 +1,29 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
-import { User } from "../auth/user.model";
-import { AuthService } from "../auth/auth.service";
 import { Menu } from "./menu.model";
+import { AuthorizeService } from "../../api-authorization/authorize.service";
 
 @Injectable()
 export class MenuService {
     private menu: Menu;
-    private currentUser: User;
 
-    constructor(private authService: AuthService) {
+    constructor(private authorize: AuthorizeService) {
         this.menu = new Menu();
 // ADD MENU ITEMS HERE
         this.menu.items.push({ route: "/user", name: "Users", icon: "person", roles: ["Administrator"] });
         this.menu.items.push({ route: "/role", name: "Roles", icon: "lock", roles: ["Administrator"] });
-
-        this.authService.currentUser$.subscribe(currentUser => {
-            this.currentUser = currentUser;
-        });
     }
 
-    getMenu(): Promise<Menu> {
-        const menu: Menu = {
-            items: this.menu.items.filter(item => {
-                return item.roles.some(role => this.currentUser ? this.currentUser.roles.includes(role) : false);
-            })
-        };
-        return Promise.resolve(menu);
+    getMenu(): Observable<Menu> {
+        return this.authorize.getRoles().pipe(map(roles => {
+            const menu: Menu = {
+                items: this.menu.items.filter(item => {
+                    return item.roles.some(role => roles.includes(role));
+                })
+            };
+            return menu;
+        }));
     }
 }
