@@ -63,7 +63,6 @@ namespace Cynosura.Template.Web
                 .AddIdentityServerJwt();
 
             services.AddMvc()
-                //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddMvcOptions(o =>
                 {
                     o.Filters.Add(typeof(ExceptionLoggerFilter), 10);
@@ -71,6 +70,7 @@ namespace Cynosura.Template.Web
                 })
                 .AddJsonOptions(o =>
                 {
+                    o.JsonSerializerOptions.IgnoreNullValues = true;
                     o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
                 });
 
