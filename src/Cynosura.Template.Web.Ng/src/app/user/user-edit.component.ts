@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router, Params } from "@angular/router";
-import { MatSnackBar } from "@angular/material";
 
 import { User } from "../user-core/user.model";
 import { CreateUser, UpdateUser } from "../user-core/user-request.model";
@@ -11,6 +10,7 @@ import { Role } from "../role-core/role.model";
 import { RoleService } from "../role-core/role.service";
 
 import { Error } from "../core/error.model";
+import { ErrorHelper } from "../core/error.helper";
 
 
 @Component({
@@ -36,7 +36,7 @@ export class UserEditComponent implements OnInit {
                 private route: ActivatedRoute,
                 private router: Router,
                 private fb: FormBuilder,
-                private snackBar: MatSnackBar) { }
+                private errorHelper: ErrorHelper) { }
 
     ngOnInit(): void {
         this.roleService.getRoles({}).then(roles => this.roles = roles.pageItems).then(() =>
@@ -95,7 +95,7 @@ export class UserEditComponent implements OnInit {
     onError(error: Error) {
         this.error = error;
         if (error) {
-            this.snackBar.open(error.message, "Ok");
+            this.errorHelper.showError(error);
             Error.setFormErrors(this.userForm, error);
         }
     }

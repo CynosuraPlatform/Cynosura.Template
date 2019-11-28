@@ -2,12 +2,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router, Params } from "@angular/router";
-import { MatSnackBar } from "@angular/material";
 
 import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
 import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
 
 import { Error } from "../core/error.model";
+import { ErrorHelper } from "../core/error.helper";
 import { ConvertStringTo } from "../core/converter.helper";
 
 
@@ -29,7 +29,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
                 private route: ActivatedRoute,
                 private router: Router,
                 private fb: FormBuilder,
-                private snackBar: MatSnackBar) {
+                private errorHelper: ErrorHelper) {
     }
 
     ngOnInit(): void {
@@ -79,7 +79,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
     onError(error: Error) {
         this.error = error;
         if (error) {
-            this.snackBar.open(error.message, "Ok");
+            this.errorHelper.showError(error);
             Error.setFormErrors(this.$model.Entity.NameLower$Form, error);
         }
     }

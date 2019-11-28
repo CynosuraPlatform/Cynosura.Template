@@ -33,6 +33,7 @@ import { ModalComponent } from "./modal.component";
 import { ModalHelper } from "./modal.helper";
 import { AppErrorHandler } from "./app-error.handler";
 import { ClickOutsideDirective } from "./directives/click-outside.directive";
+import { ErrorHelper } from "./error.helper";
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import { ClickOutsideDirective } from "./directives/click-outside.directive";
         StoreService,
         LoadingService,
         ModalHelper,
+        ErrorHelper,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
