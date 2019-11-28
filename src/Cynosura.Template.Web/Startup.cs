@@ -68,6 +68,10 @@ namespace Cynosura.Template.Web
                 {
                     o.Filters.Add(typeof(ExceptionLoggerFilter), 10);
                     o.ModelBinderProviders.Insert(0, new UserInfoModelBinderProvider());
+                })
+                .AddJsonOptions(o =>
+                {
+                    o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
                 });
 
             services.AddAuthorization(options =>
