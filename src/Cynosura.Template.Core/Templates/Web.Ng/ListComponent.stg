@@ -12,6 +12,7 @@ import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
+import { NoticeHelper } from "../core/notice.helper";
 
 class $model.Entity.Name$ListState {
     pageSize = 10;
@@ -38,7 +39,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService,
-        private snackBar: MatSnackBar
+        private noticeHelper: NoticeHelper
         ) {
         this.state = this.storeService.get("$model.Entity.NameLower$ListState", new $model.Entity.Name$ListState());
     }
@@ -79,7 +80,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
 
     onError(error: Error) {
         if (error) {
-            this.snackBar.open(error.message, "Ok");
+            this.noticeHelper.showError(error);
         }
     }
 }

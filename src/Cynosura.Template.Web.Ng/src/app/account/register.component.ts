@@ -6,6 +6,7 @@ import { MatSnackBar } from "@angular/material";
 import { ModalHelper } from "../core/modal.helper";
 import { Error } from "../core/error.model";
 import { AccountService } from "./account.service";
+import { NoticeHelper } from "../core/notice.helper";
 
 @Component({
     selector: "app-register",
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private modalHelper: ModalHelper,
-        private snackBar: MatSnackBar
+        private noticeHelper: NoticeHelper
     ) { }
 
     ngOnInit(): void {
@@ -62,10 +63,10 @@ export class RegisterComponent implements OnInit {
         return null;
     }
 
-    onError(error) {
+    onError(error: Error) {
         this.error = error;
         if (error) {
-            this.snackBar.open(error.message, "Ok");
+            this.noticeHelper.showError(error);
             Error.setFormErrors(this.registerForm, error);
         }
     }

@@ -33,7 +33,7 @@ export class ModalHelper {
                 title: title,
                 body: message,
                 okButton: okButton,
-                cancelButton: "Нет"
+                cancelButton: "Cancel"
             }
         });
 

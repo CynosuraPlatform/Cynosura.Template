@@ -6,7 +6,7 @@ import { Role } from "../role-core/role.model";
 import { RoleService } from "../role-core/role.service";
 
 import { Error } from "../core/error.model";
-import { ErrorHelper } from "../core/error.helper";
+import { NoticeHelper } from "../core/notice.helper";
 
 
 @Component({
@@ -27,7 +27,7 @@ export class RoleEditComponent implements OnInit {
                 private route: ActivatedRoute,
                 private router: Router,
                 private fb: FormBuilder,
-                private errorHelper: ErrorHelper) {
+                private noticeHelper: NoticeHelper) {
     }
 
     ngOnInit(): void {
@@ -77,7 +77,7 @@ export class RoleEditComponent implements OnInit {
     onError(error: Error) {
         this.error = error;
         if (error) {
-            this.errorHelper.showError(error);
+            this.noticeHelper.showError(error);
             Error.setFormErrors(this.roleForm, error);
         }
     }

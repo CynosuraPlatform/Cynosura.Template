@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { PageEvent } from "@angular/material/paginator";
-import { MatSnackBar } from "@angular/material";
 
 import { Role } from "../role-core/role.model";
 import { RoleFilter } from "../role-core/role-filter.model";
@@ -11,6 +10,7 @@ import { ModalHelper } from "../core/modal.helper";
 import { StoreService } from "../core/store.service";
 import { Error } from "../core/error.model";
 import { Page } from "../core/page.model";
+import { NoticeHelper } from "../core/notice.helper";
 
 class RoleListState {
     pageSize = 10;
@@ -37,7 +37,7 @@ export class RoleListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storeService: StoreService,
-        private snackBar: MatSnackBar
+        private noticeHelper: NoticeHelper
         ) {
         this.state = this.storeService.get("roleListState", new RoleListState());
     }
@@ -78,7 +78,7 @@ export class RoleListComponent implements OnInit {
 
     onError(error: Error) {
         if (error) {
-            this.snackBar.open(error.message, "Ok");
+            this.noticeHelper.showError(error);
         }
     }
 }

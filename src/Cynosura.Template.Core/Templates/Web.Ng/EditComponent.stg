@@ -7,7 +7,7 @@ import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Ent
 import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
 
 import { Error } from "../core/error.model";
-import { ErrorHelper } from "../core/error.helper";
+import { NoticeHelper } from "../core/notice.helper";
 import { ConvertStringTo } from "../core/converter.helper";
 
 
@@ -29,7 +29,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
                 private route: ActivatedRoute,
                 private router: Router,
                 private fb: FormBuilder,
-                private errorHelper: ErrorHelper) {
+                private noticeHelper: NoticeHelper) {
     }
 
     ngOnInit(): void {
@@ -79,7 +79,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
     onError(error: Error) {
         this.error = error;
         if (error) {
-            this.errorHelper.showError(error);
+            this.noticeHelper.showError(error);
             Error.setFormErrors(this.$model.Entity.NameLower$Form, error);
         }
     }
