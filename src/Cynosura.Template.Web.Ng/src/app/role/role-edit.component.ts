@@ -37,17 +37,14 @@ export class RoleEditComponent implements OnInit {
         });
     }
 
-    private getRole(id: number): void {
+    private async getRole(id: number) {
         this.id = id;
         if (id === 0) {
             this.role = new Role();
-            this.roleForm.patchValue(this.role);
         } else {
-            this.roleService.getRole({ id }).then(role => {
-                this.role = role;
-                this.roleForm.patchValue(this.role);
-            });
+            this.role = await this.roleService.getRole({ id });
         }
+        this.roleForm.patchValue(this.role);
     }
 
     cancel(): void {
@@ -58,19 +55,16 @@ export class RoleEditComponent implements OnInit {
         this.saveRole();
     }
 
-    private saveRole(): void {
-        if (this.id) {
-            this.roleService.updateRole(this.roleForm.value)
-                .then(
-                    () => window.history.back(),
-                    error => this.onError(error)
-                );
-        } else {
-            this.roleService.createRole(this.roleForm.value)
-                .then(
-                    () => window.history.back(),
-                    error => this.onError(error)
-                );
+    private async saveRole() {
+        try {
+            if (this.id) {
+                await this.roleService.updateRole(this.roleForm.value);
+            } else {
+                await this.roleService.createRole(this.roleForm.value);
+            }
+            window.history.back();
+        } catch (error) {
+            this.onError(error);
         }
     }
 

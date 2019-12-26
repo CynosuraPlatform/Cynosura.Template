@@ -48,12 +48,12 @@ export class UserListComponent implements OnInit {
         this.getUsers();
     }
 
-    getUsers(): void {
-        this.userService.getUsers({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
-            .then(content => {
-                this.content = content;
-            })
-            .catch(error => this.onError(error));
+    async getUsers() {
+        this.content = await this.userService.getUsers({
+            pageIndex: this.state.pageIndex,
+            pageSize: this.state.pageSize,
+            filter: this.state.filter
+        });
     }
 
     reset(): void {
@@ -63,12 +63,13 @@ export class UserListComponent implements OnInit {
 
     delete(id: number): void {
         this.modalHelper.confirmDelete()
-            .subscribe(() => {
-                this.userService.deleteUser({ id })
-                    .then(() => {
-                        this.getUsers();
-                    })
-                    .catch(error => this.onError(error));
+            .subscribe(async () => {
+                try {
+                    await this.userService.deleteUser({ id });
+                    this.getUsers();
+                } catch (error) {
+                    this.onError(error);
+                }
             });
     }
 

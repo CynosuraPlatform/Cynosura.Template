@@ -48,12 +48,12 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         this.get$model.Entity.PluralName$();
     }
 
-    get$model.Entity.PluralName$(): void {
-        this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
-            .then(content => {
-                this.content = content;
-            })
-            .catch(error => this.onError(error));
+    async get$model.Entity.PluralName$() {
+        this.content = await this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({
+            pageIndex: this.state.pageIndex,
+            pageSize: this.state.pageSize,
+            filter: this.state.filter
+        });
     }
 
     reset(): void {
@@ -63,12 +63,13 @@ export class $model.Entity.Name$ListComponent implements OnInit {
 
     delete($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$): void {
         this.modalHelper.confirmDelete()
-            .subscribe(() => {
-                this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ $model.Entity.IdField.NameLower$ })
-                    .then(() => {
-                        this.get$model.Entity.PluralName$();
-                    })
-                    .catch(error => this.onError(error));
+            .subscribe(async () => {
+                try {
+                    await this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ $model.Entity.IdField.NameLower$ });
+                    this.get$model.Entity.PluralName$();
+                } catch (error) {
+                    this.onError(error);
+                }
             });
     }
 

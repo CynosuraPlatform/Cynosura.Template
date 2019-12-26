@@ -46,12 +46,12 @@ export class RoleListComponent implements OnInit {
         this.getRoles();
     }
 
-    getRoles(): void {
-        this.roleService.getRoles({ pageIndex: this.state.pageIndex, pageSize: this.state.pageSize, filter: this.state.filter })
-            .then(content => {
-                this.content = content;
-            })
-            .catch(error => this.onError(error));
+    async getRoles() {
+        this.content = await this.roleService.getRoles({
+            pageIndex: this.state.pageIndex,
+            pageSize: this.state.pageSize,
+            filter: this.state.filter
+        });
     }
 
     reset(): void {
@@ -61,12 +61,13 @@ export class RoleListComponent implements OnInit {
 
     delete(id: number): void {
         this.modalHelper.confirmDelete()
-            .subscribe(() => {
-                this.roleService.deleteRole({ id })
-                    .then(() => {
-                        this.getRoles();
-                    })
-                    .catch(error => this.onError(error));
+            .subscribe(async () => {
+                try {
+                    await this.roleService.deleteRole({ id });
+                    this.getRoles();
+                } catch (error) {
+                    this.onError(error);
+                }
             });
     }
 

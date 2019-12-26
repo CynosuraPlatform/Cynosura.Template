@@ -38,29 +38,26 @@ export class UserEditComponent implements OnInit {
                 private fb: FormBuilder,
                 private noticeHelper: NoticeHelper) { }
 
-    ngOnInit(): void {
-        this.roleService.getRoles({}).then(roles => this.roles = roles.pageItems).then(() =>
-            this.route.params.forEach((params: Params) => {
-                const id = +params.id;
-                this.getUser(id);
-            }));
+    async ngOnInit() {
+        this.roles = (await this.roleService.getRoles({})).pageItems;
+        this.route.params.forEach((params: Params) => {
+            const id = +params.id;
+            this.getUser(id);
+        });
     }
 
-    private getUser(id: number): void {
+    private async getUser(id: number) {
         this.id = id;
         if (id === 0) {
             this.user = new User();
-            this.userForm.patchValue(this.user);
         } else {
-            this.userService.getUser({ id }).then(user => {
-                this.user = user;
-                this.userForm.patchValue(this.user);
-                for (const role of this.roles) {
-                    if (this.user.roleIds.indexOf(role.id) !== -1) {
-                        role.isSelected = true;
-                    }
-                }
-            });
+            this.user = await this.userService.getUser({ id });
+        }
+        this.userForm.patchValue(this.user);
+        for (const role of this.roles) {
+            if (this.user.roleIds && this.user.roleIds.indexOf(role.id) !== -1) {
+                role.isSelected = true;
+            }
         }
     }
 
@@ -72,23 +69,20 @@ export class UserEditComponent implements OnInit {
         this.saveUser();
     }
 
-    private saveUser(): void {
-        const user = this.userForm.value;
-        user.roleIds = this.roles
-            .filter(role => role.isSelected)
-            .map(role => role.id);
-        if (this.id) {
-            this.userService.updateUser(user)
-                .then(
-                    () => window.history.back(),
-                    error => this.onError(error)
-                );
-        } else {
-            this.userService.createUser(user)
-                .then(
-                    () => window.history.back(),
-                    error => this.onError(error)
-                );
+    private async saveUser() {
+        try {
+            const user = this.userForm.value;
+            user.roleIds = this.roles
+                .filter(role => role.isSelected)
+                .map(role => role.id);
+            if (this.id) {
+                await this.userService.updateUser(user);
+            } else {
+                await this.userService.createUser(user);
+            }
+            window.history.back();
+        } catch (error) {
+            this.onError(error);
         }
     }
 

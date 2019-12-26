@@ -39,17 +39,14 @@ $model.Entity.AllFields:field(); separator=",\n"$
         });
     }
 
-    private get$model.Entity.Name$(id: $model.Entity.IdField.JsTypeName$): void {
+    private async get$model.Entity.Name$(id: $model.Entity.IdField.JsTypeName$) {
         this.id = id;
         if (!id) {
             this.$model.Entity.NameLower$ = new $model.Entity.Name$();
-            this.$model.Entity.NameLower$Form.patchValue(this.$model.Entity.NameLower$);
         } else {
-            this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id }).then($model.Entity.NameLower$ => {
-                this.$model.Entity.NameLower$ = $model.Entity.NameLower$;
-                this.$model.Entity.NameLower$Form.patchValue(this.$model.Entity.NameLower$);
-            });
+            this.$model.Entity.NameLower$ = await this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id });
         }
+        this.$model.Entity.NameLower$Form.patchValue(this.$model.Entity.NameLower$);
     }
 
     cancel(): void {
@@ -60,19 +57,16 @@ $model.Entity.AllFields:field(); separator=",\n"$
         this.save$model.Entity.Name$();
     }
 
-    private save$model.Entity.Name$(): void {
-        if (this.id) {
-            this.$model.Entity.NameLower$Service.update$model.Entity.Name$(this.$model.Entity.NameLower$Form.value)
-                .then(
-                    () => window.history.back(),
-                    error => this.onError(error)
-                );
-        } else {
-            this.$model.Entity.NameLower$Service.create$model.Entity.Name$(this.$model.Entity.NameLower$Form.value)
-                .then(
-                    () => window.history.back(),
-                    error => this.onError(error)
-                );
+    private async save$model.Entity.Name$() {
+        try {
+            if (this.id) {
+                await this.$model.Entity.NameLower$Service.update$model.Entity.Name$(this.$model.Entity.NameLower$Form.value);
+            } else {
+                await this.$model.Entity.NameLower$Service.create$model.Entity.Name$(this.$model.Entity.NameLower$Form.value);
+            }
+            window.history.back();
+        } catch (error) {
+            this.onError(error);
         }
     }
 
