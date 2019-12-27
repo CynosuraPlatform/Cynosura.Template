@@ -4,9 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule, Route } from "@angular/router";
 
-import { ModalModule } from "ngx-modialog";
-import { BootstrapModalModule } from "ngx-modialog/plugins/bootstrap";
-
 import { MaterialModule } from "./material.module";
 import { ApiAuthorizationModule } from "../api-authorization/api-authorization.module";
 import { CoreModule } from "./core/core.module";
@@ -37,8 +34,6 @@ import { AuthorizeGuard } from "../api-authorization/authorize.guard";
             { path: "role", canActivate: [AuthorizeGuard], loadChildren: "./role/role.module#RoleModule" },
             { path: "user", canActivate: [AuthorizeGuard], loadChildren: "./user/user.module#UserModule" },
         ]),
-        ModalModule.forRoot(),
-        BootstrapModalModule,
         MaterialModule,
         CoreModule,
         ApiAuthorizationModule,
