@@ -11,6 +11,7 @@ using IdentityServer4.EntityFramework.Interfaces;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Options;
 
 namespace Cynosura.Template.Data
@@ -51,6 +52,19 @@ namespace Cynosura.Template.Data
 
             var assemblies = CoreHelper.GetPlatformAndAppAssemblies();
             builder.ApplyAllConfigurations(assemblies);
+
+            // Specify all DateTime properties as Utc when read from database
+            var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
+                v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(DateTime) || property.ClrType == typeof(DateTime?))
+                        property.SetValueConverter(dateTimeConverter);
+                }
+            }
         }
 
         protected virtual void OnSavingChanges()
