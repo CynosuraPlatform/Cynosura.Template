@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { PageEvent } from "@angular/material/paginator";
-import { MatSnackBar } from "@angular/material";
 
 import { User } from "../user-core/user.model";
 import { UserFilter } from "../user-core/user-filter.model";

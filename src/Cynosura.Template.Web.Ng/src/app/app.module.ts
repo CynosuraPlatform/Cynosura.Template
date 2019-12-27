@@ -30,9 +30,21 @@ import { AuthorizeGuard } from "../api-authorization/authorize.guard";
         RouterModule.forRoot([
             { path: "", component: HomeComponent, pathMatch: "full", canActivate: [AuthorizeGuard] },
 // ADD ROUTES HERE
-            { path: "profile", canActivate: [AuthorizeGuard], loadChildren: "./profile/profile.module#ProfileModule" },
-            { path: "role", canActivate: [AuthorizeGuard], loadChildren: "./role/role.module#RoleModule" },
-            { path: "user", canActivate: [AuthorizeGuard], loadChildren: "./user/user.module#UserModule" },
+            {
+                path: "profile",
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule)
+            },
+            {
+                path: "role",
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import("./role/role.module").then(m => m.RoleModule)
+            },
+            {
+                path: "user",
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import("./user/user.module").then(m => m.UserModule)
+            },
         ]),
         MaterialModule,
         CoreModule,

@@ -23,7 +23,7 @@
                 <span>Log Out</span>
             </a>
         </mat-menu>
-        <a mat-button [routerLink]="['/authentication/login']" *ngIf="!(isAuthenticated | async)">
+        <a mat-button [routerLink]="['/authentication/login']" *ngIf="(isAuthenticated | async) === false">
             <mat-icon matListIcon>account_circle</mat-icon>
             <span> Log In</span>
         </a>
@@ -32,7 +32,7 @@
 
 <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <app-nav-menu (click)="toggle(sidenav)"></app-nav-menu>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
