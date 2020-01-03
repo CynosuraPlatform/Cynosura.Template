@@ -24,6 +24,15 @@ html, body {
     height: 100%;
 }
 
+
+.mat-table {
+    width: 100%;
+
+    .mat-header-cell:not(:last-of-type), .mat-cell:not(:last-of-type) {
+        padding-right: 8px;
+     }
+}
+
 .owl-dt-container {
     font-size: 10pt;
 }
