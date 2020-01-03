@@ -6,11 +6,11 @@
     </mat-card-header>
 
     <form [formGroup]="$model.Entity.NameLower$Form" (ngSubmit)="onSubmit()">
+        $model.Entity.AllFields:field(); separator="\n"$
         <mat-card-actions>
             <button mat-raised-button color="primary" type="submit">Save</button>
-            <button mat-raised-button type="button" (click)="cancel()">Back</button>
+            <button mat-raised-button type="button" (click)="cancel()">Cancel</button>
         </mat-card-actions>
-        $model.Entity.AllFields:field(); separator="\n"$
     </form>
 
 </mat-card>
