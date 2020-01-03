@@ -30,6 +30,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     pageSizeOptions = [10, 20];
     columns = [
         $model.Entity.AllFields:field(); separator="\r\n"$
+        "action"
     ];
 
     constructor(

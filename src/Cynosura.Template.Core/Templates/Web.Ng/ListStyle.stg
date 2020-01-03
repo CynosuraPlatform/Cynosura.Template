@@ -3,6 +3,10 @@ mat-card {
     max-width: 1200px;
     margin: 0 auto;
 
+    mat-card-header {
+        margin: 0 -16px;
+    }
+
     mat-card-actions {
         margin-left: 0;
         margin-right: 0;
@@ -19,27 +23,28 @@ mat-card {
             margin: 7px 0 7px 0;
         }
     }
+
+    .mat-table {
+        .mat-row {
+            cursor: pointer;
+
+            &:hover {
+                .mat-column-action {
+                    a {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+
+        .mat-column-action {
+            text-align: right;
+
+            a {
+                visibility: hidden;
+            }
+        }
+    }
 }
 
-mat-card-content {
-    tr.table-expand-item {
-        height: 0 !important;
-    }
-
-    tr.table-item:not(.table-item-expanded):hover {
-        background: #f5f5f5;
-    }
-
-    tr.table-item:not(.table-item-expanded):active {
-        background: #efefef;
-    }
-
-    .table-item td {
-        border-bottom-width: 0;
-    }
-
-    app-table-detail button, app-table-detail a {
-        margin-right: 8px;
-    }
-}
 >>
