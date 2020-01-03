@@ -30,7 +30,17 @@ html, body {
 
     .mat-header-cell:not(:last-of-type), .mat-cell:not(:last-of-type) {
         padding-right: 8px;
-     }
+    }
+
+    .mat-cell {
+        app-text-view {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block; 
+            overflow: hidden;
+            max-width: 220px;
+        }
+    }
 }
 
 .owl-dt-container {
