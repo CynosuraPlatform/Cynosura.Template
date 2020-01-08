@@ -33,7 +33,7 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let item">
-                    <a (click)="$event.stopPropagation()" [matMenuTriggerFor]="actionMenu"><mat-icon>more_vert</mat-icon></a>
+                    <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="actionMenu"><mat-icon>more_vert</mat-icon></button>
                     <mat-menu #actionMenu="matMenu">
                         <a mat-menu-item (click)="delete(item.id)">Delete</a>
                     </mat-menu>

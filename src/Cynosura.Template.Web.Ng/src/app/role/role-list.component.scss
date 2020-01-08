@@ -26,22 +26,10 @@ mat-card {
     .mat-table {
         .mat-row {
             cursor: pointer;
-
-            &:hover {
-                .mat-column-action {
-                    a {
-                        visibility: visible;
-                    }
-                }
-            }
         }
 
         .mat-column-action {
             text-align: right;
-
-            a {
-                visibility: hidden;
-            }
         }
     }
 }
