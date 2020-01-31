@@ -17,13 +17,13 @@ export class ProfileService {
 
     getProfile(getProfile: GetProfile): Promise<Profile> {
         const url = `${this.apiUrl}/GetProfile`;
-        return this.httpClient.post<Profile>(url, JSON.stringify(getProfile), { headers: this.headers })
+        return this.httpClient.post<Profile>(url, getProfile)
             .toPromise();
     }
 
     updateProfile(updateProfile: UpdateProfile): Promise<{}> {
         const url = `${this.apiUrl}/UpdateProfile`;
-        return this.httpClient.post(url, JSON.stringify(updateProfile), { headers: this.headers })
+        return this.httpClient.post(url, updateProfile)
             .toPromise();
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { filter } from "rxjs/operators";
 
@@ -33,7 +33,7 @@ export class ModalHelper {
                 title: title,
                 body: message,
                 okButton: okButton,
-                cancelButton: "Нет"
+                cancelButton: "Cancel"
             }
         });
 

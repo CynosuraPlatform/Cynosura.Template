@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, Params } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { MatSnackBar } from "@angular/material";
 
-import { AuthService } from "../auth/auth.service";
 import { Error } from "../core/error.model";
 import { ProfileService } from "./profile.service";
 import { Profile } from "./profile.model";
 import { UpdateProfile } from "./profile-request.model";
+import { NoticeHelper } from "../core/notice.helper";
 
 @Component({
     selector: "app-profile-edit",
@@ -27,9 +26,8 @@ export class ProfileEditComponent implements OnInit {
 
     constructor(
         private profileService: ProfileService,
-        private authService: AuthService,
         private fb: FormBuilder,
-        private snackBar: MatSnackBar) {
+        private noticeHelper: NoticeHelper) {
     }
 
     ngOnInit(): void {
@@ -55,11 +53,11 @@ export class ProfileEditComponent implements OnInit {
         this.profileService.updateProfile(profile)
             .then(
                 () => {
-                    this.authService.refreshTokens()
-                        .subscribe((token) => {
-                            this.snackBar.open("Profile saved!", "Ok");
+                   // this.authService.refreshTokens()
+                        // .subscribe((token) => {
+                            this.noticeHelper.showMessage("Profile saved!");
                             this.getProfile();
-                        });
+                        // });
                 },
                 (error) => {
                     this.onError(error);
@@ -70,7 +68,7 @@ export class ProfileEditComponent implements OnInit {
     onError(error: Error) {
         this.error = error;
         if (error) {
-            this.snackBar.open(error.message, "Ok");
+            this.noticeHelper.showError(error);
             Error.setFormErrors(this.profileForm, error);
         }
     }

@@ -12,9 +12,6 @@ COPY Cynosura.Template.Core/. ./Cynosura.Template.Core/
 COPY Cynosura.Template.Data/. ./Cynosura.Template.Data/
 COPY Cynosura.Template.Worker/. ./Cynosura.Template.Worker/
 
-RUN sed -i "s|c:\\\temp\\\Cynosura.Template\\\|/my/logs/|g" Cynosura.Template.Worker/nlog.config
-RUN sed -i "s|c:\\\temp\\\|/my/logs/|g" Cynosura.Template.Worker/nlog.config
-
 RUN dotnet publish Cynosura.Template.Worker/Cynosura.Template.Worker.csproj -c Release -o ../out
 
 FROM mcr.microsoft.com/dotnet/core/runtime:3.0

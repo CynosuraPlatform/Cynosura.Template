@@ -1,22 +1,21 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule, Route } from "@angular/router";
 
-import { ModalModule } from "ngx-modialog";
-import { BootstrapModalModule } from "ngx-modialog/plugins/bootstrap";
-
 import { MaterialModule } from "./material.module";
-import { AuthModule } from "./auth/auth.module";
+import { ApiAuthorizationModule } from "../api-authorization/api-authorization.module";
 import { CoreModule } from "./core/core.module";
 import { AccountModule } from "./account/account.module";
 
+import { AuthorizeInterceptor } from "../api-authorization/authorize.interceptor";
 import { ConfigService } from "./config/config.service";
 import { MenuService } from "./nav-menu/menu.service";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
+import { AuthorizeGuard } from "../api-authorization/authorize.guard";
 
 @NgModule({
     declarations: [
@@ -29,17 +28,27 @@ import { HomeComponent } from "./home/home.component";
         HttpClientModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: "", component: HomeComponent, pathMatch: "full" },
+            { path: "", component: HomeComponent, pathMatch: "full", canActivate: [AuthorizeGuard] },
 // ADD ROUTES HERE
-            { path: "profile", loadChildren: "./profile/profile.module#ProfileModule" },
-            { path: "role", loadChildren: "./role/role.module#RoleModule" },
-            { path: "user", loadChildren: "./user/user.module#UserModule" },
+            {
+                path: "profile",
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule)
+            },
+            {
+                path: "role",
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import("./role/role.module").then(m => m.RoleModule)
+            },
+            {
+                path: "user",
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import("./user/user.module").then(m => m.UserModule)
+            },
         ]),
-        ModalModule.forRoot(),
-        BootstrapModalModule,
         MaterialModule,
         CoreModule,
-        AuthModule,
+        ApiAuthorizationModule,
         AccountModule,
     ],
     exports: [
@@ -55,7 +64,8 @@ import { HomeComponent } from "./home/home.component";
             },
             multi: true,
             deps: [ConfigService]
-        }
+        },
+        { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
     ],
     bootstrap: [AppComponent]
 })

@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:42000",
-      "sslPort": 0
+      "sslPort": 42001
     }
   },
   "profiles": {
@@ -18,7 +18,7 @@
     "Cynosura.Template.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:42000",
+      "applicationUrl": "https://localhost:42001;http://localhost:42000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

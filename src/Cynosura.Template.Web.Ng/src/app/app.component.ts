@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Router } from "@angular/router";
-import { MatSidenav } from "@angular/material";
+import { MatSidenav } from "@angular/material/sidenav";
 import { MediaObserver } from "@angular/flex-layout";
 import { Observable } from "rxjs";
 import { debounceTime, map, tap, first } from "rxjs/operators";
 
-import { AuthService } from "./auth/auth.service";
 import { LoadingService } from "./core/loading.service";
+import { AuthorizeService } from "../api-authorization/authorize.service";
 
 @Component({
   selector: "app-root",
@@ -16,8 +16,8 @@ import { LoadingService } from "./core/loading.service";
 export class AppComponent implements OnInit {
     title = "app";
     isLoading = false;
-    loggedIn = false;
-    userName: string;
+    isAuthenticated: Observable<boolean>;
+    userName: Observable<string>;
 
     // FlexLayout
     isHandset$: Observable<boolean> = this.media.asObservable().pipe(
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         ),
         tap(() => this.changeDetectorRef.detectChanges()));
 
-    constructor(private authService: AuthService,
+    constructor(private authorizeService: AuthorizeService,
                 private loadingService: LoadingService,
                 private cdRef: ChangeDetectorRef,
                 private media: MediaObserver,
@@ -45,14 +45,9 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.init()
-            .subscribe(
-                () => { console.info("Auth init success"); },
-                error => console.warn(error)
-            );
         this.emitEventResize();
-        this.authService.loggedIn$.subscribe(loggedIn => this.loggedIn = loggedIn);
-        this.authService.currentUser$.subscribe((user) => this.userName = user ? user.userName : null);
+        this.isAuthenticated = this.authorizeService.isAuthenticated();
+        this.userName = this.authorizeService.getUser().pipe(map(u => u && u.name));
     }
 
     toggle(sidenav: MatSidenav): void {
@@ -69,10 +64,5 @@ export class AppComponent implements OnInit {
     emitEventResize() {
         // fix for mat-sidenav-content not resizing
         window.dispatchEvent(new Event("resize"));
-    }
-
-    logout() {
-        this.authService.logout();
-        this.router.navigate(["/"]);
     }
 }
