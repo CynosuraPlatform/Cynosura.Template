@@ -1,17 +1,17 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, Params } from "@angular/router";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { Error } from "../core/error.model";
-import { ProfileService } from "./profile.service";
-import { Profile } from "./profile.model";
-import { UpdateProfile } from "./profile-request.model";
-import { NoticeHelper } from "../core/notice.helper";
+import { Error } from '../core/error.model';
+import { ProfileService } from './profile.service';
+import { Profile } from './profile.model';
+import { UpdateProfile } from './profile-request.model';
+import { NoticeHelper } from '../core/notice.helper';
 
 @Component({
-    selector: "app-profile-edit",
-    templateUrl: "./edit.component.html",
-    styleUrls: ["./edit.component.scss"]
+    selector: 'app-profile-edit',
+    templateUrl: './edit.component.html',
+    styleUrls: ['./edit.component.scss']
 })
 export class ProfileEditComponent implements OnInit {
     profile: Profile;
@@ -55,7 +55,7 @@ export class ProfileEditComponent implements OnInit {
                 () => {
                    // this.authService.refreshTokens()
                         // .subscribe((token) => {
-                            this.noticeHelper.showMessage("Profile saved!");
+                            this.noticeHelper.showMessage('Profile saved!');
                             this.getProfile();
                         // });
                 },

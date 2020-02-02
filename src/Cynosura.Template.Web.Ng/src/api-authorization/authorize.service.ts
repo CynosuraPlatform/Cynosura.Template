@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { User, UserManager, WebStorageStateStore } from "oidc-client";
-import { BehaviorSubject, concat, from, Observable } from "rxjs";
-import { filter, map, mergeMap, take, tap } from "rxjs/operators";
-import { ApplicationPaths, ApplicationName } from "./api-authorization.constants";
-import { ConfigService } from "../app/config/config.service";
+import { Injectable } from '@angular/core';
+import { User, UserManager, WebStorageStateStore } from 'oidc-client';
+import { BehaviorSubject, concat, from, Observable } from 'rxjs';
+import { filter, map, mergeMap, take, tap } from 'rxjs/operators';
+import { ApplicationPaths, ApplicationName } from './api-authorization.constants';
+import { ConfigService } from '../app/config/config.service';
 
 export type IAuthenticationResult =
   SuccessAuthenticationResult |
@@ -36,7 +36,7 @@ export interface IUser {
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthorizeService {
   // By default pop ups are disabled because they don't work properly on Edge.
@@ -67,7 +67,7 @@ export class AuthorizeService {
         return [];
       } else if (u.role instanceof Array) {
         return u.role;
-      } else if (typeof u.role === "string") {
+      } else if (typeof u.role === 'string') {
         return [u.role];
       } else {
         return [];
@@ -98,21 +98,21 @@ export class AuthorizeService {
       return this.success(state);
     } catch (silentError) {
       // User might not be authenticated, fallback to popup authentication
-      console.log("Silent authentication error: ", silentError);
+      console.log('Silent authentication error: ', silentError);
 
       try {
         if (this.popUpDisabled) {
-          throw new Error("Popup disabled. Change 'authorize.service.ts:AuthorizeService.popupDisabled' to false to enable it.");
+          throw new Error('Popup disabled. Change \'authorize.service.ts:AuthorizeService.popupDisabled\' to false to enable it.');
         }
         user = await this.userManager.signinPopup(this.createArguments());
         this.userSubject.next(user.profile);
         return this.success(state);
       } catch (popupError) {
-        if (popupError.message === "Popup window closed") {
+        if (popupError.message === 'Popup window closed') {
           // The user explicitly cancelled the login action by closing an opened popup.
-          return this.error("The user closed the window.");
+          return this.error('The user closed the window.');
         } else if (!this.popUpDisabled) {
-          console.log("Popup authentication error: ", popupError);
+          console.log('Popup authentication error: ', popupError);
         }
 
         // PopUps might be blocked by the user, fallback to redirect
@@ -120,7 +120,7 @@ export class AuthorizeService {
           await this.userManager.signinRedirect(this.createArguments(state));
           return this.redirect();
         } catch (redirectError) {
-          console.log("Redirect authentication error: ", redirectError);
+          console.log('Redirect authentication error: ', redirectError);
           return this.error(redirectError);
         }
       }
@@ -134,15 +134,15 @@ export class AuthorizeService {
       this.userSubject.next(user && user.profile);
       return this.success(user && user.state);
     } catch (error) {
-      console.log("There was an error signing in: ", error);
-      return this.error("There was an error signing in.");
+      console.log('There was an error signing in: ', error);
+      return this.error('There was an error signing in.');
     }
   }
 
   public async signOut(state: any): Promise<IAuthenticationResult> {
     try {
       if (this.popUpDisabled) {
-        throw new Error("Popup disabled. Change 'authorize.service.ts:AuthorizeService.popupDisabled' to false to enable it.");
+        throw new Error('Popup disabled. Change \'authorize.service.ts:AuthorizeService.popupDisabled\' to false to enable it.');
       }
 
       await this.ensureUserManagerInitialized();
@@ -150,12 +150,12 @@ export class AuthorizeService {
       this.userSubject.next(null);
       return this.success(state);
     } catch (popupSignOutError) {
-      console.log("Popup signout error: ", popupSignOutError);
+      console.log('Popup signout error: ', popupSignOutError);
       try {
         await this.userManager.signoutRedirect(this.createArguments(state));
         return this.redirect();
       } catch (redirectSignOutError) {
-        console.log("Redirect signout error: ", popupSignOutError);
+        console.log('Redirect signout error: ', popupSignOutError);
         return this.error(redirectSignOutError);
       }
     }

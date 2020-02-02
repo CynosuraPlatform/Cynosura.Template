@@ -1,20 +1,20 @@
 ﻿main(model) ::= <<
-import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { ActivatedRoute, Router, Params } from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
-import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
+import { $model.Entity.Name$ } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
+import { $model.Entity.Name$Service } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service';
 
-import { Error } from "../core/error.model";
-import { NoticeHelper } from "../core/notice.helper";
-import { ConvertStringTo } from "../core/converter.helper";
+import { Error } from '../core/error.model';
+import { NoticeHelper } from '../core/notice.helper';
+import { ConvertStringTo } from '../core/converter.helper';
 
 
 @Component({
-    selector: "app-$model.Entity.NameKebab$-edit",
-    templateUrl: "./$model.Entity.NameKebab$-edit.component.html",
-    styleUrls: ["./$model.Entity.NameKebab$-edit.component.scss"]
+    selector: 'app-$model.Entity.NameKebab$-edit',
+    templateUrl: './$model.Entity.NameKebab$-edit.component.html',
+    styleUrls: ['./$model.Entity.NameKebab$-edit.component.scss']
 })
 export class $model.Entity.Name$EditComponent implements OnInit {
     id: $model.Entity.IdField.JsTypeName$;
@@ -34,7 +34,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            const id: $model.Entity.IdField.JsTypeName$ = params.id === "0" ? null : ConvertStringTo.$model.Entity.IdField.JsTypeName$(params.id);
+            const id: $model.Entity.IdField.JsTypeName$ = params.id === '0' ? null : ConvertStringTo.$model.Entity.IdField.JsTypeName$(params.id);
             this.get$model.Entity.Name$(id);
         });
     }

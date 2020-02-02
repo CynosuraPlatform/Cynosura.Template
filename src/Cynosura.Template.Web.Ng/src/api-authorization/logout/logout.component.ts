@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthenticationResultStatus, AuthorizeService } from "../authorize.service";
-import { BehaviorSubject } from "rxjs";
-import { ActivatedRoute, Router } from "@angular/router";
-import { take } from "rxjs/operators";
-import { LogoutActions, ApplicationPaths, ReturnUrlType } from "../api-authorization.constants";
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationResultStatus, AuthorizeService } from '../authorize.service';
+import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { LogoutActions, ApplicationPaths, ReturnUrlType } from '../api-authorization.constants';
 
 // The main responsibility of this component is to handle the user's logout process.
 // This is the starting point for the logout process, which is usually initiated when a
 // user clicks on the logout button on the LoginMenu component.
 @Component({
-  selector: "app-logout",
-  templateUrl: "./logout.component.html",
-  styleUrls: ["./logout.component.css"]
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
   public message = new BehaviorSubject<string>(null);
@@ -29,7 +29,7 @@ export class LogoutComponent implements OnInit {
           await this.logout(this.getReturnUrl());
         } else {
           // This prevents regular links to <app>/authentication/logout from triggering a logout
-          this.message.next("The logout was not initiated from within the page.");
+          this.message.next('The logout was not initiated from within the page.');
         }
 
         break;
@@ -37,7 +37,7 @@ export class LogoutComponent implements OnInit {
         await this.processLogoutCallback();
         break;
       case LogoutActions.LoggedOut:
-        this.message.next("You successfully logged out!");
+        this.message.next('You successfully logged out!');
         break;
       default:
         throw new Error(`Invalid action '${action}'`);
@@ -61,10 +61,10 @@ export class LogoutComponent implements OnInit {
           this.message.next(result.message);
           break;
         default:
-          throw new Error("Invalid authentication result status.");
+          throw new Error('Invalid authentication result status.');
       }
     } else {
-      this.message.next("You successfully logged out!");
+      this.message.next('You successfully logged out!');
     }
   }
 
@@ -75,7 +75,7 @@ export class LogoutComponent implements OnInit {
       case AuthenticationResultStatus.Redirect:
         // There should not be any redirects as the only time completeAuthentication finishes
         // is when we are doing a redirect sign in flow.
-        throw new Error("Should not redirect.");
+        throw new Error('Should not redirect.');
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(this.getReturnUrl(result.state));
         break;
@@ -83,7 +83,7 @@ export class LogoutComponent implements OnInit {
         this.message.next(result.message);
         break;
       default:
-        throw new Error("Invalid authentication result status.");
+        throw new Error('Invalid authentication result status.');
     }
   }
 
@@ -101,7 +101,7 @@ export class LogoutComponent implements OnInit {
       !(fromQuery.startsWith(`${window.location.origin}/`) ||
         /\/[^\/].*/.test(fromQuery))) {
       // This is an extra check to prevent open redirects.
-      throw new Error("Invalid return url. The return url needs to have the same origin as the current page.");
+      throw new Error('Invalid return url. The return url needs to have the same origin as the current page.');
     }
     return (state && state.returnUrl) ||
       fromQuery ||

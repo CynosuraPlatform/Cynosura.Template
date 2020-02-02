@@ -1,17 +1,17 @@
 ﻿main(model) ::= <<
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { PageEvent } from "@angular/material/paginator";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
-import { $model.Entity.Name$ } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model";
-import { $model.Entity.Name$Filter } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model";
-import { $model.Entity.Name$Service } from "../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service";
+import { $model.Entity.Name$ } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
+import { $model.Entity.Name$Filter } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model';
+import { $model.Entity.Name$Service } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service';
 
-import { ModalHelper } from "../core/modal.helper";
-import { StoreService } from "../core/store.service";
-import { Error } from "../core/error.model";
-import { Page } from "../core/page.model";
-import { NoticeHelper } from "../core/notice.helper";
+import { ModalHelper } from '../core/modal.helper';
+import { StoreService } from '../core/store.service';
+import { Error } from '../core/error.model';
+import { Page } from '../core/page.model';
+import { NoticeHelper } from '../core/notice.helper';
 
 class $model.Entity.Name$ListState {
     pageSize = 10;
@@ -20,9 +20,9 @@ class $model.Entity.Name$ListState {
 }
 
 @Component({
-    selector: "app-$model.Entity.NameKebab$-list",
-    templateUrl: "./$model.Entity.NameKebab$-list.component.html",
-    styleUrls: ["./$model.Entity.NameKebab$-list.component.scss"]
+    selector: 'app-$model.Entity.NameKebab$-list',
+    templateUrl: './$model.Entity.NameKebab$-list.component.html',
+    styleUrls: ['./$model.Entity.NameKebab$-list.component.scss']
 })
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
@@ -30,7 +30,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     pageSizeOptions = [10, 20];
     columns = [
         $model.Entity.AllFields:field(); separator="\r\n"$
-        "action"
+        'action'
     ];
 
     constructor(
@@ -41,7 +41,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         private storeService: StoreService,
         private noticeHelper: NoticeHelper
         ) {
-        this.state = this.storeService.get("$model.Entity.NameLower$ListState", new $model.Entity.Name$ListState());
+        this.state = this.storeService.get('$model.Entity.NameLower$ListState', new $model.Entity.Name$ListState());
     }
 
     ngOnInit(): void {
@@ -89,5 +89,5 @@ export class $model.Entity.Name$ListComponent implements OnInit {
 >>
 
 field(field) ::= <<
-"$field.NameLower$",
+'$field.NameLower$',
 >>

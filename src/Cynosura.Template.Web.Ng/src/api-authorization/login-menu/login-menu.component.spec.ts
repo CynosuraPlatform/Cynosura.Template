@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginMenuComponent } from "./login-menu.component";
+import { LoginMenuComponent } from './login-menu.component';
 
-describe("LoginMenuComponent", () => {
+describe('LoginMenuComponent', () => {
   let component: LoginMenuComponent;
   let fixture: ComponentFixture<LoginMenuComponent>;
 
@@ -19,7 +19,7 @@ describe("LoginMenuComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

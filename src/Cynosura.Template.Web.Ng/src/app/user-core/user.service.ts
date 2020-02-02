@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
-import { ConfigService } from "../config/config.service";
-import { CreatedEntity } from "../core/models/created-entity.model";
-import { User } from "./user.model";
-import { GetUsers, GetUser, UpdateUser, CreateUser, DeleteUser } from "./user-request.model";
-import { UserFilter } from "./user-filter.model";
-import { Page } from "../core/page.model";
+import { ConfigService } from '../config/config.service';
+import { CreatedEntity } from '../core/models/created-entity.model';
+import { User } from './user.model';
+import { GetUsers, GetUser, UpdateUser, CreateUser, DeleteUser } from './user-request.model';
+import { UserFilter } from './user-filter.model';
+import { Page } from '../core/page.model';
 
 @Injectable()
 export class UserService {
-    private apiUrl = this.configService.config.apiBaseUrl + "/api";
+    private apiUrl = this.configService.config.apiBaseUrl + '/api';
 
     constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 

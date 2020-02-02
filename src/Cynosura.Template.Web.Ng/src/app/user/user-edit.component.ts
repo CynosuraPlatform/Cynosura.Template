@@ -1,22 +1,22 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { ActivatedRoute, Router, Params } from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { User } from "../user-core/user.model";
-import { CreateUser, UpdateUser } from "../user-core/user-request.model";
-import { UserService } from "../user-core/user.service";
+import { User } from '../user-core/user.model';
+import { CreateUser, UpdateUser } from '../user-core/user-request.model';
+import { UserService } from '../user-core/user.service';
 
-import { Role } from "../role-core/role.model";
-import { RoleService } from "../role-core/role.service";
+import { Role } from '../role-core/role.model';
+import { RoleService } from '../role-core/role.service';
 
-import { Error } from "../core/error.model";
-import { NoticeHelper } from "../core/notice.helper";
+import { Error } from '../core/error.model';
+import { NoticeHelper } from '../core/notice.helper';
 
 
 @Component({
-    selector: "app-user-edit",
-    templateUrl: "./user-edit.component.html",
-    styleUrls: ["./user-edit.component.scss"]
+    selector: 'app-user-edit',
+    templateUrl: './user-edit.component.html',
+    styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
     id: number;
