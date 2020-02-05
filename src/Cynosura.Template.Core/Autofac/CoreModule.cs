@@ -11,6 +11,7 @@ namespace Cynosura.Template.Core.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ServiceProviderValidatorFactory>().As<IValidatorFactory>().InstancePerLifetimeScope();
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
             builder.Register<ServiceFactory>(context =>
             {
