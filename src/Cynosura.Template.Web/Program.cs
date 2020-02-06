@@ -29,17 +29,6 @@ namespace Cynosura.Template.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .ConfigureKestrel(options =>
-                {
-                    options.ListenAnyIP(42000, listenOptions =>
-                    {
-                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                    });
-                    options.ListenAnyIP(42001, listenOptions =>
-                    {
-                        listenOptions.Protocols = HttpProtocols.Http2;
-                    });
-                })
                 .UseStartup<Startup>()
                 .ConfigureLogging(logging =>
                 {
