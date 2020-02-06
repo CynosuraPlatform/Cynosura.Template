@@ -28,6 +28,7 @@
 
    <ItemGroup>
     <Protobuf Include="Protos\common.proto" />
+    <Protobuf Include="Protos\users.proto" />
     <Protobuf Include="Protos\roles.proto" />
   </ItemGroup>
 </Project>

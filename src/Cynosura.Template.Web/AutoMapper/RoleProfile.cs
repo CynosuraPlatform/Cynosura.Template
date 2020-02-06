@@ -17,11 +17,16 @@ namespace Cynosura.Template.Web.AutoMapper
             CreateMap<CreateRoleRequest, CreateRole>();
             CreateMap<DeleteRoleRequest, DeleteRole>();
             CreateMap<GetRoleRequest, GetRole>();
-            CreateMap<GetRolesRequest, GetRoles>();
+            CreateMap<GetRolesRequest, GetRoles>()
+                .ForMember(dest => dest.PageIndex, opt => opt.Condition(src => src.PageIndexOneOfCase == GetRolesRequest.PageIndexOneOfOneofCase.PageIndex))
+                .ForMember(dest => dest.PageSize, opt => opt.Condition(src => src.PageSizeOneOfCase == GetRolesRequest.PageSizeOneOfOneofCase.PageSize))
+                .ForMember(dest => dest.OrderDirection, opt => opt.Condition(src => src.OrderDirectionOneOfCase == GetRolesRequest.OrderDirectionOneOfOneofCase.OrderDirection));
             CreateMap<UpdateRoleRequest, UpdateRole>();
 
             CreateMap<RoleModel, Role>();
-            CreateMap<PageModel<RoleModel>, RolePageModel>();
+            CreateMap<PageModel<RoleModel>, RolePageModel>()
+                .ForMember(dest => dest.PageItems, opt => opt.Ignore())
+                .AfterMap((src, dest, rc) => dest.PageItems.AddRange(rc.Mapper.Map<IEnumerable<Role>>(src.PageItems)));
         }
     }
 }

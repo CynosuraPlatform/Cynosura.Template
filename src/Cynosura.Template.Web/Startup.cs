@@ -156,6 +156,7 @@ namespace Cynosura.Template.Web
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
                 endpoints.MapGrpcService<Services.RoleService>();
+                endpoints.MapGrpcService<Services.UserService>();
             });
         }
     }

@@ -25,11 +25,17 @@ message GetRoleRequest {
 }
 
 message GetRolesRequest {
-    int32 pageIndex = 1;
-    int32 pageSize = 2;
+    oneof pageIndexOneOf {
+        int32 pageIndex = 1;
+    }
+    oneof pageSizeOneOf {
+        int32 pageSize = 2;
+    }
     RoleFilter filter = 3;
     string orderBy = 4;
-    OrderDirection OrderDirection = 5;
+    oneof orderDirectionOneOf {
+        OrderDirection orderDirection = 5;
+    }
 }
 
 message UpdateRoleRequest {
