@@ -1,18 +1,18 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { ActivatedRoute, Router, Params } from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { Role } from "../role-core/role.model";
-import { RoleService } from "../role-core/role.service";
+import { Role } from '../role-core/role.model';
+import { RoleService } from '../role-core/role.service';
 
-import { Error } from "../core/error.model";
-import { NoticeHelper } from "../core/notice.helper";
+import { Error } from '../core/error.model';
+import { NoticeHelper } from '../core/notice.helper';
 
 
 @Component({
-    selector: "app-role-edit",
-    templateUrl: "./role-edit.component.html",
-    styleUrls: ["./role-edit.component.scss"]
+    selector: 'app-role-edit',
+    templateUrl: './role-edit.component.html',
+    styleUrls: ['./role-edit.component.scss']
 })
 export class RoleEditComponent implements OnInit {
     id: number;

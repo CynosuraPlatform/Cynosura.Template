@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Cynosura.Template.Core.Entities;
@@ -8,18 +7,15 @@ using Cynosura.Template.Data;
 using Cynosura.Template.Web.Infrastructure;
 using Cynosura.Web;
 using Cynosura.Web.Infrastructure.Authorization;
-using IdentityModel;
-using IdentityServer4;
-using IdentityServer4.Models;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Cynosura.Template.Web
 {
@@ -81,6 +77,31 @@ namespace Cynosura.Template.Web
 
             services.AddCors();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cynosura.Template API", Version = "v1" });
+                c.AddFluentValidationRules();
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("/connect/authorize", UriKind.Relative),
+                            TokenUrl = new Uri("/connect/token", UriKind.Relative),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "Cynosura.Template.WebAPI", "" },
+                                { "openid", "" },
+                                { "profile", "" },
+                            }
+                        }
+                    }
+                });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+            });
+
             services.AddGrpc();
 
             var builder = new ContainerBuilder();
@@ -105,6 +126,18 @@ namespace Cynosura.Template.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cynosura.Template API V1");
+                c.OAuthClientId("Swagger");
+                c.OAuthAppName("Cynosura.Template.Web");
+                c.OAuthScopeSeparator(" ");
+                c.OAuthUsePkce();
+                c.ConfigObject.DeepLinking = true;
+            });
 
             app.UseRouting();
 

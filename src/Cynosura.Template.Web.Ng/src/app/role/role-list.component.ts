@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { PageEvent } from "@angular/material/paginator";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
-import { Role } from "../role-core/role.model";
-import { RoleFilter } from "../role-core/role-filter.model";
-import { RoleService } from "../role-core/role.service";
+import { Role } from '../role-core/role.model';
+import { RoleFilter } from '../role-core/role-filter.model';
+import { RoleService } from '../role-core/role.service';
 
-import { ModalHelper } from "../core/modal.helper";
-import { StoreService } from "../core/store.service";
-import { Error } from "../core/error.model";
-import { Page } from "../core/page.model";
-import { NoticeHelper } from "../core/notice.helper";
+import { ModalHelper } from '../core/modal.helper';
+import { StoreService } from '../core/store.service';
+import { Error } from '../core/error.model';
+import { Page } from '../core/page.model';
+import { NoticeHelper } from '../core/notice.helper';
 
 class RoleListState {
     pageSize = 10;
@@ -19,17 +19,17 @@ class RoleListState {
 }
 
 @Component({
-    selector: "app-role-list",
-    templateUrl: "./role-list.component.html",
-    styleUrls: ["./role-list.component.scss"]
+    selector: 'app-role-list',
+    templateUrl: './role-list.component.html',
+    styleUrls: ['./role-list.component.scss']
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
     state: RoleListState;
     pageSizeOptions = [10, 20];
     columns = [
-        "name",
-        "action"
+        'name',
+        'action'
     ];
 
     constructor(
@@ -40,7 +40,7 @@ export class RoleListComponent implements OnInit {
         private storeService: StoreService,
         private noticeHelper: NoticeHelper
         ) {
-        this.state = this.storeService.get("roleListState", new RoleListState());
+        this.state = this.storeService.get('roleListState', new RoleListState());
     }
 
     ngOnInit(): void {

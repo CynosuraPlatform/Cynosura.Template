@@ -1,17 +1,17 @@
-import { Component, Input, OnInit, forwardRef, OnDestroy, ElementRef, Optional, Self, DoCheck } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from "@angular/forms";
-import { MatFormFieldControl } from "@angular/material/form-field";
-import { FocusMonitor } from "@angular/cdk/a11y";
-import { coerceBooleanProperty } from "@angular/cdk/coercion";
+import { Component, Input, OnInit, forwardRef, OnDestroy, ElementRef, Optional, Self, DoCheck } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
 
-import { User } from "./user.model";
-import { UserService } from "./user.service";
+import { User } from './user.model';
+import { UserService } from './user.service';
 
 @Component({
-    selector: "app-user-select",
-    templateUrl: "./user-select.component.html",
+    selector: 'app-user-select',
+    templateUrl: './user-select.component.html',
     providers: [
         { provide: MatFormFieldControl, useExisting: UserSelectComponent }
     ]
@@ -23,9 +23,9 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
 
     stateChanges = new Subject<void>();
     focused = false;
-    controlType = "app-user-select";
+    controlType = 'app-user-select';
     id = `user-select-${UserSelectComponent.nextId++}`;
-    describedBy = "";
+    describedBy = '';
 
     errorState = false;
 
@@ -111,7 +111,7 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
     }
 
     setDescribedByIds(ids: string[]) {
-        this.describedBy = ids.join(" ");
+        this.describedBy = ids.join(' ');
     }
 
     onContainerClick(event: MouseEvent) {

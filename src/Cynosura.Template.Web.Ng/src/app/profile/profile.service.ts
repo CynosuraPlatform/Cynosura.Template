@@ -1,15 +1,15 @@
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { Profile } from "./profile.model";
-import { ConfigService } from "../config/config.service";
-import { GetProfile, UpdateProfile } from "./profile-request.model";
+import { Profile } from './profile.model';
+import { ConfigService } from '../config/config.service';
+import { GetProfile, UpdateProfile } from './profile-request.model';
 
 
 @Injectable()
 export class ProfileService {
-    private apiUrl = this.configService.config.apiBaseUrl + "/api";
-    private headers = new HttpHeaders({ "Content-Type": "application/json" });
+    private apiUrl = this.configService.config.apiBaseUrl + '/api';
+    private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     constructor(private httpClient: HttpClient,
                 private configService: ConfigService) {

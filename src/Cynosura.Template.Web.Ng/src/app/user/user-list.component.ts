@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { PageEvent } from "@angular/material/paginator";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
-import { User } from "../user-core/user.model";
-import { UserFilter } from "../user-core/user-filter.model";
-import { UserService } from "../user-core/user.service";
+import { User } from '../user-core/user.model';
+import { UserFilter } from '../user-core/user-filter.model';
+import { UserService } from '../user-core/user.service';
 
-import { ModalHelper } from "../core/modal.helper";
-import { StoreService } from "../core/store.service";
-import { Error } from "../core/error.model";
-import { Page } from "../core/page.model";
-import { NoticeHelper } from "../core/notice.helper";
+import { ModalHelper } from '../core/modal.helper';
+import { StoreService } from '../core/store.service';
+import { Error } from '../core/error.model';
+import { Page } from '../core/page.model';
+import { NoticeHelper } from '../core/notice.helper';
 
 class UserListState {
     pageSize = 10;
@@ -19,18 +19,18 @@ class UserListState {
 }
 
 @Component({
-    selector: "app-user-list",
-    templateUrl: "./user-list.component.html",
-    styleUrls: ["./user-list.component.scss"]
+    selector: 'app-user-list',
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
     content: Page<User>;
     state: UserListState;
     pageSizeOptions = [10, 20];
     columns = [
-        "userName",
-        "email",
-        "action"
+        'userName',
+        'email',
+        'action'
     ];
 
     constructor(
@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
         private storeService: StoreService,
         private noticeHelper: NoticeHelper
         ) {
-        this.state = this.storeService.get("userListState", new UserListState());
+        this.state = this.storeService.get('userListState', new UserListState());
     }
 
     ngOnInit(): void {

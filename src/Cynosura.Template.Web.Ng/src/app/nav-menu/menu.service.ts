@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { Menu } from "./menu.model";
-import { AuthorizeService } from "../../api-authorization/authorize.service";
+import { Menu } from './menu.model';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
 
 @Injectable()
 export class MenuService {
@@ -12,8 +12,8 @@ export class MenuService {
     constructor(private authorize: AuthorizeService) {
         this.menu = new Menu();
 // ADD MENU ITEMS HERE
-        this.menu.items.push({ route: "/user", name: "Users", icon: "person", roles: ["Administrator"] });
-        this.menu.items.push({ route: "/role", name: "Roles", icon: "lock", roles: ["Administrator"] });
+        this.menu.items.push({ route: '/user', name: 'Users', icon: 'person', roles: ['Administrator'] });
+        this.menu.items.push({ route: '/role', name: 'Roles', icon: 'lock', roles: ['Administrator'] });
     }
 
     getMenu(): Observable<Menu> {
