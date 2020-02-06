@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Cynosura.Template.Core.Entities;
@@ -80,6 +81,25 @@ namespace Cynosura.Template.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cynosura.Template API", Version = "v1" });
                 c.AddFluentValidationRules();
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("/connect/authorize", UriKind.Relative),
+                            TokenUrl = new Uri("/connect/token", UriKind.Relative),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "Cynosura.Template.WebAPI", "" },
+                                { "openid", "" },
+                                { "profile", "" },
+                            }
+                        }
+                    }
+                });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
 
             var builder = new ContainerBuilder();
@@ -110,6 +130,11 @@ namespace Cynosura.Template.Web
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cynosura.Template API V1");
+                c.OAuthClientId("Swagger");
+                c.OAuthAppName("Cynosura.Template.Web");
+                c.OAuthScopeSeparator(" ");
+                c.OAuthUsePkce();
+                c.ConfigObject.DeepLinking = true;
             });
 
             app.UseRouting();
