@@ -8,6 +8,7 @@ using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Roles;
 using Cynosura.Template.Core.Requests.Roles.Models;
 using Cynosura.Template.Web.Protos;
+using Cynosura.Template.Web.Protos.Roles;
 using Grpc.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Cynosura.Template.Web.Services
 {
     [Authorize("ReadRole")]
-    public class RoleService : Roles.RolesBase
+    public class RoleService : Protos.Roles.RoleService.RoleServiceBase
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;

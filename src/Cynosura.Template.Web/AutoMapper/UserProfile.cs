@@ -6,7 +6,7 @@ using AutoMapper;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Requests.Users;
 using Cynosura.Template.Core.Requests.Users.Models;
-using Cynosura.Template.Web.Protos;
+using Cynosura.Template.Web.Protos.Users;
 
 namespace Cynosura.Template.Web.AutoMapper
 {

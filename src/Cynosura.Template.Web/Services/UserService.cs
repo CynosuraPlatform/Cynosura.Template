@@ -8,6 +8,7 @@ using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Users;
 using Cynosura.Template.Core.Requests.Users.Models;
 using Cynosura.Template.Web.Protos;
+using Cynosura.Template.Web.Protos.Users;
 using Grpc.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Cynosura.Template.Web.Services
 {
     [Authorize("ReadUser")]
-    public class UserService : Users.UsersBase
+    public class UserService : Protos.Users.UserService.UserServiceBase
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;

@@ -27,8 +27,6 @@
   </ItemGroup>
 
    <ItemGroup>
-    <Protobuf Include="Protos\common.proto" />
-    <Protobuf Include="Protos\users.proto" />
-    <Protobuf Include="Protos\roles.proto" />
+    <Protobuf Include="Protos\**\*.proto" />
   </ItemGroup>
 </Project>
