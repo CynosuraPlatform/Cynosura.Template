@@ -221,6 +221,46 @@
     "targets": []
   },
   {
+    "filePath": "*.Web\\Services",
+    "fileName": "{Name}Service.cs",
+    "templatePath": "Web\\Service.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{PluralName}\\{NameLower}Filter.proto",
+    "templatePath": "Web\\Protos\\Filter.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{PluralName}\\{NameLower}Model.proto",
+    "templatePath": "Web\\Protos\\Model.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{PluralName}\\{NameLower}Service.proto",
+    "templatePath": "Web\\Protos\\Service.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
     "filePath": "*.Web.Ng\\src\\app",
     "fileName": "{NameKebab}-core\\{NameKebab}.model.ts",
     "templatePath": "Web.Ng\\Model.stg",
@@ -404,6 +444,16 @@
     "filePath": "*.Core\\Enums",
     "fileName": "{Name}.cs",
     "templatePath": "Core\\Enum.stg",
+    "types": [
+      "Enum"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{Name}\\{NameLower}.proto",
+    "templatePath": "Web\\Protos\\Enum.stg",
     "types": [
       "Enum"
     ],
