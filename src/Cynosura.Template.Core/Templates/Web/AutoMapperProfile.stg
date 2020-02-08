@@ -46,7 +46,7 @@ fieldConditionUpdate(field) ::= <<
 
 fieldConditionModel(field) ::= <<
 
-                .ForMember(dest => dest.$field:field()$, opt => opt.Condition(src => src.$field:field()$ != null))
+                .ForMember(dest => dest.$field:field()$, opt => opt.Condition(src => src.$field:field()$ != default))
 >>
 
 field(field) ::= <<

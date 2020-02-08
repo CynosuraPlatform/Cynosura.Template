@@ -231,6 +231,16 @@
     "targets": []
   },
   {
+    "filePath": "*.Web\\Infrastructure\\Routes",
+    "fileName": "{Name}Module.cs",
+    "templatePath": "Web\\EndpointModule.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
     "filePath": "*.Web\\Services",
     "fileName": "{Name}Service.cs",
     "templatePath": "Web\\Service.stg",
