@@ -6,10 +6,12 @@ using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Web.Infrastructure;
 using Cynosura.Web;
+using Cynosura.Web.Infrastructure;
 using Cynosura.Web.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -102,6 +104,8 @@ namespace Cynosura.Template.Web
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
 
+            services.AddGrpc();
+
             var builder = new ContainerBuilder();
             AutofacConfig.ConfigureAutofac(builder, Configuration);
             builder.Populate(services);
@@ -153,6 +157,8 @@ namespace Cynosura.Template.Web
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                var provider = new ConfigurationProvider<IEndpointRouteBuilder>();
+                provider.Configure(endpoints);
             });
         }
     }

@@ -201,6 +201,16 @@
     "targets": []
   },
   {
+    "filePath": "*.Web\\AutoMapper",
+    "fileName": "{Name}Profile.cs",
+    "templatePath": "Web\\AutoMapperProfile.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
     "filePath": "*.Web\\Controllers",
     "fileName": "{Name}Controller.cs",
     "templatePath": "Web\\Controller.stg",
@@ -214,6 +224,56 @@
     "filePath": "*.Web\\Infrastructure\\Authorization",
     "fileName": "{Name}Module.cs",
     "templatePath": "Web\\PolicyModule.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Infrastructure\\Routes",
+    "fileName": "{Name}Module.cs",
+    "templatePath": "Web\\EndpointModule.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Services",
+    "fileName": "{Name}Service.cs",
+    "templatePath": "Web\\Service.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{PluralName}\\{NameLower}Filter.proto",
+    "templatePath": "Web\\Protos\\Filter.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{PluralName}\\{NameLower}Model.proto",
+    "templatePath": "Web\\Protos\\Model.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{PluralName}\\{NameLower}Service.proto",
+    "templatePath": "Web\\Protos\\Service.stg",
     "types": [
       "Entity"
     ],
@@ -404,6 +464,16 @@
     "filePath": "*.Core\\Enums",
     "fileName": "{Name}.cs",
     "templatePath": "Core\\Enum.stg",
+    "types": [
+      "Enum"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Protos",
+    "fileName": "{Name}\\{NameLower}.proto",
+    "templatePath": "Web\\Protos\\Enum.stg",
     "types": [
       "Enum"
     ],

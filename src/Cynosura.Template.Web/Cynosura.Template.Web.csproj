@@ -9,7 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Cynosura.Web" Version="0.2.1-b103" />
+    <PackageReference Include="Cynosura.Web" Version="0.2.1-b119" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.26.0" />
     <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="3.0.0-rc.5" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
@@ -25,4 +26,7 @@
     <ProjectReference Include="..\Cynosura.Template.Data\Cynosura.Template.Data.csproj" />
   </ItemGroup>
 
+   <ItemGroup>
+    <Protobuf Include="Protos\**\*.proto" />
+  </ItemGroup>
 </Project>
