@@ -201,6 +201,16 @@
     "targets": []
   },
   {
+    "filePath": "*.Web\\AutoMapper",
+    "fileName": "{Name}Profile.cs",
+    "templatePath": "Web\\AutoMapperProfile.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
     "filePath": "*.Web\\Controllers",
     "fileName": "{Name}Controller.cs",
     "templatePath": "Web\\Controller.stg",

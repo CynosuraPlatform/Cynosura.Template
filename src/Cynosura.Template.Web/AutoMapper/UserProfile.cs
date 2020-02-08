@@ -24,7 +24,7 @@ namespace Cynosura.Template.Web.AutoMapper
             CreateMap<UpdateUserRequest, UpdateUser>();
 
             CreateMap<UserModel, User>()
-                .ForMember(dest => dest.Email, opt => opt.NullSubstitute(""));
+                .ForMember(dest => dest.Email, opt => opt.Condition(src => src.Email != null));
             CreateMap<PageModel<UserModel>, UserPageModel>()                
                 .ForMember(dest => dest.PageItems, opt => opt.Ignore())
                 .AfterMap((src, dest, rc) => dest.PageItems.AddRange(rc.Mapper.Map<IEnumerable<User>>(src.PageItems)));
