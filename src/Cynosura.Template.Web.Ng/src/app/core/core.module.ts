@@ -28,7 +28,6 @@ import { TimeViewComponent } from './controls/time.view.component';
 import { LoadingService } from './loading.service';
 import { StoreService } from './store.service';
 
-import { TableDetailComponent } from './table-detail.component';
 import { ModalComponent } from './modal.component';
 import { ModalHelper } from './modal.helper';
 import { AppErrorHandler } from './app-error.handler';
@@ -41,7 +40,6 @@ import { NoticeHelper } from './notice.helper';
         ModelErrorPipe,
         ClickOutsideDirective,
         ModalComponent,
-        TableDetailComponent,
         TextEditComponent,
         TextViewComponent,
         NumberEditComponent,
@@ -92,7 +90,6 @@ import { NoticeHelper } from './notice.helper';
         EnumKeysPipe,
         ModelErrorPipe,
         ClickOutsideDirective,
-        TableDetailComponent,
         TextEditComponent,
         TextViewComponent,
         NumberEditComponent,

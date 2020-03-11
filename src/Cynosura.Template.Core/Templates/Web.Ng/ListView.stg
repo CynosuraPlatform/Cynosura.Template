@@ -1,5 +1,5 @@
 ﻿main(model) ::= <<
-<mat-card>
+<mat-card class="mat-card-list">
 
     <mat-card-header>
         <mat-card-title>$model.Entity.PluralDisplayName$</mat-card-title>
