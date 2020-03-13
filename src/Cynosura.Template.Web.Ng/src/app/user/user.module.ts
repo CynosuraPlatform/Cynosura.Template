@@ -7,27 +7,29 @@ import { RoleCoreModule } from '../role-core/role-core.module';
 
 import { UserListComponent } from './user-list.component';
 import { UserEditComponent } from './user-edit.component';
-import { MaterialModule } from '../material.module';
+import { UserViewComponent } from './user-view.component';
 
 @NgModule({
     declarations: [
         UserListComponent,
-        UserEditComponent
+        UserEditComponent,
+        UserViewComponent
     ],
     imports: [
         RouterModule.forChild([
             { path: '', component: UserListComponent },
-            { path: ':id', component: UserEditComponent }
+            { path: ':id', component: UserViewComponent }
         ]),
         CoreModule,
         UserCoreModule,
         RoleCoreModule,
-        MaterialModule
     ],
     exports: [
-        MaterialModule
     ],
     providers: [
+    ],
+    entryComponents: [
+        UserEditComponent
     ]
 })
 export class UserModule {

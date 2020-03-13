@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-
-import { User } from '../user-core/user.model';
-import { UserFilter } from '../user-core/user-filter.model';
-import { UserService } from '../user-core/user.service';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
 import { Error } from '../core/error.model';
 import { Page } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
+
+import { User } from '../user-core/user.model';
+import { UserFilter } from '../user-core/user-filter.model';
+import { UserService } from '../user-core/user.service';
+import { UserEditComponent } from './user-edit.component';
 
 class UserListState {
     pageSize = 10;
@@ -34,21 +35,20 @@ export class UserListComponent implements OnInit {
     ];
 
     constructor(
+        private dialog: MatDialog,
         private modalHelper: ModalHelper,
         private userService: UserService,
-        private router: Router,
-        private route: ActivatedRoute,
         private storeService: StoreService,
         private noticeHelper: NoticeHelper
         ) {
         this.state = this.storeService.get('userListState', new UserListState());
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.getUsers();
     }
 
-    async getUsers() {
+    private async getUsers() {
         this.content = await this.userService.getUsers({
             pageIndex: this.state.pageIndex,
             pageSize: this.state.pageSize,
@@ -56,12 +56,32 @@ export class UserListComponent implements OnInit {
         });
     }
 
-    reset(): void {
+    onSearch() {
+        this.getUsers();
+    }
+
+    onReset() {
         this.state.filter.text = null;
         this.getUsers();
     }
 
-    delete(id: number): void {
+    onCreate(): void {
+        this.openDialog(0).then((result) => {
+            if (result) {
+                this.getUsers();
+            }
+        });
+    }
+
+    onEdit(id: number) {
+        this.openDialog(id).then((result) => {
+            if (result) {
+                this.getUsers();
+            }
+        });
+    }
+
+    onDelete(id: number) {
         this.modalHelper.confirmDelete()
             .subscribe(async () => {
                 try {
@@ -71,6 +91,14 @@ export class UserListComponent implements OnInit {
                     this.onError(error);
                 }
             });
+    }
+
+    private openDialog(id?: number): Promise<any> {
+        const dialogRef = this.dialog.open(UserEditComponent, {
+            width: '600px',
+            data: { id }
+        });
+        return dialogRef.afterClosed().toPromise();
     }
 
     onPage(page: PageEvent) {

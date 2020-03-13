@@ -93,8 +93,7 @@ a {
     }
 }
 
-
-.mat-card-edit {
+.mat-card-view {
     max-width: 1200px;
     margin: 0 auto;
 
@@ -107,9 +106,24 @@ a {
         margin-right: 0;
     }
 
-    .mat-form-field {
+    .field-view {
+        margin-bottom: 1em;
+
+        > label {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.54);
+        }
+    }
+}
+
+.mat-dialog-content-edit {
+    mat-form-field {
         width: 100%;
     }
+}
+
+.mat-dialog-actions-edit {
+    justify-content: flex-end;
 }
 
 .owl-dt-container {

@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-
-import { User } from '../user-core/user.model';
-import { CreateUser, UpdateUser } from '../user-core/user-request.model';
-import { UserService } from '../user-core/user.service';
-
-import { Role } from '../role-core/role.model';
-import { RoleService } from '../role-core/role.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Error } from '../core/error.model';
 import { NoticeHelper } from '../core/notice.helper';
 
+import { User } from '../user-core/user.model';
+import { UserService } from '../user-core/user.service';
+import { Role } from '../role-core/role.model';
+import { RoleService } from '../role-core/role.service';
+
+class DialogData {
+    id: number;
+}
 
 @Component({
     selector: 'app-user-edit',
@@ -31,27 +32,25 @@ export class UserEditComponent implements OnInit {
     roles: Role[] = [];
     error: Error;
 
-    constructor(private userService: UserService,
+    constructor(public dialogRef: MatDialogRef<UserEditComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: DialogData,
+                private userService: UserService,
                 private roleService: RoleService,
-                private route: ActivatedRoute,
-                private router: Router,
                 private fb: FormBuilder,
-                private noticeHelper: NoticeHelper) { }
+                private noticeHelper: NoticeHelper) {
+        this.id = data.id;
+    }
 
     async ngOnInit() {
         this.roles = (await this.roleService.getRoles({})).pageItems;
-        this.route.params.forEach((params: Params) => {
-            const id = +params.id;
-            this.getUser(id);
-        });
+        this.getUser();
     }
 
-    private async getUser(id: number) {
-        this.id = id;
-        if (id === 0) {
+    private async getUser() {
+        if (this.id === 0) {
             this.user = new User();
         } else {
-            this.user = await this.userService.getUser({ id });
+            this.user = await this.userService.getUser({ id: this.id });
         }
         this.userForm.patchValue(this.user);
         for (const role of this.roles) {
@@ -61,11 +60,7 @@ export class UserEditComponent implements OnInit {
         }
     }
 
-    cancel(): void {
-        window.history.back();
-    }
-
-    onSubmit(): void {
+    onSave() {
         this.saveUser();
     }
 
@@ -80,7 +75,7 @@ export class UserEditComponent implements OnInit {
             } else {
                 await this.userService.createUser(user);
             }
-            window.history.back();
+            this.dialogRef.close(true);
         } catch (error) {
             this.onError(error);
         }
