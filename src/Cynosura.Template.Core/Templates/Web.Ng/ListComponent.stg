@@ -1,17 +1,18 @@
 ﻿main(model) ::= <<
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-
-import { $model.Entity.Name$ } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
-import { $model.Entity.Name$Filter } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model';
-import { $model.Entity.Name$Service } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
 import { Error } from '../core/error.model';
 import { Page } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
+
+import { $model.Entity.Name$ } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
+import { $model.Entity.Name$Filter } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-filter.model';
+import { $model.Entity.Name$Service } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service';
+import { $model.Entity.Name$EditComponent } from './$model.Entity.NameKebab$-edit.component';
 
 class $model.Entity.Name$ListState {
     pageSize = 10;
@@ -34,21 +35,20 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     ];
 
     constructor(
+        private dialog: MatDialog,
         private modalHelper: ModalHelper,
         private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
-        private router: Router,
-        private route: ActivatedRoute,
         private storeService: StoreService,
         private noticeHelper: NoticeHelper
         ) {
         this.state = this.storeService.get('$model.Entity.NameLower$ListState', new $model.Entity.Name$ListState());
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.get$model.Entity.PluralName$();
     }
 
-    async get$model.Entity.PluralName$() {
+    private async get$model.Entity.PluralName$() {
         this.content = await this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({
             pageIndex: this.state.pageIndex,
             pageSize: this.state.pageSize,
@@ -56,12 +56,32 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         });
     }
 
-    reset(): void {
+    onSearch() {
+        this.get$model.Entity.PluralName$();
+    }
+
+    onReset() {
         this.state.filter.text = null;
         this.get$model.Entity.PluralName$();
     }
 
-    delete($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$): void {
+    onCreate() {
+        this.openDialog(0).then((result) => {
+            if (result) {
+                this.get$model.Entity.PluralName$();
+            }
+        });
+    }
+
+    onEdit(id: number) {
+        this.openDialog(id).then((result) => {
+            if (result) {
+                this.get$model.Entity.PluralName$();
+            }
+        });
+    }
+
+    onDelete($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$) {
         this.modalHelper.confirmDelete()
             .subscribe(async () => {
                 try {
@@ -71,6 +91,14 @@ export class $model.Entity.Name$ListComponent implements OnInit {
                     this.onError(error);
                 }
             });
+    }
+
+    private openDialog(id?: number): Promise<any> {
+        const dialogRef = this.dialog.open($model.Entity.Name$EditComponent, {
+            width: '600px',
+            data: { id }
+        });
+        return dialogRef.afterClosed().toPromise();
     }
 
     onPage(page: PageEvent) {

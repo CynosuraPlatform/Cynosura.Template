@@ -1,15 +1,18 @@
 ﻿main(model) ::= <<
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-
-import { $model.Entity.Name$ } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
-import { $model.Entity.Name$Service } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Error } from '../core/error.model';
 import { NoticeHelper } from '../core/notice.helper';
 import { ConvertStringTo } from '../core/converter.helper';
 
+import { $model.Entity.Name$ } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
+import { $model.Entity.Name$Service } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.service';
+
+class DialogData {
+    id: number;
+}
 
 @Component({
     selector: 'app-$model.Entity.NameKebab$-edit',
@@ -25,35 +28,28 @@ $model.Entity.AllFields:field(); separator=",\n"$
     $model.Entity.NameLower$: $model.Entity.Name$;
     error: Error;
 
-    constructor(private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
-                private route: ActivatedRoute,
-                private router: Router,
+    constructor(public dialogRef: MatDialogRef<$model.Entity.Name$EditComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: DialogData,
+                private $model.Entity.NameLower$Service: $model.Entity.Name$Service,
                 private fb: FormBuilder,
                 private noticeHelper: NoticeHelper) {
+        this.id = data.id;
     }
 
     ngOnInit(): void {
-        this.route.params.forEach((params: Params) => {
-            const id: $model.Entity.IdField.JsTypeName$ = params.id === '0' ? null : ConvertStringTo.$model.Entity.IdField.JsTypeName$(params.id);
-            this.get$model.Entity.Name$(id);
-        });
+        this.get$model.Entity.Name$();
     }
 
-    private async get$model.Entity.Name$(id: $model.Entity.IdField.JsTypeName$) {
-        this.id = id;
-        if (!id) {
+    private async get$model.Entity.Name$() {
+        if (!this.id) {
             this.$model.Entity.NameLower$ = new $model.Entity.Name$();
         } else {
-            this.$model.Entity.NameLower$ = await this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id });
+            this.$model.Entity.NameLower$ = await this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.id });
         }
         this.$model.Entity.NameLower$Form.patchValue(this.$model.Entity.NameLower$);
     }
 
-    cancel(): void {
-        window.history.back();
-    }
-
-    onSubmit(): void {
+    onSave(): void {
         this.save$model.Entity.Name$();
     }
 
@@ -64,7 +60,7 @@ $model.Entity.AllFields:field(); separator=",\n"$
             } else {
                 await this.$model.Entity.NameLower$Service.create$model.Entity.Name$(this.$model.Entity.NameLower$Form.value);
             }
-            window.history.back();
+            this.dialogRef.close(true);
         } catch (error) {
             this.onError(error);
         }

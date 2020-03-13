@@ -432,6 +432,36 @@
   },
   {
     "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{NameKebab}-view.component.ts",
+    "templatePath": "Web.Ng\\ViewComponent.stg",
+    "types": [
+      "View"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{NameKebab}-view.component.html",
+    "templatePath": "Web.Ng\\ViewView.stg",
+    "types": [
+      "View"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{NameKebab}-view.component.scss",
+    "templatePath": "Web.Ng\\ViewStyle.stg",
+    "types": [
+      "View"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
     "fileName": "{NameKebab}\\{NameKebab}.module.ts",
     "templatePath": "Web.Ng\\Module.stg",
     "types": [
