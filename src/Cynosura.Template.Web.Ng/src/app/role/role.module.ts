@@ -6,26 +6,28 @@ import { RoleCoreModule } from '../role-core/role-core.module';
 
 import { RoleListComponent } from './role-list.component';
 import { RoleEditComponent } from './role-edit.component';
-import { MaterialModule } from '../material.module';
+import { RoleViewComponent } from './role-view.component';
 
 @NgModule({
     declarations: [
         RoleListComponent,
-        RoleEditComponent
+        RoleEditComponent,
+        RoleViewComponent,
     ],
     imports: [
         RouterModule.forChild([
             { path: '', component: RoleListComponent },
-            { path: ':id', component: RoleEditComponent }
+            { path: ':id', component: RoleViewComponent }
         ]),
         CoreModule,
         RoleCoreModule,
-        MaterialModule
     ],
     exports: [
-        MaterialModule
     ],
     providers: [
+    ],
+    entryComponents: [
+        RoleEditComponent
     ]
 })
 export class RoleModule {
