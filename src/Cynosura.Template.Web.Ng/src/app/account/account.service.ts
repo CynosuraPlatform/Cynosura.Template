@@ -1,10 +1,11 @@
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Register } from './account-request.model';
 import { ConfigService } from '../config/config.service';
 import { CreatedEntity } from '../core/models/created-entity.model';
 
+import { Register } from './account-request.model';
 
 @Injectable()
 export class AccountService {
@@ -14,9 +15,8 @@ export class AccountService {
                 private configService: ConfigService) {
     }
 
-    register(register: Register): Promise<CreatedEntity<number>> {
+    register(register: Register): Observable<CreatedEntity<number>> {
         const url = `${this.apiUrl}/Register`;
-        return this.httpClient.post<CreatedEntity<number>>(url, register)
-            .toPromise();
+        return this.httpClient.post<CreatedEntity<number>>(url, register);
     }
 }

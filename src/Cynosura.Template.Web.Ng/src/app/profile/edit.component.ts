@@ -36,7 +36,7 @@ export class ProfileEditComponent implements OnInit {
 
     private getProfile(): void {
         this.profileService.getProfile({})
-            .then((profile) => {
+            .subscribe((profile) => {
                 this.profile = profile;
                 this.profileForm.reset();
                 this.profileForm.patchValue(this.profile);
@@ -51,7 +51,7 @@ export class ProfileEditComponent implements OnInit {
     private saveProfile(): void {
         const profile: UpdateProfile = this.profileForm.value;
         this.profileService.updateProfile(profile)
-            .then(
+            .subscribe(
                 () => {
                    // this.authService.refreshTokens()
                         // .subscribe((token) => {

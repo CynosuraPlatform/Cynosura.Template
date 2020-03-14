@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         this.error = null;
         const register = this.registerForm.value;
         this.accountService.register(register)
-            .then(() => {
+            .subscribe(() => {
                 const message = `You have been successfully signed up, use ${register.email} for log in`;
                 this.modalHelper.alert(message, 'Sign up successful', 'Ok')
                     .subscribe(() => {
