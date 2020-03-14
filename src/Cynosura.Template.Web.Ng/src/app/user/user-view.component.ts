@@ -24,8 +24,8 @@ export class UserViewComponent implements OnInit {
                 private roleService: RoleService,
                 private route: ActivatedRoute) { }
 
-    async ngOnInit() {
-        this.roles = (await this.roleService.getRoles({})).pageItems;
+     ngOnInit() {
+        this.roleService.getRoles({}).subscribe(roles => this.roles = roles.pageItems);
         this.route.params.forEach((params: Params) => {
             this.id = +params.id;
             this.getUser();

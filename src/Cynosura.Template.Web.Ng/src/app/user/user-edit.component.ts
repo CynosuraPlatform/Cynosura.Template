@@ -41,8 +41,8 @@ export class UserEditComponent implements OnInit {
         this.id = data.id;
     }
 
-    async ngOnInit() {
-        this.roles = (await this.roleService.getRoles({})).pageItems;
+    ngOnInit() {
+        this.roleService.getRoles({}).subscribe(roles => this.roles = roles.pageItems);
         this.getUser();
     }
 

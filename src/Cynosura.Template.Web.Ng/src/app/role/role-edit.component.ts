@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { of } from 'rxjs';
 
 import { Error } from '../core/error.model';
 import { NoticeHelper } from '../core/notice.helper';
@@ -38,30 +39,26 @@ export class RoleEditComponent implements OnInit {
         this.getRole();
     }
 
-    private async getRole() {
-        if (this.id === 0) {
-            this.role = new Role();
-        } else {
-            this.role = await this.roleService.getRole({ id: this.id });
-        }
-        this.roleForm.patchValue(this.role);
+    private getRole() {
+        const getRole$ = this.id === 0 ?
+            of(new Role()) :
+            this.roleService.getRole({ id: this.id });
+        getRole$.subscribe(role => {
+            this.role = role;
+            this.roleForm.patchValue(this.role);
+        });
     }
 
     onSave(): void {
         this.saveRole();
     }
 
-    private async saveRole() {
-        try {
-            if (this.id) {
-                await this.roleService.updateRole(this.roleForm.value);
-            } else {
-                await this.roleService.createRole(this.roleForm.value);
-            }
-            this.dialogRef.close(true);
-        } catch (error) {
-            this.onError(error);
-        }
+    private saveRole() {
+        const saveRole$ = this.id ?
+            this.roleService.updateRole(this.roleForm.value) :
+            this.roleService.createRole(this.roleForm.value);
+        saveRole$.subscribe(() => this.dialogRef.close(true),
+            error => this.onError(error));
     }
 
     onError(error: Error) {

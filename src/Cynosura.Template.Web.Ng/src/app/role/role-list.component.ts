@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
@@ -47,12 +49,12 @@ export class RoleListComponent implements OnInit {
         this.getRoles();
     }
 
-    private async getRoles() {
-        this.content = await this.roleService.getRoles({
+    private getRoles() {
+        this.roleService.getRoles({
             pageIndex: this.state.pageIndex,
             pageSize: this.state.pageSize,
             filter: this.state.filter
-        });
+        }).subscribe(content => this.content = content);
     }
 
     onSearch() {
@@ -65,7 +67,7 @@ export class RoleListComponent implements OnInit {
     }
 
     onCreate(): void {
-        this.openDialog(0).then((result) => {
+        this.openDialog(0).subscribe(result => {
             if (result) {
                 this.getRoles();
             }
@@ -73,7 +75,7 @@ export class RoleListComponent implements OnInit {
     }
 
     onEdit(id: number) {
-        this.openDialog(id).then((result) => {
+        this.openDialog(id).subscribe(result => {
             if (result) {
                 this.getRoles();
             }
@@ -82,22 +84,19 @@ export class RoleListComponent implements OnInit {
 
     onDelete(id: number): void {
         this.modalHelper.confirmDelete()
-            .subscribe(async () => {
-                try {
-                    await this.roleService.deleteRole({ id });
-                    this.getRoles();
-                } catch (error) {
-                    this.onError(error);
-                }
-            });
+            .pipe(
+                mergeMap(() => this.roleService.deleteRole({ id }))
+            )
+            .subscribe(() => this.getRoles(),
+                error => this.onError(error));
     }
 
-    private openDialog(id?: number): Promise<any> {
+    private openDialog(id?: number): Observable<boolean> {
         const dialogRef = this.dialog.open(RoleEditComponent, {
             width: '600px',
             data: { id }
         });
-        return dialogRef.afterClosed().toPromise();
+        return dialogRef.afterClosed();
     }
 
     onPage(page: PageEvent) {

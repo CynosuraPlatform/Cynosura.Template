@@ -1,6 +1,7 @@
 import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { Role } from '../role-core/role.model';
 import { RoleService } from '../role-core/role.service';
@@ -27,24 +28,25 @@ export class RoleViewComponent implements OnInit {
         });
     }
 
-    private async getRole() {
-        this.role = await this.roleService.getRole({ id: this.id });
+    private getRole() {
+        this.roleService.getRole({ id: this.id })
+            .subscribe(role => this.role = role);
     }
 
     onEdit() {
-        this.openDialog().then((result) => {
+        this.openDialog().subscribe(result => {
             if (result) {
                 this.getRole();
             }
         });
     }
 
-    private openDialog(): Promise<any> {
+    private openDialog(): Observable<boolean> {
         const dialogRef = this.dialog.open(RoleEditComponent, {
             width: '600px',
             data: { id: this.id }
         });
-        return dialogRef.afterClosed().toPromise();
+        return dialogRef.afterClosed();
     }
 
     onBack(): void {

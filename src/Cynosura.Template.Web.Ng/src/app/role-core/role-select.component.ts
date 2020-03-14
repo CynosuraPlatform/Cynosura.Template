@@ -3,7 +3,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/for
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
 import { Subject } from 'rxjs';
 
 import { Role } from './role.model';
@@ -102,7 +101,7 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
     }
 
     ngOnInit(): void {
-        this.roleService.getRoles({}).then(roles => this.roles = roles.pageItems);
+        this.roleService.getRoles({}).subscribe(roles => this.roles = roles.pageItems);
     }
 
     ngOnDestroy() {
