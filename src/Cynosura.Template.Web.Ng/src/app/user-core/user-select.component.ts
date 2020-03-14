@@ -3,7 +3,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/for
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
 import { Subject } from 'rxjs';
 
 import { User } from './user.model';
@@ -102,7 +101,7 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor, MatFor
     }
 
     ngOnInit(): void {
-        this.userService.getUsers({}).then(users => this.users = users.pageItems);
+        this.userService.getUsers({}).subscribe(users => this.users = users.pageItems);
     }
 
     ngOnDestroy() {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { of } from 'rxjs';
 
 import { Error } from '../core/error.model';
 import { NoticeHelper } from '../core/notice.helper';
@@ -46,39 +47,35 @@ export class UserEditComponent implements OnInit {
         this.getUser();
     }
 
-    private async getUser() {
-        if (this.id === 0) {
-            this.user = new User();
-        } else {
-            this.user = await this.userService.getUser({ id: this.id });
-        }
-        this.userForm.patchValue(this.user);
-        for (const role of this.roles) {
-            if (this.user.roleIds && this.user.roleIds.indexOf(role.id) !== -1) {
-                role.isSelected = true;
+    private getUser() {
+        const getUser$ = this.id === 0 ?
+            of(new User()) :
+            this.userService.getUser({ id: this.id });
+        getUser$.subscribe(user => {
+            this.user = user;
+            this.userForm.patchValue(this.user);
+            for (const role of this.roles) {
+                if (this.user.roleIds && this.user.roleIds.indexOf(role.id) !== -1) {
+                    role.isSelected = true;
+                }
             }
-        }
+        });
     }
 
     onSave() {
         this.saveUser();
     }
 
-    private async saveUser() {
-        try {
-            const user = this.userForm.value;
-            user.roleIds = this.roles
-                .filter(role => role.isSelected)
-                .map(role => role.id);
-            if (this.id) {
-                await this.userService.updateUser(user);
-            } else {
-                await this.userService.createUser(user);
-            }
-            this.dialogRef.close(true);
-        } catch (error) {
-            this.onError(error);
-        }
+    private saveUser() {
+        const user = this.userForm.value;
+        user.roleIds = this.roles
+            .filter(role => role.isSelected)
+            .map(role => role.id);
+        const saveUser$ = this.id ?
+            this.userService.updateUser(user) :
+            this.userService.createUser(user);
+        saveUser$.subscribe(() => this.dialogRef.close(true),
+            error => this.onError(error));
     }
 
     onError(error: Error) {

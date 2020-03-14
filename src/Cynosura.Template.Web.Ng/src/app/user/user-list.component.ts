@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
@@ -48,12 +50,12 @@ export class UserListComponent implements OnInit {
         this.getUsers();
     }
 
-    private async getUsers() {
-        this.content = await this.userService.getUsers({
+    private getUsers() {
+        this.userService.getUsers({
             pageIndex: this.state.pageIndex,
             pageSize: this.state.pageSize,
             filter: this.state.filter
-        });
+        }).subscribe(content => this.content = content);
     }
 
     onSearch() {
@@ -66,7 +68,7 @@ export class UserListComponent implements OnInit {
     }
 
     onCreate(): void {
-        this.openDialog(0).then((result) => {
+        this.openDialog(0).subscribe((result) => {
             if (result) {
                 this.getUsers();
             }
@@ -74,7 +76,7 @@ export class UserListComponent implements OnInit {
     }
 
     onEdit(id: number) {
-        this.openDialog(id).then((result) => {
+        this.openDialog(id).subscribe((result) => {
             if (result) {
                 this.getUsers();
             }
@@ -83,22 +85,19 @@ export class UserListComponent implements OnInit {
 
     onDelete(id: number) {
         this.modalHelper.confirmDelete()
-            .subscribe(async () => {
-                try {
-                    await this.userService.deleteUser({ id });
-                    this.getUsers();
-                } catch (error) {
-                    this.onError(error);
-                }
-            });
+            .pipe(
+                mergeMap(() => this.userService.deleteUser({ id }))
+            )
+            .subscribe(() => this.getUsers(),
+                error => this.onError(error));
     }
 
-    private openDialog(id?: number): Promise<any> {
+    private openDialog(id?: number): Observable<boolean> {
         const dialogRef = this.dialog.open(UserEditComponent, {
             width: '600px',
             data: { id }
         });
-        return dialogRef.afterClosed().toPromise();
+        return dialogRef.afterClosed();
     }
 
     onPage(page: PageEvent) {

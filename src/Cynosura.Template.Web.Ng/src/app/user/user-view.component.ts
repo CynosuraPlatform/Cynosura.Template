@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { User } from '../user-core/user.model';
 import { UserService } from '../user-core/user.service';
@@ -32,25 +33,27 @@ export class UserViewComponent implements OnInit {
         });
     }
 
-    private async getUser() {
-        this.user = await this.userService.getUser({ id: this.id });
-        this.userRoles = this.roles.filter(r => this.user.roleIds && this.user.roleIds.indexOf(r.id) !== -1);
+    private getUser() {
+        this.userService.getUser({ id: this.id }).subscribe(user => {
+            this.user = user;
+            this.userRoles = this.roles.filter(r => this.user.roleIds && this.user.roleIds.indexOf(r.id) !== -1);
+        });
     }
 
     onEdit() {
-        this.openDialog().then((result) => {
+        this.openDialog().subscribe((result) => {
             if (result) {
                 this.getUser();
             }
         });
     }
 
-    private openDialog(): Promise<any> {
+    private openDialog(): Observable<boolean> {
         const dialogRef = this.dialog.open(UserEditComponent, {
             width: '600px',
             data: { id: this.id }
         });
-        return dialogRef.afterClosed().toPromise();
+        return dialogRef.afterClosed();
     }
 
     onBack() {
