@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { ModalHelper } from '../core/modal.helper';
@@ -68,18 +67,14 @@ export class UserListComponent implements OnInit {
     }
 
     onCreate(): void {
-        this.openDialog(0).subscribe((result) => {
-            if (result) {
-                this.getUsers();
-            }
+        UserEditComponent.show(this.dialog, 0).subscribe(() => {
+            this.getUsers();
         });
     }
 
     onEdit(id: number) {
-        this.openDialog(id).subscribe((result) => {
-            if (result) {
-                this.getUsers();
-            }
+        UserEditComponent.show(this.dialog, id).subscribe(() => {
+            this.getUsers();
         });
     }
 
@@ -90,14 +85,6 @@ export class UserListComponent implements OnInit {
             )
             .subscribe(() => this.getUsers(),
                 error => this.onError(error));
-    }
-
-    private openDialog(id?: number): Observable<boolean> {
-        const dialogRef = this.dialog.open(UserEditComponent, {
-            width: '600px',
-            data: { id }
-        });
-        return dialogRef.afterClosed();
     }
 
     onPage(page: PageEvent) {

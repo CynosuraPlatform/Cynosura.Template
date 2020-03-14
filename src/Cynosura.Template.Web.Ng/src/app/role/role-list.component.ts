@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { ModalHelper } from '../core/modal.helper';
@@ -67,18 +66,14 @@ export class RoleListComponent implements OnInit {
     }
 
     onCreate(): void {
-        this.openDialog(0).subscribe(result => {
-            if (result) {
-                this.getRoles();
-            }
+        RoleEditComponent.show(this.dialog, 0).subscribe(() => {
+            this.getRoles();
         });
     }
 
     onEdit(id: number) {
-        this.openDialog(id).subscribe(result => {
-            if (result) {
-                this.getRoles();
-            }
+        RoleEditComponent.show(this.dialog, id).subscribe(() => {
+            this.getRoles();
         });
     }
 
@@ -89,14 +84,6 @@ export class RoleListComponent implements OnInit {
             )
             .subscribe(() => this.getRoles(),
                 error => this.onError(error));
-    }
-
-    private openDialog(id?: number): Observable<boolean> {
-        const dialogRef = this.dialog.open(RoleEditComponent, {
-            width: '600px',
-            data: { id }
-        });
-        return dialogRef.afterClosed();
     }
 
     onPage(page: PageEvent) {

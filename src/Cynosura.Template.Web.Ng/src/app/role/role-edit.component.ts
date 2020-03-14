@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { of } from 'rxjs';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Observable, of } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { Error } from '../core/error.model';
 import { NoticeHelper } from '../core/notice.helper';
@@ -33,6 +34,15 @@ export class RoleEditComponent implements OnInit {
                 private fb: FormBuilder,
                 private noticeHelper: NoticeHelper) {
         this.id = data.id;
+    }
+
+    static show(dialog: MatDialog, id: number): Observable<any> {
+        const dialogRef = dialog.open(RoleEditComponent, {
+            width: '600px',
+            data: { id: id }
+        });
+        return dialogRef.afterClosed()
+            .pipe(filter(res => res === true));
     }
 
     ngOnInit(): void {

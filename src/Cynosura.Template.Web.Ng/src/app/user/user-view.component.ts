@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 
 import { User } from '../user-core/user.model';
 import { UserService } from '../user-core/user.service';
@@ -41,19 +40,9 @@ export class UserViewComponent implements OnInit {
     }
 
     onEdit() {
-        this.openDialog().subscribe((result) => {
-            if (result) {
-                this.getUser();
-            }
+        UserEditComponent.show(this.dialog, this.id).subscribe(() => {
+            this.getUser();
         });
-    }
-
-    private openDialog(): Observable<boolean> {
-        const dialogRef = this.dialog.open(UserEditComponent, {
-            width: '600px',
-            data: { id: this.id }
-        });
-        return dialogRef.afterClosed();
     }
 
     onBack() {
