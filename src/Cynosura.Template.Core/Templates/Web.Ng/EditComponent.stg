@@ -2,6 +2,7 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { of } from 'rxjs';
 
 import { Error } from '../core/error.model';
 import { NoticeHelper } from '../core/notice.helper';
@@ -40,30 +41,26 @@ $model.Entity.AllFields:field(); separator=",\n"$
         this.get$model.Entity.Name$();
     }
 
-    private async get$model.Entity.Name$() {
-        if (!this.id) {
-            this.$model.Entity.NameLower$ = new $model.Entity.Name$();
-        } else {
-            this.$model.Entity.NameLower$ = await this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.id });
-        }
-        this.$model.Entity.NameLower$Form.patchValue(this.$model.Entity.NameLower$);
+    private get$model.Entity.Name$() {
+        const get$model.Entity.Name$\$ = !this.id ?
+            of(new $model.Entity.Name$()) :
+            this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.id });
+        get$model.Entity.Name$\$.subscribe($model.Entity.NameLower$ => {
+            this.$model.Entity.NameLower$ = $model.Entity.NameLower$;
+            this.$model.Entity.NameLower$Form.patchValue(this.$model.Entity.NameLower$);
+        });
     }
 
     onSave(): void {
         this.save$model.Entity.Name$();
     }
 
-    private async save$model.Entity.Name$() {
-        try {
-            if (this.id) {
-                await this.$model.Entity.NameLower$Service.update$model.Entity.Name$(this.$model.Entity.NameLower$Form.value);
-            } else {
-                await this.$model.Entity.NameLower$Service.create$model.Entity.Name$(this.$model.Entity.NameLower$Form.value);
-            }
-            this.dialogRef.close(true);
-        } catch (error) {
-            this.onError(error);
-        }
+    private save$model.Entity.Name$() {
+        const save$model.Entity.Name$\$ = this.id ?
+            this.$model.Entity.NameLower$Service.update$model.Entity.Name$(this.$model.Entity.NameLower$Form.value) :
+            this.$model.Entity.NameLower$Service.create$model.Entity.Name$(this.$model.Entity.NameLower$Form.value);
+        save$model.Entity.Name$\$.subscribe(() => this.dialogRef.close(true),
+            error => this.onError(error));
     }
 
     onError(error: Error) {

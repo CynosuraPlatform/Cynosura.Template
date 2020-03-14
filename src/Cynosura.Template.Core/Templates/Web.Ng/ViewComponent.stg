@@ -2,6 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { ConvertStringTo } from '../core/converter.helper';
 
@@ -30,24 +31,25 @@ export class $model.Entity.Name$ViewComponent implements OnInit {
         });
     }
 
-    private async get$model.Entity.Name$() {
-        this.$model.Entity.NameLower$ = await this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.id });
+    private get$model.Entity.Name$() {
+        this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.id })
+            .subscribe($model.Entity.NameLower$ => this.$model.Entity.NameLower$ = $model.Entity.NameLower$);
     }
 
     onEdit() {
-        this.openDialog().then((result) => {
+        this.openDialog().subscribe((result) => {
             if (result) {
                 this.get$model.Entity.Name$();
             }
         });
     }
 
-    private openDialog(): Promise<any> {
+    private openDialog(): Observable<boolean> {
         const dialogRef = this.dialog.open($model.Entity.Name$EditComponent, {
             width: '600px',
             data: { id: this.id }
         });
-        return dialogRef.afterClosed().toPromise();
+        return dialogRef.afterClosed();
     }
 
     onBack(): void {

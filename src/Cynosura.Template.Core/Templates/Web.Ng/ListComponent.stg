@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
@@ -48,12 +50,12 @@ export class $model.Entity.Name$ListComponent implements OnInit {
         this.get$model.Entity.PluralName$();
     }
 
-    private async get$model.Entity.PluralName$() {
-        this.content = await this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({
+    private get$model.Entity.PluralName$() {
+        this.$model.Entity.NameLower$Service.get$model.Entity.PluralName$({
             pageIndex: this.state.pageIndex,
             pageSize: this.state.pageSize,
             filter: this.state.filter
-        });
+        }).subscribe(content => this.content = content);
     }
 
     onSearch() {
@@ -66,7 +68,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     onCreate() {
-        this.openDialog(0).then((result) => {
+        this.openDialog(0).subscribe((result) => {
             if (result) {
                 this.get$model.Entity.PluralName$();
             }
@@ -74,7 +76,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     onEdit(id: number) {
-        this.openDialog(id).then((result) => {
+        this.openDialog(id).subscribe((result) => {
             if (result) {
                 this.get$model.Entity.PluralName$();
             }
@@ -83,22 +85,19 @@ export class $model.Entity.Name$ListComponent implements OnInit {
 
     onDelete($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$) {
         this.modalHelper.confirmDelete()
-            .subscribe(async () => {
-                try {
-                    await this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ $model.Entity.IdField.NameLower$ });
-                    this.get$model.Entity.PluralName$();
-                } catch (error) {
-                    this.onError(error);
-                }
-            });
+            .pipe(
+                mergeMap(() => this.$model.Entity.NameLower$Service.delete$model.Entity.Name$({ $model.Entity.IdField.NameLower$ }))
+            )
+            .subscribe(() => this.get$model.Entity.PluralName$(),
+                error => this.onError(error));
     }
 
-    private openDialog(id?: number): Promise<any> {
+    private openDialog(id?: number): Observable<boolean> {
         const dialogRef = this.dialog.open($model.Entity.Name$EditComponent, {
             width: '600px',
             data: { id }
         });
-        return dialogRef.afterClosed().toPromise();
+        return dialogRef.afterClosed();
     }
 
     onPage(page: PageEvent) {
