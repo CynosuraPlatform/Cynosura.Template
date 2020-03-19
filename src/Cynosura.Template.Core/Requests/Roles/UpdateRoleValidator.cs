@@ -6,7 +6,7 @@ namespace Cynosura.Template.Core.Requests.Roles
     {
         public UpdateRoleValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().MaximumLength(256);
+            RuleFor(x => x.Name).MaximumLength(256).NotEmpty();
         }
 
     }
