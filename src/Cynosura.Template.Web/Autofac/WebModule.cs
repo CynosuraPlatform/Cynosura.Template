@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Cynosura.Template.Core.Security;
+using Cynosura.Template.Web.Infrastructure;
 using Cynosura.Web.Infrastructure;
 
-namespace Cynosura.Template.Web.Infrastructure.Autofac
+namespace Cynosura.Template.Web.Autofac
 {
     class WebModule : Module
     {

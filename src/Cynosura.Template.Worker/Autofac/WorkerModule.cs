@@ -1,8 +1,9 @@
 ﻿using Autofac;
 using Cynosura.Template.Core.Security;
+using Cynosura.Template.Worker.Infrastructure;
 using Microsoft.Extensions.Hosting;
 
-namespace Cynosura.Template.Worker.Infrastructure.Autofac
+namespace Cynosura.Template.Worker.Autofac
 {
     class WorkerModule : Module
     {

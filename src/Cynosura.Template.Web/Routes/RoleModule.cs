@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 
-namespace Cynosura.Template.Web.Infrastructure.Routes
+namespace Cynosura.Template.Web.Routes
 {
-    public class UserModule : IConfigurationModule<IEndpointRouteBuilder>
+    public class RoleModule : IConfigurationModule<IEndpointRouteBuilder>
     {
         public void Configure(IEndpointRouteBuilder configuration)
         {
-            configuration.MapGrpcService<Services.UserService>();
+            configuration.MapGrpcService<Services.RoleService>();
         }
     }
 }

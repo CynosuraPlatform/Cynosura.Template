@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Cynosura.Web.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Cynosura.Template.Web.Infrastructure.Authorization
+namespace Cynosura.Template.Web.Authorization
 {
-    public class UserModule : IPolicyModule
+    public class RoleModule : IPolicyModule
     {
         public void RegisterPolicies(AuthorizationOptions options)
         {
-            options.AddPolicy("ReadUser",
+            options.AddPolicy("ReadRole",
                 policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
-            options.AddPolicy("WriteUser",
+            options.AddPolicy("WriteRole",
                 policy => policy.RequireClaim(ClaimTypes.Role, "Administrator"));
         }
     }
