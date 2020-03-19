@@ -12,7 +12,7 @@
       "Type": 0,
       "Size": 256,
       "EntityId": null,
-      "IsRequired": false
+      "IsRequired": true
     },
     {
       "Id": "e7d6b2e1-b948-4bfb-b421-7cc19ee0896c",
@@ -21,7 +21,7 @@
       "Type": 0,
       "Size": 256,
       "EntityId": null,
-      "IsRequired": false
+      "IsRequired": true
     }
   ]
 }

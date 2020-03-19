@@ -12,7 +12,7 @@
       "Type": 0,
       "Size": 256,
       "EntityId": null,
-      "IsRequired": false
+      "IsRequired": true
     }
   ]
 }
