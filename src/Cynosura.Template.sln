@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Template.Infrastructure", "Cynosura.Template.Infrastructure\Cynosura.Template.Infrastructure.csproj", "{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{092939FA-9B25-4484-B96E-E0D613FD449F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{092939FA-9B25-4484-B96E-E0D613FD449F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{092939FA-9B25-4484-B96E-E0D613FD449F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
