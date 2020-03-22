@@ -12,7 +12,7 @@ COPY Cynosura.Template.Core/. ./Cynosura.Template.Core/
 COPY Cynosura.Template.Data/. ./Cynosura.Template.Data/
 COPY Cynosura.Template.Web/. ./Cynosura.Template.Web/
 
-RUN dotnet publish Cynosura.Template.Web/Cynosura.Template.Web.csproj -c Release -o ../out
+RUN dotnet publish Cynosura.Template.Web/Cynosura.Template.Web.csproj -c Release -o ./out
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
