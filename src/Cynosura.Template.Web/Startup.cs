@@ -53,7 +53,15 @@ namespace Cynosura.Template.Web
                 .AddRoles<Role>()
                 .AddEntityFrameworkStores<DataContext>();
 
-            services.AddIdentityServer()
+            services.AddIdentityServer(o =>
+                {
+                    var authority = Configuration["Authority"];
+                    if (!string.IsNullOrEmpty(authority))
+                    {
+                        o.IssuerUri = authority;
+                        o.PublicOrigin = authority;
+                    }
+                })
                 .AddApiAuthorization<User, DataContext>()
                 .AddProfileService<MyProfileService>();
 
