@@ -30,8 +30,8 @@ namespace Cynosura.Template.Data
             foreach (var baseEntity in baseEntities)
             {
                 var baseEntityRepositoryType = typeof(BaseEntityRepository<>).MakeGenericType(baseEntity);
-                var rntityRepositoryInterface = typeof(IEntityRepository<>).MakeGenericType(baseEntity);
-                services.AddScoped(rntityRepositoryInterface, baseEntityRepositoryType);
+                var entityRepositoryInterface = typeof(IEntityRepository<>).MakeGenericType(baseEntity);
+                services.AddScoped(entityRepositoryInterface, baseEntityRepositoryType);
             }
         }
     }
