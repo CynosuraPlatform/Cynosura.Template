@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
+using Cynosura.Template.Core;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Web.Infrastructure;
 using Cynosura.Web;
+using Cynosura.Web.Authorization;
 using Cynosura.Web.Infrastructure;
-using Cynosura.Web.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,7 +41,7 @@ namespace Cynosura.Template.Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options =>
             {
@@ -114,11 +113,10 @@ namespace Cynosura.Template.Web
 
             services.AddGrpc();
 
-            var builder = new ContainerBuilder();
-            AutofacConfig.ConfigureAutofac(builder, Configuration);
-            builder.Populate(services);
-            var applicationContainer = builder.Build();
-            return new AutofacServiceProvider(applicationContainer);
+            services.AddWeb();
+            services.AddData();
+            services.AddCore();
+            services.AddCynosuraWeb();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
