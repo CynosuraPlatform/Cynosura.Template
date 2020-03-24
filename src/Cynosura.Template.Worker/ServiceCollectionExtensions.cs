@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using AutoMapper;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Security;
-using Cynosura.Template.Web.Infrastructure;
-using Cynosura.Web.Infrastructure;
-using Microsoft.Extensions.Configuration;
+using Cynosura.Template.Worker.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace Cynosura.Template.Web
+namespace Cynosura.Template.Worker
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddWeb(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddWorker(this IServiceCollection services)
         {
-            services.AddTransient<IExceptionHandler, ValidationExceptionHandler>();
             services.AddScoped<IUserInfoProvider, UserInfoProvider>();
+            services.AddSingleton<IHostedService, MainWorker>();
+            services.AddTransient<CoreLogProvider>();
             var assemblies = CoreHelper.GetPlatformAndAppAssemblies();
             services.AddSingleton<IMapper>(sp => new MapperConfiguration(cfg => { cfg.AddMaps(assemblies); }).CreateMapper());
             return services;

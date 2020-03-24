@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cynosura.Template.Core;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
+using Cynosura.Template.Infrastructure;
 using Cynosura.Template.Web.Infrastructure;
 using Cynosura.Web;
 using Cynosura.Web.Authorization;
@@ -113,9 +114,10 @@ namespace Cynosura.Template.Web
 
             services.AddGrpc();
 
-            services.AddWeb();
+            services.AddWeb(Configuration);
+            services.AddInfrastructure(Configuration);
             services.AddData();
-            services.AddCore();
+            services.AddCore(Configuration);
             services.AddCynosuraWeb();
         }
 

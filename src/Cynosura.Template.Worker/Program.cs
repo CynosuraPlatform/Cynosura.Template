@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading.Tasks;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Worker.Infrastructure;
+using Cynosura.Template.Core;
+using Cynosura.Template.Infrastructure;
 
 namespace Cynosura.Template.Worker
 {
@@ -46,11 +45,11 @@ namespace Cynosura.Template.Worker
                     });
 
                     services.AddOptions();
-                })
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureContainer<ContainerBuilder>((hostContext, container) =>
-                {
-                    AutofacConfig.ConfigureAutofac(container, hostContext.Configuration);
+
+                    services.AddWorker();
+                    services.AddInfrastructure(hostContext.Configuration);
+                    services.AddData();
+                    services.AddCore(hostContext.Configuration);
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {

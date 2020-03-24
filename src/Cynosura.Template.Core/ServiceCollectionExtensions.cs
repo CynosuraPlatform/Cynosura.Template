@@ -6,13 +6,14 @@ using System.Text;
 using Cynosura.Template.Core.Infrastructure;
 using FluentValidation;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cynosura.Template.Core
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddCore(this IServiceCollection services)
+        public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IValidatorFactory, ServiceProviderValidatorFactory>();
             services.AddScoped<IMediator, Mediator>();
