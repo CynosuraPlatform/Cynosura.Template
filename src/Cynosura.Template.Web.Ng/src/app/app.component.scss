@@ -7,11 +7,14 @@
 
 mat-sidenav-container {
   height: calc(100% - 64px);
+
   mat-sidenav {
     min-width: 250px;
   }
+  
   mat-sidenav-content {
     min-height: 100%;
+    padding: 20px;
   }
 }
 

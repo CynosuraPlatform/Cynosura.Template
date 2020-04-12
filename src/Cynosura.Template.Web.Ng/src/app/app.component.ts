@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
     isAuthenticated: Observable<boolean>;
     userName: Observable<string>;
 
-    // FlexLayout
     isHandset$: Observable<boolean> = this.media.asObservable().pipe(
         map(
           () =>
@@ -27,14 +26,12 @@ export class AppComponent implements OnInit {
             this.media.isActive('sm') ||
             this.media.isActive('lt-md')
         ),
-        tap(() => this.changeDetectorRef.detectChanges()));
+        tap(() => this.cdRef.detectChanges()));
 
     constructor(private authorizeService: AuthorizeService,
                 private loadingService: LoadingService,
                 private cdRef: ChangeDetectorRef,
-                private media: MediaObserver,
-                private changeDetectorRef: ChangeDetectorRef,
-                private router: Router) {
+                private media: MediaObserver) {
         loadingService
             .onLoadingChanged
             .pipe(debounceTime(500))
