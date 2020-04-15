@@ -7,7 +7,6 @@ import { RouterModule, Route } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { ApiAuthorizationModule } from '../api-authorization/api-authorization.module';
 import { CoreModule } from './core/core.module';
-import { AccountModule } from './account/account.module';
 
 import { AuthorizeInterceptor } from '../api-authorization/authorize.interceptor';
 import { ConfigService } from './config/config.service';
@@ -49,7 +48,6 @@ import { AuthorizeGuard } from '../api-authorization/authorize.guard';
         MaterialModule,
         CoreModule,
         ApiAuthorizationModule,
-        AccountModule,
     ],
     exports: [
         MaterialModule
