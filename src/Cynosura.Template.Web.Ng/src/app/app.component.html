@@ -14,7 +14,7 @@
             <span *ngIf="userName | async"> {{ userName | async }}</span>
         </a>
         <mat-menu #accountMenu="matMenu">
-            <a mat-menu-item [routerLink]="['profile']">
+            <a mat-menu-item [href]="profileUrl" target="_blank">
                 <mat-icon matListIcon>account_circle</mat-icon>
                 <span>Profile</span>
             </a>

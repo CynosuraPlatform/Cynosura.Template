@@ -7,6 +7,8 @@ import { debounceTime, map, tap, first } from 'rxjs/operators';
 
 import { LoadingService } from './core/loading.service';
 import { AuthorizeService } from '../api-authorization/authorize.service';
+import { ConfigService } from './config/config.service';
+import { ApplicationPaths } from '../api-authorization/api-authorization.constants';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,7 @@ export class AppComponent implements OnInit {
     isLoading = false;
     isAuthenticated: Observable<boolean>;
     userName: Observable<string>;
+    profileUrl: string;
 
     isHandset$: Observable<boolean> = this.media.asObservable().pipe(
         map(
@@ -30,6 +33,7 @@ export class AppComponent implements OnInit {
 
     constructor(private authorizeService: AuthorizeService,
                 private loadingService: LoadingService,
+                private configService: ConfigService,
                 private cdRef: ChangeDetectorRef,
                 private media: MediaObserver) {
         loadingService
@@ -39,6 +43,7 @@ export class AppComponent implements OnInit {
                 this.isLoading = isLoading;
                 this.cdRef.detectChanges();
             });
+        this.profileUrl = this.configService.config.apiBaseUrl + ApplicationPaths.IdentityManagePath;
     }
 
     ngOnInit(): void {
