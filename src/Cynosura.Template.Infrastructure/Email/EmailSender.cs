@@ -34,7 +34,7 @@ namespace Cynosura.Template.Infrastructure.Email
                 client.PickupDirectoryLocation = _options.PickupFolder;
                 client.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
             }
-            var fromAddress = new MailAddress(model.From);
+            var fromAddress = new MailAddress(!string.IsNullOrEmpty(model.From) ? model.From : _options.DefaultFrom);
             var toAddress = new MailAddress(model.To);
             var mailMessage = new MailMessage(fromAddress, toAddress)
             {
