@@ -79,6 +79,7 @@ namespace Cynosura.Template.Web
                     o.JsonSerializerOptions.IgnoreNullValues = true;
                     o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
                 });
+            services.AddRazorPages();
 
             services.AddAuthorization(options =>
             {
