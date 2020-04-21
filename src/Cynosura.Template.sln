@@ -17,11 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Template.Core.Unit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48F41545-21BC-4CA3-A882-690B13AD506D}"
 	ProjectSection(SolutionItems) = preProject
+		.cynosura.json = .cynosura.json
 		docker-compose.Development.yaml = docker-compose.Development.yaml
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cynosura.Template.Infrastructure", "Cynosura.Template.Infrastructure\Cynosura.Template.Infrastructure.csproj", "{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cynosura.Template.Infrastructure", "Cynosura.Template.Infrastructure\Cynosura.Template.Infrastructure.csproj", "{4900DE66-3A8A-4D67-8C77-D3E2A7DA4381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
