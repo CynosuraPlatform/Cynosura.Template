@@ -5,6 +5,7 @@ using System.Text;
 using Cynosura.Core.Data;
 using Cynosura.EF;
 using Cynosura.Template.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cynosura.Template.Data
@@ -16,6 +17,8 @@ namespace Cynosura.Template.Data
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
             services.AddScoped<IDatabaseFactory, DatabaseFactory>();
             services.AddBaseEntityRepositories();
+            services.AddTransient<IUserStore<User>, CustomUserStore>();
+            services.AddTransient<IRoleStore<Role>, CustomRoleStore>();
             services.AddCynosuraEF();
             return services;
         }
