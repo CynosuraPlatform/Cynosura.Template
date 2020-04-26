@@ -72,6 +72,13 @@ export class UserListComponent implements OnInit {
         });
     }
 
+    onExport(): void {
+        this.userService.exportUsers({ filter: this.state.filter })
+            .subscribe(file => {
+                file.download();
+            });
+    }
+
     onEdit(id: number) {
         UserEditComponent.show(this.dialog, id).subscribe(() => {
             this.getUsers();

@@ -36,6 +36,13 @@ namespace Cynosura.Template.Web.Controllers
             return await _mediator.Send(getUser);
         }
 
+        [HttpPost("ExportUsers")]
+        public async Task<FileResult> ExportUsersAsync([FromBody] ExportUsers exportUsers)
+        {
+            var file = await _mediator.Send(exportUsers);
+            return File(file.Content, file.ContentType, file.Name);
+        }
+
         [Authorize("WriteUser")]
         [HttpPost("UpdateUser")]
         public async Task<Unit> UpdateUserAsync([FromBody] UpdateUser updateUser)

@@ -13,6 +13,12 @@ export class GetUser {
     id: number;
 }
 
+export class ExportUsers {
+    filter?: UserFilter;
+    orderBy?: string;
+    orderDirection?: OrderDirection;
+}
+
 export class UpdateUser {
     id: number;
     password?: string;
