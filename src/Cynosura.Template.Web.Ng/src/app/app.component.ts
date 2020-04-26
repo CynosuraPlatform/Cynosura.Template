@@ -11,9 +11,9 @@ import { ConfigService } from './config/config.service';
 import { ApplicationPaths } from '../api-authorization/api-authorization.constants';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
     title = 'app';
@@ -24,10 +24,10 @@ export class AppComponent implements OnInit {
 
     isHandset$: Observable<boolean> = this.media.asObservable().pipe(
         map(
-          () =>
-            this.media.isActive('xs') ||
-            this.media.isActive('sm') ||
-            this.media.isActive('lt-md')
+            () =>
+                this.media.isActive('xs') ||
+                this.media.isActive('sm') ||
+                this.media.isActive('lt-md')
         ),
         tap(() => this.cdRef.detectChanges()));
 
