@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.1.0" />
     <PackageReference Include="MailKit" Version="2.6.0" />
   </ItemGroup>
 

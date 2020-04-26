@@ -156,7 +156,8 @@ namespace Cynosura.Template.Web
             {
                 builder.WithOrigins(Configuration["Cors:Origin"])
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("Content-Disposition");
             });
 
             app.UseAuthentication();

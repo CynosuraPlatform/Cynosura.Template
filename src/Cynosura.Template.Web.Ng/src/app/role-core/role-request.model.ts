@@ -13,6 +13,12 @@ export class GetRole {
     id: number;
 }
 
+export class ExportRoles {
+    filter?: RoleFilter;
+    orderBy?: string;
+    orderDirection?: OrderDirection;
+}
+
 export class UpdateRole {
     id: number;
     name: string;

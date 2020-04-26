@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Cynosura.Template.Core.Email;
+using Cynosura.Template.Core.Formatters;
 using Cynosura.Template.Infrastructure.Email;
+using Cynosura.Template.Infrastructure.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +16,7 @@ namespace Cynosura.Template.Infrastructure
         {
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<EmailSenderOptions>(configuration.GetSection("EmailSender"));
+            services.AddTransient<IExcelFormatter, ExcelFormatter>();
             return services;
         }
     }

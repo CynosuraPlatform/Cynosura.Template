@@ -71,6 +71,13 @@ export class RoleListComponent implements OnInit {
         });
     }
 
+    onExport(): void {
+        this.roleService.exportRoles({ filter: this.state.filter })
+            .subscribe(file => {
+                file.download();
+            });
+    }
+
     onEdit(id: number) {
         RoleEditComponent.show(this.dialog, id).subscribe(() => {
             this.getRoles();
