@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
-using Cynosura.Core.Services;
 using Cynosura.Template.Core.Email;
 using Cynosura.Template.Core.Email.Models;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
+using MimeKit;
 
 namespace Cynosura.Template.Infrastructure.Email
 {
@@ -21,46 +21,57 @@ namespace Cynosura.Template.Infrastructure.Email
 
         public async Task SendAsync(EmailModel model)
         {
-            var client = new SmtpClient();
-            if (string.IsNullOrEmpty(_options.PickupFolder))
+            var message = new MimeMessage();
+            message.From.Add(MailboxAddress.Parse(!string.IsNullOrEmpty(model.From) ? model.From : _options.DefaultFrom));
+            message.To.Add(MailboxAddress.Parse(model.To));
+            message.Subject = model.Subject;
+            var bodyBuilder = new BodyBuilder();
+            if (model.IsBodyHtml)
             {
-                client.Host = _options.SmtpServer;
-                client.Port = _options.SmtpPort;
-                client.Credentials = new NetworkCredential(_options.UserName, _options.Password);
-                client.EnableSsl = _options.EnableSsl;
+                bodyBuilder.HtmlBody = model.Body;
             }
             else
             {
-                client.PickupDirectoryLocation = _options.PickupFolder;
-                client.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-            }
-            var fromAddress = new MailAddress(!string.IsNullOrEmpty(model.From) ? model.From : _options.DefaultFrom);
-            var toAddress = new MailAddress(model.To);
-            var mailMessage = new MailMessage(fromAddress, toAddress)
-            {
-                Body = model.Body,
-                Subject = model.Subject,
-                IsBodyHtml = model.IsBodyHtml,
-            };
-            if (!string.IsNullOrEmpty(model.Cc))
-            {
-                mailMessage.CC.Add(new MailAddress(model.Cc));
-            }
-            if (!string.IsNullOrEmpty(model.Bcc))
-            {
-                mailMessage.Bcc.Add(new MailAddress(model.Bcc));
+                bodyBuilder.TextBody = model.Body;
             }
             if (model.Attachments != null)
             {
                 foreach (var attachment in model.Attachments)
                 {
-                    var stream = new MemoryStream(attachment.Data);
-                    mailMessage.Attachments.Add(new Attachment(stream, attachment.FileName,
-                        attachment.ContentType));
+                    bodyBuilder.Attachments.Add(attachment.FileName, attachment.Data, ContentType.Parse(attachment.ContentType));
                 }
             }
+            message.Body = bodyBuilder.ToMessageBody();
+            if (!string.IsNullOrEmpty(model.Cc))
+            {
+                message.Cc.Add(MailboxAddress.Parse(model.Cc));
+            }
+            if (!string.IsNullOrEmpty(model.Bcc))
+            {
+                message.Bcc.Add(MailboxAddress.Parse(model.Bcc));
+            }
 
-            await client.SendMailAsync(mailMessage);
+            if (string.IsNullOrEmpty(_options.PickupFolder))
+            {
+                using var client = new SmtpClient();
+                await client.ConnectAsync(_options.SmtpServer, _options.SmtpPort, _options.EnableSsl);
+                if (!string.IsNullOrEmpty(_options.UserName))
+                {
+                    await client.AuthenticateAsync(_options.UserName, _options.Password);
+                }
+                await client.SendAsync(message);
+            }
+            else
+            {
+                await SaveToPickupDirectoryAsync(message, _options.PickupFolder);
+            }
+        }
+
+        private async Task SaveToPickupDirectoryAsync(MimeMessage message, string pickupDirectory)
+        {
+            var path = Path.Combine(pickupDirectory, $"{Guid.NewGuid()}.eml");
+            using var stream = new FileStream(path, FileMode.CreateNew);
+            await message.WriteToAsync(stream);
         }
     }
 }
