@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Cynosura.Template.Core.Requests.Users.Models
 {
@@ -7,7 +8,9 @@ namespace Cynosura.Template.Core.Requests.Users.Models
     {
         public int Id { get; set; }
 
+        [DisplayName("UserName")]
         public string UserName { get; set; }
+        [DisplayName("Email")]
         public string Email { get; set; }
         public IList<int> RoleIds { get; } = new List<int>();
     }
