@@ -156,6 +156,28 @@
   },
   {
     "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Export{PluralName}.cs",
+    "templatePath": "Core\\ExportRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [],
+    "view": null
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Export{PluralName}Handler.cs",
+    "templatePath": "Core\\ExportRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [],
+    "view": null
+  },
+  {
+    "filePath": "*.Core\\Requests",
     "fileName": "{PluralName}\\Update{Name}.cs",
     "templatePath": "Core\\UpdateRequest.stg",
     "types": [

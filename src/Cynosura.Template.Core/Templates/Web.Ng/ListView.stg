@@ -18,6 +18,7 @@
         </div>
         <div class="action-item">
             <button mat-raised-button color="primary" type="button" (click)="onCreate()">Create</button>
+            <button mat-raised-button type="button" (click)="onExport()">Export</button>
         </div>
     </mat-card-actions>
 
