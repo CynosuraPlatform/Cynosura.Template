@@ -44,6 +44,12 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "ru": {
+              "aot": true,
+              "i18nFile": "src/locale/messages.ru.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ru"
             }
           }
         },
@@ -55,6 +61,9 @@
           "configurations": {
             "production": {
               "browserTarget": "Cynosura.Template.Web:build:production"
+            },
+            "ru": {
+              "browserTarget": "Cynosura.Template.Web:build:ru"
             }
           }
         },

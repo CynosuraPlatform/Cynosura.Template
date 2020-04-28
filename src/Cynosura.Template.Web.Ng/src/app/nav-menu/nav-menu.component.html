@@ -2,7 +2,7 @@
     <a mat-list-item [routerLink]="['/']" (click)="collapse()" [routerLinkActive]="['link-active']"
         [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>home</mat-icon>
-        <span>Home</span>
+        <span i18n>Home</span>
     </a>
     <a mat-list-item [routerLink]="[item.route]" *ngFor="let item of (menu | async)?.items" [routerLinkActive]="['link-active']">
         <mat-icon matListIcon>{{ item.icon }}</mat-icon>
