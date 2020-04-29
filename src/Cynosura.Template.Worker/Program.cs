@@ -46,7 +46,7 @@ namespace Cynosura.Template.Worker
 
                     services.AddOptions();
 
-                    services.AddWorker();
+                    services.AddWorker(hostContext.Configuration);
                     services.AddInfrastructure(hostContext.Configuration);
                     services.AddData();
                     services.AddCore(hostContext.Configuration);

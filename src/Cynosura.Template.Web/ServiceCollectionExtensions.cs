@@ -21,6 +21,7 @@ namespace Cynosura.Template.Web
             services.AddScoped<IUserInfoProvider, UserInfoProvider>();
             var assemblies = CoreHelper.GetPlatformAndAppAssemblies();
             services.AddSingleton<IMapper>(sp => new MapperConfiguration(cfg => { cfg.AddMaps(assemblies); }).CreateMapper());
+            services.AddFromConfiguration(configuration, assemblies);
 
             services.AddTransient<IEmailSender, EmailSender>();
             return services;
