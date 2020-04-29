@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Cynosura.Core.Data;
+using Cynosura.Core.Services;
 using $model.Solution.Namespace$.Core.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,11 +31,12 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
             var $model.Entity.NameLower$ = await _$model.Entity.NameLower$Repository.GetEntities()
                 .Where(e => e.$model.Entity.IdField.Name$ == request.$model.Entity.IdField.Name$)
                 .FirstOrDefaultAsync();
-            if ($model.Entity.NameLower$ != null)
+            if ($model.Entity.NameLower$ == null)
             {
-                _mapper.Map(request, $model.Entity.NameLower$);
-                await _unitOfWork.CommitAsync();
+                throw new ServiceException(\$"$model.Entity.Name$ {request.Id} not found");
             }
+            _mapper.Map(request, $model.Entity.NameLower$);
+            await _unitOfWork.CommitAsync();
             return Unit.Value;
         }
 

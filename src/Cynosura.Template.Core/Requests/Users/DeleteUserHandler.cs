@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -18,11 +19,12 @@ namespace Cynosura.Template.Core.Requests.Users
         public async Task<Unit> Handle(DeleteUser request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
-            if (user != null)
+            if (user == null)
             {
-                var result = await _userManager.DeleteAsync(user);
-                result.CheckIfSucceeded();
+                throw new ServiceException($"User {request.Id} not found");
             }
+            var result = await _userManager.DeleteAsync(user);
+            result.CheckIfSucceeded();
             return Unit.Value;
         }
     }

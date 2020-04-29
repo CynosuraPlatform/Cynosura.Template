@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -21,6 +22,10 @@ namespace Cynosura.Template.Core.Requests.Roles
         public async Task<Unit> Handle(UpdateRole request, CancellationToken cancellationToken)
         {
             var role = await _roleManager.FindByIdAsync(request.Id.ToString());
+            if (role == null)
+            {
+                throw new ServiceException($"Role {request.Id} not found");
+            }
             _mapper.Map(request, role);
             var result = await _roleManager.UpdateAsync(role);
             result.CheckIfSucceeded();

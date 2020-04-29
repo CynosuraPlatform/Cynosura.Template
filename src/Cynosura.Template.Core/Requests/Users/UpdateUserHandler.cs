@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -25,35 +26,36 @@ namespace Cynosura.Template.Core.Requests.Users
         public async Task<Unit> Handle(UpdateUser request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
-            if (user != null)
+            if (user == null)
             {
-                _mapper.Map(request, user);
-                var result = await _userManager.UpdateAsync(user);
-                result.CheckIfSucceeded();
+                throw new ServiceException($"User {request.Id} not found");
+            }
+            _mapper.Map(request, user);
+            var result = await _userManager.UpdateAsync(user);
+            result.CheckIfSucceeded();
 
-                if (request.Password != null)
-                {
-                    var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-                    result = await _userManager.ResetPasswordAsync(user, resetToken, request.Password);
-                    result.CheckIfSucceeded();
-                }
-
-                var userCurrentRoles = await _userManager.GetRolesAsync(user);
-                var newUserRolesList = new List<Role>();
-                foreach (var role in request.RoleIds)
-                {
-                    var newRole = await _roleManager.FindByIdAsync(role.ToString());
-                    newUserRolesList.Add(newRole);
-                }
-
-                var newUserRoleNamesList = newUserRolesList.Select(newUserRole => newUserRole.Name).ToList();
-
-                result = await _userManager.AddToRolesAsync(user, newUserRoleNamesList.Except(userCurrentRoles));
-                result.CheckIfSucceeded();
-
-                result = await _userManager.RemoveFromRolesAsync(user, userCurrentRoles.Except(newUserRoleNamesList));
+            if (request.Password != null)
+            {
+                var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                result = await _userManager.ResetPasswordAsync(user, resetToken, request.Password);
                 result.CheckIfSucceeded();
             }
+
+            var userCurrentRoles = await _userManager.GetRolesAsync(user);
+            var newUserRolesList = new List<Role>();
+            foreach (var role in request.RoleIds)
+            {
+                var newRole = await _roleManager.FindByIdAsync(role.ToString());
+                newUserRolesList.Add(newRole);
+            }
+
+            var newUserRoleNamesList = newUserRolesList.Select(newUserRole => newUserRole.Name).ToList();
+
+            result = await _userManager.AddToRolesAsync(user, newUserRoleNamesList.Except(userCurrentRoles));
+            result.CheckIfSucceeded();
+
+            result = await _userManager.RemoveFromRolesAsync(user, userCurrentRoles.Except(newUserRoleNamesList));
+            result.CheckIfSucceeded();
             return Unit.Value;
         }
     }
