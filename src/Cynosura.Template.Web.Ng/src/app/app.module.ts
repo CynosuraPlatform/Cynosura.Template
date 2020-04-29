@@ -1,8 +1,9 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+﻿import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Route } from '@angular/router';
+import { MatPaginatorIntl } from '@angular/material';
 
 import { MaterialModule } from './material.module';
 import { ApiAuthorizationModule } from '../api-authorization/api-authorization.module';
@@ -15,6 +16,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AuthorizeGuard } from '../api-authorization/authorize.guard';
+import { MatPaginatorIntlCustom } from './mat-paginator-intl';
 
 @NgModule({
     declarations: [
@@ -58,7 +60,8 @@ import { AuthorizeGuard } from '../api-authorization/authorize.guard';
             multi: true,
             deps: [ConfigService]
         },
-        { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+        { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCustom}
     ],
     bootstrap: [AppComponent]
 })
