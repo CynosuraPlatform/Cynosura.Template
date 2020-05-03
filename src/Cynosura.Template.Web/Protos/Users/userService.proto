@@ -20,9 +20,9 @@ message CreateUserRequest {
     oneof emailOneOf {
         string email = 2;
     }
-    string password = 12;
-    string confirmPassword = 13;
-    repeated int32 roleIds = 11;
+    string password = 52;
+    string confirmPassword = 53;
+    repeated int32 roleIds = 51;
 }
 
 message DeleteUserRequest {
@@ -48,8 +48,8 @@ message GetUsersRequest {
 }
 
 message UpdateUserRequest {
-    int32 id = 10;
-    string password = 12;
-    string confirmPassword = 13;
-    repeated int32 roleIds = 11;
+    int32 id = 50;
+    string password = 52;
+    string confirmPassword = 53;
+    repeated int32 roleIds = 51;
 }
