@@ -14,9 +14,13 @@
             &nbsp;<span *ngIf="userName | async">{{ userName | async }}</span>
         </a>
         <mat-menu #accountMenu="matMenu">
-            <a mat-menu-item [href]="profileUrl" target="_blank">
-                <mat-icon matListIcon>account_circle</mat-icon>
+            <a mat-menu-item [routerLink]="['profile']">
+                <mat-icon matListIcon>person_outline</mat-icon>
                 <span i18n>Profile</span>
+            </a>
+            <a mat-menu-item [href]="accountUrl" target="_blank">
+                <mat-icon matListIcon>account_circle</mat-icon>
+                <span i18n>Account</span>
             </a>
             <a mat-menu-item [routerLink]="['/authentication/logout']" [state]="{ local: true }">
                 <mat-icon matListIcon>exit_to_app</mat-icon>

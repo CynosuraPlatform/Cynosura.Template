@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     isLoading = false;
     isAuthenticated: Observable<boolean>;
     userName: Observable<string>;
-    profileUrl: string;
+    accountUrl: string;
 
     isHandset$: Observable<boolean> = this.media.asObservable().pipe(
         map(
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
                 this.isLoading = isLoading;
                 this.cdRef.detectChanges();
             });
-        this.profileUrl = this.configService.config.apiBaseUrl + ApplicationPaths.IdentityManagePath;
+        this.accountUrl = this.configService.config.apiBaseUrl + ApplicationPaths.IdentityManagePath;
     }
 
     ngOnInit(): void {
