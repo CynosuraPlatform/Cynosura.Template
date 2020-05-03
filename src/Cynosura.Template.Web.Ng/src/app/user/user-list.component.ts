@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { mergeMap } from 'rxjs/operators';
@@ -66,7 +66,7 @@ export class UserListComponent implements OnInit {
         this.getUsers();
     }
 
-    onCreate(): void {
+    onCreate() {
         UserEditComponent.show(this.dialog, 0).subscribe(() => {
             this.getUsers();
         });

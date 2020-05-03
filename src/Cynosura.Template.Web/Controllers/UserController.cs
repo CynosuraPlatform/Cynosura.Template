@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Users;

@@ -31,6 +31,7 @@ namespace Cynosura.Template.Core.Requests.Users
                 throw new ServiceException($"User {request.Id} not found");
             }
             _mapper.Map(request, user);
+            user.UserName = user.Email;
             var result = await _userManager.UpdateAsync(user);
             result.CheckIfSucceeded();
 

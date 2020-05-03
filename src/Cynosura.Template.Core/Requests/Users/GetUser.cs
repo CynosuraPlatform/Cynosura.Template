@@ -1,3 +1,4 @@
+﻿using System;
 using Cynosura.Template.Core.Requests.Users.Models;
 using MediatR;
 

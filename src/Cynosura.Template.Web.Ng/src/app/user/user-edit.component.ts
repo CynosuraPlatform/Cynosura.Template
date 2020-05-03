@@ -25,7 +25,6 @@ export class UserEditComponent implements OnInit {
     id: number;
     userForm = this.fb.group({
         id: [],
-        userName: [],
         email: [],
         password: [],
         confirmPassword: []

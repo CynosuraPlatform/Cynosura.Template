@@ -3,15 +3,9 @@
 
     <form [formGroup]="userForm">
         <mat-form-field>
-            <mat-label>Username</mat-label>
-            <input matInput type="email" id="userName" name="userName" formControlName="userName" placeholder="Username"
-                [readonly]="true" />
-            <mat-error>{{ error?.modelState?.userName | modelError }}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput type="email" id="email" name="email" formControlName="email"
-                placeholder="Email" [readonly]="user?.id" />            
+                placeholder="Email" />            
             <mat-error>{{ error?.modelState?.email | modelError }}</mat-error>
         </mat-form-field>
         <mat-form-field>

@@ -6,7 +6,7 @@ namespace Cynosura.Template.Core.Requests.Users
     {
         public CreateUserValidator()
         {
-            RuleFor(x => x.Email).EmailAddress().NotEmpty();
+            RuleFor(x => x.Email).MaximumLength(256).EmailAddress().NotEmpty();
             RuleFor(x => x.Password).Length(6, 100).NotEmpty();
             RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("Passwords do not match");
         }

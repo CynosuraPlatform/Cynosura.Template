@@ -10,7 +10,7 @@
     </mat-card-actions>
 
     <div class="field-view">
-        <label>Username</label>
+        <label>UserName</label>
         <div>
             <app-text-view [value]="user.userName"></app-text-view>
         </div>
@@ -24,10 +24,8 @@
     <div class="field-view">
         <label>Roles</label>
         <div *ngFor="let role of userRoles">
-            {{ role.name }}               
+            {{ role.name }}
         </div>
     </div>
-    
-
 
 </mat-card>

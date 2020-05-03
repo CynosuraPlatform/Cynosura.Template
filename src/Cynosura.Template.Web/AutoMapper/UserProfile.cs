@@ -14,7 +14,8 @@ namespace Cynosura.Template.Web.AutoMapper
     {
         public UserProfile()
         {
-            CreateMap<CreateUserRequest, CreateUser>();
+            CreateMap<CreateUserRequest, CreateUser>()
+                .ForMember(dest => dest.Email, opt => opt.Condition(src => src.EmailOneOfCase == CreateUserRequest.EmailOneOfOneofCase.Email));
             CreateMap<DeleteUserRequest, DeleteUser>();
             CreateMap<GetUserRequest, GetUser>();
             CreateMap<GetUsersRequest, GetUsers>()
@@ -24,7 +25,8 @@ namespace Cynosura.Template.Web.AutoMapper
             CreateMap<UpdateUserRequest, UpdateUser>();
 
             CreateMap<UserModel, User>()
-                .ForMember(dest => dest.Email, opt => opt.Condition(src => src.Email != null));
+                .ForMember(dest => dest.UserName, opt => opt.Condition(src => src.UserName != default))
+                .ForMember(dest => dest.Email, opt => opt.Condition(src => src.Email != default));
             CreateMap<PageModel<UserModel>, UserPageModel>()                
                 .ForMember(dest => dest.PageItems, opt => opt.Ignore())
                 .AfterMap((src, dest, rc) => dest.PageItems.AddRange(rc.Mapper.Map<IEnumerable<User>>(src.PageItems)));

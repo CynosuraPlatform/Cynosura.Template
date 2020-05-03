@@ -1,5 +1,7 @@
-syntax = "proto3";
+﻿syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 import "Protos/common.proto";
 import "Protos/Users/userModel.proto";
 import "Protos/Users/userFilter.proto";
@@ -15,10 +17,12 @@ service UserService {
 }
 
 message CreateUserRequest {
-    string email = 1;
-    string password = 2;
-    string confirmPassword = 3;
-    repeated int32 roleIds = 4;
+    oneof emailOneOf {
+        string email = 2;
+    }
+    string password = 12;
+    string confirmPassword = 13;
+    repeated int32 roleIds = 11;
 }
 
 message DeleteUserRequest {
@@ -44,8 +48,8 @@ message GetUsersRequest {
 }
 
 message UpdateUserRequest {
-    int32 id = 1;
-    string password = 2;
-    string confirmPassword = 3;
-    repeated int32 roleIds = 4;
+    int32 id = 10;
+    string password = 12;
+    string confirmPassword = 13;
+    repeated int32 roleIds = 11;
 }

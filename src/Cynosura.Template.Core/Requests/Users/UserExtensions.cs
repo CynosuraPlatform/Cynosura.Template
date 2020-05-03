@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Infrastructure;

@@ -7,6 +7,10 @@ namespace Cynosura.Template.Core.Requests.Users.Models
     public class UserModel
     {
         public int Id { get; set; }
+        [DisplayName("Creation Date")]
+        public DateTime CreationDate { get; set; }
+        [DisplayName("Modification Date")]
+        public DateTime ModificationDate { get; set; }
 
         [DisplayName("UserName")]
         public string UserName { get; set; }
