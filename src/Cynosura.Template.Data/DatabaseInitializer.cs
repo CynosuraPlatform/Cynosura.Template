@@ -39,6 +39,7 @@ namespace Cynosura.Template.Data
                 {
                     UserName = administratorEmail,
                     Email = administratorEmail,
+                    FirstName = "Administrator",
                     EmailConfirmed = true
                 };
                 await _userManager.CreateAsync(user);
