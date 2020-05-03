@@ -17,5 +17,9 @@ namespace Cynosura.Template.Core.Requests.Users
         public string ConfirmPassword { get; set; }
 
         public List<int> RoleIds { get; set; }
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
     }
 }

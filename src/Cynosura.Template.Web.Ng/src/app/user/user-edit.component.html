@@ -5,25 +5,35 @@
         <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput type="email" id="email" name="email" formControlName="email"
-                placeholder="Email" />            
+                   placeholder="Email" />
             <mat-error>{{ error?.modelState?.email | modelError }}</mat-error>
         </mat-form-field>
         <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <app-text-edit formControlName="firstName" name="firstName" placeholder="First Name"></app-text-edit>
+            <mat-error>{{ error?.modelState?.firstName | modelError }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <app-text-edit formControlName="lastName" name="lastName" placeholder="Last Name"></app-text-edit>
+            <mat-error>{{ error?.modelState?.lastName | modelError }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput type="password" id="password" name="password" 
-                formControlName="password" placeholder="Password" />
+            <input matInput type="password" id="password" name="password"
+                   formControlName="password" placeholder="Password" />
             <mat-error>{{ error?.modelState?.password | modelError }}</mat-error>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Confirm password</mat-label>
             <input matInput type="password" id="confirmPassword" name="confirmPassword"
-                formControlName="confirmPassword" placeholder="Confirm password" />            
+                   formControlName="confirmPassword" placeholder="Confirm password" />
             <mat-error>{{ error?.modelState?.confirmPassword | modelError }}</mat-error>
         </mat-form-field>
         <div>
             <label>Roles</label>
             <div *ngFor="let role of roles; let i = index ">
-                <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected" [ngModelOptions]="{standalone: true}">{{ role.displayName }}</mat-checkbox>                    
+                <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected" [ngModelOptions]="{standalone: true}">{{ role.displayName }}</mat-checkbox>
             </div>
         </div>
     </form>

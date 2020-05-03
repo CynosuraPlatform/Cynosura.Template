@@ -27,7 +27,9 @@ export class UserEditComponent implements OnInit {
         id: [],
         email: [],
         password: [],
-        confirmPassword: []
+        confirmPassword: [],
+        firstName: [],
+        lastName: []
     });
     user: User;
     roles: Role[] = [];

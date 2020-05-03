@@ -15,5 +15,11 @@ namespace Cynosura.Template.Core.Entities
         [Required()]
         public DateTime ModificationDate { get; set; }
         
+        [StringLength(200)]
+        public string FirstName { get; set; }
+        
+        [StringLength(200)]
+        public string LastName { get; set; }
+        
     }
 }

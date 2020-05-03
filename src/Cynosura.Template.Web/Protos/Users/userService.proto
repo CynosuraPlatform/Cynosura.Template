@@ -23,6 +23,12 @@ message CreateUserRequest {
     string password = 52;
     string confirmPassword = 53;
     repeated int32 roleIds = 51;
+    oneof firstNameOneOf {
+        string firstName = 5;
+    }
+    oneof lastNameOneOf {
+        string lastName = 6;
+    }
 }
 
 message DeleteUserRequest {
@@ -52,4 +58,10 @@ message UpdateUserRequest {
     string password = 52;
     string confirmPassword = 53;
     repeated int32 roleIds = 51;
+    oneof firstNameOneOf {
+        string firstName = 5;
+    }
+    oneof lastNameOneOf {
+        string lastName = 6;
+    }
 }

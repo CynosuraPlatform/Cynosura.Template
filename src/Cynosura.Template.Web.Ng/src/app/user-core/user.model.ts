@@ -6,4 +6,6 @@ export class User {
     userName: string;
     email: string;
     roleIds: number[];
+    firstName: string;
+    lastName: string;
 }

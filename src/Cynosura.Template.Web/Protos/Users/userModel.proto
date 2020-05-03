@@ -13,6 +13,8 @@ message User {
     string userName = 1;
     string email = 2;
     repeated int32 roleIds = 51;
+    string firstName = 5;
+    string lastName = 6;
 }
 
 message UserPageModel {

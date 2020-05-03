@@ -22,6 +22,18 @@
         </div>
     </div>
     <div class="field-view">
+        <label>First Name</label>
+        <div>
+            <app-text-view [value]="user.firstName"></app-text-view>
+        </div>
+    </div>
+    <div class="field-view">
+        <label>Last Name</label>
+        <div>
+            <app-text-view [value]="user.lastName"></app-text-view>
+        </div>
+    </div>
+    <div class="field-view">
         <label>Roles</label>
         <div *ngFor="let role of userRoles">
             {{ role.displayName }}

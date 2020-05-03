@@ -54,6 +54,30 @@
       "enumId": null,
       "isSystem": true,
       "properties": {}
+    },
+    {
+      "id": "5b165057-3055-430f-8950-9084bc52cb3b",
+      "name": "FirstName",
+      "displayName": "First Name",
+      "type": "String",
+      "size": 200,
+      "entityId": null,
+      "isRequired": false,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
+    },
+    {
+      "id": "4f000a67-ac2e-470c-ba35-2bad12c6ee9c",
+      "name": "LastName",
+      "displayName": "Last Name",
+      "type": "String",
+      "size": 200,
+      "entityId": null,
+      "isRequired": false,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
     }
   ],
   "properties": {}

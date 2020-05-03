@@ -13,4 +13,10 @@ message UserFilter {
     oneof emailOneOf {
         string email = 20;
     }
+    oneof firstNameOneOf {
+        string firstName = 50;
+    }
+    oneof lastNameOneOf {
+        string lastName = 60;
+    }
 }

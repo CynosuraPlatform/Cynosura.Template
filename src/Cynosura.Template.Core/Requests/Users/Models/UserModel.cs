@@ -17,5 +17,9 @@ namespace Cynosura.Template.Core.Requests.Users.Models
         [DisplayName("Email")]
         public string Email { get; set; }
         public IList<int> RoleIds { get; } = new List<int>();
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
     }
 }

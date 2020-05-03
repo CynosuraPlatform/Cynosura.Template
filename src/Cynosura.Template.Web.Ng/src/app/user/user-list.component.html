@@ -37,6 +37,18 @@
                     <app-text-view [value]="item.email"></app-text-view>
                 </td>
             </ng-container>
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef>First Name</th>
+                <td mat-cell *matCellDef="let item">
+                    <app-text-view [value]="item.firstName"></app-text-view>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                <td mat-cell *matCellDef="let item">
+                    <app-text-view [value]="item.lastName"></app-text-view>
+                </td>
+            </ng-container>
 
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef></th>
