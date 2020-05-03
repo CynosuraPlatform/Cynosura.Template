@@ -5,4 +5,5 @@ export class Role {
     modificationDate: Date;
     name: string;
     isSelected: boolean;
+    displayName: string;
 }

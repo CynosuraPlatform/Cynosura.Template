@@ -23,7 +23,7 @@
         <div>
             <label>Roles</label>
             <div *ngFor="let role of roles; let i = index ">
-                <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected" [ngModelOptions]="{standalone: true}">{{ role.name }}</mat-checkbox>                    
+                <mat-checkbox [name]="'roleIds' + i" [(ngModel)]="role.isSelected" [ngModelOptions]="{standalone: true}">{{ role.displayName }}</mat-checkbox>                    
             </div>
         </div>
     </form>

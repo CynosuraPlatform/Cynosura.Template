@@ -42,6 +42,18 @@
       "enumId": null,
       "isSystem": true,
       "properties": {}
+    },
+    {
+      "id": "1f754857-b56d-472e-ac84-d3f3efa8b3b1",
+      "name": "DisplayName",
+      "displayName": "Display Name",
+      "type": "String",
+      "size": 100,
+      "entityId": null,
+      "isRequired": true,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
     }
   ],
   "properties": {}

@@ -2,4 +2,5 @@
 
 export class RoleFilter extends EntityFilter {
     name?: string;
+    displayName?: string;
 }

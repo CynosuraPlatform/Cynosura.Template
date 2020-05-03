@@ -24,7 +24,8 @@ export class RoleEditComponent implements OnInit {
     id: number;
     roleForm = this.fb.group({
         id: [],
-        name: []
+        name: [],
+        displayName: []
     });
     role: Role;
     error: Error;

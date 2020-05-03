@@ -25,7 +25,11 @@ namespace Cynosura.Template.Data
             var administratorRoleName = "Administrator";
             if (await _roleManager.FindByNameAsync(administratorRoleName) == null)
             {
-                await _roleManager.CreateAsync(new Role() { Name = administratorRoleName });
+                await _roleManager.CreateAsync(new Role() 
+                { 
+                    Name = administratorRoleName,
+                    DisplayName = administratorRoleName,
+                });
             }
 
             var administratorEmail = "admin@cynosura.dev";

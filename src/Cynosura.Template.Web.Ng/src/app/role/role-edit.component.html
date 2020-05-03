@@ -7,6 +7,11 @@
             <app-text-edit formControlName="name" name="name" placeholder="Name"></app-text-edit>
             <mat-error>{{ error?.modelState?.name | modelError }}</mat-error>
         </mat-form-field>
+        <mat-form-field>
+            <mat-label>Display Name</mat-label>
+            <app-text-edit formControlName="displayName" name="displayName" placeholder="Display Name"></app-text-edit>
+            <mat-error>{{ error?.modelState?.displayName | modelError }}</mat-error>
+        </mat-form-field>
     </form>
 
 </mat-dialog-content>

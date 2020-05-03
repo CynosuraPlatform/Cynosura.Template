@@ -20,6 +20,9 @@ message CreateRoleRequest {
     oneof nameOneOf {
         string name = 1;
     }
+    oneof displayNameOneOf {
+        string displayName = 4;
+    }
 }
 
 message DeleteRoleRequest {
@@ -48,5 +51,8 @@ message UpdateRoleRequest {
     int32 id = 10;
     oneof nameOneOf {
         string name = 1;
+    }
+    oneof displayNameOneOf {
+        string displayName = 4;
     }
 }

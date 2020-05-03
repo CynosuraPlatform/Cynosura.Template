@@ -10,4 +10,7 @@ message RoleFilter {
     oneof nameOneOf {
         string name = 10;
     }
+    oneof displayNameOneOf {
+        string displayName = 40;
+    }
 }

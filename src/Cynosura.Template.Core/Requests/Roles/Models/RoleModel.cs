@@ -14,5 +14,7 @@ namespace Cynosura.Template.Core.Requests.Roles.Models
 
         [DisplayName("Name")]
         public string Name { get; set; }
+        [DisplayName("Display Name")]
+        public string DisplayName { get; set; }
     }
 }

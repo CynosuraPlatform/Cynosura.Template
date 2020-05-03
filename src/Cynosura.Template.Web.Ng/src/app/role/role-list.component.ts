@@ -31,6 +31,7 @@ export class RoleListComponent implements OnInit {
     pageSizeOptions = [10, 20];
     columns = [
         'name',
+        'displayName',
         'action'
     ];
 
