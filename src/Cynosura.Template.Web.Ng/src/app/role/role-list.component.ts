@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { mergeMap } from 'rxjs/operators';
@@ -60,12 +60,12 @@ export class RoleListComponent implements OnInit {
         this.getRoles();
     }
 
-    onReset(): void {
+    onReset() {
         this.state.filter.text = null;
         this.getRoles();
     }
 
-    onCreate(): void {
+    onCreate() {
         RoleEditComponent.show(this.dialog, 0).subscribe(() => {
             this.getRoles();
         });
@@ -84,7 +84,7 @@ export class RoleListComponent implements OnInit {
         });
     }
 
-    onDelete(id: number): void {
+    onDelete(id: number) {
         this.modalHelper.confirmDelete()
             .pipe(
                 mergeMap(() => this.roleService.deleteRole({ id }))

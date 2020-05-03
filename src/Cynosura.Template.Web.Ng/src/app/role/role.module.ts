@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '../core/core.module';
@@ -20,9 +20,7 @@ import { RoleViewComponent } from './role-view.component';
             { path: ':id', component: RoleViewComponent }
         ]),
         CoreModule,
-        RoleCoreModule,
-    ],
-    exports: [
+        RoleCoreModule
     ],
     providers: [
     ],

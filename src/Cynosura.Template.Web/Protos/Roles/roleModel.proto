@@ -1,10 +1,16 @@
-syntax = "proto3";
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "Protos/common.proto";
 
 option csharp_namespace = "Cynosura.Template.Web.Protos.Roles";
 
 message Role {
-    int32 id = 1;
-    string name = 2;
+    int32 id = 10;
+    google.protobuf.Timestamp creationDate = 2;
+    google.protobuf.Timestamp modificationDate = 3;
+    string name = 1;
 }
 
 message RolePageModel {

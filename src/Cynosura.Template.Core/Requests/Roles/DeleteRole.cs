@@ -1,3 +1,4 @@
+﻿using System;
 using MediatR;
 
 namespace Cynosura.Template.Core.Requests.Roles

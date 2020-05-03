@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef, OnDestroy, ElementRef, Optional, Self, DoCheck } from '@angular/core';
+﻿import { Component, Input, OnInit, forwardRef, OnDestroy, ElementRef, Optional, Self, DoCheck } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
@@ -16,7 +16,8 @@ import { RoleService } from './role.service';
     ]
 })
 
-export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFormFieldControl<number | null>, OnDestroy, DoCheck {
+export class RoleSelectComponent implements OnInit, ControlValueAccessor,
+    MatFormFieldControl<number | null>, OnDestroy, DoCheck {
 
     static nextId = 0;
 
@@ -35,18 +36,6 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
     get shouldLabelFloat() { return this.focused || !this.empty; }
 
     Role = Role;
-
-    constructor(private roleService: RoleService,
-                private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
-                @Optional() @Self() public ngControl: NgControl) {
-        fm.monitor(elRef, true).subscribe(origin => {
-            this.focused = !!origin;
-            this.stateChanges.next();
-        });
-        if (this.ngControl !== null) {
-            this.ngControl.valueAccessor = this;
-        }
-    }
 
     roles: Role[] = [];
 
@@ -87,6 +76,18 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor, MatFor
 
     onChange: any = () => { };
     onTouched: any = () => { };
+
+    constructor(private roleService: RoleService,
+                private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
+                @Optional() @Self() public ngControl: NgControl) {
+        fm.monitor(elRef, true).subscribe(origin => {
+            this.focused = !!origin;
+            this.stateChanges.next();
+        });
+        if (this.ngControl !== null) {
+            this.ngControl.valueAccessor = this;
+        }
+    }
 
     registerOnChange(fn) {
         this.onChange = fn;

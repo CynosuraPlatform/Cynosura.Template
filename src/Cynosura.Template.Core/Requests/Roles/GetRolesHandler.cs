@@ -14,13 +14,11 @@ namespace Cynosura.Template.Core.Requests.Roles
     public class GetRolesHandler : IRequestHandler<GetRoles, PageModel<RoleModel>>
     {
         private readonly RoleManager<Role> _roleManager;
-        private readonly IEntityRepository<Role> _roleRepository;
         private readonly IMapper _mapper;
 
-        public GetRolesHandler(RoleManager<Role> roleManager, IEntityRepository<Role> roleRepository, IMapper mapper)
+        public GetRolesHandler(RoleManager<Role> roleManager, IMapper mapper)
         {
             _roleManager = roleManager;
-            _roleRepository = roleRepository;
             _mapper = mapper;
         }
 

@@ -1,5 +1,7 @@
-syntax = "proto3";
+﻿syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 import "Protos/common.proto";
 import "Protos/Roles/roleModel.proto";
 import "Protos/Roles/roleFilter.proto";
@@ -15,7 +17,9 @@ service RoleService {
 }
 
 message CreateRoleRequest {
-    string name = 1;
+    oneof nameOneOf {
+        string name = 1;
+    }
 }
 
 message DeleteRoleRequest {
@@ -41,6 +45,8 @@ message GetRolesRequest {
 }
 
 message UpdateRoleRequest {
-    int32 id = 1;
-    string name = 2;
+    int32 id = 10;
+    oneof nameOneOf {
+        string name = 1;
+    }
 }

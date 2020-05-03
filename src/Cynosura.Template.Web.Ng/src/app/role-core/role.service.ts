@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { Role } from './role.model';
-import { GetRoles, GetRole, ExportRoles, UpdateRole, CreateRole, DeleteRole } from './role-request.model';
+import { GetRoles, GetRole, UpdateRole, CreateRole, DeleteRole, ExportRoles } from './role-request.model';
 
 @Injectable()
 export class RoleService {

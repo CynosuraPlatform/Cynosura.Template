@@ -51,7 +51,7 @@ namespace Cynosura.Template.Web.Services
         {
             var createRole = _mapper.Map<CreateRoleRequest, CreateRole>(createRoleRequest);
             return _mapper.Map<CreatedEntity<int>, CreatedEntity>(await _mediator.Send(createRole));
-        }        
+        }
 
         [Authorize("WriteRole")]
         public override async Task<Empty> DeleteRole(DeleteRoleRequest deleteRoleRequest, ServerCallContext context)

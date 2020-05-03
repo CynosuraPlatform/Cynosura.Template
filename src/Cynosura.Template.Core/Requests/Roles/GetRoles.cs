@@ -1,4 +1,4 @@
-using Cynosura.Core.Services.Models;
+﻿using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Roles.Models;
 using MediatR;
