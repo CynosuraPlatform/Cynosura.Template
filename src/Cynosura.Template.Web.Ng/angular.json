@@ -4,14 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "web-ng-app": {
-      "i18n": {
-        "locales": {
-          "ru": {
-            "translation": "src/locale/messages.ru.xlf",
-            "baseHref": ""
-          }
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -70,9 +62,6 @@
           "configurations": {
             "production": {
               "browserTarget": "web-ng-app:build:production"
-            },
-            "ru": {
-              "browserTarget": "web-ng-app:build:ru"
             }
           }
         },

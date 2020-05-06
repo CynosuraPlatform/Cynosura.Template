@@ -18,6 +18,9 @@
         "create": "Create",
         "export": "Export",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "back": "Back",
+        "cancel": "Cancel",
+        "save": "Save"
     }
 }
