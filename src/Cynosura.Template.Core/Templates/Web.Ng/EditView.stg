@@ -1,16 +1,18 @@
 ﻿main(model) ::= <<
-<h1 mat-dialog-title>$model.Entity.DisplayName$ <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></h1>
-<mat-dialog-content *ngIf="$model.Entity.NameLower$" class="mat-dialog-content-edit">
+<ng-container *transloco="let t">
+    <h1 mat-dialog-title>$model.Entity.DisplayName$ <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></h1>
+    <mat-dialog-content *ngIf="$model.Entity.NameLower$" class="mat-dialog-content-edit">
 
-    <form [formGroup]="$model.Entity.NameLower$Form">
-        $model.Entity.AllFields:field(); separator="\n"$
-    </form>
+        <form [formGroup]="$model.Entity.NameLower$Form">
+            $model.Entity.AllFields:field(); separator="\n"$
+        </form>
 
-</mat-dialog-content>
-<mat-dialog-actions class="mat-dialog-actions-edit">
-    <button mat-raised-button mat-dialog-close i18n>Cancel</button>
-    <button mat-raised-button color="primary" (click)="onSave()" cdkFocusInitial i18n>Save</button>
-</mat-dialog-actions>
+    </mat-dialog-content>
+    <mat-dialog-actions class="mat-dialog-actions-edit">
+        <button mat-raised-button mat-dialog-close>{{ t('shared.cancel') }}</button>
+        <button mat-raised-button color="primary" (click)="onSave()" cdkFocusInitial>{{ t('shared.save') }}</button>
+    </mat-dialog-actions>
+</ng-container>
 >>
 
 field(field) ::= <<
