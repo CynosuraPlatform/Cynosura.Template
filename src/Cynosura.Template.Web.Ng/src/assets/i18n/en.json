@@ -19,6 +19,8 @@
         "export": "Export",
         "edit": "Edit",
         "delete": "Delete",
+        "deleteTitle": "Delete?",
+        "deleteMessage": "Are you sure you want to delete?",
         "back": "Back",
         "cancel": "Cancel",
         "save": "Save"

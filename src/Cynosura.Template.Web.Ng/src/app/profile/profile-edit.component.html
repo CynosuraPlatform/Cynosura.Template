@@ -1,10 +1,10 @@
-<mat-card *ngIf="profile" class="mat-card-edit">
+<mat-card class="mat-card-edit" *transloco="let t">
 
     <mat-card-header>
-        <mat-card-title>Profile</mat-card-title>
+        <mat-card-title>{{ t('app.profile') }}</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="profile" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
             <mat-label>First Name</mat-label>
             <app-text-edit formControlName="firstName" name="firstName" placeholder="First Name"></app-text-edit>
@@ -16,7 +16,7 @@
             <mat-error>{{ error?.modelState?.lastName | modelError }}</mat-error>
         </mat-form-field>
         <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit">Save</button>
+            <button mat-raised-button color="primary" type="submit">{{ t('share.save') }}</button>
         </mat-card-actions>
     </form>
 

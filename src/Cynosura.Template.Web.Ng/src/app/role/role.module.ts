@@ -2,6 +2,7 @@
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '../core/core.module';
+import { TranslocoRootModule } from '../transloco-root.module';
 import { RoleCoreModule } from '../role-core/role-core.module';
 
 import { RoleListComponent } from './role-list.component';
@@ -20,6 +21,7 @@ import { RoleViewComponent } from './role-view.component';
             { path: ':id', component: RoleViewComponent }
         ]),
         CoreModule,
+        TranslocoRootModule,
         RoleCoreModule
     ],
     providers: [
