@@ -23,6 +23,12 @@
         "deleteMessage": "Are you sure you want to delete?",
         "back": "Back",
         "cancel": "Cancel",
-        "save": "Save"
+        "save": "Save",
+        "itemsPerPage": "Items per page:",
+        "nextPage": "Next page",
+        "previousPage": "Previous page",
+        "firstPage": "First Page",
+        "lastPage": "Last Page",
+        "itemRange": "{{start}} - {{end}} of {{total}}"
     }
 }
