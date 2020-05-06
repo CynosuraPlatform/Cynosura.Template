@@ -4,6 +4,14 @@
   "newProjectRoot": "projects",
   "projects": {
     "Cynosura.Template.Web": {
+      "i18n": {
+        "locales": {
+          "ru": {
+            "translation": "src/locale/messages.ru.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -11,6 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -29,6 +38,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -47,10 +62,12 @@
             },
             "ru": {
               "aot": true,
-              "i18nFile": "src/locale/messages.ru.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ru"
-            }
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]}
           }
         },
         "serve": {
@@ -133,7 +150,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
