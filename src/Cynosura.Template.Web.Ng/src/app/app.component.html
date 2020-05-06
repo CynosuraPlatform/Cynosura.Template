@@ -2,7 +2,7 @@
     <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 </div>
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *transloco="let t; read: 'app'">
     <mat-toolbar-row>
         <button mat-icon-button *ngIf="isHandset$ | async" (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
@@ -16,20 +16,20 @@
         <mat-menu #accountMenu="matMenu">
             <a mat-menu-item [routerLink]="['profile']">
                 <mat-icon matListIcon>person_outline</mat-icon>
-                <span i18n>Profile</span>
+                <span>{{ t('profile') }}</span>
             </a>
             <a mat-menu-item [href]="accountUrl" target="_blank">
                 <mat-icon matListIcon>account_circle</mat-icon>
-                <span i18n>Account</span>
+                <span>{{ t('account') }}</span>
             </a>
             <a mat-menu-item [routerLink]="['/authentication/logout']" [state]="{ local: true }">
                 <mat-icon matListIcon>exit_to_app</mat-icon>
-                <span i18n>Log Out</span>
+                <span>{{ t('logOut') }}</span>
             </a>
         </mat-menu>
         <a mat-button [routerLink]="['/authentication/login']" *ngIf="(isAuthenticated | async) === false">
             <mat-icon matListIcon>account_circle</mat-icon>
-            &nbsp;<span i18n>Log In</span>
+            &nbsp;<span>{{ t('logIn') }}</span>
         </a>
     </mat-toolbar-row>
 </mat-toolbar>

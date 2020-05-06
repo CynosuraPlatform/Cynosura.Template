@@ -1,0 +1,23 @@
+{
+    "app" : {
+        "profile": "Profile",
+        "account": "Account",
+        "logOut": "Log Out",
+        "logIn": "Log In"
+    },
+    "menu" : {
+        "home": "Home"
+    },
+    "home": {
+        "welcome": "Welcome to Cynosura Application!"
+    },
+    "shared": {
+        "text": "Text",
+        "search": "Search",
+        "reset": "Reset",
+        "create": "Create",
+        "export": "Export",
+        "edit": "Edit",
+        "delete": "Delete"
+    }
+}
