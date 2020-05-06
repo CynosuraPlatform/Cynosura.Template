@@ -1,4 +1,4 @@
-﻿<mat-card class="mat-card-list">
+﻿<mat-card class="mat-card-list" *transloco="let t">
 
     <mat-card-header>
         <mat-card-title>Users</mat-card-title>
@@ -8,16 +8,16 @@
         <div class="action-item">
             <form (ngSubmit)="onSearch()">
                 <mat-form-field>
-                    <mat-label i18n>Text</mat-label>
-                    <input matInput id="text" type="text" name="text" placeholder="Text" [(ngModel)]="state.filter.text" />
+                    <mat-label>{{ t('shared.text') }}</mat-label>
+                    <input matInput id="text" type="text" name="text" [placeholder]="t('shared.text')" [(ngModel)]="state.filter.text" />
                 </mat-form-field>
-                <button mat-raised-button type="submit" color="primary" i18n>Search</button>
-                <button mat-raised-button type="reset" (click)="onReset()" i18n>Reset</button>
+                <button mat-raised-button type="submit" color="primary">{{ t('shared.search') }}</button>
+                <button mat-raised-button type="reset" (click)="onReset()">{{ t('shared.reset') }}</button>
             </form>
         </div>
         <div class="action-item">
-            <button mat-raised-button color="primary" type="button" (click)="onCreate()" i18n>Create</button>
-            <button mat-raised-button type="button" (click)="onExport()" i18n>Export</button>
+            <button mat-raised-button color="primary" type="button" (click)="onCreate()">{{ t('shared.create') }}</button>
+            <button mat-raised-button type="button" (click)="onExport()">{{ t('shared.export') }}</button>
         </div>
     </mat-card-actions>
 
@@ -55,8 +55,8 @@
                 <td mat-cell *matCellDef="let item">
                     <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="actionMenu"><mat-icon>more_vert</mat-icon></button>
                     <mat-menu #actionMenu="matMenu">
-                        <a mat-menu-item (click)="onEdit(item.id)" i18n>Edit</a>
-                        <a mat-menu-item (click)="onDelete(item.id)" i18n>Delete</a>
+                        <a mat-menu-item (click)="onEdit(item.id)">{{ t('shared.edit') }}</a>
+                        <a mat-menu-item (click)="onDelete(item.id)">{{ t('shared.delete') }}</a>
                     </mat-menu>
                 </td>
             </ng-container>

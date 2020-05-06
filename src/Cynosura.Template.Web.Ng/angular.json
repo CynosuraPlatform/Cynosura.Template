@@ -4,14 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "web-ng-app": {
-      "i18n": {
-        "locales": {
-          "ru": {
-            "translation": "src/locale/messages.ru.xlf",
-            "baseHref": ""
-          }
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -59,16 +51,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
-            },
-            "ru": {
-              "localize": ["ru"],
-              "aot": true,
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ]}
+            }
           }
         },
         "serve": {
@@ -79,9 +62,6 @@
           "configurations": {
             "production": {
               "browserTarget": "web-ng-app:build:production"
-            },
-            "ru": {
-              "browserTarget": "web-ng-app:build:ru"
             }
           }
         },

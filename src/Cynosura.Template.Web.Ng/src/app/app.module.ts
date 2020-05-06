@@ -1,4 +1,4 @@
-﻿import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,6 +17,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AuthorizeGuard } from '../api-authorization/authorize.guard';
 import { MatPaginatorIntlCustom } from './mat-paginator-intl';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { MatPaginatorIntlCustom } from './mat-paginator-intl';
         MaterialModule,
         CoreModule,
         ApiAuthorizationModule,
+        TranslocoRootModule,
     ],
     exports: [
         MaterialModule

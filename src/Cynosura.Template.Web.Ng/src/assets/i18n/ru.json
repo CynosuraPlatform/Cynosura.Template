@@ -1,0 +1,34 @@
+{
+    "app" : {
+        "profile": "Профиль",
+        "account": "Аккаунт",
+        "logOut": "Выйти",
+        "logIn": "Войти"
+    },
+    "menu" : {
+        "home": "Главная"
+    },
+    "home": {
+        "welcome": "Добро пожаловать в приложение Cynosura!"
+    },
+    "shared": {
+        "text": "Текст",
+        "search": "Искать",
+        "reset": "Сбросить",
+        "create": "Добавить",
+        "export": "Экспорт",
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "deleteTitle": "Удалить?",
+        "deleteMessage": "Вы уверены, что хотите удалить?",
+        "back": "Назад",
+        "cancel": "Отмена",
+        "save": "Сохранить",
+        "itemsPerPage": "Элементов на странице:",
+        "nextPage": "Следующая страница",
+        "previousPage": "Предыдущая страница",
+        "firstPage": "Первая страница",
+        "lastPage": "Последняя страница",
+        "itemRange": "{{start}} - {{end}} из {{total}}"
+    }
+}

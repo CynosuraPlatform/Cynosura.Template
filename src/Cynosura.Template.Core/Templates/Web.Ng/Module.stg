@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '../core/core.module';
+import { TranslocoRootModule } from '../transloco-root.module';
 import { $model.Entity.Name$CoreModule } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$-core.module';
 $model.Entity.DependentEntities:declareEntity(); separator="\n"$
 $model.Entity.DependentEnums:declareEnum(); separator="\n"$
@@ -23,6 +24,7 @@ import { $model.Entity.Name$ViewComponent } from './$model.Entity.NameKebab$-vie
             { path: ':id', component: $model.Entity.Name$ViewComponent }
         ]),
         CoreModule,
+        TranslocoRootModule,
 $model.Entity.DependentEntities:importEntity(); separator="\n"$
 $model.Entity.DependentEnums:importEnum(); separator="\n"$
         $model.Entity.Name$CoreModule

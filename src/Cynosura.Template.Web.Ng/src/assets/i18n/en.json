@@ -1,0 +1,34 @@
+{
+    "app" : {
+        "profile": "Profile",
+        "account": "Account",
+        "logOut": "Log Out",
+        "logIn": "Log In"
+    },
+    "menu" : {
+        "home": "Home"
+    },
+    "home": {
+        "welcome": "Welcome to Cynosura Application!"
+    },
+    "shared": {
+        "text": "Text",
+        "search": "Search",
+        "reset": "Reset",
+        "create": "Create",
+        "export": "Export",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteTitle": "Delete?",
+        "deleteMessage": "Are you sure you want to delete?",
+        "back": "Back",
+        "cancel": "Cancel",
+        "save": "Save",
+        "itemsPerPage": "Items per page:",
+        "nextPage": "Next page",
+        "previousPage": "Previous page",
+        "firstPage": "First Page",
+        "lastPage": "Last Page",
+        "itemRange": "{{start}} - {{end}} of {{total}}"
+    }
+}
