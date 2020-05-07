@@ -11,6 +11,10 @@
     "home": {
         "welcome": "Добро пожаловать в приложение Cynosura!"
     },
+    "profile": {
+        "lastName": "Фамилия",
+        "firstName": "Имя"
+    },
     "shared": {
         "text": "Текст",
         "search": "Искать",
