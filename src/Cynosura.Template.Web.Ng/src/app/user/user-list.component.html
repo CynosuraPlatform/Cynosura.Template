@@ -1,7 +1,7 @@
 ﻿<mat-card class="mat-card-list" *transloco="let t">
 
     <mat-card-header>
-        <mat-card-title>Users</mat-card-title>
+        <mat-card-title>{{ t('Users') }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-actions>        
@@ -26,25 +26,25 @@
         <table *ngIf="content" mat-table [dataSource]="content.pageItems" multiTemplateDataRows>
 
             <ng-container matColumnDef="userName">
-                <th mat-header-cell *matHeaderCellDef>UserName</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('UserName') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-text-view [value]="item.userName"></app-text-view>
                 </td>
             </ng-container>
             <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('Email') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-text-view [value]="item.email"></app-text-view>
                 </td>
             </ng-container>
             <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef>First Name</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('First Name') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-text-view [value]="item.firstName"></app-text-view>
                 </td>
             </ng-container>
             <ng-container matColumnDef="lastName">
-                <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('Last Name') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-text-view [value]="item.lastName"></app-text-view>
                 </td>

@@ -7,9 +7,9 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Mod
 {
     public class $model.Entity.Name$Model
     {
-        $model.Entity.AllSystemFields:field(); separator="\n"$
+        $model.Entity.AllSystemFields:field(); separator="\n\n"$
 
-        $model.Entity.AllFields:field(); separator="\n"$
+        $model.Entity.AllFields:field(); separator="\n\n"$
     }
 }
 

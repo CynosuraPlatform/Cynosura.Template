@@ -1,7 +1,7 @@
 <mat-card class="mat-card-view" *transloco="let t">
 
     <mat-card-header>
-        <mat-card-title>User <app-user-show [value]="user"></app-user-show></mat-card-title>
+        <mat-card-title>{{ t('User') }} <app-user-show [value]="user"></app-user-show></mat-card-title>
     </mat-card-header>
 
     <mat-card-actions>
@@ -11,31 +11,31 @@
 
     <div *ngIf="user">
         <div class="field-view">
-            <label>UserName</label>
+            <label>{{ t('UserName') }}</label>
             <div>
                 <app-text-view [value]="user.userName"></app-text-view>
             </div>
         </div>
         <div class="field-view">
-            <label>Email</label>
+            <label>{{ t('Email') }}</label>
             <div>
                 <app-text-view [value]="user.email"></app-text-view>
             </div>
         </div>
         <div class="field-view">
-            <label>First Name</label>
+            <label>{{ t('First Name') }}</label>
             <div>
                 <app-text-view [value]="user.firstName"></app-text-view>
             </div>
         </div>
         <div class="field-view">
-            <label>Last Name</label>
+            <label>{{ t('Last Name') }}</label>
             <div>
                 <app-text-view [value]="user.lastName"></app-text-view>
             </div>
         </div>
         <div class="field-view">
-            <label>Roles</label>
+            <label>{{ t('Roles') }}</label>
             <div *ngFor="let role of userRoles">
                 {{ role.displayName }}
             </div>

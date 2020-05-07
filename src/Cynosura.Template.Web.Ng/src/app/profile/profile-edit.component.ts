@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { Error } from '../core/error.model';
 import { ProfileService } from './profile.service';
@@ -24,7 +25,8 @@ export class ProfileEditComponent implements OnInit {
     constructor(
         private profileService: ProfileService,
         private fb: FormBuilder,
-        private noticeHelper: NoticeHelper) {
+        private noticeHelper: NoticeHelper,
+        private translocoService: TranslocoService) {
     }
 
     ngOnInit(): void {
@@ -50,7 +52,7 @@ export class ProfileEditComponent implements OnInit {
         this.profileService.updateProfile(profile)
             .subscribe(
                 () => {
-                    this.noticeHelper.showMessage('Profile saved!');
+                    this.noticeHelper.showMessage(this.translocoService.translate('Profile saved!'));
                     this.getProfile();
                 },
                 (error) => {
