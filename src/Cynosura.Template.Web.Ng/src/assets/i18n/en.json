@@ -8,10 +8,6 @@
     "home": {
         "welcome": "Welcome to Cynosura Application!"
     },
-    "profile": {
-        "lastName": "Last Name",
-        "firstName": "First Name"
-    },
     "shared": {
         "text": "Text",
         "search": "Search",
