@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Cynosura.Template.Core;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
@@ -11,6 +12,7 @@ using Cynosura.Web.Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -68,6 +70,8 @@ namespace Cynosura.Template.Web
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
+            services.AddPortableObjectLocalization(options => options.ResourcesPath = "Localization");
+
             services.AddMvc()
                 .AddMvcOptions(o =>
                 {
@@ -78,7 +82,8 @@ namespace Cynosura.Template.Web
                 {
                     o.JsonSerializerOptions.IgnoreNullValues = true;
                     o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
-                });
+                })
+                .AddDataAnnotationsLocalization();
             services.AddRazorPages();
 
             services.AddAuthorization(options =>
@@ -134,6 +139,17 @@ namespace Cynosura.Template.Web
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US")
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

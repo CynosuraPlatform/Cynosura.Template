@@ -1,0 +1,35 @@
+﻿msgid "First Name"
+msgstr "Имя"
+
+msgid "Last Name"
+msgstr "Фамилия"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Roles"
+msgstr "Роли"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Passwords do not match"
+msgstr "Пароли на совпадают"
+
+msgid "{0} {1} not found"
+msgstr "{0} {1} - не найдено"

@@ -7,6 +7,7 @@ using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
 
 namespace Cynosura.Template.Core.Requests.Users
 {
@@ -15,12 +16,14 @@ namespace Cynosura.Template.Core.Requests.Users
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<SharedResource> _localizer;
 
-        public UpdateUserHandler(UserManager<User> userManager, RoleManager<Role> roleManager, IMapper mapper)
+        public UpdateUserHandler(UserManager<User> userManager, RoleManager<Role> roleManager, IMapper mapper, IStringLocalizer<SharedResource> localizer)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _mapper = mapper;
+            _localizer = localizer;
         }
 
         public async Task<Unit> Handle(UpdateUser request, CancellationToken cancellationToken)
@@ -28,7 +31,7 @@ namespace Cynosura.Template.Core.Requests.Users
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
             if (user == null)
             {
-                throw new ServiceException($"User {request.Id} not found");
+                throw new ServiceException(string.Format(_localizer["{0} {1} not found"], _localizer["User"], request.Id));
             }
             _mapper.Map(request, user);
             user.UserName = user.Email;
