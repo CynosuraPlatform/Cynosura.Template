@@ -2,7 +2,7 @@
 <mat-card class="mat-card-view" *transloco="let t">
 
     <mat-card-header>
-        <mat-card-title>$model.Entity.DisplayName$ <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></mat-card-title>
+        <mat-card-title>{{ t('$model.Entity.DisplayName$') }} <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></mat-card-title>
     </mat-card-header>
 
     <mat-card-actions>
@@ -19,7 +19,7 @@
 
 field(field) ::= <<
 <div class="field-view">
-    <label>$field.DisplayName$</label>
+    <label>{{ t('$field.DisplayName$') }}</label>
     <div>
         $field:(field.Template)()$
     </div>
