@@ -10,6 +10,7 @@ namespace Cynosura.Template.Core.Requests.Roles
     public class CreateRole : IRequest<CreatedEntity<int>>
     {
         public string Name { get; set; }
+
         public string DisplayName { get; set; }
     }
 }

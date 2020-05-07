@@ -4,6 +4,12 @@ msgstr "Имя"
 msgid "Last Name"
 msgstr "Фамилия"
 
+msgid "Creation Date"
+msgstr "Дата создания"
+
+msgid "Modification Date"
+msgstr "Дата изменения"
+
 msgid "Role"
 msgstr "Роль"
 
@@ -14,7 +20,7 @@ msgid "Name"
 msgstr "Название"
 
 msgid "Display Name"
-msgstr "Отображаемое имя"
+msgstr "Отображаемое название"
 
 msgid "User"
 msgstr "Пользователь"

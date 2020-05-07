@@ -7,7 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Cynosura.Template.Core;
 using Cynosura.Template.Core.Formatters;
+using Microsoft.Extensions.Localization;
 using OfficeOpenXml;
 
 namespace Cynosura.Template.Infrastructure.Formatters
@@ -17,6 +19,12 @@ namespace Cynosura.Template.Infrastructure.Formatters
         const string DateFormat = "DD.MM.YYYY";
         const string DateTimeFormat = "DD.MM.YYYY HH:mm";
         const string TimeFormat = "HH:mm";
+        private readonly IStringLocalizer<SharedResource> _localizer;
+
+        public ExcelFormatter(IStringLocalizer<SharedResource> localizer)
+        {
+            _localizer = localizer;
+        }
 
         public Task<IEnumerable<T>> LoadFromAsync<T>(Stream stream, bool withHeader)
         {
@@ -90,7 +98,7 @@ namespace Cynosura.Template.Infrastructure.Formatters
             {
                 var displayNameAttribute = property.Property.GetCustomAttribute<DisplayNameAttribute>();
                 if (displayNameAttribute != null)
-                    property.DisplayName = displayNameAttribute.DisplayName;
+                    property.DisplayName = _localizer[displayNameAttribute.DisplayName];
                 else
                     property.DisplayName = property.Property.Name;
 
