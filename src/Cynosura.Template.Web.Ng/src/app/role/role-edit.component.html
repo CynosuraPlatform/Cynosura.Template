@@ -1,16 +1,16 @@
 ﻿<ng-container *transloco="let t">
-    <h1 mat-dialog-title>Role <app-role-show [value]="role"></app-role-show></h1>
+    <h1 mat-dialog-title>{{ t('Role') }} <app-role-show [value]="role"></app-role-show></h1>
     <mat-dialog-content *ngIf="role" class="mat-dialog-content-edit">
 
         <form [formGroup]="roleForm">
             <mat-form-field>
-                <mat-label>Name</mat-label>
-                <app-text-edit formControlName="name" name="name" placeholder="Name"></app-text-edit>
+                <mat-label>{{ t('Name') }}</mat-label>
+                <app-text-edit formControlName="name" name="name" [placeholder]="t('Name')"></app-text-edit>
                 <mat-error>{{ error?.modelState?.name | modelError }}</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Display Name</mat-label>
-                <app-text-edit formControlName="displayName" name="displayName" placeholder="Display Name"></app-text-edit>
+                <mat-label>{{ t('Display Name') }}</mat-label>
+                <app-text-edit formControlName="displayName" name="displayName" [placeholder]="t('Display Name')"></app-text-edit>
                 <mat-error>{{ error?.modelState?.displayName | modelError }}</mat-error>
             </mat-form-field>
         </form>

@@ -1,7 +1,7 @@
 ﻿<mat-card class="mat-card-list" *transloco="let t">
 
     <mat-card-header>
-        <mat-card-title>Roles</mat-card-title>
+        <mat-card-title>{{ t('Roles') }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-actions>        
@@ -26,13 +26,13 @@
         <table *ngIf="content" mat-table [dataSource]="content.pageItems" multiTemplateDataRows>
 
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('Name') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-text-view [value]="item.name"></app-text-view>
                 </td>
             </ng-container>
             <ng-container matColumnDef="displayName">
-                <th mat-header-cell *matHeaderCellDef>Display Name</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('Display Name') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-text-view [value]="item.displayName"></app-text-view>
                 </td>
