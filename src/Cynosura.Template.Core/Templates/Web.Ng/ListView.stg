@@ -2,7 +2,7 @@
 <mat-card class="mat-card-list" *transloco="let t">
 
     <mat-card-header>
-        <mat-card-title>$model.Entity.PluralDisplayName$</mat-card-title>
+        <mat-card-title>{{ t('$model.Entity.PluralDisplayName$') }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-actions>        
@@ -56,7 +56,7 @@
 
 fieldContainer(field) ::= <<
 <ng-container matColumnDef="$field.NameLower$">
-    <th mat-header-cell *matHeaderCellDef>$field.DisplayName$</th>
+    <th mat-header-cell *matHeaderCellDef>{{ t('$field.DisplayName$') }}</th>
     <td mat-cell *matCellDef="let item">
         $field:(field.Template)(); separator="\n"$
     </td>

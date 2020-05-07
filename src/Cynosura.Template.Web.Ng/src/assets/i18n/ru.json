@@ -5,9 +5,6 @@
         "logOut": "Выйти",
         "logIn": "Войти"
     },
-    "menu" : {
-        "home": "Главная"
-    },
     "home": {
         "welcome": "Добро пожаловать в приложение Cynosura!"
     },
@@ -30,5 +27,19 @@
         "firstPage": "Первая страница",
         "lastPage": "Последняя страница",
         "itemRange": "{{start}} - {{end}} из {{total}}"
-    }
+    },
+    "Home": "Главная",
+    "First Name": "Имя",
+    "Last Name": "Фамилия",
+    "Profile saved!": "Профиль сохранен!",
+    "Role": "Роль",
+    "Roles": "Роли",
+    "Name": "Название",
+    "Display Name": "Отображаемое имя",
+    "User": "Пользователь",
+    "Users": "Пользователи",
+    "UserName": "Логин",
+    "Email": "Email",
+    "Password": "Пароль",
+    "Confirm password": "Подтвердить пароль"
 }

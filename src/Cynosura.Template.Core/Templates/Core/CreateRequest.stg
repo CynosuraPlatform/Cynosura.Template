@@ -10,14 +10,13 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
 {
     public class Create$model.Entity.Name$ : IRequest<CreatedEntity<$model.Entity.IdField.TypeName$>\>
     {
-        $model.Entity.AllFields:field(); separator="\n"$
+        $model.Entity.AllFields:field(); separator="\n\n"$
     }
 }
 
 >>
 
 field(field) ::= <<
-[DisplayName("$field.DisplayName$")]
 $field:(field.Template)()$
 >>
 

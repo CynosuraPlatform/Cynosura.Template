@@ -7,6 +7,7 @@ using Cynosura.Core.Services;
 using $model.Solution.Namespace$.Core.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
 {
@@ -14,12 +15,15 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
     {
         private readonly IEntityRepository<$model.Entity.Name$> _$model.Entity.NameLower$Repository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IStringLocalizer<SharedResource> _localizer;
 
         public Delete$model.Entity.Name$Handler(IEntityRepository<$model.Entity.Name$> $model.Entity.NameLower$Repository,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IStringLocalizer<SharedResource> localizer)
         {
             _$model.Entity.NameLower$Repository = $model.Entity.NameLower$Repository;
             _unitOfWork = unitOfWork;
+            _localizer = localizer;
         }
 
         public async Task<Unit> Handle(Delete$model.Entity.Name$ request, CancellationToken cancellationToken)
@@ -29,7 +33,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
                 .FirstOrDefaultAsync();
             if ($model.Entity.NameLower$ == null)
             {
-                throw new ServiceException(\$"$model.Entity.Name$ {request.Id} not found");
+                throw new ServiceException(string.Format(_localizer["{0} {1} not found"], _localizer["$model.Entity.Name$"], request.Id));
             }
             _$model.Entity.NameLower$Repository.Delete($model.Entity.NameLower$);
             await _unitOfWork.CommitAsync();

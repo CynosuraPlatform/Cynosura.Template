@@ -6,13 +6,13 @@
 
     <form *ngIf="profile" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
-            <mat-label>First Name</mat-label>
-            <app-text-edit formControlName="firstName" name="firstName" placeholder="First Name"></app-text-edit>
+            <mat-label>{{ t('First Name') }}</mat-label>
+            <app-text-edit formControlName="firstName" name="firstName" [placeholder]="t('First Name')"></app-text-edit>
             <mat-error>{{ error?.modelState?.firstName | modelError }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Last Name</mat-label>
-            <app-text-edit formControlName="lastName" name="lastName" placeholder="Last Name"></app-text-edit>
+            <mat-label>{{ t('Last Name') }}</mat-label>
+            <app-text-edit formControlName="lastName" name="lastName" [placeholder]="t('Last Name')"></app-text-edit>
             <mat-error>{{ error?.modelState?.lastName | modelError }}</mat-error>
         </mat-form-field>
         <mat-card-actions>
