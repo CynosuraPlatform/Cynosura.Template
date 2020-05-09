@@ -11,6 +11,8 @@ pr: none
 pool:
   vmImage: 'ubuntu-latest'
 
+name: $(BaseVersion)-b$(BuildID)
+
 steps:
 - task: FileTransform@2
   displayName: add version to .cynosura.json
@@ -23,6 +25,7 @@ steps:
   displayName: run prepare content
   inputs:
     filePath: 'template/prepare-content.ps1'
+    workingDirectory: 'template/'
 
 - task: file-creator@5
   displayName: create template.version.nuspec
