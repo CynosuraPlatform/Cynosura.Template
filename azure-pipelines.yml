@@ -27,24 +27,6 @@ steps:
     filePath: 'template/prepare-content.ps1'
     workingDirectory: 'template/'
 
-- task: file-creator@5
-  displayName: create template.version.nuspec
-  inputs:
-    filepath: 'template/template.version.nuspec'
-    filecontent: |
-      <?xml version="1.0" encoding="utf-8"?>
-      <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd" xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-        <metadata>
-          <version xdt:Transform="Replace">$(Build.BuildNumber)</version>    
-        </metadata>
-      </package>
-
-- task: xdttransform@3
-  displayName: apply template.version.nuspec
-  inputs:
-    workingFolder: 'template'
-    transforms: 'template.version.nuspec => template.nuspec'
-
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: 
@@ -53,8 +35,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: 'template/template.nuspec'
-    configuration: 
-    versioningScheme: 'off'
+    versioningScheme: 'byBuildNumber'
 
 - task: PublishBuildArtifacts@1
   inputs:
