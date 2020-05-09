@@ -7,7 +7,7 @@
     <description>Cynosura Template</description>
     <license type="file">LICENSE.md</license>
     <projectUrl>https://github.com/CynosuraPlatform/Cynosura.Template</projectUrl>
-    <repository url="https://github.com/CynosuraPlatform/Cynosura.Template" />
+    <repository type="git" url="https://github.com/CynosuraPlatform/Cynosura.Template" />
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
