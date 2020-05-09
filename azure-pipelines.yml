@@ -27,6 +27,14 @@ steps:
     filePath: 'template/prepare-content.ps1'
     workingDirectory: 'template/'
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'template'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: 
