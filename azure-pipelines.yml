@@ -1,0 +1,67 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- development
+
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: MagicChunks@2
+  displayName: add version to .cynosura.json
+  inputs:
+    sourcePath: 'src/.cynosura.json'
+    fileType: 'Auto'
+    targetPathType: 'source'
+    transformationType: 'json'
+    transformations: |
+      {
+        "Version": "$(Build.BuildNumber)"
+      }
+
+- task: PowerShell@2
+  displayName: run prepare content
+  inputs:
+    filePath: 'template/prepare-content.ps1'
+
+- task: file-creator@5
+  displayName: create template.version.nuspec
+  inputs:
+    filepath: 'template/template.version.nuspec'
+    filecontent: |
+      <?xml version="1.0" encoding="utf-8"?>
+      <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd" xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+        <metadata>
+          <version xdt:Transform="Replace">$(Build.BuildNumber)</version>    
+        </metadata>
+      </package>
+
+- task: xdttransform@3
+  displayName: apply template.version.nuspec
+  inputs:
+    workingFolder: 'template'
+    transforms: 'template.version.nuspec => template.nuspec'
+
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: 
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'template/template.nuspec'
+    configuration: 
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  displayName: nuget push to github
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Github Package Registry'
