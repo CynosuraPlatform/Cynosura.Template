@@ -46,12 +46,6 @@ steps:
     packagesToPack: 'template/template.nuspec'
     versioningScheme: 'off'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
 - task: NuGetCommand@2
   displayName: nuget push
   inputs:
