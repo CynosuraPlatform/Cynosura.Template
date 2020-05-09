@@ -14,11 +14,23 @@ pool:
 name: $(BaseVersion)-b$(BuildID)
 
 steps:
+- task: file-creator@5
+  displayName: create template.version.nuspec
+  inputs:
+    filepath: 'template/template.version.nuspec'
+    filecontent: |
+      <?xml version="1.0" encoding="utf-8"?>
+      <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+        <metadata>
+          <version xdt:Transform="Replace">$(Build.BuildNumber)</version>    
+        </metadata>
+      </package>
+
 - task: FileTransform@2
   displayName: add version to .cynosura.json
   inputs:
     folderPath: '$(System.DefaultWorkingDirectory)'
-    xmlTransformationRules: 
+    xmlTransformationRules: '-transform **\template.version.nuspec -xml **\template.nuspec'
     jsonTargetFiles: 'src/.cynosura.json'
 
 - task: PowerShell@2
@@ -26,14 +38,6 @@ steps:
   inputs:
     filePath: 'template/prepare-content.ps1'
     workingDirectory: 'template/'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: 'template'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
 
 - task: NuGetToolInstaller@1
   inputs:
@@ -43,7 +47,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: 'template/template.nuspec'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
   inputs:
