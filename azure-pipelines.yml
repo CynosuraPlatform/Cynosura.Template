@@ -22,6 +22,15 @@ steps:
     jsonTargetFiles: 'src/.cynosura.json'
 
 - task: PowerShell@2
+  displayName: set version in template.nuspec
+  inputs:
+    targetType: 'inline'
+    script: |
+      (Get-Content template/template.nuspec) `
+          -replace '<version>(.+)</version>', '<version>$(Build.BuildNumber)</version>' |
+        Out-File template/template.nuspec
+
+- task: PowerShell@2
   displayName: run prepare content
   inputs:
     filePath: 'template/prepare-content.ps1'
