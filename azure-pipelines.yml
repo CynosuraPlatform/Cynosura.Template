@@ -12,17 +12,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: MagicChunks@2
+- task: FileTransform@2
   displayName: add version to .cynosura.json
   inputs:
-    sourcePath: 'src/.cynosura.json'
-    fileType: 'Auto'
-    targetPathType: 'source'
-    transformationType: 'json'
-    transformations: |
-      {
-        "Version": "$(Build.BuildNumber)"
-      }
+    folderPath: '$(System.DefaultWorkingDirectory)'
+    xmlTransformationRules: 
+    jsonTargetFiles: 'src/.cynosura.json'
 
 - task: PowerShell@2
   displayName: run prepare content
@@ -57,6 +52,12 @@ steps:
     packagesToPack: 'template/template.nuspec'
     configuration: 
     versioningScheme: 'off'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: NuGetCommand@2
   displayName: nuget push to github
