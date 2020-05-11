@@ -34,8 +34,77 @@ msgstr "Email"
 msgid "Password"
 msgstr "Пароль"
 
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
 msgid "Passwords do not match"
 msgstr "Пароли на совпадают"
 
 msgid "{0} {1} not found"
 msgstr "{0} {1} - не найдено"
+
+msgid "The {0} field is required."
+msgstr "Поле {0} обязательно"
+
+msgid "The {0} field is not a valid e-mail address."
+msgstr "Поле {0} не является валидным email адресом"
+
+msgid "The {0} must be at least {2} and at max {1} characters long."
+msgstr "Поле {0} должно быть от {2} до {1} символов."
+
+msgid "The password and confirmation password do not match."
+msgstr "Пароли на совпадают."
+
+msgid "Login"
+msgstr "Вход"
+
+msgid "Register"
+msgstr "Регистрация"
+
+msgid "Log in"
+msgstr "Войти"
+
+msgid "Email"
+msgid "Email"
+
+msgid "Password"
+msgid "Пароль"
+
+msgid "Remember me?"
+msgstr "Запомнить?"
+
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+msgid "Register as a new user"
+msgstr "Зарегистрироваться"
+
+msgid "Invalid login attempt."
+msgstr "Не удалось войти."
+
+msgid "Enter your email."
+msgstr "Введите ваш email."
+
+msgid "Submit"
+msgstr "Отправить"
+
+msgid "Forgot password confirmation"
+msgstr "Подтверждение сброса пароля"
+
+msgid "Please check your email to reset your password."
+msgstr "Проверьте вашу почту для сброса пароля."
+
+msgid "Reset password"
+msgstr "Сбросить пароль"
+
+msgid "Reset"
+msgstr "Сбросить"
+
+msgid "Your password has been reset."
+msgstr "Ваш пароль успешно изменен."
+
+msgid "Click here to log in"
+msgstr "Войти"
+
+msgid "Reset password confirmation"
+msgstr "Подтверждение сброса пароля"

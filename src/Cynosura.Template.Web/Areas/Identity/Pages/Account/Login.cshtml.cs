@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Cynosura.Template.Core.Entities;
+using Microsoft.Extensions.Localization;
+using Cynosura.Template.Core;
 
 namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
 {
@@ -19,14 +21,17 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly UserManager<User> _userManager;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<User> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            IStringLocalizer<SharedResource> stringLocalizer)
         {
             _userManager = userManager;
+            _stringLocalizer = stringLocalizer;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -43,12 +48,14 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [EmailAddress(ErrorMessage = "The {0} field is not a valid e-mail address.")]
+            [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "The {0} field is required.")]
             [DataType(DataType.Password)]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
@@ -97,7 +104,7 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, _stringLocalizer["Invalid login attempt."]);
                     return Page();
                 }
             }

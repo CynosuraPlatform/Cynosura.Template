@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -83,6 +84,7 @@ namespace Cynosura.Template.Web
                     o.JsonSerializerOptions.IgnoreNullValues = true;
                     o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
                 })
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
             services.AddRazorPages();
 
