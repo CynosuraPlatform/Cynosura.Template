@@ -27,7 +27,7 @@ namespace Cynosura.Template.Core.Requests.Roles
             var role = await _roleManager.FindByIdAsync(request.Id.ToString());
             if (role == null)
             {
-                throw new ServiceException(string.Format(_localizer["{0} {1} not found"], _localizer["Role"], request.Id));
+                throw new ServiceException(_localizer["{0} {1} not found", _localizer["Role"], request.Id]);
             }
             _mapper.Map(request, role);
             var result = await _roleManager.UpdateAsync(role);

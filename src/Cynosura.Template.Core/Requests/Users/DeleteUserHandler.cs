@@ -24,7 +24,7 @@ namespace Cynosura.Template.Core.Requests.Users
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
             if (user == null)
             {
-                throw new ServiceException(string.Format(_localizer["{0} {1} not found"], _localizer["User"], request.Id));
+                throw new ServiceException(_localizer["{0} {1} not found", _localizer["User"], request.Id]);
             }
             var result = await _userManager.DeleteAsync(user);
             result.CheckIfSucceeded();

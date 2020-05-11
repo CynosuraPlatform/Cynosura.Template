@@ -33,7 +33,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
                 .FirstOrDefaultAsync();
             if ($model.Entity.NameLower$ == null)
             {
-                throw new ServiceException(string.Format(_localizer["{0} {1} not found"], _localizer["$model.Entity.DisplayName$"], request.Id));
+                throw new ServiceException(_localizer["{0} {1} not found", _localizer["$model.Entity.DisplayName$"], request.Id]);
             }
             _$model.Entity.NameLower$Repository.Delete($model.Entity.NameLower$);
             await _unitOfWork.CommitAsync();

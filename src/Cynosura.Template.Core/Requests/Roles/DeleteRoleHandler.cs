@@ -24,7 +24,7 @@ namespace Cynosura.Template.Core.Requests.Roles
             var role = await _roleManager.FindByIdAsync(request.Id.ToString());
             if (role == null)
             {
-                throw new ServiceException(string.Format(_localizer["{0} {1} not found"], _localizer["Role"], request.Id));
+                throw new ServiceException(_localizer["{0} {1} not found", _localizer["Role"], request.Id]);
             }
             var result = await _roleManager.DeleteAsync(role);
             result.CheckIfSucceeded();
