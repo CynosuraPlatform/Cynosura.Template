@@ -94,6 +94,15 @@ msgstr "Подтвердите ваше email"
 msgid "Please confirm your account by <a href='{0}'>clicking here</a>."
 msgstr "Подтвердите ваш email <a href='{0}'>нажав сюда</a>."
 
+msgid "Confirm email"
+msgstr "Подтверждение email"
+
+msgid "Thank you for confirming your email."
+msgstr "Ваш email подтвержден."
+
+msgid "Error confirming your email."
+msgstr "Ошибка подтверждения email."
+
 msgid "Enter your email."
 msgstr "Введите ваш email."
 
