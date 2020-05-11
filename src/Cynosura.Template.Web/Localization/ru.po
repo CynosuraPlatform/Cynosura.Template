@@ -55,6 +55,9 @@ msgstr "Поле {0} должно быть от {2} до {1} символов."
 msgid "The password and confirmation password do not match."
 msgstr "Пароли на совпадают."
 
+msgid "Error"
+msgstr "Ошибка"
+
 msgid "Login"
 msgstr "Вход"
 
@@ -135,3 +138,87 @@ msgstr "Войти"
 
 msgid "Reset password confirmation"
 msgstr "Подтверждение сброса пароля"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Manage your account"
+msgstr "Управление аккаунтом"
+
+msgid "Change your account settings"
+msgstr "Изменение настроек аккаунта"
+
+msgid "Username"
+msgstr "Логин"
+
+msgid "Phone number"
+msgstr "Номер телефона"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Your profile has been updated"
+msgstr "Ваш профиль сохранен"
+
+msgid "Two-factor authentication"
+msgstr "Двухфакторная аутентификация"
+
+msgid "Manage Email"
+msgstr "Email"
+
+msgid "New email"
+msgstr "Новый email"
+
+msgid "Change email"
+msgstr "Изменить email"
+
+msgid "Send verification email"
+msgstr "Отправить email для подтверждения"
+
+msgid "Your email is unchanged."
+msgstr "Ваш email не изменился."
+
+msgid "Confirmation link to change email sent. Please check your email."
+msgstr "Ссылка на подтверждение email отправлена. Проверьте вашу почту."
+
+msgid "Confirm email change"
+msgstr "Подтверждение изменения email"
+
+msgid "Error changing email."
+msgstr "Ошибка изменения email"
+
+msgid "Error changing user name."
+msgstr "Ошибка изменения логина"
+
+msgid "Thank you for confirming your email change."
+msgstr "Ваш новый email подтвержден."
+
+msgid "Change password"
+msgstr "Изменение пароля"
+
+msgid "Update password"
+msgstr "Изменить пароль"
+
+msgid "Current password"
+msgstr "Текущий пароль"
+
+msgid "New password"
+msgstr "Новый пароль"
+
+msgid "Confirm new password"
+msgstr "Подтвердить новый пароль"
+
+msgid "Your password has been changed."
+msgstr "Ваш пароль изменен"
+
+msgid "Two-factor authentication (2FA)"
+msgstr "Двухфакторная аутентификация"
+
+msgid "Authenticator app"
+msgstr "Приложение Authenticator"
+
+msgid "Add authenticator app"
+msgstr "Добавить приложение Authenticator"
+
+msgid "Personal Data"
+msgstr "Персональные данные"
