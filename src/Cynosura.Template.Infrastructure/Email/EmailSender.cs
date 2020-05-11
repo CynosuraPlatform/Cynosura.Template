@@ -63,6 +63,8 @@ namespace Cynosura.Template.Infrastructure.Email
             }
             else
             {
+                if (!Directory.Exists(_options.PickupFolder))
+                    Directory.CreateDirectory(_options.PickupFolder);
                 await SaveToPickupDirectoryAsync(message, _options.PickupFolder);
             }
         }
