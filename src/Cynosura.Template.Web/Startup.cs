@@ -52,7 +52,7 @@ namespace Cynosura.Template.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddDefaultIdentity<User>()
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<Role>()
                 .AddEntityFrameworkStores<DataContext>();
 
@@ -144,11 +144,11 @@ namespace Cynosura.Template.Web
 
             var supportedCultures = new[]
             {
-                new CultureInfo("en-US")
+                new CultureInfo("ru-RU")
             };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("en-US"),
+                DefaultRequestCulture = new RequestCulture("ru-RU"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });

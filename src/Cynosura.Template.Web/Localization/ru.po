@@ -82,6 +82,18 @@ msgstr "Зарегистрироваться"
 msgid "Invalid login attempt."
 msgstr "Не удалось войти."
 
+msgid "Register confirmation"
+msgstr "Подтверждение регистрации"
+
+msgid "Please check your email to confirm your account."
+msgstr "Проверьте вашу почту для подтверждения вашей регистрации."
+
+msgid "Confirm your email"
+msgstr "Подтвердите ваше email"
+
+msgid "Please confirm your account by <a href='{0}'>clicking here</a>."
+msgstr "Подтвердите ваш email <a href='{0}'>нажав сюда</a>."
+
 msgid "Enter your email."
 msgstr "Введите ваш email."
 
@@ -93,6 +105,12 @@ msgstr "Подтверждение сброса пароля"
 
 msgid "Please check your email to reset your password."
 msgstr "Проверьте вашу почту для сброса пароля."
+
+msgid "Reset Password"
+msgstr "Восстановление пароля"
+
+msgid "Please reset your password by <a href='{0}'>clicking here</a>."
+msgstr "Сбросьте пароль <a href='{0}'>нажав сюда</a>."
 
 msgid "Reset password"
 msgstr "Сбросить пароль"

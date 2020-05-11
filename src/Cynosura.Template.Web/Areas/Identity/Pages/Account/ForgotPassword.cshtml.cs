@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Cynosura.Template.Core.Entities;
+using Microsoft.Extensions.Localization;
+using Cynosura.Template.Core;
 
 namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
 {
@@ -19,11 +21,15 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
 
-        public ForgotPasswordModel(UserManager<User> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<User> userManager, 
+            IEmailSender emailSender,
+            IStringLocalizer<SharedResource> stringLocalizer)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _stringLocalizer = stringLocalizer;
         }
 
         [BindProperty]
@@ -60,8 +66,8 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    _stringLocalizer["Reset Password"],
+                    _stringLocalizer["Please reset your password by <a href='{0}'>clicking here</a>.", HtmlEncoder.Default.Encode(callbackUrl)]);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
