@@ -45,7 +45,7 @@ import { TranslocoRootModule } from './transloco-root.module';
             {
                 path: 'user',
                 canActivate: [AuthorizeGuard],
-                loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+                loadChildren: () => import('./user/user-routed.module').then(m => m.UserRoutedModule)
             },
         ]),
         MaterialModule,

@@ -1,4 +1,4 @@
-﻿<mat-card class="mat-card-list" *transloco="let t">
+﻿<ng-container *transloco="let t">
 
     <mat-card-header>
         <mat-card-title>{{ t('Users') }}</mat-card-title>
@@ -62,7 +62,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="columns"></tr>
-            <tr mat-row *matRowDef="let item; columns: columns;" [routerLink]="[item.id]"></tr>
+            <tr mat-row *matRowDef="let item; columns: columns;" [routerLink]="[baseRoute, item.id]"></tr>
 
         </table>
 
@@ -73,4 +73,4 @@
 
     </mat-card-content>
 
-</mat-card>
+</ng-container>

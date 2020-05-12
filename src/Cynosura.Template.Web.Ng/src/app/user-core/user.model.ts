@@ -1,3 +1,4 @@
+import { UserFilter } from './user-filter.model';
 
 export class User {
     id: number;
@@ -8,4 +9,10 @@ export class User {
     roleIds: number[];
     firstName: string;
     lastName: string;
+}
+
+export class UserListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new UserFilter();
 }
