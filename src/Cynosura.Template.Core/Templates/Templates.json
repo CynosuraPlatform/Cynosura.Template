@@ -453,6 +453,39 @@
   },
   {
     "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{PluralNameKebab}.component.ts",
+    "templatePath": "Web.Ng\\EntitiesComponent.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [],
+    "view": "Ng"
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{PluralNameKebab}.component.html",
+    "templatePath": "Web.Ng\\EntitiesView.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [],
+    "view": "Ng"
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{PluralNameKebab}.component.scss",
+    "templatePath": "Web.Ng\\EntitiesStyle.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [],
+    "view": "Ng"
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
     "fileName": "{NameKebab}\\{NameKebab}-edit.component.ts",
     "templatePath": "Web.Ng\\EditComponent.stg",
     "types": [
@@ -521,6 +554,17 @@
     "filePath": "*.Web.Ng\\src\\app",
     "fileName": "{NameKebab}\\{NameKebab}.module.ts",
     "templatePath": "Web.Ng\\Module.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [],
+    "view": "Ng"
+  },
+  {
+    "filePath": "*.Web.Ng\\src\\app",
+    "fileName": "{NameKebab}\\{NameKebab}-routed.module.ts",
+    "templatePath": "Web.Ng\\RoutedModule.stg",
     "types": [
       "Entity"
     ],
