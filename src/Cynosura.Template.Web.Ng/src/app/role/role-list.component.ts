@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { mergeMap } from 'rxjs/operators';
@@ -9,16 +9,9 @@ import { Error } from '../core/error.model';
 import { Page } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
 
-import { Role } from '../role-core/role.model';
-import { RoleFilter } from '../role-core/role-filter.model';
+import { Role, RoleListState } from '../role-core/role.model';
 import { RoleService } from '../role-core/role.service';
 import { RoleEditComponent } from './role-edit.component';
-
-class RoleListState {
-    pageSize = 10;
-    pageIndex = 0;
-    filter = new RoleFilter();
-}
 
 @Component({
     selector: 'app-role-list',
@@ -27,7 +20,6 @@ class RoleListState {
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
-    state: RoleListState;
     pageSizeOptions = [10, 20];
     columns = [
         'name',
@@ -35,14 +27,18 @@ export class RoleListComponent implements OnInit {
         'action'
     ];
 
+    @Input()
+    state: RoleListState = new RoleListState();
+
+    @Input()
+    baseRoute = '/role';
+
     constructor(
         private dialog: MatDialog,
         private modalHelper: ModalHelper,
         private roleService: RoleService,
-        private storeService: StoreService,
         private noticeHelper: NoticeHelper
         ) {
-        this.state = this.storeService.get('roleListState', new RoleListState());
     }
 
     ngOnInit() {

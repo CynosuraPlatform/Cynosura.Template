@@ -40,7 +40,7 @@ import { TranslocoRootModule } from './transloco-root.module';
             {
                 path: 'role',
                 canActivate: [AuthorizeGuard],
-                loadChildren: () => import('./role/role.module').then(m => m.RoleModule)
+                loadChildren: () => import('./role/role-routed.module').then(m => m.RoleRoutedModule)
             },
             {
                 path: 'user',

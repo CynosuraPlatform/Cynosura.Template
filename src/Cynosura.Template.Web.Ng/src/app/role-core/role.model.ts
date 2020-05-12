@@ -1,3 +1,4 @@
+import { RoleFilter } from './role-filter.model';
 
 export class Role {
     id: number;
@@ -6,4 +7,10 @@ export class Role {
     name: string;
     isSelected: boolean;
     displayName: string;
+}
+
+export class RoleListState {
+    pageSize = 10;
+    pageIndex = 0;
+    filter = new RoleFilter();
 }
