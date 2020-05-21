@@ -18,7 +18,6 @@ namespace Cynosura.Template.Web.AutoMapper
                 .ForMember(dest => dest.Name, opt => opt.Condition(src => src.NameOneOfCase == CreateFileRequest.NameOneOfOneofCase.Name))
                 .ForMember(dest => dest.ContentType, opt => opt.Condition(src => src.ContentTypeOneOfCase == CreateFileRequest.ContentTypeOneOfOneofCase.ContentType))
                 .ForMember(dest => dest.Content, opt => opt.Condition(src => src.ContentOneOfCase == CreateFileRequest.ContentOneOfOneofCase.Content))
-                .ForMember(dest => dest.Url, opt => opt.Condition(src => src.UrlOneOfCase == CreateFileRequest.UrlOneOfOneofCase.Url))
                 .ForMember(dest => dest.GroupId, opt => opt.Condition(src => src.GroupIdOneOfCase == CreateFileRequest.GroupIdOneOfOneofCase.GroupId));
             CreateMap<DeleteFileRequest, DeleteFile>();
             CreateMap<GetFileRequest, GetFile>();
@@ -29,14 +28,11 @@ namespace Cynosura.Template.Web.AutoMapper
             CreateMap<UpdateFileRequest, UpdateFile>()
                 .ForMember(dest => dest.Name, opt => opt.Condition(src => src.NameOneOfCase == UpdateFileRequest.NameOneOfOneofCase.Name))
                 .ForMember(dest => dest.ContentType, opt => opt.Condition(src => src.ContentTypeOneOfCase == UpdateFileRequest.ContentTypeOneOfOneofCase.ContentType))
-                .ForMember(dest => dest.Content, opt => opt.Condition(src => src.ContentOneOfCase == UpdateFileRequest.ContentOneOfOneofCase.Content))
-                .ForMember(dest => dest.Url, opt => opt.Condition(src => src.UrlOneOfCase == UpdateFileRequest.UrlOneOfOneofCase.Url))
-                .ForMember(dest => dest.GroupId, opt => opt.Condition(src => src.GroupIdOneOfCase == UpdateFileRequest.GroupIdOneOfOneofCase.GroupId));
+                .ForMember(dest => dest.Content, opt => opt.Condition(src => src.ContentOneOfCase == UpdateFileRequest.ContentOneOfOneofCase.Content));
 
             CreateMap<FileModel, File>()
                 .ForMember(dest => dest.Name, opt => opt.Condition(src => src.Name != default))
                 .ForMember(dest => dest.ContentType, opt => opt.Condition(src => src.ContentType != default))
-                .ForMember(dest => dest.Content, opt => opt.Condition(src => src.Content != default))
                 .ForMember(dest => dest.Url, opt => opt.Condition(src => src.Url != default))
                 .ForMember(dest => dest.GroupId, opt => opt.Condition(src => src.GroupId != default));
             CreateMap<PageModel<FileModel>, FilePageModel>()                

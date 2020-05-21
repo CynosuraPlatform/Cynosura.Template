@@ -29,9 +29,6 @@ namespace Cynosura.Template.Core.Requests.Files.Models
         [DisplayName("Content Type")]
         public string ContentType { get; set; }
 
-        [DisplayName("Content")]
-        public byte[] Content { get; set; }
-
         [DisplayName("Url")]
         public string Url { get; set; }
 

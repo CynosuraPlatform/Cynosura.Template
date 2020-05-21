@@ -8,7 +8,6 @@ export class File {
     modificationUserId: number;
     name: string;
     contentType: string;
-    content: Uint8Array;
     url: string;
     groupId: number;
 }

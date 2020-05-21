@@ -13,6 +13,10 @@ export class GetFile {
     id: number;
 }
 
+export class DownloadFile {
+    id: number;
+}
+
 export class ExportFiles {
     filter?: FileFilter;
     orderBy?: string;
@@ -21,18 +25,11 @@ export class ExportFiles {
 
 export class UpdateFile {
     id: number;
-    name: string;
-    contentType: string;
-    content: Uint8Array;
-    url: string;
-    groupId: number;
+    file: File;
 }
 
 export class CreateFile {
-    name: string;
-    contentType: string;
-    content: Uint8Array;
-    url: string;
+    file: File;
     groupId: number;
 }
 

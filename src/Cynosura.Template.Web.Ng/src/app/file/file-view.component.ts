@@ -43,4 +43,11 @@ export class FileViewComponent implements OnInit {
     onBack(): void {
         window.history.back();
     }
+
+    onDownload(): void {
+        this.fileService.downloadFile({ id: this.id })
+            .subscribe(file => {
+                file.download();
+            });
+    }
 }

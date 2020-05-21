@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Infrastructure;
@@ -8,6 +9,7 @@ using Cynosura.Template.Web.Models;
 using Cynosura.Web.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cynosura.Template.Web.Controllers
@@ -37,6 +39,13 @@ namespace Cynosura.Template.Web.Controllers
             return await _mediator.Send(getFile);
         }
 
+        [HttpPost("DownloadFile")]
+        public async Task<FileResult> DownloadFileAsync([FromBody] DownloadFile downloadFile)
+        {
+            var file = await _mediator.Send(downloadFile);
+            return File(file.Content, file.ContentType, file.Name);
+        }
+
         [HttpPost("ExportFiles")]
         public async Task<FileResult> ExportFilesAsync([FromBody] ExportFiles exportFiles)
         {
@@ -46,16 +55,28 @@ namespace Cynosura.Template.Web.Controllers
 
         [Authorize("WriteFile")]
         [HttpPost("UpdateFile")]
-        public async Task<Unit> UpdateFileAsync([FromBody] UpdateFile updateFile)
+        public async Task<Unit> UpdateFileAsync(int id, IFormFile file)
         {
-            return await _mediator.Send(updateFile);
+            return await _mediator.Send(new UpdateFile()
+            {
+                Id = id,
+                Name = file.FileName,
+                ContentType = file.ContentType,
+                Content = file.OpenReadStream(),
+            });
         }
 
         [Authorize("WriteFile")]
         [HttpPost("CreateFile")]
-        public async Task<CreatedEntity<int>> CreateFileAsync([FromBody] CreateFile createFile)
+        public async Task<CreatedEntity<int>> CreateFileAsync(int groupId, IFormFile file)
         {
-            return await _mediator.Send(createFile);
+            return await _mediator.Send(new CreateFile()
+            {
+                Name = file.FileName,
+                ContentType = file.ContentType,
+                Content = file.OpenReadStream(),
+                GroupId = groupId,
+            });
         }
 
         [Authorize("WriteFile")]

@@ -11,8 +11,10 @@ namespace Cynosura.Template.Core.AutoMapper
         {
             CreateMap<File, FileModel>();
             CreateMap<File, FileShortModel>();
-            CreateMap<CreateFile, File>();
-            CreateMap<UpdateFile, File>();
+            CreateMap<CreateFile, File>()
+                .ForMember(d => d.Content, o => o.Ignore());
+            CreateMap<UpdateFile, File>()
+                .ForMember(d => d.Content, o => o.Ignore());
         }
     }
 }

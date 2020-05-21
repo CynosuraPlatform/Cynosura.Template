@@ -26,9 +26,6 @@ message CreateFileRequest {
     oneof contentOneOf {
         bytes content = 8;
     }
-    oneof urlOneOf {
-        string url = 9;
-    }
     oneof groupIdOneOf {
         int32 groupId = 10;
     }
@@ -66,11 +63,5 @@ message UpdateFileRequest {
     }
     oneof contentOneOf {
         bytes content = 8;
-    }
-    oneof urlOneOf {
-        string url = 9;
-    }
-    oneof groupIdOneOf {
-        int32 groupId = 10;
     }
 }

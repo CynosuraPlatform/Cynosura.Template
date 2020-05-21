@@ -1,7 +1,7 @@
-﻿import { Component, Input, OnInit, Inject } from '@angular/core';
+﻿import { Component, Input, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { Error } from '../core/error.model';
@@ -10,6 +10,8 @@ import { ConvertStringTo } from '../core/converter.helper';
 
 import { File } from '../file-core/file.model';
 import { FileService } from '../file-core/file.service';
+import { FileGroupService } from '../file-group-core/file-group.service';
+import { FileGroup } from '../file-group-core/file-group.model';
 
 class DialogData {
     id: number;
@@ -32,13 +34,27 @@ export class FileEditComponent implements OnInit {
     });
     file: File;
     error: Error;
+    group: FileGroup;
+
+    @ViewChild('fileInput')
+    fileInputEl: ElementRef<HTMLInputElement>;
 
     constructor(public dialogRef: MatDialogRef<FileEditComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: DialogData,
                 private fileService: FileService,
+                private fileGroupService: FileGroupService,
                 private fb: FormBuilder,
                 private noticeHelper: NoticeHelper) {
         this.id = data.id;
+        this.fileForm.controls.groupId.valueChanges
+            .subscribe(groupId => {
+                if (groupId) {
+                    this.fileGroupService.getFileGroup({ id: groupId })
+                        .subscribe(group => this.group = group);
+                } else {
+                    this.group = null;
+                }
+            });
     }
 
     static show(dialog: MatDialog, id: number): Observable<any> {
@@ -69,9 +85,10 @@ export class FileEditComponent implements OnInit {
     }
 
     private saveFile() {
+        const input = this.fileInputEl.nativeElement;
         const saveFile$ = this.id ?
-            this.fileService.updateFile(this.fileForm.value) :
-            this.fileService.createFile(this.fileForm.value);
+            this.fileService.updateFile({ id: this.id, file: input.files[0] }) :
+            forkJoin(Array.from(input.files).map(file => this.fileService.createFile({ groupId: this.group.id, file: file })));
         saveFile$.subscribe(() => this.dialogRef.close(true),
             error => this.onError(error));
     }

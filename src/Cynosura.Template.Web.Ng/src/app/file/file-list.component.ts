@@ -24,7 +24,6 @@ export class FileListComponent implements OnInit {
     columns = [
         'name',
         'contentType',
-        'content',
         'url',
         'group',
         'action'

@@ -9,7 +9,7 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { File } from './file.model';
-import { GetFiles, GetFile, UpdateFile, CreateFile, DeleteFile, ExportFiles } from './file-request.model';
+import { GetFiles, GetFile, UpdateFile, CreateFile, DeleteFile, ExportFiles, DownloadFile } from './file-request.model';
 
 @Injectable()
 export class FileService {
@@ -27,6 +27,14 @@ export class FileService {
         return this.httpClient.post<File>(url, getFile);
     }
 
+    downloadFile(downloadFile: DownloadFile): Observable<FileResult> {
+        const url = `${this.apiUrl}/DownloadFile`;
+        return this.httpClient.post(url, downloadFile, {
+            responseType: 'blob' as 'json',
+            observe: 'response',
+        }).pipe(map((response => new FileResult(response))));
+    }
+
     exportFiles(exportFiles: ExportFiles): Observable<FileResult> {
         const url = `${this.apiUrl}/ExportFiles`;
         return this.httpClient.post(url, exportFiles, {
@@ -37,12 +45,18 @@ export class FileService {
 
     updateFile(updateFile: UpdateFile): Observable<{}> {
         const url = `${this.apiUrl}/UpdateFile`;
-        return this.httpClient.post(url, updateFile);
+        const formData = new FormData();
+        formData.append('id', `${updateFile.id}`);
+        formData.append('file', updateFile.file);
+        return this.httpClient.post(url, formData);
     }
 
-    createFile(createFile: CreateFile): Observable<CreatedEntity<number>> {
+    createFile(createFiles: CreateFile): Observable<CreatedEntity<number>> {
         const url = `${this.apiUrl}/CreateFile`;
-        return this.httpClient.post<CreatedEntity<number>>(url, createFile);
+        const formData = new FormData();
+        formData.append('groupId', `${createFiles.groupId}`);
+        formData.append('file', createFiles.file);
+        return this.httpClient.post<CreatedEntity<number>>(url, formData);
     }
 
     deleteFile(deleteFile: DeleteFile): Observable<{}> {

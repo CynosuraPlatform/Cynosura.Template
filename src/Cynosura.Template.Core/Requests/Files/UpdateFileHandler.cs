@@ -32,13 +32,19 @@ namespace Cynosura.Template.Core.Requests.Files
         public async Task<Unit> Handle(UpdateFile request, CancellationToken cancellationToken)
         {
             var file = await _fileRepository.GetEntities()
+                .Include(e => e.Group)
                 .Where(e => e.Id == request.Id)
                 .FirstOrDefaultAsync();
             if (file == null)
             {
                 throw new ServiceException(_localizer["{0} {1} not found", _localizer["File"], request.Id]);
             }
+            file.Group.Accept.Validate(request.Name, request.ContentType);
             _mapper.Map(request, file);
+            if (file.Group.Type == Enums.FileGroupType.Database)
+            {
+                file.Content = request.Content.ConvertToBytes();
+            }
             await _unitOfWork.CommitAsync();
             return Unit.Value;
         }

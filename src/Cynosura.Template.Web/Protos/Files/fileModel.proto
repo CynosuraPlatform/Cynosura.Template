@@ -14,7 +14,6 @@ message File {
     int32 modificationUserId = 5;
     string name = 6;
     string contentType = 7;
-    bytes content = 8;
     string url = 9;
     int32 groupId = 10;
 }

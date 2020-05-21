@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Files.Models;
@@ -64,6 +65,27 @@ namespace Cynosura.Template.Core.Requests.Files
                 queryable = queryable.Where(e => e.GroupId == filter.GroupId);
             }
             return queryable;
+        }
+
+        public static void Validate(this string accept, string filename, string contentType)
+        {
+            if (string.IsNullOrEmpty(accept))
+                return;
+            var valid = accept.Split(",")
+                .Select(a => a.Trim())
+                .Any(a => filename.EndsWith(a) || contentType == a);
+            if (!valid)
+            {
+                throw new ServiceException("Invalid file format");
+            }
+        }
+
+        public static byte[] ConvertToBytes(this System.IO.Stream input)
+        {
+            input.Position = 0;
+            using var ms = new System.IO.MemoryStream();
+            input.CopyTo(ms);
+            return ms.ToArray();
         }
     }
 }
