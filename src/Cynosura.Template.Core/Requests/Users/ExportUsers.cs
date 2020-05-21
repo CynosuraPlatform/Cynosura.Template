@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Cynosura.Template.Core.Requests.Users
 {
-    public class ExportUsers : IRequest<FileModel>
+    public class ExportUsers : IRequest<FileContentModel>
     {
         public UserFilter Filter { get; set; }
         public string OrderBy { get; set; }

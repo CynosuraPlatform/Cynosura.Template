@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Cynosura.Template.Core.Requests.FileGroups
 {
-    public class ExportFileGroups : IRequest<FileModel>
+    public class ExportFileGroups : IRequest<FileContentModel>
     {
         public FileGroupFilter Filter { get; set; }
         public string OrderBy { get; set; }

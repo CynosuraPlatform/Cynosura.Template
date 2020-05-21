@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Core.Requests.Roles
 {
-    public class ExportRolesHandler : IRequestHandler<ExportRoles, FileModel>
+    public class ExportRolesHandler : IRequestHandler<ExportRoles, FileContentModel>
     {
         private readonly RoleManager<Role> _roleManager;
         private readonly IExcelFormatter _excelFormatter;
@@ -27,7 +27,7 @@ namespace Cynosura.Template.Core.Requests.Roles
             _mapper = mapper;
         }
 
-        public async Task<FileModel> Handle(ExportRoles request, CancellationToken cancellationToken)
+        public async Task<FileContentModel> Handle(ExportRoles request, CancellationToken cancellationToken)
         {
             IQueryable<Role> query = _roleManager.Roles;
             query = query.Filter(request.Filter);

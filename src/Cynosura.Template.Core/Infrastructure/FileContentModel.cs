@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cynosura.Template.Core.Infrastructure
 {
-    public class FileModel
+    public class FileContentModel
     {
         public string Name { get; set; }
         public byte[] Content { get; set; }

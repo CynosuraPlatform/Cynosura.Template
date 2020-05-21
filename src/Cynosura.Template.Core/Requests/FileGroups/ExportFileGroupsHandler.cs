@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Core.Requests.FileGroups
 {
-    public class ExportFileGroupsHandler : IRequestHandler<ExportFileGroups, FileModel>
+    public class ExportFileGroupsHandler : IRequestHandler<ExportFileGroups, FileContentModel>
     {
         private readonly IEntityRepository<FileGroup> _fileGroupRepository;
         private readonly IExcelFormatter _excelFormatter;
@@ -29,7 +29,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups
             _mapper = mapper;
         }
 
-        public async Task<FileModel> Handle(ExportFileGroups request, CancellationToken cancellationToken)
+        public async Task<FileContentModel> Handle(ExportFileGroups request, CancellationToken cancellationToken)
         {
             IQueryable<FileGroup> query = _fileGroupRepository.GetEntities();            
             query = query.Filter(request.Filter);

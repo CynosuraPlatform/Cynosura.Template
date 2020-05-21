@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Core.Requests.Users
 {
-    public class ExportUsersHandler : IRequestHandler<ExportUsers, FileModel>
+    public class ExportUsersHandler : IRequestHandler<ExportUsers, FileContentModel>
     {
         private readonly UserManager<User> _userManager;
         private readonly IExcelFormatter _excelFormatter;
@@ -27,7 +27,7 @@ namespace Cynosura.Template.Core.Requests.Users
             _mapper = mapper;
         }
 
-        public async Task<FileModel> Handle(ExportUsers request, CancellationToken cancellationToken)
+        public async Task<FileContentModel> Handle(ExportUsers request, CancellationToken cancellationToken)
         {
             IQueryable<User> query = _userManager.Users;
             query = query.Filter(request.Filter);
