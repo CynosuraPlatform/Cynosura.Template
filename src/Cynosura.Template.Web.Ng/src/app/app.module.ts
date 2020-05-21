@@ -1,4 +1,4 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+﻿import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -32,6 +32,11 @@ import { TranslocoRootModule } from './transloco-root.module';
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthorizeGuard] },
 // ADD ROUTES HERE
+            {
+                path: 'file-group',
+                canActivate: [AuthorizeGuard],
+                loadChildren: () => import('./file-group/file-group-routed.module').then(m => m.FileGroupRoutedModule)
+            },
             {
                 path: 'profile',
                 canActivate: [AuthorizeGuard],
