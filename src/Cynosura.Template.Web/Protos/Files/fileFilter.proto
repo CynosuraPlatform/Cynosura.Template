@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "Protos/common.proto";
+
+option csharp_namespace = "Cynosura.Template.Web.Protos.Files";
+
+message FileFilter {
+    oneof nameOneOf {
+        string name = 60;
+    }
+    oneof contentTypeOneOf {
+        string contentType = 70;
+    }
+
+    oneof urlOneOf {
+        string url = 90;
+    }
+    oneof groupIdOneOf {
+        int32 groupId = 100;
+    }
+}

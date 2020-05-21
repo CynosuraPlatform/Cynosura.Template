@@ -1,0 +1,34 @@
+﻿<ng-container *transloco="let t">
+    <h1 mat-dialog-title>{{ t('File') }} <app-file-show [value]="file"></app-file-show></h1>
+    <mat-dialog-content *ngIf="file" class="mat-dialog-content-edit">
+
+        <form [formGroup]="fileForm">
+            <mat-form-field>
+                <mat-label>{{ t('Name') }}</mat-label>
+                <app-text-edit formControlName="name" name="name" [placeholder]="t('Name')"></app-text-edit>
+                <mat-error>{{ error?.modelState?.name | modelError }}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ t('Content Type') }}</mat-label>
+                <app-text-edit formControlName="contentType" name="contentType" [placeholder]="t('Content Type')"></app-text-edit>
+                <mat-error>{{ error?.modelState?.contentType | modelError }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>{{ t('Url') }}</mat-label>
+                <app-text-edit formControlName="url" name="url" [placeholder]="t('Url')"></app-text-edit>
+                <mat-error>{{ error?.modelState?.url | modelError }}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ t('Group') }}</mat-label>
+                <app-file-group-select formControlName="groupId" name="groupId" [placeholder]="t('Group')"></app-file-group-select>
+                <mat-error>{{ error?.modelState?.groupId | modelError }}</mat-error>
+            </mat-form-field>
+        </form>
+
+    </mat-dialog-content>
+    <mat-dialog-actions class="mat-dialog-actions-edit">
+        <button mat-raised-button mat-dialog-close>{{ t('shared.cancel') }}</button>
+        <button mat-raised-button color="primary" (click)="onSave()" cdkFocusInitial>{{ t('shared.save') }}</button>
+    </mat-dialog-actions>
+</ng-container>

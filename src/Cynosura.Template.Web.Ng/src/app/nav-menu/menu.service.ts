@@ -12,6 +12,7 @@ export class MenuService {
     constructor(private authorize: AuthorizeService) {
         this.menu = new Menu();
 // ADD MENU ITEMS HERE
+        this.menu.items.push({ route: '/file', name: 'Files', icon: 'notes', roles: ['Administrator'] });
         this.menu.items.push({ route: '/file-group', name: 'File Groups', icon: 'notes', roles: ['Administrator'] });
         this.menu.items.push({ route: '/user', name: 'Users', icon: 'person', roles: ['Administrator'] });
         this.menu.items.push({ route: '/role', name: 'Roles', icon: 'lock', roles: ['Administrator'] });

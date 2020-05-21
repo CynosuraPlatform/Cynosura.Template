@@ -9,11 +9,11 @@ namespace Cynosura.Template.Core.Formatters
 {
     public static class ExcelFormatterExtensions
     {
-        public static async Task<FileModel> GetExcelFileAsync<T>(this IExcelFormatter excelFormatter, IEnumerable<T> data, string filename)
+        public static async Task<FileContentModel> GetExcelFileAsync<T>(this IExcelFormatter excelFormatter, IEnumerable<T> data, string filename)
         {
             using var ms = new MemoryStream();
             await excelFormatter.SaveToAsync(ms, data, true);
-            return new FileModel()
+            return new FileContentModel()
             {
                 Name = $"{filename}.xlsx",
                 Content = ms.GetBuffer(),
