@@ -7,6 +7,7 @@ using AutoMapper;
 using Cynosura.Core.Data;
 using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.FileStorage;
 using Cynosura.Template.Core.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -20,18 +21,21 @@ namespace Cynosura.Template.Core.Requests.Files
         private readonly IEntityRepository<FileGroup> _fileGroupRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IFileStorage _fileStorage;
         private readonly IStringLocalizer<SharedResource> _localizer;
 
         public CreateFileHandler(IEntityRepository<Entities.File> fileRepository,
             IEntityRepository<FileGroup> fileGroupRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper,
+            IFileStorage fileStorage,
             IStringLocalizer<SharedResource> localizer)
         {
             _fileRepository = fileRepository;
             _fileGroupRepository = fileGroupRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _fileStorage = fileStorage;
             _localizer = localizer;
         }
 
@@ -49,6 +53,15 @@ namespace Cynosura.Template.Core.Requests.Files
             if (fileGroup.Type == Enums.FileGroupType.Database)
             {
                 file.Content = request.Content.ConvertToBytes();
+            }
+            else if (fileGroup.Type == Enums.FileGroupType.Storage)
+            {
+                var filename = Guid.NewGuid() + Path.GetExtension(request.Name);
+                file.Url = await _fileStorage.SaveFileAsync($"{fileGroup.Location}/{filename}", request.Content, request.ContentType);
+            }
+            else
+            {
+                throw new NotSupportedException($"Group type {fileGroup.Type} not supported");
             }
             _fileRepository.Add(file);
             await _unitOfWork.CommitAsync();

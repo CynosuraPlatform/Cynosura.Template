@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Cynosura.Template.Core.FileStorage;
 using Cynosura.Template.Core.Infrastructure;
 using FluentValidation;
 using MediatR;
@@ -24,6 +25,7 @@ namespace Cynosura.Template.Core
             services.AddAllRequestHandlers();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddAllValidators();
+            services.Configure<FileSystemStorageSettings>(configuration.GetSection("FileSystemStorage"));
             return services;
         }
 
