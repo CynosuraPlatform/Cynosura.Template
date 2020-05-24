@@ -144,7 +144,8 @@ namespace Cynosura.Template.Web
 
             var supportedCultures = new[]
             {
-                new CultureInfo("en-US")
+                new CultureInfo("en-US"),
+                new CultureInfo("ru-RU")
             };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {

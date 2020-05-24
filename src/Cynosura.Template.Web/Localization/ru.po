@@ -67,12 +67,6 @@ msgstr "Регистрация"
 msgid "Log in"
 msgstr "Войти"
 
-msgid "Email"
-msgid "Email"
-
-msgid "Password"
-msgid "Пароль"
-
 msgid "Remember me?"
 msgstr "Запомнить?"
 
@@ -222,3 +216,33 @@ msgstr "Добавить приложение Authenticator"
 
 msgid "Personal Data"
 msgstr "Персональные данные"
+
+msgid "File Groups"
+msgstr "Группы файлов"
+
+msgid "File Group"
+msgstr "Группы файлов"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Location"
+msgstr "Путь"
+
+msgid "Accept"
+msgstr "Accept"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Group"
+msgstr "Группа"
+
+msgid "Content Type"
+msgstr "Content Type"
+
+msgid "Url"
+msgstr "Url"

@@ -41,5 +41,17 @@
     "UserName": "Логин",
     "Email": "Email",
     "Password": "Пароль",
-    "Confirm password": "Подтвердить пароль"
+    "Confirm password": "Подтвердить пароль",
+    "File Groups": "Группы файлов",
+    "File Group": "Группа файлов",
+    "Type": "Тип",
+    "Location": "Путь",
+    "Accept": "Accept",
+    "Files": "Файлы",
+    "File": "Файл",
+    "Group": "Группа",
+    "Content Type": "Content Type",
+    "Url": "Url",
+    "Download": "Скачать",
+    "Upload File": "Загрузить файл"
 }

@@ -5,6 +5,7 @@ import { CoreModule } from '../core/core.module';
 import { FileService } from './file.service';
 import { FileSelectComponent } from './file-select.component';
 import { FileShowComponent } from './file-show.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { FileShowComponent } from './file-show.component';
     ],
     imports: [
         CoreModule,
+        TranslocoRootModule,
     ],
     providers: [
         FileService
