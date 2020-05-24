@@ -87,7 +87,7 @@ export class FileEditComponent implements OnInit {
     private saveFile() {
         const input = this.fileInputEl.nativeElement;
         const saveFile$ = this.id ?
-            this.fileService.updateFile({ id: this.id, file: input.files[0] }) :
+            input.files[0] ? this.fileService.updateFile({ id: this.id, file: input.files[0] }) : of() :
             forkJoin(Array.from(input.files).map(file => this.fileService.createFile({ groupId: this.group.id, file: file })));
         saveFile$.subscribe(() => this.dialogRef.close(true),
             error => this.onError(error));

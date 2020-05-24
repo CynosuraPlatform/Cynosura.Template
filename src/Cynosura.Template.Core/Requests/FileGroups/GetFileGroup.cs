@@ -6,6 +6,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups
 {
     public class GetFileGroup : IRequest<FileGroupModel>
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
+        public string Name { get; set; }
     }
 }

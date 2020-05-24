@@ -24,9 +24,12 @@ namespace Cynosura.Template.Core.Requests.FileGroups
 
         public async Task<FileGroupModel> Handle(GetFileGroup request, CancellationToken cancellationToken)
         {
-            var fileGroup = await _fileGroupRepository.GetEntities()
-                .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+            var query = _fileGroupRepository.GetEntities();
+            if (request.Id != null)
+                query = query.Where(e => e.Id == request.Id);
+            else
+                query = query.Where(e => e.Name == request.Name);
+            var fileGroup = await query.FirstOrDefaultAsync();
             return _mapper.Map<FileGroup, FileGroupModel>(fileGroup);
         }
 

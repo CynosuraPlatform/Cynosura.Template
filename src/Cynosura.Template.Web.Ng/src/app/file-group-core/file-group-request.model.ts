@@ -11,7 +11,8 @@ export class GetFileGroups {
 }
 
 export class GetFileGroup {
-    id: number;
+    id?: number;
+    name?: string;
 }
 
 export class ExportFileGroups {

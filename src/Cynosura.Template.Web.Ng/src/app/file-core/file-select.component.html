@@ -1,4 +1,8 @@
-﻿<mat-select [(ngModel)]="innerValue" [disabled]="disabled" [placeholder]="placeholder">
-    <mat-option [value]="null"></mat-option>
-    <mat-option [value]="file.id" *ngFor="let file of files">{{ file.name }}</mat-option>
-</mat-select>
+﻿<div *ngIf="group">
+    <div *ngIf="file">
+        {{file.name}}
+        <a class="delete" href="javascript:void(0);" (click)="onDelete()"><mat-icon [inline]="true">clear</mat-icon></a>
+    </div>
+    <button type="button" mat-raised-button (click)="fileInput.click()">Upload File</button>
+    <input type="file" id="file" name="file" #fileInput (change)="onFileChange($event)" [accept]="group.accept" hidden />
+</div>

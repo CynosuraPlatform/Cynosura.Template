@@ -1,16 +1,20 @@
 ﻿import { Component, Input, OnInit, forwardRef, OnDestroy, ElementRef, Optional, Self, DoCheck } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
 
 import { File } from './file.model';
 import { FileService } from './file.service';
+import { FileGroupService } from '../file-group-core/file-group.service';
+import { FileGroup } from '../file-group-core/file-group.model';
 
 @Component({
     selector: 'app-file-select',
     templateUrl: './file-select.component.html',
+    styleUrls: ['./file-select.component.scss'],
     providers: [
         { provide: MatFormFieldControl, useExisting: FileSelectComponent }
     ]
@@ -29,6 +33,9 @@ export class FileSelectComponent implements OnInit, ControlValueAccessor,
 
     errorState = false;
 
+    group: FileGroup;
+    file: File;
+
     get empty() {
         return !this.value;
     }
@@ -36,8 +43,6 @@ export class FileSelectComponent implements OnInit, ControlValueAccessor,
     get shouldLabelFloat() { return this.focused || !this.empty; }
 
     File = File;
-
-    files: File[] = [];
 
     @Input()
     value: number | null = null;
@@ -47,6 +52,9 @@ export class FileSelectComponent implements OnInit, ControlValueAccessor,
 
     @Input()
     placeholder: string;
+
+    @Input()
+    groupName: string;
 
     @Input()
     get required(): boolean { return this.innerRequired; }
@@ -78,6 +86,8 @@ export class FileSelectComponent implements OnInit, ControlValueAccessor,
     onTouched: any = () => { };
 
     constructor(private fileService: FileService,
+                private fileGroupService: FileGroupService,
+                private snackBar: MatSnackBar,
                 private fm: FocusMonitor, private elRef: ElementRef<HTMLElement>,
                 @Optional() @Self() public ngControl: NgControl) {
         fm.monitor(elRef, true).subscribe(origin => {
@@ -99,10 +109,17 @@ export class FileSelectComponent implements OnInit, ControlValueAccessor,
 
     writeValue(value) {
         this.innerValue = value;
+        if (this.value) {
+            this.getFile();
+        }
     }
 
     ngOnInit(): void {
-        this.fileService.getFiles({}).subscribe(files => this.files = files.pageItems);
+        this.fileGroupService.getFileGroup({ name: this.groupName }).subscribe(group => this.group = group);
+    }
+
+    private getFile() {
+        this.fileService.getFile({ id: this.value }).subscribe(file => this.file = file);
     }
 
     ngOnDestroy() {
@@ -121,6 +138,32 @@ export class FileSelectComponent implements OnInit, ControlValueAccessor,
         if (this.ngControl) {
             this.errorState = this.ngControl.invalid;
             this.stateChanges.next();
+        }
+    }
+
+    onFileChange(event: EventTarget) {
+        const eventObj = event as MSInputMethodContext;
+        const input = eventObj.target as HTMLInputElement;
+        const file = input.files[0];
+        if (file) {
+            this.fileService.createFile({ groupId: this.group.id, file: input.files[0] })
+            .subscribe((createdFile) => {
+                this.innerValue = createdFile.id;
+                this.getFile();
+            }, error => {
+                this.onError(error);
+            });
+        }
+    }
+
+    onDelete() {
+        this.file = null;
+        this.innerValue = null;
+    }
+
+    onError(error: Error) {
+        if (error) {
+            this.snackBar.open(error.message, 'Ok');
         }
     }
 }
