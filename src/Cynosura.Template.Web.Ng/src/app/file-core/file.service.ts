@@ -9,9 +9,10 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { File } from './file.model';
-import { GetFiles, GetFile, UpdateFile, CreateFile, DeleteFile, ExportFiles, DownloadFile } from './file-request.model';
+import { GetFiles, GetFile, ExportFiles, DownloadFile,
+    UpdateFile, CreateFile, DeleteFile } from './file-request.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class FileService {
     private apiUrl = this.configService.config.apiBaseUrl + '/api';
 

@@ -9,9 +9,10 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { User } from './user.model';
-import { GetUsers, GetUser, UpdateUser, CreateUser, DeleteUser, ExportUsers } from './user-request.model';
+import { GetUsers, GetUser, ExportUsers,
+    UpdateUser, CreateUser, DeleteUser } from './user-request.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UserService {
     private apiUrl = this.configService.config.apiBaseUrl + '/api';
 

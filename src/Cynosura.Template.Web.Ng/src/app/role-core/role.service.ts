@@ -9,9 +9,10 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { Role } from './role.model';
-import { GetRoles, GetRole, UpdateRole, CreateRole, DeleteRole, ExportRoles } from './role-request.model';
+import { GetRoles, GetRole, ExportRoles,
+    UpdateRole, CreateRole, DeleteRole } from './role-request.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RoleService {
     private apiUrl = this.configService.config.apiBaseUrl + '/api';
 

@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
 {
-    public class Export$model.Entity.PluralName$Handler : IRequestHandler<Export$model.Entity.PluralName$, FileModel>
+    public class Export$model.Entity.PluralName$Handler : IRequestHandler<Export$model.Entity.PluralName$, FileContentModel>
     {
         private readonly IEntityRepository<$model.Entity.Name$> _$model.Entity.NameLower$Repository;
         private readonly IExcelFormatter _excelFormatter;
@@ -30,7 +30,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
             _mapper = mapper;
         }
 
-        public async Task<FileModel> Handle(Export$model.Entity.PluralName$ request, CancellationToken cancellationToken)
+        public async Task<FileContentModel> Handle(Export$model.Entity.PluralName$ request, CancellationToken cancellationToken)
         {
             IQueryable<$model.Entity.Name$> query = _$model.Entity.NameLower$Repository.GetEntities()$model.Entity.EntityFields:include(); separator=""$;            
             query = query.Filter(request.Filter);

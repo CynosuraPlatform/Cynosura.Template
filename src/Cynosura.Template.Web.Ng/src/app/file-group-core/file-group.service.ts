@@ -9,9 +9,10 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { FileGroup } from './file-group.model';
-import { GetFileGroups, GetFileGroup, UpdateFileGroup, CreateFileGroup, DeleteFileGroup, ExportFileGroups } from './file-group-request.model';
+import { GetFileGroups, GetFileGroup, ExportFileGroups,
+    UpdateFileGroup, CreateFileGroup, DeleteFileGroup } from './file-group-request.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class FileGroupService {
     private apiUrl = this.configService.config.apiBaseUrl + '/api';
 

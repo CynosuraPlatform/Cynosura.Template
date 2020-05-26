@@ -10,9 +10,10 @@ import { Page } from '../core/page.model';
 import { FileResult } from '../core/file-result.model';
 
 import { $model.Entity.Name$ } from './$model.Entity.NameKebab$.model';
-import { Get$model.Entity.PluralName$, Get$model.Entity.Name$, Update$model.Entity.Name$, Create$model.Entity.Name$, Delete$model.Entity.Name$, Export$model.Entity.PluralName$ } from './$model.Entity.NameKebab$-request.model';
+import { Get$model.Entity.PluralName$, Get$model.Entity.Name$, Export$model.Entity.PluralName$,
+    Update$model.Entity.Name$, Create$model.Entity.Name$, Delete$model.Entity.Name$ } from './$model.Entity.NameKebab$-request.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class $model.Entity.Name$Service {
     private apiUrl = this.configService.config.apiBaseUrl + '/api';
 
