@@ -1,6 +1,6 @@
-﻿using Cynosura.Template.Core.Infrastructure;
+﻿using MediatR;
+using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.FileGroups.Models;
-using MediatR;
 
 namespace Cynosura.Template.Core.Requests.FileGroups
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
-using Microsoft.AspNetCore.Identity;
 
 namespace Cynosura.Template.Core.Requests.Users
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cynosura.Template.Core.Security;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Cynosura.Template.Core.Security;
 
 namespace Cynosura.Template.Web.Infrastructure
 {

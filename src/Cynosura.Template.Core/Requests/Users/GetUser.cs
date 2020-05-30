@@ -1,6 +1,6 @@
 ﻿using System;
-using Cynosura.Template.Core.Requests.Users.Models;
 using MediatR;
+using Cynosura.Template.Core.Requests.Users.Models;
 
 namespace Cynosura.Template.Core.Requests.Users
 {

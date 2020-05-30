@@ -1,7 +1,7 @@
 ﻿main(model) ::= <<
+using MediatR;
 using $model.Solution.Namespace$.Core.Infrastructure;
 using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Models;
-using MediatR;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
 {

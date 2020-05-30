@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Cynosura.Core.Services;
-using Cynosura.Template.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
+using Cynosura.Core.Services;
+using Cynosura.Template.Core.Entities;
 
 namespace Cynosura.Template.Core.Requests.Roles
 {

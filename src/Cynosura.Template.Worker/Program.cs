@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Worker.Infrastructure;
 using Cynosura.Template.Core;
@@ -43,6 +43,8 @@ namespace Cynosura.Template.Worker
                     {
                         options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefaultConnection"));
                     });
+
+                    services.AddTransient(typeof(IStringLocalizer<>), typeof(DummyLocalizer<>));
 
                     services.AddOptions();
 

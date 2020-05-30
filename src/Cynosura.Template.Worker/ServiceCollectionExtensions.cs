@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
-using Cynosura.Template.Core.Infrastructure;
-using Cynosura.Template.Core.Security;
-using Cynosura.Template.Worker.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Cynosura.Template.Core.Infrastructure;
+using Cynosura.Template.Core.Security;
+using Cynosura.Template.Worker.Infrastructure;
+
 
 namespace Cynosura.Template.Worker
 {

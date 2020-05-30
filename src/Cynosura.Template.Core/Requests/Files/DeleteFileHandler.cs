@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using Cynosura.Core.Data;
 using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.FileStorage;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
 
 namespace Cynosura.Template.Core.Requests.Files
 {

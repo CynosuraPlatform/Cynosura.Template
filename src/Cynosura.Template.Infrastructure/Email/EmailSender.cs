@@ -2,11 +2,11 @@
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Cynosura.Template.Core.Email;
-using Cynosura.Template.Core.Email.Models;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Cynosura.Template.Core.Email;
+using Cynosura.Template.Core.Email.Models;
 
 namespace Cynosura.Template.Infrastructure.Email
 {

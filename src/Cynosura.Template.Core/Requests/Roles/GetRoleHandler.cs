@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Requests.Roles.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Requests.Roles.Models;
 
 namespace Cynosura.Template.Core.Requests.Roles
 {

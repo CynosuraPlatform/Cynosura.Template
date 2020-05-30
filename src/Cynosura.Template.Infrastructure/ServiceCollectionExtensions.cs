@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Cynosura.Template.Core.Email;
 using Cynosura.Template.Core.Formatters;
 using Cynosura.Template.Infrastructure.Email;
 using Cynosura.Template.Infrastructure.Formatters;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Cynosura.Template.Infrastructure
 {

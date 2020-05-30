@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Cynosura.Template.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Cynosura.Template.Core.Entities;
 
 namespace Cynosura.Template.Data
 {

@@ -1,15 +1,14 @@
 ﻿main(model) ::= <<
 using System;
 using System.Threading.Tasks;
-using Cynosura.Core.Services.Models;
-using $model.Solution.Namespace$.Core.Infrastructure;
-using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
-using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Models;
-using $model.Solution.Namespace$.Web.Models;
-using Cynosura.Web.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Cynosura.Core.Services.Models;
+using Cynosura.Web.Infrastructure;
+using $model.Solution.Namespace$.Core.Infrastructure;
+using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Models;
 
 namespace $model.Solution.Namespace$.Web.Controllers
 {

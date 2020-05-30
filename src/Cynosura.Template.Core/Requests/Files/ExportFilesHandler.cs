@@ -3,14 +3,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Cynosura.Core.Data;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Formatters;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Files.Models;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Core.Requests.Files
 {

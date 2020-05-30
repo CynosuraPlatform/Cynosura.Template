@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Cynosura.Template.Core.Requests.Profile;
-using Cynosura.Template.Core.Requests.Profile.Models;
-using Cynosura.Web.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Cynosura.Web.Infrastructure;
+using Cynosura.Template.Core.Requests.Profile;
+using Cynosura.Template.Core.Requests.Profile.Models;
 
 namespace Cynosura.Template.Web.Controllers
 {

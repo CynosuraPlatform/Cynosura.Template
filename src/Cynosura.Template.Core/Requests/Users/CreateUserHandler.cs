@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Infrastructure;
 
 namespace Cynosura.Template.Core.Requests.Users
 {

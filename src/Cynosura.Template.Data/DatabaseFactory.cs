@@ -1,7 +1,7 @@
 ﻿using System;
-using Cynosura.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Cynosura.EF;
 
 namespace Cynosura.Template.Data
 {

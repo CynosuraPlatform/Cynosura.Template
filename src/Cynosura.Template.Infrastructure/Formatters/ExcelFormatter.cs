@@ -7,10 +7,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Cynosura.Template.Core;
-using Cynosura.Template.Core.Formatters;
 using Microsoft.Extensions.Localization;
 using OfficeOpenXml;
+using Cynosura.Template.Core;
+using Cynosura.Template.Core.Formatters;
 
 namespace Cynosura.Template.Infrastructure.Formatters
 {

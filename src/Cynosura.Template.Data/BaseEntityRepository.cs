@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Cynosura.EF;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Security;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Data
 {

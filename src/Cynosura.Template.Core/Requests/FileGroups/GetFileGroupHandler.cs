@@ -2,11 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Cynosura.Core.Data;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Requests.FileGroups.Models;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cynosura.Template.Core.Requests.FileGroups
 {

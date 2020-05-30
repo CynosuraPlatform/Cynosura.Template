@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Cynosura.Core.Data;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Requests.Roles.Models;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 namespace Cynosura.Template.Core.Requests.Roles
 {

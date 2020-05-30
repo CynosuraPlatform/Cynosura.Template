@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cynosura.Template.Core.Email.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Cynosura.Template.Core.Email.Models;
 
 namespace Cynosura.Template.Web.Infrastructure
 {

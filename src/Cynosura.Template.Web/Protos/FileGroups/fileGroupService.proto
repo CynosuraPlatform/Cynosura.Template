@@ -1,7 +1,5 @@
 ﻿syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
 import "Protos/common.proto";
 import "Protos/FileGroups/fileGroupModel.proto";
 import "Protos/FileGroups/fileGroupFilter.proto";

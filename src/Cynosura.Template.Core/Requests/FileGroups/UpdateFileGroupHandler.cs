@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Cynosura.Core.Data;
-using Cynosura.Core.Services;
-using Cynosura.Template.Core.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using Cynosura.Core.Data;
+using Cynosura.Core.Services;
+using Cynosura.Template.Core.Entities;
 
 namespace Cynosura.Template.Core.Requests.FileGroups
 {

@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cynosura.Core.Services.Models;
-using Cynosura.Template.Core.Infrastructure;
-using Cynosura.Template.Core.Requests.Files;
-using Cynosura.Template.Core.Requests.Files.Models;
-using Cynosura.Template.Web.Models;
-using Cynosura.Web.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Cynosura.Core.Services.Models;
+using Cynosura.Web.Infrastructure;
+using Cynosura.Template.Core.Infrastructure;
+using Cynosura.Template.Core.Requests.Files;
+using Cynosura.Template.Core.Requests.Files.Models;
 
 namespace Cynosura.Template.Web.Controllers
 {

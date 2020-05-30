@@ -1,7 +1,7 @@
 ﻿using System;
+using MediatR;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Files.Models;
-using MediatR;
 
 namespace Cynosura.Template.Core.Requests.Files
 {

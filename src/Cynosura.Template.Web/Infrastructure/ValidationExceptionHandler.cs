@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cynosura.Template.Core.Infrastructure;
-using Cynosura.Web.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Cynosura.Web.Infrastructure;
+using Cynosura.Template.Core.Infrastructure;
 
 namespace Cynosura.Template.Web.Infrastructure
 {

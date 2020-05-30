@@ -2,9 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cynosura.EF;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Infrastructure;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Extensions;
 using IdentityServer4.EntityFramework.Interfaces;
@@ -13,6 +10,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Options;
+using Cynosura.EF;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Infrastructure;
 
 namespace Cynosura.Template.Data
 {

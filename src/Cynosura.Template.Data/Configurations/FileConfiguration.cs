@@ -1,7 +1,7 @@
-﻿using Cynosura.EF;
-using Cynosura.Template.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Cynosura.EF;
+using Cynosura.Template.Core.Entities;
 
 namespace Cynosura.Template.Data.Configurations
 {

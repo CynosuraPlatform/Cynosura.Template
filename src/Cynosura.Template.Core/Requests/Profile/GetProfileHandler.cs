@@ -4,12 +4,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Requests.Profile.Models;
-using Cynosura.Template.Core.Security;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Requests.Profile.Models;
+using Cynosura.Template.Core.Security;
 
 namespace Cynosura.Template.Core.Requests.Profile
 {

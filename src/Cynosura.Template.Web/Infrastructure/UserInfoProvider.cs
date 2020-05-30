@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cynosura.Core.Data;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Cynosura.Core.Data;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Security;
 
 namespace Cynosura.Template.Web.Infrastructure
 {

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Cynosura.Template.Core.FileStorage;
-using Cynosura.Template.Core.Infrastructure;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Cynosura.Template.Core.FileStorage;
+using Cynosura.Template.Core.Infrastructure;
 
 namespace Cynosura.Template.Core
 {

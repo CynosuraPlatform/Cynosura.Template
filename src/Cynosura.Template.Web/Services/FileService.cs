@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Grpc.Core;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Cynosura.Core.Services.Models;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Requests.Files;
 using Cynosura.Template.Core.Requests.Files.Models;
 using Cynosura.Template.Web.Protos;
 using Cynosura.Template.Web.Protos.Files;
-using Grpc.Core;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Cynosura.Template.Web.Services
 {
