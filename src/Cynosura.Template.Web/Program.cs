@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Cynosura.Template.Data;
 
-
 namespace Cynosura.Template.Web
 {
     public class Program

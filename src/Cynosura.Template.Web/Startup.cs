@@ -13,14 +13,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
+using Cynosura.Web;
+using Cynosura.Web.Authorization;
+using Cynosura.Web.Infrastructure;
 using Cynosura.Template.Core;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Data;
 using Cynosura.Template.Infrastructure;
 using Cynosura.Template.Web.Infrastructure;
-using Cynosura.Web;
-using Cynosura.Web.Authorization;
-using Cynosura.Web.Infrastructure;
 
 namespace Cynosura.Template.Web
 {
