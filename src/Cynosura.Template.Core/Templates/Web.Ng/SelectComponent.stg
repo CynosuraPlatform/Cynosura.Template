@@ -113,6 +113,14 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
 
     writeValue(value) {
         this.innerValue = value;
+        if (this.mode === 'autocomplete') {
+            if (this.value) {
+                this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.value })
+                    .subscribe($model.Entity.NameLower$ => this.autocompleteControl.setValue($model.Entity.NameLower$));
+            } else {
+                this.autocompleteControl.setValue('');
+            }
+        }
     }
 
     ngOnInit(): void {
@@ -143,10 +151,6 @@ export class $model.Entity.Name$SelectComponent implements OnInit, ControlValueA
                             return of(<$model.Entity.Name$[]>[]);
                         }
                     }));
-            if (this.value) {
-                this.$model.Entity.NameLower$Service.get$model.Entity.Name$({ id: this.value })
-                    .subscribe($model.Entity.NameLower$ => this.autocompleteControl.setValue($model.Entity.NameLower$));
-            }
         }
     }
 

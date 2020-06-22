@@ -112,6 +112,14 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor,
 
     writeValue(value) {
         this.innerValue = value;
+        if (this.mode === 'autocomplete') {
+            if (this.value) {
+                this.userService.getUser({ id: this.value })
+                    .subscribe(user => this.autocompleteControl.setValue(user));
+            } else {
+                this.autocompleteControl.setValue('');
+            }
+        }
     }
 
     ngOnInit(): void {
@@ -142,10 +150,6 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor,
                             return of(<User[]>[]);
                         }
                     }));
-            if (this.value) {
-                this.userService.getUser({ id: this.value })
-                    .subscribe(user => this.autocompleteControl.setValue(user));
-            }
         }
     }
 

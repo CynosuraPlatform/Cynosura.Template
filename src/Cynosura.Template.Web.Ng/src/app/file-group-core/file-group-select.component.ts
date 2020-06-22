@@ -112,6 +112,14 @@ export class FileGroupSelectComponent implements OnInit, ControlValueAccessor,
 
     writeValue(value) {
         this.innerValue = value;
+        if (this.mode === 'autocomplete') {
+            if (this.value) {
+                this.fileGroupService.getFileGroup({ id: this.value })
+                    .subscribe(fileGroup => this.autocompleteControl.setValue(fileGroup));
+            } else {
+                this.autocompleteControl.setValue('');
+            }
+        }
     }
 
     ngOnInit(): void {
@@ -142,10 +150,6 @@ export class FileGroupSelectComponent implements OnInit, ControlValueAccessor,
                             return of(<FileGroup[]>[]);
                         }
                     }));
-            if (this.value) {
-                this.fileGroupService.getFileGroup({ id: this.value })
-                    .subscribe(fileGroup => this.autocompleteControl.setValue(fileGroup));
-            }
         }
     }
 

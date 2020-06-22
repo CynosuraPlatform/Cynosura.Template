@@ -112,6 +112,14 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor,
 
     writeValue(value) {
         this.innerValue = value;
+        if (this.mode === 'autocomplete') {
+            if (this.value) {
+                this.roleService.getRole({ id: this.value })
+                    .subscribe(role => this.autocompleteControl.setValue(role));
+            } else {
+                this.autocompleteControl.setValue('');
+            }
+        }
     }
 
     ngOnInit(): void {
@@ -142,10 +150,6 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor,
                             return of(<Role[]>[]);
                         }
                     }));
-            if (this.value) {
-                this.roleService.getRole({ id: this.value })
-                    .subscribe(role => this.autocompleteControl.setValue(role));
-            }
         }
     }
 
