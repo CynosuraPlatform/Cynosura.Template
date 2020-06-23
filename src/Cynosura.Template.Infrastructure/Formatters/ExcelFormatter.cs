@@ -66,7 +66,7 @@ namespace Cynosura.Template.Infrastructure.Formatters
                     foreach (var property in properties)
                     {
                         var value = property.Property.GetValue(row);
-                        cells[i, j].Value = value;
+                        SetValue(cells[i, j], value);
                         j++;
                     }
                     i++;
@@ -82,6 +82,31 @@ namespace Cynosura.Template.Infrastructure.Formatters
                     }
                     j++;
                 }
+            }
+        }
+
+        private void SetValue(ExcelRange range, object value)
+        {
+            if (value is Enum)
+            {
+                var enumValue = value as Enum;
+                var description = enumValue.GetType()
+                    .GetMember(enumValue.ToString())
+                    .First()
+                    .GetCustomAttribute<DescriptionAttribute>()
+                    ?.Description;
+                if (!string.IsNullOrEmpty(description))
+                {
+                    range.Value = _localizer[description];
+                }
+                else
+                {
+                    range.Value = value;
+                }
+            }
+            else
+            {
+                range.Value = value;
             }
         }
 
