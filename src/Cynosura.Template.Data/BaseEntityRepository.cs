@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Cynosura.EF;
 using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Enums;
 using Cynosura.Template.Core.Security;
 
 namespace Cynosura.Template.Data
@@ -24,7 +27,7 @@ namespace Cynosura.Template.Data
         private void OnSavingChanges(object sender, EventArgs eventArgs)
         {
             var entities = Context.ChangeTracker.Entries()
-                .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added)
+                .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added || e.State == EntityState.Deleted)
                 .Where(e => e.Entity is T)
                 .Select(e => new
                 {
@@ -37,16 +40,29 @@ namespace Cynosura.Template.Data
             {
                 foreach (var entity in entities)
                 {
-                    entity.Entity.ModificationDate = DateTime.UtcNow;
-                    entity.Entity.ModificationUserId = UserId;
-
                     if (entity.State == EntityState.Added)
                     {
-                        entity.Entity.CreationDate = entity.Entity.ModificationDate;
-                        entity.Entity.CreationUserId = entity.Entity.ModificationUserId;
+                        entity.Entity.CreationDate = entity.Entity.ModificationDate = DateTime.UtcNow;
+                        entity.Entity.CreationUserId = entity.Entity.ModificationUserId = UserId;
+                        TrackChange(entity.Entity, ChangeAction.Add);
+                    }
+                    else if (entity.State == EntityState.Deleted)
+                    {
+                        TrackChange(entity.Entity, ChangeAction.Delete);
+                    }
+                    else if (entity.State == EntityState.Modified)
+                    {
+                        entity.Entity.ModificationDate = DateTime.UtcNow;
+                        entity.Entity.ModificationUserId = UserId;
+                        TrackChange(entity.Entity, ChangeAction.Update);
                     }
                 }
             }
+        }
+
+        protected virtual void TrackChange(BaseEntity entity, ChangeAction action)
+        {
+
         }
     }
 }
