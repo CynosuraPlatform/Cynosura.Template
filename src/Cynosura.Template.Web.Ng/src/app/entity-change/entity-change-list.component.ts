@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { mergeMap } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { NoticeHelper } from '../core/notice.helper';
 
 import { EntityChange, EntityChangeListState } from '../entity-change-core/entity-change.model';
 import { EntityChangeService } from '../entity-change-core/entity-change.service';
+import { EntityChangeValueDirective } from './entity-change-value.directive';
 
 @Component({
     selector: 'app-entity-change-list',
@@ -22,8 +23,7 @@ export class EntityChangeListComponent implements OnInit {
     pageSizeOptions = [10, 20];
     columns = [
         'action',
-        'from',
-        'to',
+        'changes',
         'creationDate',
         'creationUser'
     ];
@@ -37,12 +37,23 @@ export class EntityChangeListComponent implements OnInit {
     @Input()
     entityId: number;
 
+    @Input()
+    set refresh(value: any) {
+        this.getEntityChanges();
+    }
+
+    @ContentChild(EntityChangeValueDirective, { static: true, read: TemplateRef }) entityChangeValueTemplate: TemplateRef<any>;
+
     constructor(
         private dialog: MatDialog,
         private modalHelper: ModalHelper,
         private entitychangeService: EntityChangeService,
         private noticeHelper: NoticeHelper
         ) {
+    }
+
+    entityChangeValueTemplateContext(value: any): object {
+        return { $implicit: value };
     }
 
     ngOnInit() {

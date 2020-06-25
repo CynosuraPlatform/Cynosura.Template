@@ -8,10 +8,12 @@ import { UserCoreModule } from '../user-core/user-core.module';
 import { ChangeActionModule } from '../change-action/change-action.module';
 
 import { EntityChangeListComponent } from './entity-change-list.component';
+import { EntityChangeValueDirective } from './entity-change-value.directive';
 
 @NgModule({
     declarations: [
         EntityChangeListComponent,
+        EntityChangeValueDirective,
     ],
     imports: [
         RouterModule,

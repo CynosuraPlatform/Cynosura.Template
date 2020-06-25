@@ -14,16 +14,31 @@
                     <app-change-action-view [value]="item.action"></app-change-action-view>
                 </td>
             </ng-container>
-            <ng-container matColumnDef="from">
-                <th mat-header-cell *matHeaderCellDef>{{ t('From') }}</th>
+            <ng-container matColumnDef="changes">
+                <th mat-header-cell *matHeaderCellDef>{{ t('Changes') }}</th>
                 <td mat-cell *matCellDef="let item">
-                    <app-text-view [value]="item.from"></app-text-view>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="to">
-                <th mat-header-cell *matHeaderCellDef>{{ t('To') }}</th>
-                <td mat-cell *matCellDef="let item">
-                    <app-text-view [value]="item.to"></app-text-view>
+                    <table mat-table [dataSource]="item.changes"> 
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>{{ t('Name') }}</th>
+                            <td mat-cell *matCellDef="let change">
+                                {{ change.displayName }}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="from">
+                            <th mat-header-cell *matHeaderCellDef>{{ t('Old') }}</th>
+                            <td mat-cell *matCellDef="let change">
+                                {{ change.fromValue }}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="to">
+                            <th mat-header-cell *matHeaderCellDef>{{ t('New') }}</th>
+                            <td mat-cell *matCellDef="let change">
+                                {{ change.toValue }}
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="['name','from','to']"></tr>
+                        <tr mat-row *matRowDef="let item; columns: ['name','from','to'];"></tr>
+                    </table>
                 </td>
             </ng-container>
             <ng-container matColumnDef="creationDate">
@@ -40,7 +55,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="columns"></tr>
-            <tr mat-row *matRowDef="let item; columns: columns;" [routerLink]="[baseRoute, item.id]"></tr>
+            <tr mat-row *matRowDef="let item; columns: columns;"></tr>
 
         </table>
 

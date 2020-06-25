@@ -24,5 +24,7 @@ namespace Cynosura.Template.Core.Requests.EntityChanges.Models
         [DisplayName("Creation User")]
         public int? CreationUserId { get; set; }
         public Users.Models.UserShortModel CreationUser { get; set; }
+
+        public IList<EntityPropertyChange> Changes { get; set; }
     }
 }
