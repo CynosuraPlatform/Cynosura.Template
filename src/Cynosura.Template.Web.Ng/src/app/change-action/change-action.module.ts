@@ -3,13 +3,15 @@
 import { CoreModule } from '../core/core.module';
 
 import { ChangeActionViewComponent } from './change-action-view.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
     declarations: [
         ChangeActionViewComponent
     ],
     imports: [
-        CoreModule
+        CoreModule,
+        TranslocoRootModule,
     ],
     providers: [
     ],

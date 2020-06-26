@@ -55,5 +55,11 @@
     "Content Type": "Content Type",
     "Url": "Url",
     "Download": "Скачать",
-    "Upload File": "Загрузить файл"
+    "Upload File": "Загрузить файл",
+    "Action": "Действие",
+    "Changes": "Изменения",
+    "Change Date": "Дата изменения",
+    "Property Name": "Название поля",
+    "Old Value": "Старое значение",
+    "New Value": "Новое значение"
 }

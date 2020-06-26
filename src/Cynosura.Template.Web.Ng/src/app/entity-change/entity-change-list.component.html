@@ -15,19 +15,19 @@
                 <td mat-cell *matCellDef="let item">
                     <table mat-table [dataSource]="filterEntityPropertyChanges(item.changes)"> 
                         <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef>{{ t('Name') }}</th>
+                            <th mat-header-cell *matHeaderCellDef>{{ t('Property Name') }}</th>
                             <td mat-cell *matCellDef="let change">
-                                {{ change.displayName }}
+                                {{ t(change.displayName) }}
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="from">
-                            <th mat-header-cell *matHeaderCellDef>{{ t('Old') }}</th>
+                            <th mat-header-cell *matHeaderCellDef>{{ t('Old Value') }}</th>
                             <td mat-cell *matCellDef="let change">
                                 <ng-container *ngTemplateOutlet="entityChangeValueTemplate(change.name) || defaultEntityChangeValueTemplate; context: entityChangeValueTemplateContext(change.fromValue)"></ng-container>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="to">
-                            <th mat-header-cell *matHeaderCellDef>{{ t('New') }}</th>
+                            <th mat-header-cell *matHeaderCellDef>{{ t('New Value') }}</th>
                             <td mat-cell *matCellDef="let change">
                                 <ng-container *ngTemplateOutlet="entityChangeValueTemplate(change.name) || defaultEntityChangeValueTemplate; context: entityChangeValueTemplateContext(change.toValue)"></ng-container>
                             </td>
@@ -38,7 +38,7 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="creationDate">
-                <th mat-header-cell *matHeaderCellDef>{{ t('Date') }}</th>
+                <th mat-header-cell *matHeaderCellDef>{{ t('Change Date') }}</th>
                 <td mat-cell *matCellDef="let item">
                     <app-datetime-view [value]="item.creationDate"></app-datetime-view>
                 </td>
