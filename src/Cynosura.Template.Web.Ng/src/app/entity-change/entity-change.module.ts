@@ -9,10 +9,12 @@ import { ChangeActionModule } from '../change-action/change-action.module';
 
 import { EntityChangeListComponent } from './entity-change-list.component';
 import { EntityChangeValueDirective } from './entity-change-value.directive';
+import { EntityChangesComponent } from './entity-changes.component';
 
 @NgModule({
     declarations: [
         EntityChangeListComponent,
+        EntityChangesComponent,
         EntityChangeValueDirective,
     ],
     imports: [
@@ -29,6 +31,7 @@ import { EntityChangeValueDirective } from './entity-change-value.directive';
     providers: [
     ],
     entryComponents: [
+        EntityChangesComponent
     ]
 })
 export class EntityChangeModule {

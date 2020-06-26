@@ -1,9 +1,5 @@
 ﻿<ng-container *transloco="let t">
 
-    <mat-card-header>
-        <mat-card-title>{{ t('Changes') }}</mat-card-title>
-    </mat-card-header>
-
     <mat-card-content class="mat-elevation-z8">
 
         <table *ngIf="content" mat-table [dataSource]="content.pageItems" multiTemplateDataRows>

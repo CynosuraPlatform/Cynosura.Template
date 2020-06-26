@@ -19,6 +19,8 @@
         "deleteTitle": "Delete?",
         "deleteMessage": "Are you sure you want to delete?",
         "back": "Back",
+        "changes": "Changes",
+        "close": "Close",
         "cancel": "Cancel",
         "save": "Save",
         "itemsPerPage": "Items per page:",

@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { mergeMap } from 'rxjs/operators';
 
 import { ModalHelper } from '../core/modal.helper';
-import { StoreService } from '../core/store.service';
 import { Error } from '../core/error.model';
 import { Page } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
@@ -37,16 +36,9 @@ export class EntityChangeListComponent implements OnInit {
     @Input()
     entityId: number;
 
-    @Input()
-    set refresh(value: any) {
-        this.getEntityChanges();
-    }
-
     @ContentChild(EntityChangeValueDirective, { static: true, read: TemplateRef }) entityChangeValueTemplate: TemplateRef<any>;
 
     constructor(
-        private dialog: MatDialog,
-        private modalHelper: ModalHelper,
         private entitychangeService: EntityChangeService,
         private noticeHelper: NoticeHelper
         ) {
