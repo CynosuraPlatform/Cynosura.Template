@@ -27,6 +27,7 @@ import { EntityChangesComponent } from './entity-changes.component';
     ],
     exports: [
         EntityChangeListComponent,
+        EntityChangeValueDirective,
     ],
     providers: [
     ],

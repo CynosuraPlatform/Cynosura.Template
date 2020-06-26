@@ -1,14 +1,11 @@
-﻿import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
+﻿import { Component, OnInit, Input, TemplateRef, ContentChildren, QueryList } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
-import { mergeMap } from 'rxjs/operators';
 
-import { ModalHelper } from '../core/modal.helper';
 import { Error } from '../core/error.model';
 import { Page } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
 
-import { EntityChange, EntityChangeListState } from '../entity-change-core/entity-change.model';
+import { EntityChange, EntityChangeListState, EntityPropertyChange } from '../entity-change-core/entity-change.model';
 import { EntityChangeService } from '../entity-change-core/entity-change.service';
 import { EntityChangeValueDirective } from './entity-change-value.directive';
 
@@ -36,7 +33,8 @@ export class EntityChangeListComponent implements OnInit {
     @Input()
     entityId: number;
 
-    @ContentChild(EntityChangeValueDirective, { static: true, read: TemplateRef }) entityChangeValueTemplate: TemplateRef<any>;
+    @ContentChildren(EntityChangeValueDirective)
+    entityChangeValues: QueryList<EntityChangeValueDirective>;
 
     constructor(
         private entitychangeService: EntityChangeService,
@@ -44,8 +42,17 @@ export class EntityChangeListComponent implements OnInit {
         ) {
     }
 
+    entityChangeValueTemplate(name: string): TemplateRef<any> {
+        const entityChangeValue = this.entityChangeValues.filter(ecv => ecv.appEntityChangeValueName === name)[0];
+        return entityChangeValue && entityChangeValue.template;
+    }
+
     entityChangeValueTemplateContext(value: any): object {
         return { $implicit: value };
+    }
+
+    filterEntityPropertyChanges(changes: EntityPropertyChange[]): EntityPropertyChange[] {
+        return changes.filter(c => this.entityChangeValueTemplate(c.name));
     }
 
     ngOnInit() {

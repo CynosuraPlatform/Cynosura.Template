@@ -5,8 +5,8 @@ import { Directive, TemplateRef, Input } from '@angular/core';
 })
 export class EntityChangeValueDirective {
 
-  constructor(public templateRef: TemplateRef<any>) { }
+  constructor(public template: TemplateRef<any>) { }
 
   @Input()
-  propertyName: string;
+  public appEntityChangeValueName: string;
 }

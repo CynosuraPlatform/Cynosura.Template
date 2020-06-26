@@ -9,6 +9,14 @@ export class EntityChange {
     action: ChangeAction;
     from: string;
     to: string;
+    changes: EntityPropertyChange[];
+}
+
+export class EntityPropertyChange {
+    name: string;
+    displayName: string;
+    fromValue: string;
+    toValue: string;
 }
 
 export class EntityChangeListState {
