@@ -18,6 +18,7 @@ using Cynosura.Web.Authorization;
 using Cynosura.Web.Infrastructure;
 using Cynosura.Template.Core;
 using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Data;
 using Cynosura.Template.Infrastructure;
 using Cynosura.Template.Web.Infrastructure;

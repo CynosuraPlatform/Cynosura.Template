@@ -7,6 +7,7 @@ using Cynosura.EF;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Enums;
 using Cynosura.Template.Core.Security;
+using Cynosura.Template.Core.Infrastructure;
 
 namespace Cynosura.Template.Data
 {
@@ -22,10 +23,10 @@ namespace Cynosura.Template.Data
             var entityType = entity.GetType();
             var entry = Context.Entry(entity);
             var from = entry.State != EntityState.Added ?
-                JsonSerializer.Serialize(entry.OriginalValues.ToObject()) :
+                JsonSerializer.Serialize(entry.OriginalValues.ToObject(), JsonSerializerHelper.JsonSerializerOptions) :
                 "";
             var to = entry.State != EntityState.Deleted ?
-                JsonSerializer.Serialize(entry.CurrentValues.ToObject()) :
+                JsonSerializer.Serialize(entry.CurrentValues.ToObject(), JsonSerializerHelper.JsonSerializerOptions) :
                 "";
             var change = new EntityChange()
             {

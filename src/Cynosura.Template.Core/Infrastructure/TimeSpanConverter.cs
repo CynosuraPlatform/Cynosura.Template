@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Cynosura.Template.Web.Infrastructure
+namespace Cynosura.Template.Core.Infrastructure
 {
     public class TimeSpanConverter : JsonConverter<TimeSpan>
     {
