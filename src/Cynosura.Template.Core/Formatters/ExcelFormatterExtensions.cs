@@ -16,7 +16,7 @@ namespace Cynosura.Template.Core.Formatters
             return new FileContentModel()
             {
                 Name = $"{filename}.xlsx",
-                Content = ms.GetBuffer(),
+                Content = ms.ToArray(),
                 ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             };
         }
