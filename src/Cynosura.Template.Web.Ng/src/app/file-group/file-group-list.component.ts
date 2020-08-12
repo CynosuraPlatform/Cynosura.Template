@@ -65,7 +65,7 @@ export class FileGroupListComponent implements OnInit {
     }
 
     onCreate() {
-        FileGroupEditComponent.show(this.dialog, 0).subscribe(() => {
+        FileGroupEditComponent.show(this.dialog, null).subscribe(() => {
             this.getFileGroups();
         });
     }

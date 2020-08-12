@@ -51,7 +51,7 @@ namespace $model.Solution.Namespace$.Web.Services
         public override async Task<CreatedEntity> Create$model.Entity.Name$(Create$model.Entity.Name$Request create$model.Entity.Name$Request, ServerCallContext context)
         {
             var create$model.Entity.Name$ = _mapper.Map<Create$model.Entity.Name$Request, Create$model.Entity.Name$>(create$model.Entity.Name$Request);
-            return _mapper.Map<CreatedEntity<int>, CreatedEntity>(await _mediator.Send(create$model.Entity.Name$));
+            return _mapper.Map<CreatedEntity<$model.Entity.IdField.TypeName$>, CreatedEntity>(await _mediator.Send(create$model.Entity.Name$));
         }
 
         [Authorize("Write$model.Entity.Name$")]

@@ -65,7 +65,7 @@ export class FileListComponent implements OnInit {
     }
 
     onCreate() {
-        FileEditComponent.show(this.dialog, 0).subscribe(() => {
+        FileEditComponent.show(this.dialog, null).subscribe(() => {
             this.getFiles();
         });
     }

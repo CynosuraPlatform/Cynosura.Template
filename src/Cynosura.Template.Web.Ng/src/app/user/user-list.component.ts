@@ -65,7 +65,7 @@ export class UserListComponent implements OnInit {
     }
 
     onCreate() {
-        UserEditComponent.show(this.dialog, 0).subscribe(() => {
+        UserEditComponent.show(this.dialog, null).subscribe(() => {
             this.getUsers();
         });
     }

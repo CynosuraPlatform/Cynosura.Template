@@ -63,7 +63,7 @@ export class RoleListComponent implements OnInit {
     }
 
     onCreate() {
-        RoleEditComponent.show(this.dialog, 0).subscribe(() => {
+        RoleEditComponent.show(this.dialog, null).subscribe(() => {
             this.getRoles();
         });
     }

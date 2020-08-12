@@ -59,7 +59,7 @@ export class UserEditComponent implements OnInit {
     }
 
     private getUser() {
-        const getUser$ = this.id === 0 ?
+        const getUser$ = !this.id ?
             of(new User()) :
             this.userService.getUser({ id: this.id });
         getUser$.subscribe(user => {

@@ -63,7 +63,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
     }
 
     onCreate() {
-        $model.Entity.Name$EditComponent.show(this.dialog, 0).subscribe(() => {
+        $model.Entity.Name$EditComponent.show(this.dialog, null).subscribe(() => {
             this.get$model.Entity.PluralName$();
         });
     }
@@ -75,7 +75,7 @@ export class $model.Entity.Name$ListComponent implements OnInit {
             });
     }
 
-    onEdit(id: number) {
+    onEdit($model.Entity.IdField.NameLower$: $model.Entity.IdField.JsTypeName$) {
         $model.Entity.Name$EditComponent.show(this.dialog, id).subscribe(() => {
             this.get$model.Entity.PluralName$();
         });
