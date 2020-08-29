@@ -9,7 +9,6 @@ using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Security;
 using Cynosura.Template.Worker.Infrastructure;
 
-
 namespace Cynosura.Template.Worker
 {
     public static class ServiceCollectionExtensions

@@ -7,10 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Cynosura.Template.Data;
-using Cynosura.Template.Worker.Infrastructure;
 using Cynosura.Template.Core;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Data;
 using Cynosura.Template.Infrastructure;
+using Cynosura.Template.Worker.Infrastructure;
 
 namespace Cynosura.Template.Worker
 {
@@ -37,6 +38,9 @@ namespace Cynosura.Template.Worker
                     {
                         options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefaultConnection"));
                     });
+
+                    services.AddIdentityCore<User>()
+                        .AddRoles<Role>();
 
                     services.AddTransient(typeof(IStringLocalizer<>), typeof(DummyLocalizer<>));
 

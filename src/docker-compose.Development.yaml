@@ -23,7 +23,7 @@ services:
   worker:
     environment:
       ConnectionStrings__DefaultConnection: 'Server=tcp:db,1433;Database=Cynosura.Template;User ID=sa;Password=Qwerty123!;MultipleActiveResultSets=false'
-      ENVIRONMENT: Development
+      DOTNET_ENVIRONMENT: Development
   db:
     ports:
       - '0.0.0.0:1433:1433'
