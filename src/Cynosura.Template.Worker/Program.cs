@@ -16,26 +16,20 @@ namespace Cynosura.Template.Worker
 {
     class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            var builder = new HostBuilder()
-                .ConfigureHostConfiguration(configHost =>
-                {
-                    configHost.AddJsonFile("hostsettings.json", optional: true);
-                    configHost.AddEnvironmentVariables();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.AddJsonFile("appsettings.json", optional: true);
-                    config.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json",
-                        optional: true);
-                    config.AddJsonFile("appsettings.local.json", optional: true);
-                    config.AddEnvironmentVariables();
+            CreateHostBuilder(args).Build().Run();
+        }
 
-                    if (args != null)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConsole(c =>
                     {
-                        config.AddCommandLine(args);
-                    }
+                        c.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] ";
+                    });
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
@@ -52,17 +46,7 @@ namespace Cynosura.Template.Worker
                     services.AddInfrastructure(hostContext.Configuration);
                     services.AddData();
                     services.AddCore(hostContext.Configuration);
-                })
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddConsole(c =>
-                    {
-                        c.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] ";
-                    });
                 });
-
-            await builder.RunConsoleAsync();
         }
     }
 }

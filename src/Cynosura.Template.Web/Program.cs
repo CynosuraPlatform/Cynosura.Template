@@ -33,7 +33,6 @@ namespace Cynosura.Template.Web
                     webBuilder.UseStartup<Startup>()
                         .ConfigureLogging(logging =>
                         {
-                            logging.ClearProviders();
                             logging.AddConsole(c =>
                             {
                                 c.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] ";
