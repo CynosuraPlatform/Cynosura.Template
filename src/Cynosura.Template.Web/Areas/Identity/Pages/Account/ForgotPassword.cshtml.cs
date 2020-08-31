@@ -35,6 +35,8 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public string ReturnUrl { get; set; }
+
         public class InputModel
         {
             [Required(ErrorMessage = "The {0} field is required.")]
@@ -43,7 +45,12 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public void OnGet(string returnUrl = null)
+        {
+            ReturnUrl = returnUrl;
+        }
+
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +68,7 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
-                    values: new { area = "Identity", code },
+                    values: new { area = "Identity", code, returnUrl },
                     protocol: Request.Scheme);
 
                 await _emailSender.SendEmailAsync(

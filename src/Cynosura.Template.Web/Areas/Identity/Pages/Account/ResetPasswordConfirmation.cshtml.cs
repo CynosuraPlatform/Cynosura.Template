@@ -10,9 +10,11 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResetPasswordConfirmationModel : PageModel
     {
-        public void OnGet()
-        {
+        public string ReturnUrl { get; set; }
 
+        public void OnGet(string returnUrl = null)
+        {
+            ReturnUrl = returnUrl;
         }
     }
 }

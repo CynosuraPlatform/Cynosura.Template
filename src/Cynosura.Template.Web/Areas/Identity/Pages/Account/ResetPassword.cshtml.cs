@@ -26,6 +26,8 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public string ReturnUrl { get; set; }
+
         public class InputModel
         {
             [Required(ErrorMessage = "The {0} field is required.")]
@@ -47,7 +49,7 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
             public string Code { get; set; }
         }
 
-        public IActionResult OnGet(string code = null)
+        public IActionResult OnGet(string code = null, string returnUrl = null)
         {
             if (code == null)
             {
@@ -59,11 +61,12 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
                 {
                     Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
+                ReturnUrl = returnUrl;
                 return Page();
             }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             if (!ModelState.IsValid)
             {
@@ -74,13 +77,13 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToPage("./ResetPasswordConfirmation");
+                return RedirectToPage("./ResetPasswordConfirmation", new { returnUrl });
             }
 
             var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
             if (result.Succeeded)
             {
-                return RedirectToPage("./ResetPasswordConfirmation");
+                return RedirectToPage("./ResetPasswordConfirmation", new { returnUrl });
             }
 
             foreach (var error in result.Errors)
