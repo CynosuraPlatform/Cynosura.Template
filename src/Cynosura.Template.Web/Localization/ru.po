@@ -79,6 +79,12 @@ msgstr "Забыли пароль?"
 msgid "Register as a new user"
 msgstr "Зарегистрироваться"
 
+msgid "Use another service to log in."
+msgstr "Войдите с помощью других сервисов."
+
+msgid "Use another service to register."
+msgstr "Зарегистрируйтесь с помощью других сервисов."
+
 msgid "Invalid login attempt."
 msgstr "Не удалось войти."
 
