@@ -9,6 +9,7 @@
                     [placeholder]="t('Email')" />
                 <mat-error>{{ error?.modelState?.email | modelError }}</mat-error>
             </mat-form-field>
+            <app-bool-edit formControlName="emailConfirmed" name="emailConfirmed" [label]="t('Email Confirmed')"></app-bool-edit>
             <mat-form-field>
                 <mat-label>{{ t('First Name') }}</mat-label>
                 <app-text-edit formControlName="firstName" name="firstName" [placeholder]="t('First Name')"></app-text-edit>

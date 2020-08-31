@@ -20,6 +20,9 @@ namespace Cynosura.Template.Core.Requests.Users.Models
         [DisplayName("Email")]
         public string Email { get; set; }
 
+        [DisplayName("Email Confirmed")]
+        public bool EmailConfirmed { get; set; }
+
         public IList<int> RoleIds { get; } = new List<int>();
 
         [DisplayName("First Name")]

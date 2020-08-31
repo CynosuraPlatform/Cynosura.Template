@@ -4,7 +4,7 @@
         <mat-card-title>{{ t('Users') }}</mat-card-title>
     </mat-card-header>
 
-    <mat-card-actions>        
+    <mat-card-actions>
         <div class="action-item">
             <form (ngSubmit)="onSearch()">
                 <mat-form-field>
@@ -37,6 +37,12 @@
                     <app-text-view [value]="item.email"></app-text-view>
                 </td>
             </ng-container>
+            <ng-container matColumnDef="emailConfirmed">
+                <th mat-header-cell *matHeaderCellDef>{{ t('Email Confirmed') }}</th>
+                <td mat-cell *matCellDef="let item">
+                    <app-bool-view [value]="item.emailConfirmed"></app-bool-view>
+                </td>
+            </ng-container>
             <ng-container matColumnDef="firstName">
                 <th mat-header-cell *matHeaderCellDef>{{ t('First Name') }}</th>
                 <td mat-cell *matCellDef="let item">
@@ -67,7 +73,7 @@
         </table>
 
         <div>
-            <mat-paginator [pageSize]="state.pageSize" [pageIndex]="state.pageIndex" [pageSizeOptions]="pageSizeOptions" [length]="content?.totalItems" 
+            <mat-paginator [pageSize]="state.pageSize" [pageIndex]="state.pageIndex" [pageSizeOptions]="pageSizeOptions" [length]="content?.totalItems"
                 (page)="onPage($event)" showFirstLastButtons></mat-paginator>
         </div>
 

@@ -23,6 +23,12 @@
             </div>
         </div>
         <div class="field-view">
+            <label>{{ t('Email Confirmed') }}</label>
+            <div>
+                <app-bool-view [value]="user.emailConfirmed"></app-bool-view>
+            </div>
+        </div>
+        <div class="field-view">
             <label>{{ t('First Name') }}</label>
             <div>
                 <app-text-view [value]="user.firstName"></app-text-view>

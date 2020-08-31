@@ -6,6 +6,7 @@ export class User {
     modificationDate: Date;
     userName: string;
     email: string;
+    emailConfirmed: boolean;
     roleIds: number[];
     firstName: string;
     lastName: string;
