@@ -31,4 +31,10 @@
    <ItemGroup>
     <Protobuf Include="Protos\**\*.proto" />
   </ItemGroup>
+
+   <ItemGroup>
+     <None Update="Localization\ru.po">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+     </None>
+   </ItemGroup>
 </Project>
