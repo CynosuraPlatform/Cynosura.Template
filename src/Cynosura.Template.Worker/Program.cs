@@ -27,7 +27,7 @@ namespace Cynosura.Template.Worker
             return Host.CreateDefaultBuilder(args)
                 .ConfigureLogging((hostingContext, logging) =>
                 {
-                    logging.AddConsole(c =>
+                    logging.AddSimpleConsole(c =>
                     {
                         c.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] ";
                     });
