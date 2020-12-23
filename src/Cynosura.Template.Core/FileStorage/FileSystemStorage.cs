@@ -16,10 +16,19 @@ namespace Cynosura.Template.Core.FileStorage
             _settings = settings.Value;
         }
 
+        private string GetAbsolutePath(string path)
+        {
+            if (path.StartsWith(".."))
+            {
+                throw new Exception("Invalid path");
+            }
+            return Path.Combine(_settings.Path, path);
+        }
+
         public Task DeleteFileAsync(string url)
         {
             var filePath = url.Replace($"{_settings.Url}/", "");
-            var absoluteFilePath = Path.Combine(_settings.Path, filePath);
+            var absoluteFilePath = GetAbsolutePath(filePath);
             File.Delete(absoluteFilePath);
             return Task.CompletedTask;
         }
@@ -27,13 +36,13 @@ namespace Cynosura.Template.Core.FileStorage
         public async Task<byte[]> DownloadFileAsync(string url)
         {
             var filePath = url.Replace($"{_settings.Url}/", "");
-            var absoluteFilePath = Path.Combine(_settings.Path, filePath);
+            var absoluteFilePath = GetAbsolutePath(filePath);
             return await File.ReadAllBytesAsync(absoluteFilePath);
         }
 
         public async Task<string> SaveFileAsync(string filePath, Stream content, string contentType)
         {
-            var absoluteFilePath = Path.Combine(_settings.Path, filePath);
+            var absoluteFilePath = GetAbsolutePath(filePath);
             var directory = Path.GetDirectoryName(absoluteFilePath);
             if (!Directory.Exists(directory))
             {
