@@ -6,7 +6,7 @@ import { mergeMap } from 'rxjs/operators';
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
 import { Error } from '../core/error.model';
-import { Page } from '../core/page.model';
+import { Page, PageSettings } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
 
 import { Role, RoleListState } from '../role-core/role.model';
@@ -20,7 +20,7 @@ import { RoleEditComponent } from './role-edit.component';
 })
 export class RoleListComponent implements OnInit {
     content: Page<Role>;
-    pageSizeOptions = [10, 20];
+    pageSizeOptions = PageSettings.pageSizeOptions;
     columns = [
         'name',
         'displayName',

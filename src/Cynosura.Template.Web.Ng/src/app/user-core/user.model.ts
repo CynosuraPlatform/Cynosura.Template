@@ -1,3 +1,4 @@
+import { PageSettings } from '../core/page.model';
 import { UserFilter } from './user-filter.model';
 
 export class User {
@@ -13,7 +14,7 @@ export class User {
 }
 
 export class UserListState {
-    pageSize = 10;
+    pageSize = PageSettings.pageSize;
     pageIndex = 0;
     filter = new UserFilter();
 }

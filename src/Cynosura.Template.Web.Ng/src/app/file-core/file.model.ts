@@ -1,4 +1,5 @@
-﻿import { FileFilter } from './file-filter.model';
+﻿import { PageSettings } from '../core/page.model';
+import { FileFilter } from './file-filter.model';
 
 export class File {
     id: number;
@@ -13,7 +14,7 @@ export class File {
 }
 
 export class FileListState {
-    pageSize = 10;
+    pageSize = PageSettings.pageSize;
     pageIndex = 0;
     filter = new FileFilter();
 }

@@ -1,3 +1,4 @@
+import { PageSettings } from '../core/page.model';
 import { RoleFilter } from './role-filter.model';
 
 export class Role {
@@ -10,7 +11,7 @@ export class Role {
 }
 
 export class RoleListState {
-    pageSize = 10;
+    pageSize = PageSettings.pageSize;
     pageIndex = 0;
     filter = new RoleFilter();
 }

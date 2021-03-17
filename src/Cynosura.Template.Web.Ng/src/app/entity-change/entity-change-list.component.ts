@@ -2,7 +2,7 @@
 import { PageEvent } from '@angular/material/paginator';
 
 import { Error } from '../core/error.model';
-import { Page } from '../core/page.model';
+import { Page, PageSettings } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
 
 import { EntityChange, EntityChangeListState, EntityPropertyChange } from '../entity-change-core/entity-change.model';
@@ -16,7 +16,7 @@ import { EntityChangeValueDirective } from './entity-change-value.directive';
 })
 export class EntityChangeListComponent implements OnInit {
     content: Page<EntityChange>;
-    pageSizeOptions = [10, 20];
+    pageSizeOptions = PageSettings.pageSizeOptions;
     get columns(): string[] {
         const columns = [
             'entityId',

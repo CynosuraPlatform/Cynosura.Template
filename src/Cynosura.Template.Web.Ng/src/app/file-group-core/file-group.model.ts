@@ -1,4 +1,5 @@
-﻿import { FileGroupFilter } from './file-group-filter.model';
+﻿import { PageSettings } from '../core/page.model';
+import { FileGroupFilter } from './file-group-filter.model';
 import { FileGroupType } from '../file-group-type/file-group-type.model';
 
 export class FileGroup {
@@ -14,7 +15,7 @@ export class FileGroup {
 }
 
 export class FileGroupListState {
-    pageSize = 10;
+    pageSize = PageSettings.pageSize;
     pageIndex = 0;
     filter = new FileGroupFilter();
 }

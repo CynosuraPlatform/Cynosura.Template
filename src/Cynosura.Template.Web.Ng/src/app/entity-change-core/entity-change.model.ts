@@ -1,4 +1,5 @@
-﻿import { ChangeAction } from '../change-action/change-action.model';
+﻿import { PageSettings } from '../core/page.model';
+import { ChangeAction } from '../change-action/change-action.model';
 import { User } from '../user-core/user.model';
 
 export class EntityChange {
@@ -21,6 +22,6 @@ export class EntityPropertyChange {
 }
 
 export class EntityChangeListState {
-    pageSize = 10;
+    pageSize = PageSettings.pageSize;
     pageIndex = 0;
 }

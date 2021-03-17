@@ -3,3 +3,8 @@ export class Page<T> {
     totalItems: number;
     currentPageIndex: number;
 }
+
+export class PageSettings {
+    static readonly pageSize = 10;
+    static readonly pageSizeOptions = [10, 20];
+}

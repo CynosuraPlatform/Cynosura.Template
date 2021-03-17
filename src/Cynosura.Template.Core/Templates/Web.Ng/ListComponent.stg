@@ -7,7 +7,7 @@ import { mergeMap } from 'rxjs/operators';
 import { ModalHelper } from '../core/modal.helper';
 import { StoreService } from '../core/store.service';
 import { Error } from '../core/error.model';
-import { Page } from '../core/page.model';
+import { Page, PageSettings } from '../core/page.model';
 import { NoticeHelper } from '../core/notice.helper';
 
 import { $model.Entity.Name$, $model.Entity.Name$ListState } from '../$model.Entity.NameKebab$-core/$model.Entity.NameKebab$.model';
@@ -21,7 +21,7 @@ import { $model.Entity.Name$EditComponent } from './$model.Entity.NameKebab$-edi
 })
 export class $model.Entity.Name$ListComponent implements OnInit {
     content: Page<$model.Entity.Name$>;
-    pageSizeOptions = [10, 20];
+    pageSizeOptions = PageSettings.pageSizeOptions;
     columns = [
         $model.Entity.AllFields:field(); separator="\r\n"$
         'action'
