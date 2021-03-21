@@ -35,74 +35,74 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NoticeHelper } from './notice.helper';
 
 @NgModule({
-    declarations: [
-        EnumKeysPipe,
-        ModelErrorPipe,
-        ClickOutsideDirective,
-        ModalComponent,
-        TextEditComponent,
-        TextViewComponent,
-        NumberEditComponent,
-        NumberViewComponent,
-        BoolEditComponent,
-        BoolViewComponent,
-        DateTimeEditComponent,
-        DateTimeViewComponent,
-        DateEditComponent,
-        DateViewComponent,
-        TimeEditComponent,
-        TimeViewComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        OwlDateTimeModule,
-        OwlNativeDateTimeModule,
-        MaterialModule
-    ],
-    providers: [
-        { provide: ErrorHandler, useClass: AppErrorHandler },
-        // {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
-        StoreService,
-        LoadingService,
-        ModalHelper,
-        NoticeHelper,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: LoadingInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptor,
-            multi: true
-        }
-    ],
-    entryComponents: [
-        ModalComponent
-    ],
-    exports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        EnumKeysPipe,
-        ModelErrorPipe,
-        ClickOutsideDirective,
-        TextEditComponent,
-        TextViewComponent,
-        NumberEditComponent,
-        NumberViewComponent,
-        BoolEditComponent,
-        BoolViewComponent,
-        DateTimeEditComponent,
-        DateTimeViewComponent,
-        DateEditComponent,
-        DateViewComponent,
-        TimeEditComponent,
-        TimeViewComponent
-    ]
+  declarations: [
+    EnumKeysPipe,
+    ModelErrorPipe,
+    ClickOutsideDirective,
+    ModalComponent,
+    TextEditComponent,
+    TextViewComponent,
+    NumberEditComponent,
+    NumberViewComponent,
+    BoolEditComponent,
+    BoolViewComponent,
+    DateTimeEditComponent,
+    DateTimeViewComponent,
+    DateEditComponent,
+    DateViewComponent,
+    TimeEditComponent,
+    TimeViewComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MaterialModule
+  ],
+  providers: [
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+    // {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
+    StoreService,
+    LoadingService,
+    ModalHelper,
+    NoticeHelper,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ],
+  entryComponents: [
+    ModalComponent
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    EnumKeysPipe,
+    ModelErrorPipe,
+    ClickOutsideDirective,
+    TextEditComponent,
+    TextViewComponent,
+    NumberEditComponent,
+    NumberViewComponent,
+    BoolEditComponent,
+    BoolViewComponent,
+    DateTimeEditComponent,
+    DateTimeViewComponent,
+    DateEditComponent,
+    DateViewComponent,
+    TimeEditComponent,
+    TimeViewComponent
+  ]
 })
 export class CoreModule {
 
