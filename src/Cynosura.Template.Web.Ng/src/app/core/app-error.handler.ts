@@ -3,7 +3,7 @@ import { ErrorHandler, Injectable } from '@angular/core';
 @Injectable()
 export class AppErrorHandler implements ErrorHandler {
     handleError(error) {
-        if (error.message) {
+        if (error && error.message) {
             console.log('error', error.message);
             if (error.stack) {
                 console.log('error stack', error.stack);
