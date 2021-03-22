@@ -1,5 +1,7 @@
 ﻿<ng-container *transloco="let t">
-  <h1 mat-dialog-title>{{ t('File') }} <app-file-show [value]="file"></app-file-show></h1>
+  <h1 mat-dialog-title>
+    {{ t('File') }} <app-file-show [value]="file"></app-file-show>
+  </h1>
   <mat-dialog-content *ngIf="file" class="mat-dialog-content-edit">
 
     <form [formGroup]="fileForm">
@@ -19,6 +21,8 @@
   </mat-dialog-content>
   <mat-dialog-actions class="mat-dialog-actions-edit">
     <button mat-raised-button mat-dialog-close>{{ t('shared.cancel') }}</button>
-    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!group" cdkFocusInitial>{{ t('shared.save') }}</button>
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!group" cdkFocusInitial>
+      {{ t('shared.save') }}
+    </button>
   </mat-dialog-actions>
 </ng-container>

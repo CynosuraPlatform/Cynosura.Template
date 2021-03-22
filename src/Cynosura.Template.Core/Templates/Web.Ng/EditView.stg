@@ -1,6 +1,8 @@
 ﻿main(model) ::= <<
 <ng-container *transloco="let t">
-  <h1 mat-dialog-title>{{ t('$model.Entity.DisplayName$') }} <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></h1>
+  <h1 mat-dialog-title>
+    {{ t('$model.Entity.DisplayName$') }} <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show>
+  </h1>
   <mat-dialog-content *ngIf="$model.Entity.NameLower$" class="mat-dialog-content-edit">
 
     <form [formGroup]="$model.Entity.NameLower$Form">

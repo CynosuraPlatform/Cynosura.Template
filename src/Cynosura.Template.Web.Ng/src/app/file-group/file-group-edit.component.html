@@ -1,5 +1,7 @@
 ﻿<ng-container *transloco="let t">
-  <h1 mat-dialog-title>{{ t('File Group') }} <app-file-group-show [value]="fileGroup"></app-file-group-show></h1>
+  <h1 mat-dialog-title>
+    {{ t('File Group') }} <app-file-group-show [value]="fileGroup"></app-file-group-show>
+  </h1>
   <mat-dialog-content *ngIf="fileGroup" class="mat-dialog-content-edit">
 
     <form [formGroup]="fileGroupForm">
