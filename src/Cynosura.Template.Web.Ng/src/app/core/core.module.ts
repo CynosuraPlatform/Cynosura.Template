@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { OwlDateTimeModule, OwlMomentDateTimeModule, OWL_DATE_TIME_FORMATS } from '@danielmoncada/angular-datetime-picker';
 import { MaterialModule } from '../material.module';
 
 import { ErrorInterceptor } from './error.interceptor';
@@ -34,6 +34,16 @@ import { AppErrorHandler } from './app-error.handler';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NoticeHelper } from './notice.helper';
 
+export const MY_MOMENT_FORMATS = {
+  parseInput: 'L LT',
+  fullPickerInput: 'L LT',
+  datePickerInput: 'L',
+  timePickerInput: 'LT',
+  monthYearLabel: 'MMM YYYY',
+  dateA11yLabel: 'LL',
+  monthYearA11yLabel: 'MMMM YYYY',
+};
+
 @NgModule({
   declarations: [
     EnumKeysPipe,
@@ -58,12 +68,12 @@ import { NoticeHelper } from './notice.helper';
     FormsModule,
     ReactiveFormsModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule,
+    OwlMomentDateTimeModule,
     MaterialModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
-    // {provide: OWL_DATE_TIME_LOCALE, useValue: "ru"},
+    { provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS },
     StoreService,
     LoadingService,
     ModalHelper,
