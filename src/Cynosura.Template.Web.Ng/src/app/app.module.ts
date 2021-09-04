@@ -33,6 +33,16 @@ import { TranslocoRootModule } from './transloco-root.module';
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthorizeGuard] },
 // ADD ROUTES HERE
       {
+        path: 'worker-run',
+        canActivate: [AuthorizeGuard],
+        loadChildren: () => import('./worker-run/worker-run-routed.module').then(m => m.WorkerRunRoutedModule)
+      },
+      {
+        path: 'worker-info',
+        canActivate: [AuthorizeGuard],
+        loadChildren: () => import('./worker-info/worker-info-routed.module').then(m => m.WorkerInfoRoutedModule)
+      },
+      {
         path: 'file',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./file/file-routed.module').then(m => m.FileRoutedModule)

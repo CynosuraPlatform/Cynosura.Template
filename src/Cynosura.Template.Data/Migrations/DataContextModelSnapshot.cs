@@ -271,6 +271,95 @@ namespace Cynosura.Template.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Cynosura.Template.Core.Entities.WorkerInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ClassName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModificationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreationUserId");
+
+                    b.HasIndex("ModificationUserId");
+
+                    b.ToTable("WorkerInfos");
+                });
+
+            modelBuilder.Entity("Cynosura.Template.Core.Entities.WorkerRun", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Data")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModificationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Result")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResultData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StartDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkerInfoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreationUserId");
+
+                    b.HasIndex("ModificationUserId");
+
+                    b.HasIndex("WorkerInfoId");
+
+                    b.ToTable("WorkerRuns");
+                });
+
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
                 {
                     b.Property<string>("UserCode")
@@ -523,6 +612,44 @@ namespace Cynosura.Template.Data.Migrations
                     b.Navigation("CreationUser");
 
                     b.Navigation("ModificationUser");
+                });
+
+            modelBuilder.Entity("Cynosura.Template.Core.Entities.WorkerInfo", b =>
+                {
+                    b.HasOne("Cynosura.Template.Core.Entities.User", "CreationUser")
+                        .WithMany()
+                        .HasForeignKey("CreationUserId");
+
+                    b.HasOne("Cynosura.Template.Core.Entities.User", "ModificationUser")
+                        .WithMany()
+                        .HasForeignKey("ModificationUserId");
+
+                    b.Navigation("CreationUser");
+
+                    b.Navigation("ModificationUser");
+                });
+
+            modelBuilder.Entity("Cynosura.Template.Core.Entities.WorkerRun", b =>
+                {
+                    b.HasOne("Cynosura.Template.Core.Entities.User", "CreationUser")
+                        .WithMany()
+                        .HasForeignKey("CreationUserId");
+
+                    b.HasOne("Cynosura.Template.Core.Entities.User", "ModificationUser")
+                        .WithMany()
+                        .HasForeignKey("ModificationUserId");
+
+                    b.HasOne("Cynosura.Template.Core.Entities.WorkerInfo", "WorkerInfo")
+                        .WithMany()
+                        .HasForeignKey("WorkerInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreationUser");
+
+                    b.Navigation("ModificationUser");
+
+                    b.Navigation("WorkerInfo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
