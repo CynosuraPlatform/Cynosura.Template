@@ -6,6 +6,7 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Quartz;
 using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Security;
 using Cynosura.Template.Infrastructure.Messaging;
@@ -19,8 +20,12 @@ namespace Cynosura.Template.Worker
         public static IServiceCollection AddWorker(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserInfoProvider, UserInfoProvider>();
-            services.AddSingleton<IHostedService, MainWorker>();
-            services.AddTransient<CoreLogProvider>();
+            services.AddQuartz(q =>
+            {
+                q.UseMicrosoftDependencyInjectionScopedJobFactory();
+            });
+            services.AddQuartzHostedService(
+                q => q.WaitForJobsToComplete = true);
             var assemblies = CoreHelper.GetPlatformAndAppAssemblies();
             services.AddSingleton<IMapper>(sp => new MapperConfiguration(cfg => { cfg.AddMaps(assemblies); }).CreateMapper());
             services.AddFromConfiguration(configuration, assemblies);
