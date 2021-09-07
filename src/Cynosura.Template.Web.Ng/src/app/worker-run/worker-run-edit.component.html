@@ -12,7 +12,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>{{ t('Data') }}</mat-label>
-        <app-text-edit formControlName="data" name="data" [placeholder]="t('Data')"></app-text-edit>
+        <app-text-edit formControlName="data" name="data" [placeholder]="t('Data')" [multiline]="true"></app-text-edit>
         <mat-error>{{ error?.modelState?.data | modelError }}</mat-error>
       </mat-form-field>
     </form>
