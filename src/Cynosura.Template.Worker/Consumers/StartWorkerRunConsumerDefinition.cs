@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MassTransit.Definition;
 using Cynosura.Template.Core.Messaging.WorkerRuns;
 
-namespace Cynosura.Template.Worker.Consumer
+namespace Cynosura.Template.Worker.Consumers
 {
     public class StartWorkerRunConsumerDefinition : ConsumerDefinition<StartWorkerRunConsumer>
     {

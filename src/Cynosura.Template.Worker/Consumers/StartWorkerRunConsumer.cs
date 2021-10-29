@@ -7,7 +7,7 @@ using Cynosura.Template.Core.Messaging.WorkerRuns;
 using MassTransit;
 using MediatR;
 
-namespace Cynosura.Template.Worker.Consumer
+namespace Cynosura.Template.Worker.Consumers
 {
     public class StartWorkerRunConsumer : IConsumer<StartWorkerRun>
     {
