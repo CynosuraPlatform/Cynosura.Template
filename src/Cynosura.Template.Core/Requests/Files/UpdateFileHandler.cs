@@ -55,7 +55,7 @@ namespace Cynosura.Template.Core.Requests.Files
             {
                 var oldUrl = file.Url;
                 var filename = Guid.NewGuid() + Path.GetExtension(request.Name);
-                var filePath = $"{file.Group.Location}/{DateTime.Today:yyyy/MM}/{filename}";
+                var filePath = $"{file.Group.Location}/{DateTime.Today:yyyy'/'MM}/{filename}";
                 file.Url = await _fileStorage.SaveFileAsync(filePath, request.Content, request.ContentType);
                 await _fileStorage.DeleteFileAsync(oldUrl);
             }
