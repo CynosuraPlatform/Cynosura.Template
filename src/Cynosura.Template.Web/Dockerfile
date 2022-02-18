@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 
 COPY *.sln .
@@ -16,7 +16,7 @@ COPY Cynosura.Template.Web/. ./Cynosura.Template.Web/
 
 RUN dotnet publish Cynosura.Template.Web/Cynosura.Template.Web.csproj -c Release -o ./out
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 

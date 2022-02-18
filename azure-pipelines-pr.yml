@@ -1,0 +1,39 @@
+trigger: none
+
+pr: 
+- master
+- development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    workingDirectory: 'src'
+
+- task: Npm@1
+  displayName: npm ci
+  inputs:
+    command: 'ci'
+    workingDir: 'src/Cynosura.Template.Web.Ng'
+
+- task: Npm@1
+  displayName: npm run lint
+  inputs:
+    command: 'custom'
+    workingDir: 'src/Cynosura.Template.Web.Ng'
+    customCommand: 'run lint'
+
+- task: Npm@1
+  displayName: npm run build
+  inputs:    
+    command: 'custom'
+    workingDir: 'src/Cynosura.Template.Web.Ng'
+    customCommand: 'run build -- --prod'
