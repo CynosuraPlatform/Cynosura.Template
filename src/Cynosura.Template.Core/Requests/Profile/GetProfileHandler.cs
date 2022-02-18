@@ -13,7 +13,7 @@ using Cynosura.Template.Core.Security;
 
 namespace Cynosura.Template.Core.Requests.Profile
 {
-    public class GetProfileHandler : IRequestHandler<GetProfile, ProfileModel>
+    public class GetProfileHandler : IRequestHandler<GetProfile, ProfileModel?>
     {
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
@@ -28,10 +28,14 @@ namespace Cynosura.Template.Core.Requests.Profile
             _userInfoProvider = userInfoProvider;
         }
 
-        public async Task<ProfileModel> Handle(GetProfile request, CancellationToken cancellationToken)
+        public async Task<ProfileModel?> Handle(GetProfile request, CancellationToken cancellationToken)
         {
             var userInfo = await _userInfoProvider.GetUserInfoAsync();
             var user = await _userManager.Users.FirstOrDefaultAsync(e => e.Id == userInfo.UserId, cancellationToken);
+            if (user == null)
+            {
+                return null;
+            }
             var model = _mapper.Map<User, ProfileModel>(user);
 
             return model;

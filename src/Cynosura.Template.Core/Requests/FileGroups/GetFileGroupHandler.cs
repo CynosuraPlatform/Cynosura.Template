@@ -10,7 +10,7 @@ using Cynosura.Template.Core.Requests.FileGroups.Models;
 
 namespace Cynosura.Template.Core.Requests.FileGroups
 {
-    public class GetFileGroupHandler : IRequestHandler<GetFileGroup, FileGroupModel>
+    public class GetFileGroupHandler : IRequestHandler<GetFileGroup, FileGroupModel?>
     {
         private readonly IEntityRepository<FileGroup> _fileGroupRepository;
         private readonly IMapper _mapper;
@@ -22,7 +22,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups
             _mapper = mapper;
         }
 
-        public async Task<FileGroupModel> Handle(GetFileGroup request, CancellationToken cancellationToken)
+        public async Task<FileGroupModel?> Handle(GetFileGroup request, CancellationToken cancellationToken)
         {
             var query = _fileGroupRepository.GetEntities();
             if (request.Id != null)
@@ -30,6 +30,10 @@ namespace Cynosura.Template.Core.Requests.FileGroups
             else
                 query = query.Where(e => e.Name == request.Name);
             var fileGroup = await query.FirstOrDefaultAsync();
+            if (fileGroup == null)
+            {
+                return null;
+            }
             return _mapper.Map<FileGroup, FileGroupModel>(fileGroup);
         }
 

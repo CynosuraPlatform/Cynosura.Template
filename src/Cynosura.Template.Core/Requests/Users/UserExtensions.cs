@@ -8,7 +8,7 @@ namespace Cynosura.Template.Core.Requests.Users
 {
     public static class UserExtensions
     {
-        public static IOrderedQueryable<User> OrderBy(this IQueryable<User> queryable, string propertyName, OrderDirection? direction)
+        public static IOrderedQueryable<User> OrderBy(this IQueryable<User> queryable, string? propertyName, OrderDirection? direction)
         {
             switch (propertyName)
             {                
@@ -36,7 +36,7 @@ namespace Cynosura.Template.Core.Requests.Users
             }
         }
 
-        public static IQueryable<User> Filter(this IQueryable<User> queryable, UserFilter filter)
+        public static IQueryable<User> Filter(this IQueryable<User> queryable, UserFilter? filter)
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {

@@ -29,7 +29,7 @@ namespace Cynosura.Template.Core.Requests.Users
             var result = await _userManager.CreateAsync(user, request.Password);
             result.CheckIfSucceeded();
 
-            if (request.RoleIds.Any())
+            if (request.RoleIds != null)
             {
                 foreach (var roleId in request.RoleIds)
                 {

@@ -9,8 +9,8 @@ namespace Cynosura.Template.Core.Requests.Profile
 {
     public class UpdateProfile : IRequest
     {
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Cynosura.Template.Core.Requests.Users
     {
         public int Id { get; set; }
 
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         public bool EmailConfirmed { get; set; }
 
@@ -18,7 +18,7 @@ namespace Cynosura.Template.Core.Requests.Users
 
         public string? ConfirmPassword { get; set; }
 
-        public List<int> RoleIds { get; set; }
+        public List<int>? RoleIds { get; set; }
 
         public string? FirstName { get; set; }
 
