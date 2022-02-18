@@ -66,7 +66,7 @@ namespace Cynosura.Template.Core.Requests.Files
             }
             _fileRepository.Add(file);
             await _unitOfWork.CommitAsync();
-            return new CreatedEntity<int>() { Id = file.Id };
+            return new CreatedEntity<int>(file.Id);
         }
     }
 }

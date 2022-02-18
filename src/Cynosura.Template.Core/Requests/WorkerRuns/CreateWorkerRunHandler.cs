@@ -36,7 +36,7 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns
             _workerRunRepository.Add(workerRun);
             await _unitOfWork.CommitAsync();
             await _messagingService.SendAsync(StartWorkerRun.QueueName, new StartWorkerRun(workerRun.Id));
-            return new CreatedEntity<int>() { Id = workerRun.Id };
+            return new CreatedEntity<int>(workerRun.Id);
         }
 
     }

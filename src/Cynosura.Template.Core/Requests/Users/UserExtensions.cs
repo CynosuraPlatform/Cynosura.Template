@@ -40,7 +40,7 @@ namespace Cynosura.Template.Core.Requests.Users
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.UserName.Contains(filter.Text) || e.Email.Contains(filter.Text) || e.FirstName.Contains(filter.Text) || e.LastName.Contains(filter.Text));
+                queryable = queryable.Where(e => e.UserName.Contains(filter.Text) || e.Email.Contains(filter.Text) || e.FirstName!.Contains(filter.Text) || e.LastName!.Contains(filter.Text));
             }
             if (!string.IsNullOrEmpty(filter?.UserName))
             {
@@ -52,11 +52,11 @@ namespace Cynosura.Template.Core.Requests.Users
             }
             if (!string.IsNullOrEmpty(filter?.FirstName))
             {
-                queryable = queryable.Where(e => e.FirstName.Contains(filter.FirstName));
+                queryable = queryable.Where(e => e.FirstName!.Contains(filter.FirstName));
             }
             if (!string.IsNullOrEmpty(filter?.LastName))
             {
-                queryable = queryable.Where(e => e.LastName.Contains(filter.LastName));
+                queryable = queryable.Where(e => e.LastName!.Contains(filter.LastName));
             }
             return queryable;
         }

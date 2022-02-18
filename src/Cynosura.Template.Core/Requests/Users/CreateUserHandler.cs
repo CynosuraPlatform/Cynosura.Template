@@ -38,7 +38,7 @@ namespace Cynosura.Template.Core.Requests.Users
                     result.CheckIfSucceeded();
                 }
             }
-            return new CreatedEntity<int>() { Id = user.Id };
+            return new CreatedEntity<int>(user.Id);
         }
 
     }

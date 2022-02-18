@@ -8,6 +8,12 @@ namespace Cynosura.Template.Core.Entities
 {
     public class WorkerInfo : BaseEntity
     {
+        public WorkerInfo(string name, string className)
+        {
+            Name = name;
+            ClassName = className;
+        }
+
         [Required()]
         [StringLength(200)]
         public string Name { get; set; }

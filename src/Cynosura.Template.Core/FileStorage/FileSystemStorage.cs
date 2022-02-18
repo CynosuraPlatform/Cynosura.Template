@@ -118,7 +118,7 @@ namespace Cynosura.Template.Core.FileStorage
         {
             var absoluteFilePath = Path.Combine(_settings.Path, filePath);
             ValidatePath(absoluteFilePath);
-            var directory = Path.GetDirectoryName(absoluteFilePath);
+            var directory = Path.GetDirectoryName(absoluteFilePath)!;
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
