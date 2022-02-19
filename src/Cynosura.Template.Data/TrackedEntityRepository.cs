@@ -42,7 +42,7 @@ namespace Cynosura.Template.Data
             {
                 Context.Database.ExecuteSqlRaw("insert into [EntityChanges] ([EntityName], [EntityId], [Action], [From], [To], [CreationDate], [CreationUserId]) " +
                     "values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
-                    entityType.Name, entity.Id, action, from, to, DateTime.UtcNow, UserId);
+                    entityType.Name, entity.Id, action, from, to, DateTime.UtcNow, UserId!);
             }
             else
             {
