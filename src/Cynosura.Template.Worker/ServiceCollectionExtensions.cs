@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
+using Cynosura.Messaging;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,8 @@ using Cynosura.Template.Core.Infrastructure;
 using Cynosura.Template.Core.Security;
 using Cynosura.Template.Infrastructure.Messaging;
 using Cynosura.Template.Worker.Infrastructure;
-using Cynosura.Messaging;
+using Cynosura.Template.Worker.Jobs;
+using Cynosura.Template.Worker.WorkerInfos;
 
 namespace Cynosura.Template.Worker
 {
@@ -23,6 +25,8 @@ namespace Cynosura.Template.Worker
             services.AddQuartz(q =>
             {
                 q.UseMicrosoftDependencyInjectionJobFactory();
+
+                q.AddJob<RunWorkerInfoJob>(new JobKey(RunWorkerInfoJob.JobKey), o => o.StoreDurably());
             });
             services.AddQuartzHostedService(
                 q => q.WaitForJobsToComplete = true);
@@ -39,6 +43,9 @@ namespace Cynosura.Template.Worker
                 x.AddConsumers(assemblies);
             });
             services.AddTransient<IHostedService, MessagingWorker>();
+            services.AddTransient<WorkerInfoSheduler>();
+            services.AddTransient<IHostedService, WorkerInfoShedulerService>();
+            services.AddTransient<StartWorkerRunJob>();
             return services;
         }
     }

@@ -134,12 +134,13 @@ namespace Cynosura.Template.Web
             }
 
             var supportedCultures = new[]
-            {
+           {
+                new CultureInfo("en-US"),
                 new CultureInfo("ru-RU")
             };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("ru-RU"),
+                DefaultRequestCulture = new RequestCulture("en-US"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });

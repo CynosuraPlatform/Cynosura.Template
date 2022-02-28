@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Cynosura.Template.Core.FileStorage;
 using Cynosura.Template.Core.Infrastructure;
+using Cynosura.Template.Core.Messaging.WorkerRuns;
+using Cynosura.Template.Core.Workers;
 
 namespace Cynosura.Template.Core
 {
@@ -26,6 +28,8 @@ namespace Cynosura.Template.Core
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddAllValidators();
             services.Configure<FileSystemStorageSettings>(configuration.GetSection("FileSystemStorage"));
+            services.AddTransient<IWorkerRunner, WorkerRunner>();
+            services.AddTransient<TestWorker>();
             return services; 
         }
 

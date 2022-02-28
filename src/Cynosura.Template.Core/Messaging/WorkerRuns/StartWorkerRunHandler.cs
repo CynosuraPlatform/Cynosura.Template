@@ -41,6 +41,12 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
                 .FirstOrDefaultAsync();
             if (workerRun != null)
             {
+                if (workerRun.Status != Enums.WorkerRunStatus.New)
+                {
+                    _logger.LogError($"Can't start WorkerRun {request.WorkerRunId} (status is {workerRun.Status})");
+                    return Unit.Value;
+                }
+
                 await SetWorkerRunStartAsync(workerRun.Id);
 
                 var assemblies = CoreHelper.GetPlatformAndAppAssemblies();

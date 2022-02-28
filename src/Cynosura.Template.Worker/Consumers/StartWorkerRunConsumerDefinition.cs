@@ -13,7 +13,6 @@ namespace Cynosura.Template.Worker.Consumers
         public StartWorkerRunConsumerDefinition()
         {
             EndpointName = StartWorkerRun.QueueName;
-            ConcurrentMessageLimit = 1;
         }
     }
 }

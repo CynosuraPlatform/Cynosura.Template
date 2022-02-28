@@ -5,8 +5,10 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Cynosura.Core.Data;
+using Cynosura.Core.Messaging;
 using Cynosura.Core.Services;
 using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Messaging.WorkerInfos;
 
 namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
 {
@@ -14,14 +16,17 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
     {
         private readonly IEntityRepository<WorkerScheduleTask> _workerScheduleTaskRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMessagingService _messagingService;
         private readonly IStringLocalizer<SharedResource> _localizer;
 
         public DeleteWorkerScheduleTaskHandler(IEntityRepository<WorkerScheduleTask> workerScheduleTaskRepository,
             IUnitOfWork unitOfWork,
+            IMessagingService messagingService,
             IStringLocalizer<SharedResource> localizer)
         {
             _workerScheduleTaskRepository = workerScheduleTaskRepository;
             _unitOfWork = unitOfWork;
+            _messagingService = messagingService;
             _localizer = localizer;
         }
 
@@ -36,6 +41,10 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
             }
             _workerScheduleTaskRepository.Delete(workerScheduleTask);
             await _unitOfWork.CommitAsync();
+            await _messagingService.SendAsync(ScheduleWorkerInfo.QueueName, new ScheduleWorkerInfo
+            {
+                Id = workerScheduleTask.WorkerInfoId
+            });
             return Unit.Value;
         }
 
