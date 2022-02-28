@@ -30,7 +30,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups
             var fileGroup = _mapper.Map<CreateFileGroup, FileGroup>(request);
             _fileGroupRepository.Add(fileGroup);
             await _unitOfWork.CommitAsync();
-            return new CreatedEntity<int>() { Id = fileGroup.Id };
+            return new CreatedEntity<int>(fileGroup.Id);
         }
 
     }

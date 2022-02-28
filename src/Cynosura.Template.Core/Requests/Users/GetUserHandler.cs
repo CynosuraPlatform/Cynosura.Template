@@ -9,7 +9,7 @@ using Cynosura.Template.Core.Requests.Users.Models;
 
 namespace Cynosura.Template.Core.Requests.Users
 {
-    public class GetUserHandler : IRequestHandler<GetUser, UserModel>
+    public class GetUserHandler : IRequestHandler<GetUser, UserModel?>
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
@@ -22,9 +22,13 @@ namespace Cynosura.Template.Core.Requests.Users
             _mapper = mapper;
         }
 
-        public async Task<UserModel> Handle(GetUser request, CancellationToken cancellationToken)
+        public async Task<UserModel?> Handle(GetUser request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null)
+            {
+                return null;
+            }
             var model = _mapper.Map<User, UserModel>(user);
             var userRoleNames = await _userManager.GetRolesAsync(user);
 

@@ -9,8 +9,8 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos
 {
     public class CreateWorkerInfo : IRequest<CreatedEntity<int>>
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string ClassName { get; set; }
+        public string? ClassName { get; set; }
     }
 }

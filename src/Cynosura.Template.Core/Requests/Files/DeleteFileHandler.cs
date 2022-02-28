@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -41,6 +42,10 @@ namespace Cynosura.Template.Core.Requests.Files
             }
             if (file.Group.Type == Enums.FileGroupType.Storage)
             {
+                if (file.Url == null)
+                {
+                    throw new Exception($"File {file.Id} Url is empty");
+                }
                 await _fileStorage.DeleteFileAsync(file.Url);
             }
             _fileRepository.Delete(file);

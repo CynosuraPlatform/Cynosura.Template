@@ -6,6 +6,12 @@ namespace Cynosura.Template.Core.Requests.Users.Models
 {
     public class UserModel
     {
+        public UserModel(string userName, string email)
+        {
+            UserName = userName;
+            Email = email;
+        }
+
         public int Id { get; set; }
 
         [DisplayName("Creation Date")]
@@ -26,9 +32,9 @@ namespace Cynosura.Template.Core.Requests.Users.Models
         public IList<int> RoleIds { get; } = new List<int>();
 
         [DisplayName("First Name")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [DisplayName("Last Name")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
     }
 }

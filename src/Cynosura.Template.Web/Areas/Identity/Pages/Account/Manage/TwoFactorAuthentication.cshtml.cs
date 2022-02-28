@@ -38,7 +38,7 @@ namespace Cynosura.Template.Web.Areas.Identity.Pages.Account.Manage
         public bool IsMachineRemembered { get; set; }
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string? StatusMessage { get; set; }
 
         public async Task<IActionResult> OnGet()
         {

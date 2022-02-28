@@ -10,7 +10,7 @@ using Cynosura.Template.Core.Requests.Files.Models;
 
 namespace Cynosura.Template.Core.Requests.Files
 {
-    public class GetFileHandler : IRequestHandler<GetFile, FileModel>
+    public class GetFileHandler : IRequestHandler<GetFile, FileModel?>
     {
         private readonly IEntityRepository<File> _fileRepository;
         private readonly IMapper _mapper;
@@ -22,12 +22,16 @@ namespace Cynosura.Template.Core.Requests.Files
             _mapper = mapper;
         }
 
-        public async Task<FileModel> Handle(GetFile request, CancellationToken cancellationToken)
+        public async Task<FileModel?> Handle(GetFile request, CancellationToken cancellationToken)
         {
             var file = await _fileRepository.GetEntities()
                 .Include(e => e.Group)
                 .Where(e => e.Id == request.Id)
                 .FirstOrDefaultAsync();
+            if (file == null)
+            {
+                return null;
+            }
             return _mapper.Map<File, FileModel>(file);
         }
 
