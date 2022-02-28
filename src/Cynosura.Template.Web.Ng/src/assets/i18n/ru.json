@@ -73,5 +73,14 @@
     "End Date": "Дата окончания",
     "Data": "Данные",
     "Result": "Результат",
-    "Result Data": "Данные результата"
+    "Result Data": "Данные результата",
+    "Worker Schedule Tasks": "Расписания процесса",
+    "Worker Schedule Task": "Расписание процесса",
+    "Seconds": "Секунды",
+    "Minutes": "Минуты",
+    "Hours": "Часы",
+    "Day of Month": "День месяца",
+    "Month": "Месяц",
+    "Day of Week": "День недели",
+    "Year": "Год"
 }

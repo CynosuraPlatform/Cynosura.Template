@@ -21,6 +21,8 @@ namespace Cynosura.Template.Core.Entities
         [Required()]
         [StringLength(200)]
         public string ClassName { get; set; }
-        
+
+        public IList<WorkerScheduleTask> ScheduleTasks { get; set; } = null!;
+
     }
 }
