@@ -29,7 +29,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups
         {
             var fileGroup = _mapper.Map<CreateFileGroup, FileGroup>(request);
             _fileGroupRepository.Add(fileGroup);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             return new CreatedEntity<int>(fileGroup.Id);
         }
 

@@ -29,7 +29,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups
                 query = query.Where(e => e.Id == request.Id);
             else
                 query = query.Where(e => e.Name == request.Name);
-            var fileGroup = await query.FirstOrDefaultAsync();
+            var fileGroup = await query.FirstOrDefaultAsync(cancellationToken);
             if (fileGroup == null)
             {
                 return null;

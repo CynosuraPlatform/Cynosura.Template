@@ -30,7 +30,7 @@ namespace Cynosura.Template.Core.Requests.Files
             var file = await _fileRepository.GetEntities()
                 .Include(e => e.Group)
                 .Where(e => e.Id == request.Id)
-                .FirstAsync();
+                .FirstAsync(cancellationToken);
             byte[] content;
             if (file.Group.Type == Enums.FileGroupType.Database)
             {

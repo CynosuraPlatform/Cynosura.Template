@@ -43,7 +43,7 @@ namespace Cynosura.Template.Core.Requests.Files
         {
             var fileGroup = await _fileGroupRepository.GetEntities()
                 .Where(e => e.Id == request.GroupId)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (fileGroup == null)
             {
                 throw new ServiceException(_localizer["{0} {1} not found", _localizer["File Group"], request.GroupId!]);
@@ -65,7 +65,7 @@ namespace Cynosura.Template.Core.Requests.Files
                 throw new NotSupportedException($"Group type {fileGroup.Type} not supported");
             }
             _fileRepository.Add(file);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             return new CreatedEntity<int>(file.Id);
         }
     }

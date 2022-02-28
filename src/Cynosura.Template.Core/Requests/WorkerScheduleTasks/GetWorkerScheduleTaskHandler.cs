@@ -27,7 +27,7 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
             var workerScheduleTask = await _workerScheduleTaskRepository.GetEntities()
                 .Include(e => e.WorkerInfo)
                 .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (workerScheduleTask == null)
             {
                 return null;

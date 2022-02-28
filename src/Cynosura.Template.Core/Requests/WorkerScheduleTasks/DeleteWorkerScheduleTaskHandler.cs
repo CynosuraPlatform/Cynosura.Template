@@ -34,13 +34,13 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
         {
             var workerScheduleTask = await _workerScheduleTaskRepository.GetEntities()
                 .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (workerScheduleTask == null)
             {
                 throw new ServiceException(_localizer["{0} {1} not found", _localizer["Worker Schedule Task"], request.Id]);
             }
             _workerScheduleTaskRepository.Delete(workerScheduleTask);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             await _messagingService.SendAsync(ScheduleWorkerInfo.QueueName, new ScheduleWorkerInfo
             {
                 Id = workerScheduleTask.WorkerInfoId

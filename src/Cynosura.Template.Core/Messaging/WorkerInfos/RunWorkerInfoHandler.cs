@@ -36,7 +36,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerInfos
                 Data = request.Data != null ? JsonSerializer.Serialize(request.Data) : null,
             };
             _workerRunRepository.Add(workerRun);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             await _messagingService.SendAsync(StartWorkerRun.QueueName, new StartWorkerRun(workerRun.Id));
             return Unit.Value;
         }

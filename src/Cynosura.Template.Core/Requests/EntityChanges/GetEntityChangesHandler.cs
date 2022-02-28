@@ -36,7 +36,7 @@ namespace Cynosura.Template.Core.Requests.EntityChanges
                 query = query.Where(e => e.EntityId == request.EntityId);
             }
             query = query.OrderByDescending(e => e.CreationDate);
-            var entityChanges = await query.ToPagedListAsync(request.PageIndex, request.PageSize);
+            var entityChanges = await query.ToPagedListAsync(request.PageIndex, request.PageSize, cancellationToken);
             var entityChangeModels = entityChanges.Map<EntityChange, EntityChangeModel>(_mapper);
             var diffHelper = new EntityChangeHelper(request.EntityName!, _mapper);
             foreach (var entityChangeModel in entityChangeModels.PageItems)

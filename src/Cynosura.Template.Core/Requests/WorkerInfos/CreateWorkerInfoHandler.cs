@@ -29,7 +29,7 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos
         {
             var workerInfo = _mapper.Map<CreateWorkerInfo, WorkerInfo>(request);
             _workerInfoRepository.Add(workerInfo);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             return new CreatedEntity<int>(workerInfo.Id);
         }
 

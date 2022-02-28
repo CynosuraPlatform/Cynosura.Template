@@ -27,7 +27,7 @@ namespace Cynosura.Template.Core.Requests.Files
             var file = await _fileRepository.GetEntities()
                 .Include(e => e.Group)
                 .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (file == null)
             {
                 return null;

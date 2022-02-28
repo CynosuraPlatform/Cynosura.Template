@@ -27,7 +27,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
         {
             var $model.Entity.NameLower$ = await _$model.Entity.NameLower$Repository.GetEntities()$model.Entity.EntityFields:include(); separator=""$
                 .Where(e => e.$model.Entity.IdField.Name$ == request.$model.Entity.IdField.Name$)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if ($model.Entity.NameLower$ == null)
             {
                 return null;

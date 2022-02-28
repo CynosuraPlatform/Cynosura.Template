@@ -30,7 +30,7 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$
         {
             var $model.Entity.NameLower$ = _mapper.Map<Create$model.Entity.Name$, $model.Entity.Name$>(request);
             _$model.Entity.NameLower$Repository.Add($model.Entity.NameLower$);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             return new CreatedEntity<$model.Entity.IdField.TypeName$>($model.Entity.NameLower$.$model.Entity.IdField.Name$);
         }
 

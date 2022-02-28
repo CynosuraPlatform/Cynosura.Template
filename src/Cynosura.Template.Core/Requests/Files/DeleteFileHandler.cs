@@ -35,7 +35,7 @@ namespace Cynosura.Template.Core.Requests.Files
             var file = await _fileRepository.GetEntities()
                 .Include(e => e.Group)
                 .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (file == null)
             {
                 throw new ServiceException(_localizer["{0} {1} not found", _localizer["File"], request.Id]);
@@ -49,7 +49,7 @@ namespace Cynosura.Template.Core.Requests.Files
                 await _fileStorage.DeleteFileAsync(file.Url);
             }
             _fileRepository.Delete(file);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             return Unit.Value;
         }
 

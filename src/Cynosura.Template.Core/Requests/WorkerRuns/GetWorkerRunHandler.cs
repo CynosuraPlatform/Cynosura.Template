@@ -27,7 +27,7 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns
             var workerRun = await _workerRunRepository.GetEntities()
                 .Include(e => e.WorkerInfo)
                 .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (workerRun == null)
             {
                 return null;

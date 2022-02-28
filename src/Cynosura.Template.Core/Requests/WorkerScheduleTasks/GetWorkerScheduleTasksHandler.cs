@@ -29,7 +29,7 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
                 .Include(e => e.WorkerInfo);            
             query = query.Filter(request.Filter);
             query = query.OrderBy(request.OrderBy, request.OrderDirection);
-            var workerScheduleTasks = await query.ToPagedListAsync(request.PageIndex, request.PageSize);
+            var workerScheduleTasks = await query.ToPagedListAsync(request.PageIndex, request.PageSize, cancellationToken);
             return workerScheduleTasks.Map<WorkerScheduleTask, WorkerScheduleTaskModel>(_mapper);
         }
 

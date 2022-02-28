@@ -26,7 +26,7 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos
         {
             var workerInfo = await _workerInfoRepository.GetEntities()
                 .Where(e => e.Id == request.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (workerInfo == null)
             {
                 return null;

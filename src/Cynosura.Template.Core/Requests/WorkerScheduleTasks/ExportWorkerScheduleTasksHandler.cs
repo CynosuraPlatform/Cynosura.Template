@@ -35,7 +35,7 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
                 .Include(e => e.WorkerInfo);            
             query = query.Filter(request.Filter);
             query = query.OrderBy(request.OrderBy, request.OrderDirection);
-            var workerScheduleTasks = await query.ToListAsync();
+            var workerScheduleTasks = await query.ToListAsync(cancellationToken);
             var models = _mapper.Map<List<WorkerScheduleTask>, List<WorkerScheduleTaskModel>>(workerScheduleTasks);
             return await _excelFormatter.GetExcelFileAsync(models, "WorkerScheduleTasks");
         }

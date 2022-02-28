@@ -38,7 +38,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
             var workerRun = await _workerRunRepository.GetEntities()
                 .Include(e => e.WorkerInfo)
                 .Where(e => e.Id == request.WorkerRunId)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
             if (workerRun != null)
             {
                 if (workerRun.Status != Enums.WorkerRunStatus.New)

@@ -34,7 +34,7 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
         {
             var workerScheduleTask = _mapper.Map<CreateWorkerScheduleTask, WorkerScheduleTask>(request);
             _workerScheduleTaskRepository.Add(workerScheduleTask);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync(cancellationToken);
             await _messagingService.SendAsync(ScheduleWorkerInfo.QueueName, new ScheduleWorkerInfo
             {
                 Id = workerScheduleTask.WorkerInfoId
