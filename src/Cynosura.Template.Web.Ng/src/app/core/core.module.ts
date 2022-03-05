@@ -33,6 +33,8 @@ import { ModalHelper } from './modal.helper';
 import { AppErrorHandler } from './app-error.handler';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NoticeHelper } from './notice.helper';
+import { SortActivePipe } from './pipes/sortActive.pipe';
+import { SortDirectionPipe } from './pipes/sortDirection.pipe';
 
 export const MY_MOMENT_FORMATS = {
   parseInput: 'L LT',
@@ -48,6 +50,8 @@ export const MY_MOMENT_FORMATS = {
   declarations: [
     EnumKeysPipe,
     ModelErrorPipe,
+    SortActivePipe,
+    SortDirectionPipe,
     ClickOutsideDirective,
     ModalComponent,
     TextEditComponent,
@@ -99,6 +103,8 @@ export const MY_MOMENT_FORMATS = {
     MaterialModule,
     EnumKeysPipe,
     ModelErrorPipe,
+    SortActivePipe,
+    SortDirectionPipe,
     ClickOutsideDirective,
     TextEditComponent,
     TextViewComponent,
