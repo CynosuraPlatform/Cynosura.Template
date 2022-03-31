@@ -70,7 +70,7 @@ $field:({filterBy$field.Template$})()$
 >>
 
 filterByType(field) ::= <<
-$field:({filterBy$field.TypeTemplate})()$
+$field:({filterBy$field.TypeTemplate$})()$
 >>
 
 filterByEntity(field) ::= <<
