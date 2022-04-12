@@ -68,6 +68,7 @@ export class UserListComponent implements OnInit {
   onReset() {
     this.state.pageIndex = 0;
     this.state.filter.text = null;
+    this.state.filter.roleId = null;
     this.getUsers();
   }
 

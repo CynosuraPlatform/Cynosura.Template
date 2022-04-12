@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Cynosura.Template.Core.Requests.Roles.Models;
 
 namespace Cynosura.Template.Core.Requests.Users.Models
 {
@@ -29,7 +30,9 @@ namespace Cynosura.Template.Core.Requests.Users.Models
         [DisplayName("Email Confirmed")]
         public bool EmailConfirmed { get; set; }
 
-        public IList<int> RoleIds { get; } = new List<int>();
+        public IList<int> RoleIds { get; set; } = null!;
+
+        public IList<RoleShortModel> Roles { get; set; } = null!;
 
         [DisplayName("First Name")]
         public string? FirstName { get; set; }

@@ -23,6 +23,8 @@ namespace Cynosura.Template.Core.Entities
         [Required()]
         [StringLength(100)]
         public string DisplayName { get; set; }
-        
+
+        public ICollection<User> Users { get; set; } = null!;
+
     }
 }
