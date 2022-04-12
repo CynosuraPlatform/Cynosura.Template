@@ -67,6 +67,7 @@ export class WorkerRunListComponent implements OnInit {
   onReset() {
     this.state.pageIndex = 0;
     this.state.filter.text = null;
+    this.state.filter.workerInfoId = null;
     this.getWorkerRuns();
   }
 
