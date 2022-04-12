@@ -10,7 +10,7 @@ import { ErrorInterceptor } from './error.interceptor';
 import { LoadingInterceptor } from './loading.interceptor';
 
 import { EnumKeysPipe } from './pipes/enumkeys.pipe';
-import { ModelErrorPipe } from './pipes/modelError.pipe';
+import { ModelErrorPipe } from './pipes/model-error.pipe';
 
 import { TextEditComponent } from './controls/text.edit.component';
 import { TextViewComponent } from './controls/text.view.component';
@@ -33,8 +33,8 @@ import { ModalHelper } from './modal.helper';
 import { AppErrorHandler } from './app-error.handler';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NoticeHelper } from './notice.helper';
-import { SortActivePipe } from './pipes/sortActive.pipe';
-import { SortDirectionPipe } from './pipes/sortDirection.pipe';
+import { SortActivePipe } from './pipes/sort-active.pipe';
+import { SortDirectionPipe } from './pipes/sort-direction.pipe';
 
 export const MY_MOMENT_FORMATS = {
   parseInput: 'L LT',
