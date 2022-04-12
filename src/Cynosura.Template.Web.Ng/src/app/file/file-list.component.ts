@@ -67,6 +67,7 @@ export class FileListComponent implements OnInit {
   onReset() {
     this.state.pageIndex = 0;
     this.state.filter.text = null;
+    this.state.filter.groupId = null;
     this.getFiles();
   }
 
