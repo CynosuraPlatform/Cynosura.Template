@@ -42,9 +42,8 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    command: 'pack'
-    packagesToPack: 'template/template.nuspec'
-    versioningScheme: 'off'
+    command: 'custom'
+    arguments: 'pack template/template.nuspec -OutputDirectory $(Build.ArtifactStagingDirectory) -NoDefaultExcludes'
 
 - task: NuGetCommand@2
   displayName: nuget push
