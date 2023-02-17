@@ -30,49 +30,49 @@ import { TranslocoRootModule } from './transloco-root.module';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthorizeGuard] },
-// ADD ROUTES HERE
-      {
+    { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthorizeGuard] },
+    // ADD ROUTES HERE
+    {
         path: 'worker-schedule-task',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./worker-schedule-task/worker-schedule-task-routed.module').then(m => m.WorkerScheduleTaskRoutedModule)
-      },
-      {
+    },
+    {
         path: 'worker-run',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./worker-run/worker-run-routed.module').then(m => m.WorkerRunRoutedModule)
-      },
-      {
+    },
+    {
         path: 'worker-info',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./worker-info/worker-info-routed.module').then(m => m.WorkerInfoRoutedModule)
-      },
-      {
+    },
+    {
         path: 'file',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./file/file-routed.module').then(m => m.FileRoutedModule)
-      },
-      {
+    },
+    {
         path: 'file-group',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./file-group/file-group-routed.module').then(m => m.FileGroupRoutedModule)
-      },
-      {
+    },
+    {
         path: 'profile',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
-      },
-      {
+    },
+    {
         path: 'role',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./role/role-routed.module').then(m => m.RoleRoutedModule)
-      },
-      {
+    },
+    {
         path: 'user',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./user/user-routed.module').then(m => m.UserRoutedModule)
-      },
-    ]),
+    },
+], { relativeLinkResolution: 'legacy' }),
     MaterialModule,
     CoreModule,
     ApiAuthorizationModule,
