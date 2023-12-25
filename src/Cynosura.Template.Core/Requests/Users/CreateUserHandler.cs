@@ -26,7 +26,7 @@ namespace Cynosura.Template.Core.Requests.Users
         {
             var user = _mapper.Map<CreateUser, User>(request);
             user.UserName = request.Email;
-            var result = await _userManager.CreateAsync(user, request.Password);
+            var result = await _userManager.CreateAsync(user, request.Password!);
             result.CheckIfSucceeded();
 
             if (request.RoleIds != null)
@@ -34,8 +34,11 @@ namespace Cynosura.Template.Core.Requests.Users
                 foreach (var roleId in request.RoleIds)
                 {
                     var role = await _roleManager.FindByIdAsync(roleId.ToString());
-                    result = await _userManager.AddToRoleAsync(user, role.ToString());
-                    result.CheckIfSucceeded();
+                    if (role != null)
+                    {
+                        result = await _userManager.AddToRoleAsync(user, role.ToString());
+                        result.CheckIfSucceeded();
+                    }                    
                 }
             }
             return new CreatedEntity<int>(user.Id);

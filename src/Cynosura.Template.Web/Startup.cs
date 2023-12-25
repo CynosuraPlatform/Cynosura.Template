@@ -164,8 +164,12 @@ namespace Cynosura.Template.Web
 
             app.UseCors(builder =>
             {
-                builder.WithOrigins(Configuration["Cors:Origin"])
-                    .AllowAnyMethod()
+                var origin = Configuration["Cors:Origin"];
+                if (origin != null)
+                {
+                    builder.WithOrigins(origin);
+                }
+                builder.AllowAnyMethod()
                     .AllowAnyHeader()
                     .WithExposedHeaders("Content-Disposition");
             });
