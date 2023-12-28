@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-column-settings',
@@ -23,12 +23,12 @@ export class ColumnSettingsComponent implements OnInit {
   columnDescriptions: ColumnDescription[];
 
   constructor(
-    private formBuilder: FormBuilder) { }
+    private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.columnDescriptions.forEach(columnDescription => {
       if (!this.settingColumns.controls[columnDescription.name]) {
-        this.settingColumns.addControl(columnDescription.name, new FormControl(true));
+        this.settingColumns.addControl(columnDescription.name, new UntypedFormControl(true));
       }
     });
     this.initForm();

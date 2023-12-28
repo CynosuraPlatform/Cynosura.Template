@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnInit, Inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class WorkerInfoEditComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<WorkerInfoEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private workerInfoService: WorkerInfoService,
-              private fb: FormBuilder,
+              private fb: UntypedFormBuilder,
               private noticeHelper: NoticeHelper) {
     this.id = data.id;
   }

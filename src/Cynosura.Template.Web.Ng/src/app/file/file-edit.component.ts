@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Observable, of, forkJoin } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -43,7 +43,7 @@ export class FileEditComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private fileService: FileService,
               private fileGroupService: FileGroupService,
-              private fb: FormBuilder,
+              private fb: UntypedFormBuilder,
               private noticeHelper: NoticeHelper) {
     this.id = data.id;
     this.fileForm.controls.groupId.valueChanges

@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnInit, forwardRef, OnDestroy, ElementRef, Optional, Self, DoCheck } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl, FormControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -42,7 +42,7 @@ export class UserSelectComponent implements OnInit, ControlValueAccessor,
 
   autocompleteUsers: Observable<User[]>;
 
-  autocompleteControl = new FormControl();
+  autocompleteControl = new UntypedFormControl();
 
   @Input()
   value: number | null = null;
