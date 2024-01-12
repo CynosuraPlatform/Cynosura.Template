@@ -3,7 +3,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Route } from '@angular/router';
-import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatLegacyPaginatorIntl as MatPaginatorIntl} from '@angular/material/legacy-paginator';
 
 import { MaterialModule } from './material.module';
 import { ApiAuthorizationModule } from '../api-authorization/api-authorization.module';
@@ -72,7 +72,7 @@ import { TranslocoRootModule } from './transloco-root.module';
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./user/user-routed.module').then(m => m.UserRoutedModule)
     },
-], { relativeLinkResolution: 'legacy' }),
+], {}),
     MaterialModule,
     CoreModule,
     ApiAuthorizationModule,

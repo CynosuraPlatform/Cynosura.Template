@@ -22,7 +22,6 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "./node_modules/material-icons-font/material-icons-font.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -133,6 +132,12 @@
     },
     "@schematics/angular:directive": {
       "prefix": "app"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   },
   "cli": {
