@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { Error } from '../core/error.model';
@@ -24,7 +24,7 @@ export class ProfileEditComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private noticeHelper: NoticeHelper,
     private translocoService: TranslocoService) {
   }

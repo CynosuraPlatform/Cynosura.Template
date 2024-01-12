@@ -1,4 +1,4 @@
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export class Error {
   constructor(message?: string) {
@@ -12,17 +12,17 @@ export class Error {
 
   httpStatus: number;
 
-  static setFormErrors(group: UntypedFormGroup, error: Error) {
+  static setFormErrors(group: FormGroup, error: Error) {
     if (error.modelState) {
       this.setFormModelStateErrors(group, error.modelState);
     }
   }
 
-  static setFormModelStateErrors(group: UntypedFormGroup, modelState: ModelState) {
+  static setFormModelStateErrors(group: FormGroup, modelState: ModelState) {
     for (const key in modelState) {
       if (group.controls[key]) {
-        if (group.controls[key] instanceof UntypedFormGroup) {
-          this.setFormModelStateErrors(<UntypedFormGroup>group.controls[key], <ModelState>modelState[key]);
+        if (group.controls[key] instanceof FormGroup) {
+          this.setFormModelStateErrors(<FormGroup>group.controls[key], <ModelState>modelState[key]);
         } else {
           const errors = (<ModelStateItem>modelState[key]).errors.reduce((o, e) => {
             o[e.errorMessage] = true;

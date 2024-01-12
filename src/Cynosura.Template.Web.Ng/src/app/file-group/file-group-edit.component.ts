@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnInit, Inject } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -35,7 +35,7 @@ export class FileGroupEditComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<FileGroupEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private fileGroupService: FileGroupService,
-              private fb: UntypedFormBuilder,
+              private fb: FormBuilder,
               private noticeHelper: NoticeHelper) {
     this.id = data.id;
   }
