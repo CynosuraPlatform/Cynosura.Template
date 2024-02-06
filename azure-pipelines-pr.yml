@@ -11,7 +11,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '6.x'
+    version: '8.x'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -36,4 +36,4 @@ steps:
   inputs:    
     command: 'custom'
     workingDir: 'src/Cynosura.Template.Web.Ng'
-    customCommand: 'run build -- --prod'
+    customCommand: 'run build -- --configuration production'
