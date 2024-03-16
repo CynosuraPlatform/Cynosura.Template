@@ -5,14 +5,14 @@
   }
 }
 
-mat-sidenav-container {
+.mat-sidenav-container {
   height: calc(100% - 64px);
 
-  mat-sidenav {
+  .mat-sidenav {
     min-width: 250px;
   }
 
-  mat-sidenav-content {
+  .mat-sidenav-content {
     min-height: 100%;
     padding: 20px;
   }
@@ -21,8 +21,8 @@ mat-sidenav-container {
 .loading {
   position: relative;
   height: 0;
-
-  mat-progress-bar {
+  /* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
+  .mat-progress-bar {
     position: absolute;
     left: 0;
     top: 0;
@@ -31,16 +31,16 @@ mat-sidenav-container {
 }
 
 @media (min-width: 600px) {
-  mat-sidenav-container {
-    mat-sidenav {
+  .mat-sidenav-container {
+    .mat-sidenav {
       margin-top: 64px;
     }
   }
 }
 
 @media (max-width: 599px) {
-  mat-sidenav-container {
-    mat-sidenav {
+  .mat-sidenav-container {
+    .mat-sidenav {
       margin-top: 56px;
     }
   }

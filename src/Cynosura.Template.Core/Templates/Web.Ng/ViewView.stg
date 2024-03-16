@@ -1,5 +1,5 @@
 ﻿main(model) ::= <<
-<mat-card class="mat-card-view" *transloco="let t">
+<mat-card appearance="outlined" class="mat-card-view" *transloco="let t">
 
   <mat-card-header>
     <mat-card-title>{{ t('$model.Entity.DisplayName$') }} <app-$model.Entity.NameKebab$-show [value]="$model.Entity.NameLower$"></app-$model.Entity.NameKebab$-show></mat-card-title>
