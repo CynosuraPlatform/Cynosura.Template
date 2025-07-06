@@ -133,7 +133,8 @@ a {
 }
 
 .mat-card-list,
-.mat-card-view {
+.mat-card-view,
+.mat-card-edit {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -149,6 +150,12 @@ a {
       font-size: 12px;
       color: rgba(0, 0, 0, 0.54);
     }
+  }
+}
+
+.mat-card-edit {
+  mat-form-field {
+    width: 100%;
   }
 }
 

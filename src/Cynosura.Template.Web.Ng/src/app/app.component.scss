@@ -21,12 +21,13 @@
 .loading {
   position: relative;
   height: 0;
-  /* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
-  .mat-progress-bar {
+
+  .mat-mdc-progress-bar {
     position: absolute;
     left: 0;
     top: 0;
     z-index: 1000;
+    background-color: rgba(207, 211, 236);
   }
 }
 
