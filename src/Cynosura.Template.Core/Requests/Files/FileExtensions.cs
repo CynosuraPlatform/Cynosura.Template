@@ -41,20 +41,20 @@ namespace Cynosura.Template.Core.Requests.Files
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.Name.Contains(filter.Text) || e.ContentType.Contains(filter.Text) || e.Url!.Contains(filter.Text));
+                queryable = queryable.Where(e => e.Name.ContainsTrim(filter.Text) || e.ContentType.ContainsTrim(filter.Text) || e.Url!.ContainsTrim(filter.Text));
             }
             if (!string.IsNullOrEmpty(filter?.Name))
             {
-                queryable = queryable.Where(e => e.Name.Contains(filter.Name));
+                queryable = queryable.Where(e => e.Name.ContainsTrim(filter.Name));
             }
             if (!string.IsNullOrEmpty(filter?.ContentType))
             {
-                queryable = queryable.Where(e => e.ContentType.Contains(filter.ContentType));
+                queryable = queryable.Where(e => e.ContentType.ContainsTrim(filter.ContentType));
             }
 
             if (!string.IsNullOrEmpty(filter?.Url))
             {
-                queryable = queryable.Where(e => e.Url!.Contains(filter.Url));
+                queryable = queryable.Where(e => e.Url!.ContainsTrim(filter.Url));
             }
             if (filter?.GroupId != null)
             {

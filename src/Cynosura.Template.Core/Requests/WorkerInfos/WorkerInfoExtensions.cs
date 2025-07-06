@@ -32,15 +32,15 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.Name.Contains(filter.Text) || e.ClassName.Contains(filter.Text));
+                queryable = queryable.Where(e => e.Name.ContainsTrim(filter.Text) || e.ClassName.ContainsTrim(filter.Text));
             }
             if (!string.IsNullOrEmpty(filter?.Name))
             {
-                queryable = queryable.Where(e => e.Name.Contains(filter.Name));
+                queryable = queryable.Where(e => e.Name.ContainsTrim(filter.Name));
             }
             if (!string.IsNullOrEmpty(filter?.ClassName))
             {
-                queryable = queryable.Where(e => e.ClassName.Contains(filter.ClassName));
+                queryable = queryable.Where(e => e.ClassName.ContainsTrim(filter.ClassName));
             }
             return queryable;
         }

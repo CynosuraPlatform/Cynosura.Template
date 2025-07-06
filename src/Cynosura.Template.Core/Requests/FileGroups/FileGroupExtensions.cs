@@ -40,11 +40,11 @@ namespace Cynosura.Template.Core.Requests.FileGroups
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.Name.Contains(filter.Text) || e.Location!.Contains(filter.Text) || e.Accept!.Contains(filter.Text));
+                queryable = queryable.Where(e => e.Name.ContainsTrim(filter.Text) || e.Location!.ContainsTrim(filter.Text) || e.Accept!.ContainsTrim(filter.Text));
             }
             if (!string.IsNullOrEmpty(filter?.Name))
             {
-                queryable = queryable.Where(e => e.Name.Contains(filter.Name));
+                queryable = queryable.Where(e => e.Name.ContainsTrim(filter.Name));
             }
             if (filter?.Type != null)
             {
@@ -52,11 +52,11 @@ namespace Cynosura.Template.Core.Requests.FileGroups
             }
             if (!string.IsNullOrEmpty(filter?.Location))
             {
-                queryable = queryable.Where(e => e.Location!.Contains(filter.Location));
+                queryable = queryable.Where(e => e.Location!.ContainsTrim(filter.Location));
             }
             if (!string.IsNullOrEmpty(filter?.Accept))
             {
-                queryable = queryable.Where(e => e.Accept!.Contains(filter.Accept));
+                queryable = queryable.Where(e => e.Accept!.ContainsTrim(filter.Accept));
             }
             return queryable;
         }
