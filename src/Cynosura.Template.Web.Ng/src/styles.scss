@@ -235,29 +235,17 @@ a {
   padding: 0 !important;
 }
 
-.mat-mdc-form-field {
+.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}
 
-  .mat-mdc-form-field-infix {
-    padding-top: 24px 0 8px 0 !important;
-  }
+.mat-mdc-form-field {
 
   .mdc-floating-label.mat-mdc-floating-label {
     pointer-events: none !important;
 
     &>* {
       pointer-events: none;
-    }
-  }
-
-  &.mat-form-field-hide-placeholder {
-    .mdc-floating-label.mat-mdc-floating-label {
-      top: 37px;
-    }
-  }
-
-  &.mat-focused {
-    .mdc-floating-label.mat-mdc-floating-label {
-      top: 27px;
     }
   }
 }
@@ -291,23 +279,18 @@ a {
     padding: 0;
   }
 
-  .mat-mdc-dialog-actions {
-    padding: 8px 0;
-    margin-bottom: -24px;
-    min-height: 68px;
-  }
-
   .mat-mdc-dialog-content.mat-dialog-content-edit {
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
     }
+  }
 
-    .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
-      display: none;
-    }
+  .mat-mdc-dialog-actions {
+    padding: 8px 0;
+    margin-bottom: -24px;
+    min-height: 68px;
   }
 
   .mat-mdc-dialog-actions.mat-dialog-actions-edit {
@@ -321,7 +304,6 @@ a {
 
 .mat-mdc-dialog-surface {
   padding: 24px;
-
 }
 
 
