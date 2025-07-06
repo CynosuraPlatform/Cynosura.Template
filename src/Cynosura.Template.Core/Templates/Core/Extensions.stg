@@ -62,7 +62,7 @@ case "$field.Name$":
 >>
 
 filterFieldByText(field) ::= <<
-e.$field.Name$!.Contains(filter.Text)
+e.$field.Name$!.ContainsTrim(filter.Text)
 >>
 
 filterByField(field) ::= <<
@@ -90,7 +90,7 @@ if (filter?.$field.Name$ != null)
 filterByString(field) ::= <<
 if (!string.IsNullOrEmpty(filter?.$field.Name$))
 {
-    queryable = queryable.Where(e => e.$field.Name$!.Contains(filter.$field.Name$));
+    queryable = queryable.Where(e => e.$field.Name$!.ContainsTrim(filter.$field.Name$));
 }
 >>
 

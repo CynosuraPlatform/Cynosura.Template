@@ -32,15 +32,15 @@ namespace Cynosura.Template.Core.Requests.Roles
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.Name!.Contains(filter.Text) || e.DisplayName.Contains(filter.Text));
+                queryable = queryable.Where(e => e.Name!.ContainsTrim(filter.Text) || e.DisplayName.ContainsTrim(filter.Text));
             }
             if (!string.IsNullOrEmpty(filter?.Name))
             {
-                queryable = queryable.Where(e => e.Name!.Contains(filter.Name));
+                queryable = queryable.Where(e => e.Name!.ContainsTrim(filter.Name));
             }
             if (!string.IsNullOrEmpty(filter?.DisplayName))
             {
-                queryable = queryable.Where(e => e.DisplayName.Contains(filter.DisplayName));
+                queryable = queryable.Where(e => e.DisplayName.ContainsTrim(filter.DisplayName));
             }
             return queryable;
         }

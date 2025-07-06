@@ -56,7 +56,7 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.Seconds!.Contains(filter.Text) || e.Minutes!.Contains(filter.Text) || e.Hours!.Contains(filter.Text) || e.DayOfMonth!.Contains(filter.Text) || e.Month!.Contains(filter.Text) || e.DayOfWeek!.Contains(filter.Text) || e.Year!.Contains(filter.Text));
+                queryable = queryable.Where(e => e.Seconds!.ContainsTrim(filter.Text) || e.Minutes!.ContainsTrim(filter.Text) || e.Hours!.ContainsTrim(filter.Text) || e.DayOfMonth!.ContainsTrim(filter.Text) || e.Month!.ContainsTrim(filter.Text) || e.DayOfWeek!.ContainsTrim(filter.Text) || e.Year!.ContainsTrim(filter.Text));
             }
             if (filter?.WorkerInfoId != null)
             {
@@ -64,31 +64,31 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks
             }
             if (!string.IsNullOrEmpty(filter?.Seconds))
             {
-                queryable = queryable.Where(e => e.Seconds!.Contains(filter.Seconds));
+                queryable = queryable.Where(e => e.Seconds!.ContainsTrim(filter.Seconds));
             }
             if (!string.IsNullOrEmpty(filter?.Minutes))
             {
-                queryable = queryable.Where(e => e.Minutes!.Contains(filter.Minutes));
+                queryable = queryable.Where(e => e.Minutes!.ContainsTrim(filter.Minutes));
             }
             if (!string.IsNullOrEmpty(filter?.Hours))
             {
-                queryable = queryable.Where(e => e.Hours!.Contains(filter.Hours));
+                queryable = queryable.Where(e => e.Hours!.ContainsTrim(filter.Hours));
             }
             if (!string.IsNullOrEmpty(filter?.DayOfMonth))
             {
-                queryable = queryable.Where(e => e.DayOfMonth!.Contains(filter.DayOfMonth));
+                queryable = queryable.Where(e => e.DayOfMonth!.ContainsTrim(filter.DayOfMonth));
             }
             if (!string.IsNullOrEmpty(filter?.Month))
             {
-                queryable = queryable.Where(e => e.Month!.Contains(filter.Month));
+                queryable = queryable.Where(e => e.Month!.ContainsTrim(filter.Month));
             }
             if (!string.IsNullOrEmpty(filter?.DayOfWeek))
             {
-                queryable = queryable.Where(e => e.DayOfWeek!.Contains(filter.DayOfWeek));
+                queryable = queryable.Where(e => e.DayOfWeek!.ContainsTrim(filter.DayOfWeek));
             }
             if (!string.IsNullOrEmpty(filter?.Year))
             {
-                queryable = queryable.Where(e => e.Year!.Contains(filter.Year));
+                queryable = queryable.Where(e => e.Year!.ContainsTrim(filter.Year));
             }
             return queryable;
         }

@@ -52,7 +52,7 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.Data!.Contains(filter.Text) || e.Result!.Contains(filter.Text) || e.ResultData!.Contains(filter.Text));
+                queryable = queryable.Where(e => e.Data!.ContainsTrim(filter.Text) || e.Result!.ContainsTrim(filter.Text) || e.ResultData!.ContainsTrim(filter.Text));
             }
             if (filter?.WorkerInfoId != null)
             {
@@ -80,15 +80,15 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns
             }
             if (!string.IsNullOrEmpty(filter?.Data))
             {
-                queryable = queryable.Where(e => e.Data!.Contains(filter.Data));
+                queryable = queryable.Where(e => e.Data!.ContainsTrim(filter.Data));
             }
             if (!string.IsNullOrEmpty(filter?.Result))
             {
-                queryable = queryable.Where(e => e.Result!.Contains(filter.Result));
+                queryable = queryable.Where(e => e.Result!.ContainsTrim(filter.Result));
             }
             if (!string.IsNullOrEmpty(filter?.ResultData))
             {
-                queryable = queryable.Where(e => e.ResultData!.Contains(filter.ResultData));
+                queryable = queryable.Where(e => e.ResultData!.ContainsTrim(filter.ResultData));
             }
             return queryable;
         }

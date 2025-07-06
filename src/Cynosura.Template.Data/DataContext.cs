@@ -15,6 +15,10 @@ using Microsoft.Extensions.Options;
 using Cynosura.EF;
 using Cynosura.Template.Core.Entities;
 using Cynosura.Template.Core.Infrastructure;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
+using System.Linq.Expressions;
 
 namespace Cynosura.Template.Data
 {
@@ -68,6 +72,35 @@ namespace Cynosura.Template.Data
 
             var assemblies = CoreHelper.GetPlatformAndAppAssemblies();
             builder.ApplyAllConfigurations(assemblies);
+            builder.HasDbFunction(
+                typeof(DatabaseFunctions).GetMethod(nameof(DatabaseFunctions.ContainsTrim), new[] { typeof(string), typeof(string) })!)
+                .HasTranslation(args => new LikeExpression(
+                    args.First(),
+                    new SqlBinaryExpression(
+                        ExpressionType.Add,
+                        new SqlConstantExpression(
+                            Expression.Constant("%"),
+                            new StringTypeMapping("nvarchar(max)", DbType.String)),
+                        new SqlBinaryExpression(
+                            ExpressionType.Add,
+                            new SqlFunctionExpression(
+                                "TRIM",
+                                new[] { args.Skip(1).First() },
+                                nullable: true,
+                                argumentsPropagateNullability: new[] { true },
+                                type: args.First().Type,
+                                typeMapping: args.First().TypeMapping),
+                            new SqlConstantExpression(
+                                Expression.Constant("%"),
+                                new StringTypeMapping("nvarchar(max)", DbType.String)),
+                            args.First().Type,
+                            args.First().TypeMapping),
+                        args.First().Type,
+                        args.First().TypeMapping),
+                    new SqlConstantExpression(
+                        Expression.Constant("\\"),
+                        new StringTypeMapping("nvarchar(max)", DbType.String)),
+                    null));
 
             // Specify all DateTime properties as Utc when read from database
             var dateTimeConverter = new ValueConverter<DateTime, DateTime>(

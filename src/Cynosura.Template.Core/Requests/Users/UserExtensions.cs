@@ -40,23 +40,23 @@ namespace Cynosura.Template.Core.Requests.Users
         {
             if (!string.IsNullOrEmpty(filter?.Text))
             {
-                queryable = queryable.Where(e => e.UserName!.Contains(filter.Text) || e.Email!.Contains(filter.Text) || e.FirstName!.Contains(filter.Text) || e.LastName!.Contains(filter.Text));
+                queryable = queryable.Where(e => e.UserName!.ContainsTrim(filter.Text) || e.Email!.ContainsTrim(filter.Text) || e.FirstName!.ContainsTrim(filter.Text) || e.LastName!.ContainsTrim(filter.Text));
             }
             if (!string.IsNullOrEmpty(filter?.UserName))
             {
-                queryable = queryable.Where(e => e.UserName!.Contains(filter.UserName));
+                queryable = queryable.Where(e => e.UserName!.ContainsTrim(filter.UserName));
             }
             if (!string.IsNullOrEmpty(filter?.Email))
             {
-                queryable = queryable.Where(e => e.Email!.Contains(filter.Email));
+                queryable = queryable.Where(e => e.Email!.ContainsTrim(filter.Email));
             }
             if (!string.IsNullOrEmpty(filter?.FirstName))
             {
-                queryable = queryable.Where(e => e.FirstName!.Contains(filter.FirstName));
+                queryable = queryable.Where(e => e.FirstName!.ContainsTrim(filter.FirstName));
             }
             if (!string.IsNullOrEmpty(filter?.LastName))
             {
-                queryable = queryable.Where(e => e.LastName!.Contains(filter.LastName));
+                queryable = queryable.Where(e => e.LastName!.ContainsTrim(filter.LastName));
             }
             if (filter?.RoleId != null)
             {
