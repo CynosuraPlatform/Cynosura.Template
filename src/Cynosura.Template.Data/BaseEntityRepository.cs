@@ -64,7 +64,10 @@ namespace Cynosura.Template.Data
             {
                 foreach (var entry in e.AddedEntities)
                 {
-                    TrackChange(entry, ChangeAction.Add);
+                    if (entry.Entity is T)
+                    {
+                        TrackChange(entry, ChangeAction.Add);
+                    }
                 }
             }
         }
