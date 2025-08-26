@@ -29,7 +29,6 @@
     "@danielmoncada/angular-datetime-picker-moment-adapter": "^2.2.0",
     "@ngneat/transloco": "^4.2.2",
     "aspnet-prerendering": "^3.0.1",
-    "core-js": "^2.5.6",
     "jwt-decode": "^2.2.0",
     "moment": "^2.29.1",
     "oidc-client": "^1.9.1",
