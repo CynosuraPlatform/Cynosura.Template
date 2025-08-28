@@ -28,7 +28,9 @@
         "previousPage": "Предыдущая страница",
         "firstPage": "Первая страница",
         "lastPage": "Последняя страница",
-        "itemRange": "{{start}} - {{end}} из {{total}}"
+        "itemRange": "{{start}} - {{end}} из {{total}}",
+        "apply": "Применить",
+        "resetToDefault": "Вернуть по умолчанию"
     },
     "Home": "Главная",
     "First Name": "Имя",

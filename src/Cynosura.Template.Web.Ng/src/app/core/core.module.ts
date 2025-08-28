@@ -40,6 +40,7 @@ import { SelectItemDirective } from './directives/select-item.directive';
 import { SelectAllItemsDirective } from './directives/select-all-items.directive';
 import { ColumnSettingsComponent } from './column-settings.component';
 import { StoredValueService } from './stored-value.service';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 export const MY_MOMENT_FORMATS = {
   parseInput: 'L LT',
@@ -81,7 +82,8 @@ export const MY_MOMENT_FORMATS = {
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
-    MaterialModule
+    MaterialModule,
+    TranslocoRootModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
