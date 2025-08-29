@@ -5,12 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RouterModule } from '@angular/router';
 import { ApplicationPaths } from './api-authorization.constants';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     RouterModule.forChild(
       [
         { path: ApplicationPaths.Register, component: LoginComponent },
@@ -24,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
       ]
     )
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
   declarations: [LoginMenuComponent, LoginComponent, LogoutComponent],
   exports: [LoginMenuComponent, LoginComponent, LogoutComponent]
 })

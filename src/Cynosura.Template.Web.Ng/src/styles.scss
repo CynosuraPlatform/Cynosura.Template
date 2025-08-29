@@ -7,46 +7,50 @@
 
 @import 'styles/material-icons.css';
 
-$primary: mat.define-palette(mat.$indigo-palette);
+$primary: mat.m2-define-palette(mat.$m2-indigo-palette);
 
-/* ibm-plex-sans-regular - latin_cyrillic */
+/* cyrillic-ext */
 @font-face {
   font-family: 'IBM Plex Sans';
   font-style: normal;
-  font-weight: 400;
-  src: local(''),
-    url('assets/fonts/ibm-plex-sans-v8-latin_cyrillic-regular.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('assets/fonts/ibm-plex-sans-v8-latin_cyrillic-regular.woff') format('woff');
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-weight: 100 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxTKYbABA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-
-/* ibm-plex-sans-600 - latin_cyrillic */
+/* cyrillic */
 @font-face {
   font-family: 'IBM Plex Sans';
   font-style: normal;
-  font-weight: 600;
-  src: local(''),
-    url('assets/fonts/ibm-plex-sans-v8-latin_cyrillic-600.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('assets/fonts/ibm-plex-sans-v8-latin_cyrillic-600.woff') format('woff');
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-weight: 100 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxaKYbABA.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-
-/* ibm-plex-sans-700 - latin_cyrillic */
+/* latin-ext */
 @font-face {
   font-family: 'IBM Plex Sans';
   font-style: normal;
-  font-weight: 700;
-  src: local(''),
-    url('assets/fonts/ibm-plex-sans-v8-latin_cyrillic-700.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('assets/fonts/ibm-plex-sans-v8-latin_cyrillic-700.woff') format('woff');
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-weight: 100 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxQKYbABA.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 100 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-$custom-typography: mat.define-typography-config($font-family: 'IBM Plex Sans'
-  );
+$custom-typography: mat.m2-define-typography-config($font-family: 'IBM Plex Sans');
 
 @include mat.typography-hierarchy($custom-typography);
 @include mat.checkbox-typography($custom-typography);
@@ -65,7 +69,7 @@ body {
 }
 
 a {
-  color: mat.get-color-from-palette($primary);
+  color: mat.m2-get-color-from-palette($primary);
   text-decoration: none;
 }
 

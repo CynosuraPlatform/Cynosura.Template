@@ -1,9 +1,9 @@
 ﻿import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule, Route } from '@angular/router';
-import { MatPaginatorIntl} from '@angular/material/paginator';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 import { MaterialModule } from './material.module';
 import { ApiAuthorizationModule } from '../api-authorization/api-authorization.module';
@@ -27,52 +27,51 @@ import { TranslocoRootModule } from './transloco-root.module';
   ],
   imports: [
     BrowserAnimationsModule,
-    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-    { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthorizeGuard] },
-    // ADD ROUTES HERE
-    {
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthorizeGuard] },
+      // ADD ROUTES HERE
+      {
         path: 'worker-schedule-task',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./worker-schedule-task/worker-schedule-task-routed.module').then(m => m.WorkerScheduleTaskRoutedModule)
-    },
-    {
+      },
+      {
         path: 'worker-run',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./worker-run/worker-run-routed.module').then(m => m.WorkerRunRoutedModule)
-    },
-    {
+      },
+      {
         path: 'worker-info',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./worker-info/worker-info-routed.module').then(m => m.WorkerInfoRoutedModule)
-    },
-    {
+      },
+      {
         path: 'file',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./file/file-routed.module').then(m => m.FileRoutedModule)
-    },
-    {
+      },
+      {
         path: 'file-group',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./file-group/file-group-routed.module').then(m => m.FileGroupRoutedModule)
-    },
-    {
+      },
+      {
         path: 'profile',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
-    },
-    {
+      },
+      {
         path: 'role',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./role/role-routed.module').then(m => m.RoleRoutedModule)
-    },
-    {
+      },
+      {
         path: 'user',
         canActivate: [AuthorizeGuard],
         loadChildren: () => import('./user/user-routed.module').then(m => m.UserRoutedModule)
-    },
-], {}),
+      },
+    ], {}),
     MaterialModule,
     CoreModule,
     ApiAuthorizationModule,
@@ -93,7 +92,8 @@ import { TranslocoRootModule } from './transloco-root.module';
       deps: [ConfigService]
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCustom}
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCustom },
+    provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent]
 })
