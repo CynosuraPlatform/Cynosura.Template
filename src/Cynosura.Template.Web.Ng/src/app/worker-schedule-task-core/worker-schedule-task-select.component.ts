@@ -44,6 +44,8 @@ export class WorkerScheduleTaskSelectComponent implements OnInit, ControlValueAc
 
   autocompleteControl = new FormControl();
 
+  autocompleteMinLength = 0;
+
   @Input()
   value: number | null = null;
 
@@ -140,12 +142,12 @@ export class WorkerScheduleTaskSelectComponent implements OnInit, ControlValueAc
               return this.getDisplay(value);
             }
           }),
-          filter(val => val.length > 2 || val.length === 0),
+          filter(val => val.length >= this.autocompleteMinLength || val.length === 0),
           debounceTime(500),
           mergeMap(val => {
-            if (val.length !== 0) {
+            if (val.length >= this.autocompleteMinLength) {
               return this.workerScheduleTaskService.getWorkerScheduleTasks({
-                filter: { text: val }
+                filter: { text: val.length !== 0 ? val : null }
               }).pipe(map(res => res.pageItems));
             } else {
               return of(<WorkerScheduleTask[]>[]);
@@ -175,5 +177,13 @@ export class WorkerScheduleTaskSelectComponent implements OnInit, ControlValueAc
 
   getDisplay(workerScheduleTask: WorkerScheduleTask) {
     return workerScheduleTask ? workerScheduleTask.seconds : '';
+  }
+
+  onBlur() {
+    const value = this.autocompleteControl.value;
+    if (typeof value === 'string') {
+      this.autocompleteControl.setValue('');
+      this.innerValue = null;
+    }
   }
 }

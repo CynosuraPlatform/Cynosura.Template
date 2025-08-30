@@ -5,7 +5,7 @@
 </mat-select>
 <ng-container *ngIf="mode === 'autocomplete'">
   <input matInput type="text" [formControl]="autocompleteControl" [placeholder]="placeholder"
-    [matAutocomplete]="auto">
+    [matAutocomplete]="auto" (blur)="onBlur()">
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDisplay">
     <mat-option *ngFor="let $model.Entity.NameLower$ of autocomplete$model.Entity.PluralName$ | async" [value]="$model.Entity.NameLower$">
       {{ $model.Entity.NameLower$.$model.Entity.DefaultField.NameLower$ }}

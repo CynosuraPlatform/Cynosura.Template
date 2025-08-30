@@ -44,6 +44,8 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor,
 
   autocompleteControl = new FormControl();
 
+  autocompleteMinLength = 0;
+
   @Input()
   value: number | null = null;
 
@@ -139,12 +141,12 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor,
               return this.getDisplay(value);
             }
           }),
-          filter(val => val.length > 2 || val.length === 0),
+          filter(val => val.length >= this.autocompleteMinLength || val.length === 0),
           debounceTime(500),
           mergeMap(val => {
-            if (val.length !== 0) {
+            if (val.length >= this.autocompleteMinLength) {
               return this.roleService.getRoles({
-                filter: { text: val }
+                filter: { text: val.length !== 0 ? val : null }
               }).pipe(map(res => res.pageItems));
             } else {
               return of(<Role[]>[]);
@@ -174,5 +176,13 @@ export class RoleSelectComponent implements OnInit, ControlValueAccessor,
 
   getDisplay(role: Role) {
     return role ? role.displayName : '';
+  }
+
+  onBlur() {
+    const value = this.autocompleteControl.value;
+    if (typeof value === 'string') {
+      this.autocompleteControl.setValue('');
+      this.innerValue = null;
+    }
   }
 }

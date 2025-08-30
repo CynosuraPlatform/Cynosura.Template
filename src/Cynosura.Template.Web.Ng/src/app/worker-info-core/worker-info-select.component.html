@@ -4,7 +4,7 @@
 </mat-select>
 <ng-container *ngIf="mode === 'autocomplete'">
   <input matInput type="text" [formControl]="autocompleteControl" [placeholder]="placeholder"
-    [matAutocomplete]="auto">
+    [matAutocomplete]="auto" (blur)="onBlur()">
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDisplay">
     <mat-option *ngFor="let workerInfo of autocompleteWorkerInfos | async" [value]="workerInfo">
       {{ workerInfo.name }}
