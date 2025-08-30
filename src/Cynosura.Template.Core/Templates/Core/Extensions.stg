@@ -57,8 +57,8 @@ case "$field.Name$":
 orderByEntity(field) ::= <<
 case "$field.Name$":
     return direction == OrderDirection.Descending
-        ? queryable.OrderByDescending(e => e.$field.Name$.$field.Entity.DefaultField.Name$)
-        : queryable.OrderBy(e => e.$field.Name$.$field.Entity.DefaultField.Name$);
+        ? queryable.OrderByDescending(e => e.$field.Name$$if(!field.IsRequired)$!$endif$.$field.Entity.DefaultField.Name$)
+        : queryable.OrderBy(e => e.$field.Name$$if(!field.IsRequired)$!$endif$.$field.Entity.DefaultField.Name$);
 >>
 
 filterFieldByText(field) ::= <<
