@@ -26,7 +26,7 @@ export class ColumnSettingsComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.columnDescriptions.forEach(columnDescription => {
+    this.columnDescriptions.filter(c => !c.isHidden).forEach(columnDescription => {
       if (!this.settingColumns.controls[columnDescription.name]) {
         this.settingColumns.addControl(columnDescription.name, new FormControl(true));
       }
@@ -35,14 +35,14 @@ export class ColumnSettingsComponent implements OnInit {
   }
 
   initForm() {
-    this.columnDescriptions.forEach(columnDescription => {
+    this.columnDescriptions.filter(c => !c.isHidden).forEach(columnDescription => {
       const columnSelected = !!this.columns.find(c => c === columnDescription.name);
       this.settingColumns.controls[columnDescription.name].setValue(columnSelected);
     });
   }
 
   toDefaultColumns() {
-    this.columns = this.defaultColumns;
+    this.columns = ColumnDescription.filter(this.columnDescriptions)(this.defaultColumns);
     this.initForm();
     this.columnsChange.emit(this.columns);
   }
@@ -62,9 +62,10 @@ export class ColumnDescription {
   name: string;
   displayName?: string;
   isSystem ? = false;
+  isHidden ? = false;
 
   static filter(columnDescriptions: ColumnDescription[]): (value: string[]) => string[] {
-    return (value: string[]) => value.filter((item) => columnDescriptions.find(cd => cd.name === item));
+    return (value: string[]) => value.filter((item) => columnDescriptions.find(cd => cd.name === item && !cd.isHidden));
   }
 }
 

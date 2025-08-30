@@ -5,7 +5,7 @@
   <mat-menu #columnsMenu="matMenu">
     <section [formGroup]="settingColumns" class="columns-menu-section">
       <ng-container *ngFor="let columnDescription of columnDescriptions">
-        <mat-checkbox *ngIf="!columnDescription.isSystem" formControlName="{{ columnDescription.name }}"
+        <mat-checkbox *ngIf="!columnDescription.isSystem && !columnDescription.isHidden" formControlName="{{ columnDescription.name }}"
         (click)="$event.stopPropagation()">{{ columnDescription.displayName }}</mat-checkbox>
       </ng-container>
 
