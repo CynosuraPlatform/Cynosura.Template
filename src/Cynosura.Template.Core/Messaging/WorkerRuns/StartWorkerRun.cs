@@ -9,7 +9,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
 {
     public class StartWorkerRun : IRequest
     {
-        public static string QueueName => nameof(StartWorkerRun);
+        public static string QueueName => typeof(StartWorkerRun).FullName!;
 
         public StartWorkerRun(int workerRunId)
         {
