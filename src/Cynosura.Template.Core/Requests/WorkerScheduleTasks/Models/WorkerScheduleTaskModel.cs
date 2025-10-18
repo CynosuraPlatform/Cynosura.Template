@@ -6,11 +6,6 @@ namespace Cynosura.Template.Core.Requests.WorkerScheduleTasks.Models
 {
     public class WorkerScheduleTaskModel
     {
-        public WorkerScheduleTaskModel(int workerInfoId)
-        {
-            WorkerInfoId = workerInfoId;
-        }
-
         [DisplayName("Id")]
         public int Id { get; set; }
 

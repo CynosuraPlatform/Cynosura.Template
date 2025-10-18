@@ -7,11 +7,9 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns.Models
     {
         public int Id { get; set; }
 
-        public string? Data { get; set; }
-
         public override string ToString()
         {
-            return $"{Data}";
+            return $"{Id}";
         }
     }
 }

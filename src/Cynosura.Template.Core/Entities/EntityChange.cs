@@ -7,16 +7,11 @@ namespace Cynosura.Template.Core.Entities
 {
     public class EntityChange
     {
-        public EntityChange(string entityName)
-        {
-            EntityName = entityName;
-        }
-
         public int Id { get; set; }
 
         [StringLength(100)]
         [Required]
-        public string EntityName { get; set; }
+        public required string EntityName { get; set; }
 
         public int EntityId { get; set; }
 

@@ -7,12 +7,6 @@ namespace Cynosura.Template.Core.Requests.Users.Models
 {
     public class UserModel
     {
-        public UserModel(string userName, string email)
-        {
-            UserName = userName;
-            Email = email;
-        }
-
         public int Id { get; set; }
 
         [DisplayName("Creation Date")]
@@ -22,10 +16,10 @@ namespace Cynosura.Template.Core.Requests.Users.Models
         public DateTime ModificationDate { get; set; }
 
         [DisplayName("UserName")]
-        public string UserName { get; set; }
+        public required string UserName { get; set; }
 
         [DisplayName("Email")]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [DisplayName("Email Confirmed")]
         public bool EmailConfirmed { get; set; }

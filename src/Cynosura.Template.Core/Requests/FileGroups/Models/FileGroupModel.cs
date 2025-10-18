@@ -7,12 +7,6 @@ namespace Cynosura.Template.Core.Requests.FileGroups.Models
 {
     public class FileGroupModel
     {
-        public FileGroupModel(string name, FileGroupType type)
-        {
-            Name = name;
-            Type = type;
-        }
-
         [DisplayName("Id")]
         public int Id { get; set; }
 
@@ -31,7 +25,7 @@ namespace Cynosura.Template.Core.Requests.FileGroups.Models
         public Users.Models.UserShortModel? ModificationUser { get; set; }
 
         [DisplayName("Name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [DisplayName("Type")]
         public Enums.FileGroupType Type { get; set; }

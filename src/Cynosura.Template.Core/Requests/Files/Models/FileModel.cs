@@ -6,13 +6,6 @@ namespace Cynosura.Template.Core.Requests.Files.Models
 {
     public class FileModel
     {
-        public FileModel(string name, string contentType, int groupId)
-        {
-            Name = name;
-            ContentType = contentType;
-            GroupId = groupId;
-        }
-
         [DisplayName("Id")]
         public int Id { get; set; }
 
@@ -31,10 +24,10 @@ namespace Cynosura.Template.Core.Requests.Files.Models
         public Users.Models.UserShortModel? ModificationUser { get; set; }
 
         [DisplayName("Name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [DisplayName("Content Type")]
-        public string ContentType { get; set; }
+        public required string ContentType { get; set; }
 
         [DisplayName("Url")]
         public string? Url { get; set; }

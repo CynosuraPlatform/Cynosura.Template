@@ -1,6 +1,4 @@
-﻿import "./Constructor.stg"
-
-main(model) ::= <<
+﻿main(model) ::= <<
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,11 +9,6 @@ namespace $model.Solution.Namespace$.Core.Entities
 {
     public $if(model.Entity.IsAbstract)$abstract $endif$class $model.Entity.Name$$if(model.Entity.BaseEntity)$ : $model.Entity.BaseEntity.Name$$endif$
     {
-        public $model.Entity.Name$($model.Entity.RequiredReferenceTypeFields:constructorParam(); separator=", "$)
-        {
-            $model.Entity.RequiredReferenceTypeFields:constructorInit(); separator="\n"$
-        }
-
         $model.Entity.Fields:field(); separator="\n"$
     }
 }
@@ -33,7 +26,7 @@ attrubute(attrubute) ::= <<
 >>
 
 Type(field) ::= <<
-public $field.TypeName$$if(!field.IsRequired && !field.NetType.IsValueType)$?$endif$ $field.Name$ { get; set; }
+public $if(field.IsRequired && !field.NetType.IsValueType)$required $endif$$field.TypeName$$if(!field.IsRequired && !field.NetType.IsValueType)$?$endif$ $field.Name$ { get; set; }
 >>
 
 Entity(field) ::= <<

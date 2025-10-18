@@ -8,11 +8,6 @@ namespace Cynosura.Template.Core.Entities
 {
     public class WorkerScheduleTask : BaseEntity
     {
-        public WorkerScheduleTask(int workerInfoId)
-        {
-            WorkerInfoId = workerInfoId;
-        }
-
         [Required()]
         public int WorkerInfoId { get; set; }
         public WorkerInfo WorkerInfo { get; set; } = null!;

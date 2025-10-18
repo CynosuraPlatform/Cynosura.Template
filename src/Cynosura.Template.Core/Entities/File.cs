@@ -8,20 +8,13 @@ namespace Cynosura.Template.Core.Entities
 {
     public class File : BaseEntity
     {
-        public File(string name, string contentType, int groupId)
-        {
-            Name = name;
-            ContentType = contentType;
-            GroupId = groupId;
-        }
-
         [Required()]
         [StringLength(100)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         
         [Required()]
         [StringLength(200)]
-        public string ContentType { get; set; }
+        public required string ContentType { get; set; }
         
 
         public byte[]? Content { get; set; }

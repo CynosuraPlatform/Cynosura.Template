@@ -1,6 +1,4 @@
-﻿import "./Constructor.stg"
-
-main(model) ::= <<
+﻿main(model) ::= <<
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +7,6 @@ namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$.Mod
 {
     public class $model.Entity.Name$Model
     {
-        public $model.Entity.Name$Model($model.Entity.RequiredReferenceTypeFields:constructorParam(); separator=", "$)
-        {
-            $model.Entity.RequiredReferenceTypeFields:constructorInit(); separator="\n"$
-        }
-
         $model.Entity.AllSystemFields:field(); separator="\n\n"$
 
         $model.Entity.AllFields:field(); separator="\n\n"$
@@ -28,7 +21,7 @@ $field:(field.Template)()$
 >>
 
 Type(field) ::= <<
-public $field.TypeName$$if(!field.IsRequired && !field.NetType.IsValueType)$?$endif$ $field.Name$ { get; set; }
+public $if(field.IsRequired && !field.NetType.IsValueType)$required $endif$$field.TypeName$$if(!field.IsRequired && !field.NetType.IsValueType)$?$endif$ $field.Name$ { get; set; }
 >>
 
 Entity(field) ::= <<

@@ -29,8 +29,9 @@ namespace Cynosura.Template.Data
             var to = action != ChangeAction.Delete ?
                 JsonSerializer.Serialize(entityEntry.CurrentValues.ToObject(), JsonSerializerHelper.JsonSerializerOptions) :
                 "";
-            var change = new EntityChange(entityType.Name)
+            var change = new EntityChange()
             {
+                EntityName = entityType.Name,
                 EntityId = entity.Id,
                 Action = action,
                 From = from,

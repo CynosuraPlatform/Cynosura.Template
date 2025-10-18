@@ -6,12 +6,6 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos.Models
 {
     public class WorkerInfoModel
     {
-        public WorkerInfoModel(string name, string className)
-        {
-            Name = name;
-            ClassName = className;
-        }
-
         [DisplayName("Id")]
         public int Id { get; set; }
 
@@ -30,9 +24,9 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos.Models
         public Users.Models.UserShortModel? ModificationUser { get; set; }
 
         [DisplayName("Name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [DisplayName("Class Name")]
-        public string ClassName { get; set; }
+        public required string ClassName { get; set; }
     }
 }

@@ -9,15 +9,9 @@ namespace Cynosura.Template.Core.Entities
 {
     public class FileGroup : BaseEntity
     {
-        public FileGroup(string name, FileGroupType type)
-        {
-            Name = name;
-            Type = type;
-        }
-
         [Required()]
         [StringLength(100)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         
         [Required()]
         public Enums.FileGroupType Type { get; set; }
