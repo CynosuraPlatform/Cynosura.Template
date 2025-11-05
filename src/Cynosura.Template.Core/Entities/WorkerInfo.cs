@@ -18,5 +18,10 @@ namespace Cynosura.Template.Core.Entities
 
         public IList<WorkerScheduleTask> ScheduleTasks { get; set; } = null!;
 
+        public int? RetryCount { get; set; }
+                
+
+        public TimeSpan? RetryInterval { get; set; }
+
     }
 }

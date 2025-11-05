@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Cynosura.Core.Data;
+using Cynosura.Core.Messaging;
+using Cynosura.Template.Core.Entities;
+using Cynosura.Template.Core.Infrastructure;
+using Cynosura.Template.Core.Workers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Cynosura.Core.Data;
-using Cynosura.Template.Core.Entities;
-using Cynosura.Template.Core.Infrastructure;
-using Cynosura.Template.Core.Workers;
 
 namespace Cynosura.Template.Core.Messaging.WorkerRuns
 {
@@ -21,16 +22,19 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<StartWorkerRunHandler> _logger;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IMessagingService _messagingService;
 
         public StartWorkerRunHandler(IEntityRepository<WorkerRun> workerRunRepository,
             IUnitOfWork unitOfWork,
             ILogger<StartWorkerRunHandler> logger,
-            IServiceProvider serviceProvider)
+            IServiceProvider serviceProvider,
+            IMessagingService messagingService)
         {
             _workerRunRepository = workerRunRepository;
             _unitOfWork = unitOfWork;
             _logger = logger;
             _serviceProvider = serviceProvider;
+            _messagingService = messagingService;
         }
 
         public async Task Handle(StartWorkerRun request, CancellationToken cancellationToken)
@@ -65,12 +69,25 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
                         }
                         await worker.ExecuteAsync(workerContext);
                     }
-                    await SetWorkerRunEndAsync(workerRun.Id, Enums.WorkerRunStatus.Completed, workerContext.Result, workerContext.ResultData);
+                    await SetWorkerRunEndAsync(workerRun.Id, Enums.WorkerRunStatus.Completed, workerContext.Result, workerContext.ResultData, workerContext.NeedRetry);
+
+                    if (workerRun.WorkerInfo.RetryInterval != null && workerContext.NeedRetry)
+                    {
+                        await ScheduleRetry(workerRun);
+                    }
                 }
                 catch (Exception exception)
                 {
                     _logger.LogError(exception, "Worker run failed");
                     await SetWorkerRunEndAsync(workerRun.Id, Enums.WorkerRunStatus.Error, exception.ToString(), null);
+
+                    if (workerRun.WorkerInfo.RetryCount != null && workerRun.WorkerInfo.RetryInterval != null)
+                    {
+                        if (workerRun.TriesLeft > 0)
+                        {
+                            await ScheduleRetry(workerRun);
+                        }
+                    }
                 }
             }
             else
@@ -100,7 +117,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
             return result;
         }
 
-        private async Task SetWorkerRunEndAsync(int workerRunId, Enums.WorkerRunStatus status, string? result, string? resultData)
+        private async Task SetWorkerRunEndAsync(int workerRunId, Enums.WorkerRunStatus status, string? result, string? resultData, bool needRetry = false)
         {
             var workerRun = await _workerRunRepository.GetEntities()
                 .Where(e => e.Id == workerRunId)
@@ -109,7 +126,16 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
             workerRun.Status = status;
             workerRun.Result = PrepareResult(result);
             workerRun.ResultData = resultData;
+            workerRun.NeedRetry = needRetry;
             await _unitOfWork.CommitAsync();
+        }
+
+        private async Task ScheduleRetry(WorkerRun workerRun)
+        {
+            await _messagingService.SendAsync(RetryWorkerRun.QueueName, new RetryWorkerRun
+            {
+                Id = workerRun.Id
+            });
         }
     }
 }

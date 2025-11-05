@@ -11,6 +11,8 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos
         {
             RuleFor(x => x.Name).MaximumLength(200).NotEmpty().WithName(x => localizer["Name"]);
             RuleFor(x => x.ClassName).MaximumLength(200).NotEmpty().ClassNameImplementsInterface(typeof(IWorker)).WithName(x => localizer["Class Name"]);
+            RuleFor(x => x.RetryCount).NotEmpty().When(x => x.RetryInterval != null).WithName(x => localizer["Retry Count"]);
+            RuleFor(x => x.RetryInterval).NotEmpty().When(x => x.RetryCount != null).WithName(x => localizer["Retry Interval"]);
         }
 
     }

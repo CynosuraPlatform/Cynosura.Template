@@ -44,6 +44,8 @@ export class WorkerRunListComponent implements OnInit {
     { name: 'data', displayName: this.translocoService.translate('Data') },
     { name: 'result', displayName: this.translocoService.translate('Result') },
     { name: 'resultData', displayName: this.translocoService.translate('Result Data') },
+    { name: 'triesLeft', displayName: this.translocoService.translate('Tries Left') },
+    { name: 'needRetry', displayName: this.translocoService.translate('Need Retry') },
     { name: 'action', isSystem: true },
   ];
   columns = this.storedValueService.getStoredValue('workerRunColumns', this.defaultColumns,

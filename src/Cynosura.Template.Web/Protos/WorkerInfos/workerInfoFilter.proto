@@ -1,5 +1,7 @@
 ﻿syntax = "proto3";
 
+import "google/protobuf/duration.proto";
+
 option csharp_namespace = "Cynosura.Template.Web.Protos.WorkerInfos";
 
 message WorkerInfoFilter {
@@ -8,5 +10,17 @@ message WorkerInfoFilter {
     }
     oneof classNameOneOf {
         string className = 70;
+    }
+    oneof retryCountFromOneOf {
+        int32 retryCountFrom = 80;
+    }
+    oneof retryCountToOneOf {
+        int32 retryCountTo = 81;
+    }
+    oneof retryIntervalFromOneOf {
+        google.protobuf.Duration retryIntervalFrom = 90;
+    }
+    oneof retryIntervalToOneOf {
+        google.protobuf.Duration retryIntervalTo = 91;
     }
 }

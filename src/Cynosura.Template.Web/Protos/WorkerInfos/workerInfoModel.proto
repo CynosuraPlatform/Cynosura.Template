@@ -1,6 +1,7 @@
 ﻿syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 
 option csharp_namespace = "Cynosura.Template.Web.Protos.WorkerInfos";
 
@@ -12,6 +13,8 @@ message WorkerInfo {
     int32 modificationUserId = 5;
     string name = 6;
     string className = 7;
+    int32 retryCount = 8;
+    google.protobuf.Duration retryInterval = 9;
 }
 
 message WorkerInfoPageModel {

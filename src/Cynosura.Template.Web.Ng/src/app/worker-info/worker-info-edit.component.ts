@@ -25,7 +25,9 @@ export class WorkerInfoEditComponent implements OnInit {
   workerInfoForm = this.fb.group({
     id: [],
     name: [],
-    className: []
+    className: [],
+    retryCount: [],
+    retryInterval: []
   });
   workerInfo: WorkerInfo;
   error: Error;

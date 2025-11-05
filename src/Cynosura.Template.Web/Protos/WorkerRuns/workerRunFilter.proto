@@ -33,4 +33,13 @@ message WorkerRunFilter {
     oneof resultDataOneOf {
         string resultData = 120;
     }
+    oneof triesLeftFromOneOf {
+        int32 triesLeftFrom = 130;
+    }
+    oneof triesLeftToOneOf {
+        int32 triesLeftTo = 131;
+    }
+    oneof needRetryOneOf {
+        bool needRetry = 140;
+    }
 }

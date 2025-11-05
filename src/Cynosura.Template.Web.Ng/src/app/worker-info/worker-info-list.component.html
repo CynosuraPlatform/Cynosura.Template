@@ -4,12 +4,12 @@
     <mat-card-title>{{ t('Workers') }}</mat-card-title>
   </mat-card-header>
 
-  <mat-card-actions>
+  <mat-card-actions>    
     <div class="action-item">
       <form (ngSubmit)="onSearch()">
         <mat-form-field>
           <mat-label>{{ t('shared.text') }}</mat-label>
-          <input matInput id="text" type="text" name="text" [placeholder]="t('shared.text')"
+          <input matInput id="text" type="text" name="text" [placeholder]="t('shared.text')" 
             [(ngModel)]="state.filter.text" />
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary">{{ t('shared.search') }}</button>
@@ -45,6 +45,18 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ t('Class Name') }}</th>
         <td mat-cell *matCellDef="let item">
           <app-text-view [value]="item.className"></app-text-view>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="retryCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ t('Retry Count') }}</th>
+        <td mat-cell *matCellDef="let item">
+          <app-number-view [value]="item.retryCount"></app-number-view>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="retryInterval">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ t('Retry Interval') }}</th>
+        <td mat-cell *matCellDef="let item">
+          <app-time-view [value]="item.retryInterval"></app-time-view>
         </td>
       </ng-container>
 

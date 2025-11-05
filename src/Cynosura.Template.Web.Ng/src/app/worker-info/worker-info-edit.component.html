@@ -15,6 +15,16 @@
         <app-text-edit formControlName="className" name="className" [placeholder]="t('Class Name')"></app-text-edit>
         <mat-error>{{ error?.modelState?.className | modelError }}</mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ t('Retry Count') }}</mat-label>
+        <app-number-edit formControlName="retryCount" name="retryCount" [placeholder]="t('Retry Count')"></app-number-edit>
+        <mat-error>{{ error?.modelState?.retryCount | modelError }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ t('Retry Interval') }}</mat-label>
+        <app-time-edit formControlName="retryInterval" name="retryInterval" [placeholder]="t('Retry Interval')"></app-time-edit>
+        <mat-error>{{ error?.modelState?.retryInterval | modelError }}</mat-error>
+      </mat-form-field>
     </form>
 
   </mat-dialog-content>

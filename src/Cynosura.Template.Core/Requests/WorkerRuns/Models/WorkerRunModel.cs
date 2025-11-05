@@ -44,5 +44,11 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns.Models
 
         [DisplayName("Result Data")]
         public string? ResultData { get; set; }
+
+        [DisplayName("Tries Left")]
+        public int? TriesLeft { get; set; }
+
+        [DisplayName("Need Retry")]
+        public bool NeedRetry { get; set; }
     }
 }

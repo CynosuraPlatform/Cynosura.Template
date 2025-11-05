@@ -11,5 +11,6 @@ namespace Cynosura.Template.Core.Messaging.WorkerInfos
     {
         public int Id { get; set; }
         public object? Data { get; set; }
+        public int? TriesLeft { get; set; }
     }
 }

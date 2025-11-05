@@ -30,6 +30,30 @@
       "enumId": null,
       "isSystem": false,
       "properties": {}
+    },
+    {
+      "id": "874330b9-9c2b-4812-8813-90293d78fff6",
+      "name": "RetryCount",
+      "displayName": "Retry Count",
+      "type": "Int32",
+      "size": null,
+      "entityId": null,
+      "isRequired": false,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
+    },
+    {
+      "id": "650fb7bc-93a5-4c4c-a0e6-06e77cdfdb88",
+      "name": "RetryInterval",
+      "displayName": "Retry Interval",
+      "type": "Time",
+      "size": null,
+      "entityId": null,
+      "isRequired": false,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
     }
   ],
   "properties": {}

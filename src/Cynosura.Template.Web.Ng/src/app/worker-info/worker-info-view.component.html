@@ -22,6 +22,18 @@
         <app-text-view [value]="workerInfo.className"></app-text-view>
       </div>
     </div>
+    <div class="field-view">
+      <label>{{ t('Retry Count') }}</label>
+      <div>
+        <app-number-view [value]="workerInfo.retryCount"></app-number-view>
+      </div>
+    </div>
+    <div class="field-view">
+      <label>{{ t('Retry Interval') }}</label>
+      <div>
+        <app-time-view [value]="workerInfo.retryInterval"></app-time-view>
+      </div>
+    </div>
   </div>
 
 </mat-card>

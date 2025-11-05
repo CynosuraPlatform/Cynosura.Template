@@ -51,6 +51,18 @@
         <app-text-view [value]="workerRun.resultData"></app-text-view>
       </div>
     </div>
+    <div class="field-view">
+      <label>{{ t('Tries Left') }}</label>
+      <div>
+        <app-number-view [value]="workerRun.triesLeft"></app-number-view>
+      </div>
+    </div>
+    <div class="field-view">
+      <label>{{ t('Need Retry') }}</label>
+      <div>
+        <app-bool-view [value]="workerRun.needRetry"></app-bool-view>
+      </div>
+    </div>
   </div>
 
 </mat-card>

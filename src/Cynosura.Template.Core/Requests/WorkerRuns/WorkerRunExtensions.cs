@@ -40,6 +40,14 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns
                     return direction == OrderDirection.Descending
                         ? queryable.OrderByDescending(e => e.ResultData)
                         : queryable.OrderBy(e => e.ResultData);
+                case "TriesLeft":
+                    return direction == OrderDirection.Descending
+                        ? queryable.OrderByDescending(e => e.TriesLeft)
+                        : queryable.OrderBy(e => e.TriesLeft);
+                case "NeedRetry":
+                    return direction == OrderDirection.Descending
+                        ? queryable.OrderByDescending(e => e.NeedRetry)
+                        : queryable.OrderBy(e => e.NeedRetry);
                 case "":
                 case null:
                     return queryable.OrderByDescending(e => e.Id);
@@ -89,6 +97,18 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns
             if (!string.IsNullOrEmpty(filter?.ResultData))
             {
                 queryable = queryable.Where(e => e.ResultData!.ContainsTrim(filter.ResultData));
+            }
+            if (filter?.TriesLeftFrom != null)
+            {
+                queryable = queryable.Where(e => e.TriesLeft >= filter.TriesLeftFrom);
+            }
+            if (filter?.TriesLeftTo != null)
+            {
+                queryable = queryable.Where(e => e.TriesLeft <= filter.TriesLeftTo);
+            }
+            if (filter?.NeedRetry != null)
+            {
+                queryable = queryable.Where(e => e.NeedRetry == filter.NeedRetry);
             }
             return queryable;
         }

@@ -90,6 +90,30 @@
       "enumId": null,
       "isSystem": false,
       "properties": {}
+    },
+    {
+      "id": "1ba8efc1-c940-4f63-a9dc-420bf04fc27f",
+      "name": "TriesLeft",
+      "displayName": "Tries Left",
+      "type": "Int32",
+      "size": null,
+      "entityId": null,
+      "isRequired": false,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
+    },
+    {
+      "id": "0263d950-d509-4340-b67b-00ab08de1c5c",
+      "name": "NeedRetry",
+      "displayName": "Need Retry",
+      "type": "Boolean",
+      "size": null,
+      "entityId": null,
+      "isRequired": true,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
     }
   ],
   "properties": {}

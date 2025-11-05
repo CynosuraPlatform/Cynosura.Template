@@ -18,6 +18,8 @@ message WorkerRun {
     string data = 10;
     string result = 11;
     string resultData = 12;
+    int32 triesLeft = 13;
+    bool needRetry = 14;
 }
 
 message WorkerRunPageModel {

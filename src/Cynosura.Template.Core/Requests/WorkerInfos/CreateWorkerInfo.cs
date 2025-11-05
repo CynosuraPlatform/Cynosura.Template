@@ -12,5 +12,9 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos
         public string? Name { get; set; }
 
         public string? ClassName { get; set; }
+
+        public int? RetryCount { get; set; }
+
+        public TimeSpan? RetryInterval { get; set; }
     }
 }

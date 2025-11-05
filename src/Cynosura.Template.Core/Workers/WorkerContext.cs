@@ -22,5 +22,7 @@ namespace Cynosura.Template.Core.Workers
         public string? Result { get; set; }
 
         public string? ResultData { get; set; }
+
+        public bool NeedRetry { get; set; }
     }
 }

@@ -28,5 +28,11 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos.Models
 
         [DisplayName("Class Name")]
         public required string ClassName { get; set; }
+
+        [DisplayName("Retry Count")]
+        public int? RetryCount { get; set; }
+
+        [DisplayName("Retry Interval")]
+        public TimeSpan? RetryInterval { get; set; }
     }
 }
