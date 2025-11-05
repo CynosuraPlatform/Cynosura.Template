@@ -10,6 +10,8 @@ export class WorkerInfo {
   modificationUserId: number;
   name: string;
   className: string;
+  retryCount: number;
+  retryInterval: string;
 }
 
 export class WorkerInfoListState {

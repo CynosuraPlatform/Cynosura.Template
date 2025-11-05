@@ -16,6 +16,8 @@ export class WorkerRun {
   data: string;
   result: string;
   resultData: string;
+  triesLeft: number;
+  needRetry: boolean;
 }
 
 export class WorkerRunListState {

@@ -31,7 +31,9 @@ namespace Cynosura.Template.Web.AutoMapper
                 .ForMember(dest => dest.EndDateTime, opt => opt.Condition(src => src.EndDateTime != default))
                 .ForMember(dest => dest.Data, opt => opt.Condition(src => src.Data != default))
                 .ForMember(dest => dest.Result, opt => opt.Condition(src => src.Result != default))
-                .ForMember(dest => dest.ResultData, opt => opt.Condition(src => src.ResultData != default));
+                .ForMember(dest => dest.ResultData, opt => opt.Condition(src => src.ResultData != default))
+                .ForMember(dest => dest.TriesLeft, opt => opt.Condition(src => src.TriesLeft != default))
+                .ForMember(dest => dest.NeedRetry, opt => opt.Condition(src => src.NeedRetry != default));
             CreateMap<PageModel<WorkerRunModel>, WorkerRunPageModel>()                
                 .ForMember(dest => dest.PageItems, opt => opt.Ignore())
                 .AfterMap((src, dest, rc) => dest.PageItems.AddRange(rc.Mapper.Map<IEnumerable<WorkerRun>>(src.PageItems)));

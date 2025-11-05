@@ -23,11 +23,15 @@ export class UpdateWorkerInfo {
   id?: number;
   name?: string;
   className?: string;
+  retryCount?: number;
+  retryInterval?: string;
 }
 
 export class CreateWorkerInfo {
   name?: string;
   className?: string;
+  retryCount?: number;
+  retryInterval?: string;
 }
 
 export class DeleteWorkerInfo {

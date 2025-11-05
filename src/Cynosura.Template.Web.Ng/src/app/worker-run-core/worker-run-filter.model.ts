@@ -11,4 +11,7 @@ export class WorkerRunFilter extends EntityFilter {
   data?: string;
   result?: string;
   resultData?: string;
+  triesLeftFrom?: number;
+  triesLeftTo?: number;
+  needRetry?: boolean;
 }

@@ -7,5 +7,9 @@ namespace Cynosura.Template.Core.Requests.WorkerInfos.Models
     {
         public string? Name { get; set; }
         public string? ClassName { get; set; }
+        public int? RetryCountFrom { get; set; }
+        public int? RetryCountTo { get; set; }
+        public TimeSpan? RetryIntervalFrom { get; set; }
+        public TimeSpan? RetryIntervalTo { get; set; }
     }
 }

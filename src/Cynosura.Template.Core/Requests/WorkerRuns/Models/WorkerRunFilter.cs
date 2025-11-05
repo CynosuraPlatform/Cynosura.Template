@@ -14,5 +14,8 @@ namespace Cynosura.Template.Core.Requests.WorkerRuns.Models
         public string? Data { get; set; }
         public string? Result { get; set; }
         public string? ResultData { get; set; }
+        public int? TriesLeftFrom { get; set; }
+        public int? TriesLeftTo { get; set; }
+        public bool? NeedRetry { get; set; }
     }
 }

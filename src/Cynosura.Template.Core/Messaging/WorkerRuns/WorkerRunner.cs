@@ -43,6 +43,10 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
                 WorkerInfoId = workerInfo.Id,
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
             };
+            if (workerInfo.RetryCount != null)
+            {
+                workerRun.TriesLeft = workerInfo.RetryCount - 1;
+            }
             _workerRunRepository.Add(workerRun);
             await _unitOfWork.CommitAsync();
             await _messagingService.SendAsync(StartWorkerRun.QueueName, new StartWorkerRun(workerRun.Id));

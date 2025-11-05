@@ -37,6 +37,8 @@ export class WorkerInfoListComponent implements OnInit {
     { name: 'select', isSystem: true },
     { name: 'name', displayName: this.translocoService.translate('Name') },
     { name: 'className', displayName: this.translocoService.translate('Class Name') },
+    { name: 'retryCount', displayName: this.translocoService.translate('Retry Count') },
+    { name: 'retryInterval', displayName: this.translocoService.translate('Retry Interval') },
     { name: 'action', isSystem: true },
   ];
   columns = this.storedValueService.getStoredValue('workerInfoColumns', this.defaultColumns,

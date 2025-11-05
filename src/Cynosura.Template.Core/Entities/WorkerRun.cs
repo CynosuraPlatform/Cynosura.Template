@@ -11,24 +11,30 @@ namespace Cynosura.Template.Core.Entities
         [Required()]
         public int WorkerInfoId { get; set; }
         public WorkerInfo WorkerInfo { get; set; } = null!;
-        
+                
         [Required()]
         public Enums.WorkerRunStatus Status { get; set; }
-        
+                
 
         public DateTime? StartDateTime { get; set; }
-        
+                
 
         public DateTime? EndDateTime { get; set; }
-        
+                
 
         public string? Data { get; set; }
-        
+                
 
         public string? Result { get; set; }
-        
+                
 
         public string? ResultData { get; set; }
-        
+                
+
+        public int? TriesLeft { get; set; }
+                
+        [Required()]
+        public bool NeedRetry { get; set; }
+                
     }
 }

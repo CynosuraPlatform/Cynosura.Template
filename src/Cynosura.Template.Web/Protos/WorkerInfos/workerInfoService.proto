@@ -1,5 +1,6 @@
 ﻿syntax = "proto3";
 
+import "google/protobuf/duration.proto";
 import "Protos/common.proto";
 import "Protos/WorkerInfos/workerInfoModel.proto";
 import "Protos/WorkerInfos/workerInfoFilter.proto";
@@ -20,6 +21,12 @@ message CreateWorkerInfoRequest {
     }
     oneof classNameOneOf {
         string className = 7;
+    }
+    oneof retryCountOneOf {
+        int32 retryCount = 8;
+    }
+    oneof retryIntervalOneOf {
+        google.protobuf.Duration retryInterval = 9;
     }
 }
 
@@ -52,5 +59,11 @@ message UpdateWorkerInfoRequest {
     }
     oneof classNameOneOf {
         string className = 7;
+    }
+    oneof retryCountOneOf {
+        int32 retryCount = 8;
+    }
+    oneof retryIntervalOneOf {
+        google.protobuf.Duration retryInterval = 9;
     }
 }
