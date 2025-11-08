@@ -8,7 +8,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerRuns
 {
     public class RetryWorkerRun
     {
-        public static string QueueName => nameof(RetryWorkerRun);
+        public static string QueueName => typeof(RetryWorkerRun).FullName!;
 
         public int Id { get; set; }
     }
