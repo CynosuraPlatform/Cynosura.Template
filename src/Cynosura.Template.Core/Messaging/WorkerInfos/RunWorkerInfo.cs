@@ -10,7 +10,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerInfos
     public class RunWorkerInfo : IRequest
     {
         public int Id { get; set; }
-        public object? Data { get; set; }
+        public string? Data { get; set; }
         public int? TriesLeft { get; set; }
     }
 }

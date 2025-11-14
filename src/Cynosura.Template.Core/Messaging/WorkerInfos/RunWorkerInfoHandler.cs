@@ -40,7 +40,7 @@ namespace Cynosura.Template.Core.Messaging.WorkerInfos
             var workerRun = new WorkerRun
             {
                 WorkerInfoId = request.Id,
-                Data = request.Data != null ? JsonSerializer.Serialize(request.Data) : null,
+                Data = request.Data,
             };
             if (workerInfo.RetryCount != null)
             {
