@@ -108,6 +108,7 @@ namespace Cynosura.Template.Web
                 });
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
                 c.SchemaFilter<EnumTypesSchemaFilter>();
+                c.SupportNonNullableReferenceTypes();
             });
 
             services.AddFluentValidationRulesToSwagger();
