@@ -315,3 +315,69 @@ msgstr "День недели"
 
 msgid "Year"
 msgstr "Год"
+
+msgid "Optimistic concurrency failure, object has been modified."
+msgstr "Ошибка оптимистичного параллелизма, объект был изменен."
+
+msgid "An unknown failure has occurred."
+msgstr "Произошла неизвестная ошибка."
+
+msgid "Email '{0}' is already taken."
+msgstr "Электронная почта '{0}' уже занята."
+
+msgid "Role name '{0}' is already taken."
+msgstr "Имя роли '{0}' уже занята."
+
+msgid "Username '{0}' is already taken."
+msgstr "Имя пользователя '{0}' уже занято."
+
+msgid "Email '{0}' is invalid."
+msgstr "Электронная почта '{0}' недействительна."
+
+msgid "Role name '{0}' is invalid."
+msgstr "Имя роли '{0}' недействительно."
+
+msgid "Invalid token."
+msgstr "Неверный токен."
+
+msgid "Username '{0}' is invalid, can only contain letters or digits."
+msgstr "Имя пользователя '{0}' недействительно, может содержать только буквы или цифры."
+
+msgid "A user with this login already exists."
+msgstr "Пользователь с таким логином уже существует."
+
+msgid "Incorrect password."
+msgstr "Неверный пароль."
+
+msgid "Passwords must have at least one digit ('0'-'9')."
+msgstr "Пароль должен содержать хотя бы одну цифру ('0'-'9')."
+
+msgid "Passwords must have at least one lowercase ('a'-'z')."
+msgstr "Пароль должен содержать хотя бы одну строчную букву ('a'-'z')."
+
+msgid "Passwords must have at least one non alphanumeric character."
+msgstr "Пароль должен содержать хотя бы один не буквенно-цифровой символ."
+
+msgid "Passwords must use at least {0} different characters."
+msgstr "Пароль должен содержать хотя {0} разных символов."
+
+msgid "Passwords must have at least one uppercase ('A'-'Z')."
+msgstr "Пароль должен содержать хотя бы одну заглавную букву ('A'-'Z')."
+
+msgid "Passwords must be at least {0} characters."
+msgstr "Пароль должен содержать не менее {0} символов."
+
+msgid "Recovery code redemption failed."
+msgstr "Не удалось активировать код восстановления."
+
+msgid "User already has a password set."
+msgstr "У пользователя уже установлен пароль."
+
+msgid "User already in role '{0}'."
+msgstr "Пользователь уже имеет роль '{0}'."
+
+msgid "Lockout is not enabled for this user."
+msgstr "Для этого пользователя отключена блокировка."
+
+msgid "User is not in role '{0}'."
+msgstr "Пользователь не имеет роли '{0}'."

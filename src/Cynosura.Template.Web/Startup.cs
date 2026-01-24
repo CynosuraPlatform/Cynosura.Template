@@ -45,6 +45,7 @@ namespace Cynosura.Template.Web
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<Role>()
+                .AddErrorDescriber<LocalizedIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<DataContext>();
 
             services.AddIdentityServer(o =>
