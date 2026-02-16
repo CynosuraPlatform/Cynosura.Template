@@ -30,7 +30,7 @@
     "aspnet-prerendering": "^3.0.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.29.1",
-    "oidc-client": "^1.9.1",
+    "oidc-client": "^1.11.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.14.10"
