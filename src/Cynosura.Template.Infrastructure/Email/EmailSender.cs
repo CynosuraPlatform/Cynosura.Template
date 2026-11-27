@@ -22,9 +22,9 @@ namespace Cynosura.Template.Infrastructure.Email
         public async Task SendAsync(EmailModel model)
         {
             var message = new MimeMessage();
-            message.From.Add(MailboxAddress.Parse(!string.IsNullOrEmpty(model.From) ? model.From : _options.DefaultFrom));
-            message.To.Add(MailboxAddress.Parse(model.To));
-            message.Subject = model.Subject;
+            message.From.Add(MailboxAddress.Parse(!string.IsNullOrEmpty(model.From) ? model.From! : _options.DefaultFrom!));
+            message.To.Add(MailboxAddress.Parse(model.To!));
+            message.Subject = model.Subject!;
             var bodyBuilder = new BodyBuilder();
             if (model.IsBodyHtml)
             {
@@ -38,7 +38,7 @@ namespace Cynosura.Template.Infrastructure.Email
             {
                 foreach (var attachment in model.Attachments)
                 {
-                    bodyBuilder.Attachments.Add(attachment.FileName, attachment.Data, ContentType.Parse(attachment.ContentType));
+                    bodyBuilder.Attachments.Add(attachment.FileName!, attachment.Data!, ContentType.Parse(attachment.ContentType!));
                 }
             }
             message.Body = bodyBuilder.ToMessageBody();
@@ -54,10 +54,10 @@ namespace Cynosura.Template.Infrastructure.Email
             if (string.IsNullOrEmpty(_options.PickupFolder))
             {
                 using var client = new SmtpClient();
-                await client.ConnectAsync(_options.SmtpServer, _options.SmtpPort, _options.EnableSsl);
+                await client.ConnectAsync(_options.SmtpServer!, _options.SmtpPort, _options.EnableSsl);
                 if (!string.IsNullOrEmpty(_options.UserName))
                 {
-                    await client.AuthenticateAsync(_options.UserName, _options.Password);
+                    await client.AuthenticateAsync(_options.UserName, _options.Password!);
                 }
                 await client.SendAsync(message);
             }
