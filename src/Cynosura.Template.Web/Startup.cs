@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using Duende.IdentityServer.Configuration;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -58,6 +62,23 @@ namespace Cynosura.Template.Web
                 })
                 .AddApiAuthorization<User, DataContext>()
                 .AddProfileService<MyProfileService>();
+
+            // По HTTP браузеры отбрасывают cookie с SameSite=None без флага Secure,
+            // из-за чего вход уходил в цикл "логин -> callback без пользователя -> логин".
+            services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.Lax;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+            });
+            services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ExternalScheme, options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.Lax;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+            });
+            services.PostConfigure<IdentityServerOptions>(options =>
+            {
+                options.Authentication.CheckSessionCookieSameSiteMode = SameSiteMode.Lax;
+            });
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
@@ -149,7 +170,10 @@ namespace Cynosura.Template.Web
                 SupportedUICultures = supportedCultures
             });
 
-            app.UseHttpsRedirection();
+            if (Configuration.GetValue<bool>("UsingHttps"))
+            {
+                app.UseHttpsRedirection();
+            }
             app.UseStaticFiles();
 
             app.UseSwagger();
@@ -169,9 +193,10 @@ namespace Cynosura.Template.Web
             app.UseCors(builder =>
             {
                 var origin = Configuration["Cors:Origin"];
-                if (origin != null)
+                if (!string.IsNullOrWhiteSpace(origin))
                 {
-                    builder.WithOrigins(origin);
+                    var origins = origin.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                    builder.WithOrigins(origins);
                 }
                 builder.AllowAnyMethod()
                     .AllowAnyHeader()
