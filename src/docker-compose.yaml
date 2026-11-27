@@ -1,11 +1,13 @@
-version: '3'
 services:
   web:
     build:
       context: .
       dockerfile: Cynosura.Template.Web/Dockerfile
     depends_on:
-      - db
+      db:
+        condition: service_started
+      mq:
+        condition: service_healthy
   webng:
     build:
       context: Cynosura.Template.Web.Ng
@@ -14,9 +16,17 @@ services:
       context: .
       dockerfile: Cynosura.Template.Worker/Dockerfile
     depends_on:
-      - db
+      db:
+        condition: service_started
+      mq:
+        condition: service_healthy
   db:
     image: 'mcr.microsoft.com/mssql/server:2019-latest'
   mq:
     image: rabbitmq:3.8-management
     hostname: "mq"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
